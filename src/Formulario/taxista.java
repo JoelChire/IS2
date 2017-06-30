@@ -360,7 +360,6 @@ public class taxista extends javax.swing.JInternalFrame {
             }
             else if(id==null){
             try{ 
-                                      JOptionPane.showMessageDialog(null,id+"ENTRO A GUARDAR","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
 
             Conectar cc=new Conectar();            
             Connection cn=cc.conexion();    
