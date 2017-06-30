@@ -384,10 +384,10 @@ public class taxista extends javax.swing.JInternalFrame {
         Conectar cc=new Conectar();            
         Connection cn=cc.conexion();
         PreparedStatement pst = cn.prepareStatement("UPDATE taxista SET nombre='"+txtnombre.getText()+"', apellido='"+txtapellido.getText()+"',telefono='"+txttelefono.getText()+"' WHERE id_taxista="+id);
-        pst.executeUpdate();
+        pst.executeUpdate();        
+        id="null";
         JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
         cc.desconectar();
-        id="null";
             btnguardar.setEnabled(true);           
             btnnuevo.setEnabled(true);
         } catch (SQLException e) {

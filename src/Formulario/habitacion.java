@@ -26,7 +26,9 @@ public class habitacion extends javax.swing.JInternalFrame {
     String r;
     Integer n=1;
     ResultSet rs;
-    public static String bandera_habitacion;
+    public static String bandera_habitacion;       
+    public static String id;
+    public static buscar_habitacion buscar_habit;
     public habitacion() {
         Conectar cc=new Conectar();
         Connection cn=cc.conexion();
@@ -42,48 +44,12 @@ public class habitacion extends javax.swing.JInternalFrame {
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);
         }
-        btneditar.setEnabled(true);
         btnguardar.setEnabled(true);
         btnnuevo.setEnabled(false);
-        mostrardatos("");
-        jTable1.setEnabled(false);
         bandera_habitacion="bandera";
     }
 
-    void mostrardatos(String valor){
-    DefaultTableModel modelo= new DefaultTableModel();
-    modelo.addColumn("N° HABITACION");
-    modelo.addColumn("ESTADO");
-    modelo.addColumn("TIPO");
-    jTable1.setModel(modelo);
-    String SQL="";
-    if(valor.equals(""))
-    {    String []datos = new String [4];
-
-        SQL="SELECT h.nro_hab,h.estado,a.id_tipo FROM  habitacion  h inner join tip_habitacion a on a.id_tipo=h.tip_habitacion_id_tipo";
-    }
-    else{
-        SQL="SELECT h.nro_hab,h.estado,a.id_tipo FROM habitacion INNER JOIN tip_habitacion a ON a.id_tipo = h.tip_habitacion_id_tipo WHERE h.nro_hab LIKE '%"+valor+"%'";
-    }
- 
-    String []datos = new String [4];
-        try {
-            Conectar cc=new Conectar();            
-            Connection cn=cc.conexion();
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while(rs.next()){
-                datos[0]=rs.getString(1);                
-                datos[1]=rs.getString(2);
-                datos[2]=rs.getString(3);
-                modelo.addRow(datos);
-            }
-            jTable1.setModel(modelo);
-            cc.desconectar();
-        } catch (SQLException ex) {
-            Logger.getLogger(taxista.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -94,27 +60,23 @@ public class habitacion extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         panel1 = new java.awt.Panel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         cmbestado = new javax.swing.JComboBox<>();
         cmbtipo = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txthabitacion = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtcosto = new javax.swing.JTextField();
+        txtcamas = new javax.swing.JTextField();
+        btnbuscar = new javax.swing.JButton();
         panel12 = new java.awt.Panel();
         btnnuevo = new javax.swing.JButton();
         btnguardar = new javax.swing.JButton();
-        btneditar = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
 
         setTitle("REGISTRO DE HABITACION");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("N° Habitación:");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Estado:");
 
         cmbestado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cmbestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Ocupado", "Reservado", "Inhabilitado" }));
@@ -126,11 +88,18 @@ public class habitacion extends javax.swing.JInternalFrame {
 
         cmbtipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cmbtipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbtipo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cmbtipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbtipoActionPerformed(evt);
             }
         });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("N° Habitación:");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Estado:");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Tipo:");
@@ -150,6 +119,17 @@ public class habitacion extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setText("Costo:");
+
+        jLabel4.setText("Nº Camas:");
+
+        btnbuscar.setText("Buscar");
+        btnbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -159,14 +139,24 @@ public class habitacion extends javax.swing.JInternalFrame {
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbtipo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txthabitacion, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(cmbestado, javax.swing.GroupLayout.Alignment.LEADING, 0, 198, Short.MAX_VALUE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addComponent(txthabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnbuscar))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmbtipo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbestado, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtcamas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                                .addComponent(txtcosto, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGap(0, 9, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,7 +164,8 @@ public class habitacion extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txthabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txthabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnbuscar))
                 .addGap(18, 18, 18)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -183,7 +174,14 @@ public class habitacion extends javax.swing.JInternalFrame {
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbtipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtcosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtcamas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         btnnuevo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -203,14 +201,6 @@ public class habitacion extends javax.swing.JInternalFrame {
             }
         });
 
-        btneditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btneditar.setText("Editar");
-        btneditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneditarActionPerformed(evt);
-            }
-        });
-
         btnsalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnsalir.setText("Salir");
         btnsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -227,7 +217,6 @@ public class habitacion extends javax.swing.JInternalFrame {
                 .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(panel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btneditar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnguardar)
                     .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
@@ -239,30 +228,10 @@ public class habitacion extends javax.swing.JInternalFrame {
                 .addComponent(btnnuevo)
                 .addGap(18, 18, 18)
                 .addComponent(btnguardar)
-                .addGap(11, 11, 11)
-                .addComponent(btneditar)
-                .addGap(18, 18, 18)
+                .addGap(54, 54, 54)
                 .addComponent(btnsalir)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -270,14 +239,9 @@ public class habitacion extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -287,9 +251,7 @@ public class habitacion extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -331,14 +293,18 @@ public class habitacion extends javax.swing.JInternalFrame {
         if(txthabitacion.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Ingrese el nombre","¡Error!",JOptionPane.ERROR_MESSAGE);
             }
-        else if(n==1){
+        else if(id==null){
+            
         Conectar cc=new Conectar();
         Connection cn=cc.conexion();
+                    JOptionPane.showMessageDialog(null,id+"ENTRE","¡Error!",JOptionPane.ERROR_MESSAGE);
+
         try{
-            PreparedStatement pst=cn.prepareStatement("INSERT INTO habitacion(nro_hab,estado,tip_habitacion_id_tipo) Values(?,?,?)");
-            pst.setString(1,txthabitacion.getText());
-            pst.setString(2,(String)cmbestado.getSelectedItem());
-            pst.setString(3,r);
+            PreparedStatement pst=cn.prepareStatement("INSERT INTO habitacion(id_habitacion,nro_hab,estado,tip_habitacion_id_tipo) Values(?,?,?,?)");
+            pst.setString(1,null);
+            pst.setString(2,txthabitacion.getText());
+            pst.setString(3,(String)cmbestado.getSelectedItem());
+            pst.setString(4,r);
 
             int a=pst.executeUpdate();
             if(a>0){
@@ -357,20 +323,17 @@ public class habitacion extends javax.swing.JInternalFrame {
         try {
         Conectar cc=new Conectar();            
         Connection cn=cc.conexion();
-        PreparedStatement pst = cn.prepareStatement("UPDATE habitacion SET nro_hab='"+txthabitacion.getText()+"',estado='"+(String) cmbestado.getSelectedItem()+"',tip_habitacion_id_tipo='"+(String) cmbtipo.getSelectedItem()+"' WHERE nro_hab='"+txthabitacion.getText()+"'");
+        PreparedStatement pst = cn.prepareStatement("UPDATE habitacion SET nro_hab='"+txthabitacion.getText()+"',estado='"+(String) cmbestado.getSelectedItem()+"',tip_habitacion_id_tipo='"+(String) cmbtipo.getSelectedItem()+"' WHERE id_habitacion="+id);
         pst.executeUpdate();
         JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
         cc.desconectar();
-        n=1;
-        jTable1.setEnabled(false);
-            btnguardar.setEnabled(false);
-            btneditar.setEnabled(false);            
+        id=null;
+            btnguardar.setEnabled(false);          
             btnnuevo.setEnabled(true);
         } catch (SQLException e) {
         System.out.print(e.getMessage());
     }
         }        
-        mostrardatos(""); 
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
@@ -380,11 +343,8 @@ public class habitacion extends javax.swing.JInternalFrame {
         cmbtipo.setSelectedIndex(0);      
         cmbestado.setEnabled(true);
         cmbtipo.setEnabled(true);
-        btneditar.setEnabled(true);
         btnguardar.setEnabled(true);
         btnnuevo.setEnabled(false);
-        mostrardatos("");
-        jTable1.setEnabled(false);
     }//GEN-LAST:event_btnnuevoActionPerformed
 
     private void txthabitacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txthabitacionKeyTyped
@@ -413,97 +373,32 @@ public class habitacion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txthabitacionKeyTyped
 
     private void txthabitacionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txthabitacionKeyReleased
-        // TODO add your handling code here:
-                mostrardatos(txthabitacion.getText());
-
+        // TODO add your handling code her
     }//GEN-LAST:event_txthabitacionKeyReleased
 
-    private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
+    private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
         // TODO add your handling code here:
-        jTable1.setEnabled(true);
-        txthabitacion.setText("");
-        cmbestado.setSelectedIndex(-1);
-        cmbtipo.setSelectedIndex(-1);
-        txthabitacion.setEnabled(true);
-        cmbestado.setEnabled(false);   
-        cmbtipo.setEnabled(false);
-        btnguardar.setEnabled(true);
-        btnnuevo.setEnabled(false);
-        btneditar.setEnabled(false);
-        n=2;
-    }//GEN-LAST:event_btneditarActionPerformed
+        buscar_habit=new buscar_habitacion(this,true);
+        buscar_habit.setVisible(true);
+    }//GEN-LAST:event_btnbuscarActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-        int fila= jTable1.getSelectedRow();
-        txthabitacion.setEnabled(false);
-        
-        cmbestado.setEnabled(true);
-        cmbtipo.setEnabled(true);
-       
-        if(fila>=0){
-        txthabitacion.setText(jTable1.getValueAt(fila, 0).toString());
-        if(jTable1.getValueAt(fila, 1).toString().equals("Disponible"))
-        {
-            cmbestado.setSelectedIndex(0); 
-        }
-        else if(jTable1.getValueAt(fila, 1).toString().equals("Ocupado"))
-        {
-            cmbestado.setSelectedIndex(1); 
-        }
-        else if(jTable1.getValueAt(fila, 1).toString().equals("Reservado"))
-        {
-            cmbestado.setSelectedIndex(2); 
-        }
-        else if(jTable1.getValueAt(fila, 1).toString().equals("Inhabilitado"))
-        {
-            cmbestado.setSelectedIndex(3); 
-        }
-        if(jTable1.getValueAt(fila, 4).toString().equals("H06"))
-        {
-            cmbtipo.setSelectedIndex(0); 
-        }
-        else if(jTable1.getValueAt(fila, 4).toString().equals("H02"))
-        {
-            cmbtipo.setSelectedIndex(1); 
-        }
-        else if(jTable1.getValueAt(fila, 4).toString().equals("H05"))
-        {
-            cmbtipo.setSelectedIndex(2); 
-        }
-        else if(jTable1.getValueAt(fila, 4).toString().equals("H03"))
-        {
-            cmbtipo.setSelectedIndex(4); 
-        }
-        else if(jTable1.getValueAt(fila, 4).toString().equals("H01"))
-        {
-            cmbtipo.setSelectedIndex(5); 
-        }
-        else if(jTable1.getValueAt(fila, 4).toString().equals("H07"))
-        {
-            cmbtipo.setSelectedIndex(6); 
-        }
-        else if(jTable1.getValueAt(fila, 4).toString().equals("H04"))
-        {
-            cmbtipo.setSelectedIndex(3); 
-        }
-    }//GEN-LAST:event_jTable1MouseClicked
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btneditar;
+    private javax.swing.JButton btnbuscar;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
-    private javax.swing.JComboBox<String> cmbestado;
-    private javax.swing.JComboBox<String> cmbtipo;
+    public static javax.swing.JComboBox<String> cmbestado;
+    public static javax.swing.JComboBox<String> cmbtipo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private java.awt.Panel panel1;
     private java.awt.Panel panel12;
-    private javax.swing.JTextField txthabitacion;
+    public static javax.swing.JTextField txtcamas;
+    public static javax.swing.JTextField txtcosto;
+    public static javax.swing.JTextField txthabitacion;
     // End of variables declaration//GEN-END:variables
 }
