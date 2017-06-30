@@ -53,7 +53,6 @@ public class buscar_habitacion extends javax.swing.JDialog {
             } 
             jTable1.setModel(model);
         }catch(HeadlessException | SQLException e){
-            System.err.println("No dispone de ese tipo");
         }
     }    
 
