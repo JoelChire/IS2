@@ -380,9 +380,7 @@ public class taxista extends javax.swing.JInternalFrame {
         }  
         }
         else
-        {  
-                                                  JOptionPane.showMessageDialog(null,id+"ENTRO A EDITAR","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
-
+        {   
         try {
         Conectar cc=new Conectar();            
         Connection cn=cc.conexion();
