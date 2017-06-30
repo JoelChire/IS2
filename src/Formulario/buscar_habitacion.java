@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class buscar_habitacion extends javax.swing.JDialog {
@@ -39,7 +41,7 @@ public class buscar_habitacion extends javax.swing.JDialog {
         model =new DefaultTableModel(null,titulos);
         try{            
             PreparedStatement pst=cn.prepareStatement("SELECT  id_habitacion,nro_hab,nombre_tipo,estado,costo,nro_camas "
-                    + "FROM tip_habitacion inner join  habitacion on habitacion.tip_habitacion_id_tipo=tip_habitacion.id_tipo where nro_hab LIKE '%"+valor+"%' order by nro_hab");
+                    + "FROM tip_habitacion inner join  habitacion on habitacion.tip_habitacion_id_tipo=tip_habitacion.id_tipo where nro_hab LIKE '"+valor+"%' order by nro_hab");
             datos = pst.executeQuery();//buscando datos y guardando en datos           
             String [] fila = new String[6];
             while(datos.next()){
@@ -52,7 +54,20 @@ public class buscar_habitacion extends javax.swing.JDialog {
                 model.addRow(fila); 
             } 
             jTable1.setModel(model);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(50);         
+            jTable1.getColumnModel().getColumn(1).setMaxWidth(70);            
+            jTable1.getColumnModel().getColumn(2).setMaxWidth(400);
+            jTable1.getColumnModel().getColumn(3).setMaxWidth(300);     
+            jTable1.getColumnModel().getColumn(4).setMaxWidth(100);             
+            jTable1.getColumnModel().getColumn(5).setMaxWidth(50);
+            DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+            tcr.setHorizontalAlignment(SwingConstants.CENTER);
+            jTable1.getColumnModel().getColumn(0).setCellRenderer(tcr);              
+            jTable1.getColumnModel().getColumn(1).setCellRenderer(tcr);     
+            jTable1.getColumnModel().getColumn(4).setCellRenderer(tcr);
+            jTable1.getColumnModel().getColumn(5).setCellRenderer(tcr);
         }catch(HeadlessException | SQLException e){
+            System.err.println("No dispone de ese tipo");
         }
     }    
 
@@ -63,7 +78,7 @@ public class buscar_habitacion extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lb_tip_hab_alq = new javax.swing.JLabel();
-        tipo_ha_alq = new javax.swing.JTextField();
+        txtnumero = new javax.swing.JTextField();
         btnsalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -75,19 +90,24 @@ public class buscar_habitacion extends javax.swing.JDialog {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         lb_tip_hab_alq.setFont(new java.awt.Font("URW Gothic L", 1, 14)); // NOI18N
-        lb_tip_hab_alq.setText("Tipo:");
+        lb_tip_hab_alq.setText("Nº de Habitación :");
 
-        tipo_ha_alq.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        tipo_ha_alq.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtnumero.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        txtnumero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnumeroActionPerformed(evt);
+            }
+        });
+        txtnumero.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                tipo_ha_alqKeyReleased(evt);
+                txtnumeroKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                tipo_ha_alqKeyTyped(evt);
+                txtnumeroKeyTyped(evt);
             }
         });
 
-        btnsalir.setText("Salir");
+        btnsalir.setText("Cancelar");
         btnsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnsalirActionPerformed(evt);
@@ -101,21 +121,20 @@ public class buscar_habitacion extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lb_tip_hab_alq)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tipo_ha_alq, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(128, 128, 128)
+                .addGap(18, 18, 18)
+                .addComponent(txtnumero, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
                 .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_tip_hab_alq)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tipo_ha_alq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnsalir)))
+                    .addComponent(txtnumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnsalir))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -178,21 +197,35 @@ public class buscar_habitacion extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tipo_ha_alqKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tipo_ha_alqKeyReleased
+    private void txtnumeroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnumeroKeyReleased
         // TODO add your handling code here:
-        cargar(tipo_ha_alq.getText());
-    }//GEN-LAST:event_tipo_ha_alqKeyReleased
+        cargar(txtnumero.getText());
+    }//GEN-LAST:event_txtnumeroKeyReleased
 
-    private void tipo_ha_alqKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tipo_ha_alqKeyTyped
+    private void txtnumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnumeroKeyTyped
         // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (Character.isDigit(c))
+        int numerocaracteres=5;
+        char d=evt.getKeyChar();
+        if (txtnumero.getText().length()>=numerocaracteres){
+        evt.consume();
+            JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if (Character.isLetter(d)) 
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"Solo letras","Advertencia.!!",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Solo números","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        } 
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
+            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_tipo_ha_alqKeyTyped
+    }//GEN-LAST:event_txtnumeroKeyTyped
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
         // TODO add your handling code here:
@@ -202,20 +235,24 @@ public class buscar_habitacion extends javax.swing.JDialog {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         int fsel= jTable1.getSelectedRow();
-        try{
-                //System.out.println("habitacion seleccionada");
-                //"Nro de Habitacion", "Tipo", "Estado","Costo","Nro Camas"
-                model= (DefaultTableModel) jTable1.getModel();
-                habitacion.id= jTable1.getValueAt(fsel, 0).toString();
-                habitacion.txthabitacion.setText(jTable1.getValueAt(fsel, 1).toString());
-                habitacion.cmbtipo.setSelectedItem(jTable1.getValueAt (fsel,2).toString());
-                habitacion.txtcosto.setText(jTable1.getValueAt (fsel,4).toString());
-                habitacion.txtcamas.setText(jTable1.getValueAt (fsel,5).toString());
-                habitacion.cmbestado.setSelectedItem(jTable1.getValueAt (fsel,3).toString());                
-                
-        } catch (Exception e) {
-        }
+        //System.out.println("habitacion seleccionada");
+        //"Nro de Habitacion", "Tipo", "Estado","Costo","Nro Camas"
+        model= (DefaultTableModel) jTable1.getModel();
+        habitacion.id= jTable1.getValueAt(fsel, 0).toString();
+        habitacion.txthabitacion.setText(jTable1.getValueAt(fsel, 1).toString());
+        habitacion.cmbtipo.setSelectedItem(jTable1.getValueAt (fsel,2).toString());
+        habitacion.txtcosto.setText(jTable1.getValueAt (fsel,4).toString());
+        habitacion.txtcamas.setText(jTable1.getValueAt (fsel,5).toString());
+        habitacion.cmbestado.setSelectedItem(jTable1.getValueAt (fsel,3).toString());  
+        habitacion.txtcosto.setEnabled(true);
+        habitacion.txtcamas.setEnabled(true);
+        this.dispose();
+
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void txtnumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnumeroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnumeroActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -264,6 +301,6 @@ public class buscar_habitacion extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lb_tip_hab_alq;
-    private javax.swing.JTextField tipo_ha_alq;
+    private javax.swing.JTextField txtnumero;
     // End of variables declaration//GEN-END:variables
 }

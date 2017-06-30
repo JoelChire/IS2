@@ -7,6 +7,8 @@ package Formulario;
 
 import ClaseConectar.Conectar;
 import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,6 +31,7 @@ public class habitacion extends javax.swing.JInternalFrame {
     public static String bandera_habitacion;       
     public static String id;
     public static buscar_habitacion buscar_habit;
+    
     public habitacion() {
         Conectar cc=new Conectar();
         Connection cn=cc.conexion();
@@ -46,9 +49,10 @@ public class habitacion extends javax.swing.JInternalFrame {
         }
         btnguardar.setEnabled(true);
         btnnuevo.setEnabled(false);
+        txtcosto.setEnabled(false);
+        txtcamas.setEnabled(false);
         bandera_habitacion="bandera";
     }
-
    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,18 +62,19 @@ public class habitacion extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         panel1 = new java.awt.Panel();
-        cmbestado = new javax.swing.JComboBox<>();
         cmbtipo = new javax.swing.JComboBox<>();
+        cmbestado = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txthabitacion = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         txtcosto = new javax.swing.JTextField();
         txtcamas = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         btnbuscar = new javax.swing.JButton();
         panel12 = new java.awt.Panel();
         btnnuevo = new javax.swing.JButton();
@@ -78,20 +83,20 @@ public class habitacion extends javax.swing.JInternalFrame {
 
         setTitle("REGISTRO DE HABITACION");
 
-        cmbestado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cmbestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Ocupado", "Reservado", "Inhabilitado" }));
-        cmbestado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbestadoActionPerformed(evt);
-            }
-        });
-
         cmbtipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cmbtipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbtipo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cmbtipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbtipoActionPerformed(evt);
+            }
+        });
+
+        cmbestado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cmbestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Ocupado", "Reservado", "Inhabilitado" }));
+        cmbestado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbestadoActionPerformed(evt);
             }
         });
 
@@ -116,6 +121,26 @@ public class habitacion extends javax.swing.JInternalFrame {
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txthabitacionKeyTyped(evt);
+            }
+        });
+
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, cmbtipo, org.jdesktop.beansbinding.ELProperty.create("${toolTipText}"), txtcosto, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
+        txtcosto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcostoActionPerformed(evt);
+            }
+        });
+        txtcosto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcostoKeyTyped(evt);
+            }
+        });
+
+        txtcamas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcamasActionPerformed(evt);
             }
         });
 
@@ -240,9 +265,9 @@ public class habitacion extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(45, 45, 45)
                 .addComponent(panel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,8 +276,10 @@ public class habitacion extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
+
+        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -271,11 +298,12 @@ public class habitacion extends javax.swing.JInternalFrame {
             ResultSet rs1 = sent1.executeQuery("select id_tipo, nombre_tipo from tip_habitacion where nombre_tipo = '"+this.cmbtipo.getSelectedItem()+"'");
             if(rs1.next()){
             r = String.valueOf(rs1.getString("id_tipo"));
-            }            
+            }    
             cc.desconectar();
         }catch(SQLException e){
                 JOptionPane.showMessageDialog(null, e);  
         }
+        
     }//GEN-LAST:event_cmbtipoActionPerformed
 
     private void txthabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txthabitacionActionPerformed
@@ -349,7 +377,7 @@ public class habitacion extends javax.swing.JInternalFrame {
 
     private void txthabitacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txthabitacionKeyTyped
         // TODO add your handling code here:
-        int numerocaracteres=4;
+        int numerocaracteres=5;
         char d=evt.getKeyChar();
         if (txthabitacion.getText().length()>=numerocaracteres){
         evt.consume();
@@ -382,6 +410,39 @@ public class habitacion extends javax.swing.JInternalFrame {
         buscar_habit.setVisible(true);
     }//GEN-LAST:event_btnbuscarActionPerformed
 
+    private void txtcostoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcostoKeyTyped
+        // TODO add your handling code here:
+        int numerocaracteres=9;
+        char d=evt.getKeyChar();
+        if (txtcosto.getText().length()>=numerocaracteres){
+        evt.consume();
+            JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if (Character.isLetter(d)) 
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Solo números","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        } 
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
+            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtcostoKeyTyped
+
+    private void txtcamasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcamasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcamasActionPerformed
+
+    private void txtcostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcostoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcostoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbuscar;
@@ -400,5 +461,6 @@ public class habitacion extends javax.swing.JInternalFrame {
     public static javax.swing.JTextField txtcamas;
     public static javax.swing.JTextField txtcosto;
     public static javax.swing.JTextField txthabitacion;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

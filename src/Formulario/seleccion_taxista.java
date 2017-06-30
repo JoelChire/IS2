@@ -234,18 +234,13 @@ public class seleccion_taxista extends javax.swing.JDialog {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        int fsel= jTable1.getSelectedRow();
-        try {
-                
-            taxista.id=jTable1.getValueAt(fsel, 0).toString();
-            taxista.txtdni.setText(jTable1.getValueAt(fsel, 1).toString());
-            taxista.txtnombre.setText(jTable1.getValueAt(fsel, 2).toString());
-            taxista.txtapellido.setText(jTable1.getValueAt(fsel, 3).toString());
-            taxista.txttelefono.setText(jTable1.getValueAt(fsel, 4).toString());           
-            this.dispose();
-
-        } catch (Exception e) {
-        }
+        int fsel= jTable1.getSelectedRow(); 
+        taxista.id=jTable1.getValueAt(fsel, 0).toString();
+        taxista.txtdni.setText(jTable1.getValueAt(fsel, 1).toString());
+        taxista.txtnombre.setText(jTable1.getValueAt(fsel, 2).toString());
+        taxista.txtapellido.setText(jTable1.getValueAt(fsel, 3).toString());
+        taxista.txttelefono.setText(jTable1.getValueAt(fsel, 4).toString());           
+        this.dispose();
     }//GEN-LAST:event_jTable1MouseClicked
 
     public static void main(String args[]) {
