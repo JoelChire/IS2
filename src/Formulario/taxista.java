@@ -28,54 +28,17 @@ public class taxista extends javax.swing.JInternalFrame {
     
     Integer n=1;
     //ResultSet datos;
-    public static String bandera_taxista;
+    public static String bandera_taxista;       
+    public static String id;
+    public static seleccion_taxista seleccion_tax;
     public taxista() {
         initComponents();
-        btneditar.setEnabled(true);
         btnguardar.setEnabled(true);
-        btnnuevo.setEnabled(false);
-        mostrardatos("");
-        jTable1.setEnabled(false);       
-        bandera_taxista="bandera";
+        btnnuevo.setEnabled(false);  
+        bandera_taxista="bandera";     
     }
     
-    void mostrardatos(String valor){
-    DefaultTableModel modelo= new DefaultTableModel();
-    modelo.addColumn("DNI");
-    modelo.addColumn("NOMBRES");
-    modelo.addColumn("APELLIDOS");
-    modelo.addColumn("TELEFONO");      
-    jTable1.setModel(modelo);
-    String SQL="";
-    if(valor.equals(""))
-    {    String []datos = new String [4];
-
-        SQL="SELECT * FROM taxista";
-    }
-    else{
-        SQL="SELECT * FROM taxista WHERE nombre_taxi LIKE '%"+valor+"%'";
-    }
- 
-    String []datos = new String [4];
-        try {
-            Conectar cc=new Conectar();            
-            Connection cn=cc.conexion();
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while(rs.next()){
-                datos[0]=rs.getString(1);                
-                datos[1]=rs.getString(2);
-                datos[2]=rs.getString(3);
-                datos[3]=rs.getString(4);
-                modelo.addRow(datos);
-            }
-            jTable1.setModel(modelo);
-            cc.desconectar();
-        } catch (SQLException ex) {
-            Logger.getLogger(taxista.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,11 +59,9 @@ public class taxista extends javax.swing.JInternalFrame {
         txtapellido = new javax.swing.JTextField();
         txtnombre = new javax.swing.JTextField();
         txtdni = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        btnbuscar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnguardar = new javax.swing.JButton();
-        btneditar = new javax.swing.JButton();
         btnnuevo = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
 
@@ -173,6 +134,13 @@ public class taxista extends javax.swing.JInternalFrame {
             }
         });
 
+        btnbuscar.setText("Buscar");
+        btnbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout paneldatosLayout = new javax.swing.GroupLayout(paneldatos);
         paneldatos.setLayout(paneldatosLayout);
         paneldatosLayout.setHorizontalGroup(
@@ -191,11 +159,15 @@ public class taxista extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(paneldatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtnombre, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                            .addComponent(txtapellido)
-                            .addComponent(txtdni))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                        .addGroup(paneldatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(paneldatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtapellido, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                                .addComponent(txtdni))
+                            .addGroup(paneldatosLayout.createSequentialGroup()
+                                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         paneldatosLayout.setVerticalGroup(
             paneldatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,7 +175,8 @@ public class taxista extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(paneldatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnbuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(paneldatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -216,38 +189,13 @@ public class taxista extends javax.swing.JInternalFrame {
                 .addGroup(paneldatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
 
         btnguardar.setText("Guardar");
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnguardarActionPerformed(evt);
-            }
-        });
-
-        btneditar.setText("Editar");
-        btneditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneditarActionPerformed(evt);
             }
         });
 
@@ -272,7 +220,6 @@ public class taxista extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btneditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnguardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnnuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnsalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -281,15 +228,13 @@ public class taxista extends javax.swing.JInternalFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
+                .addGap(34, 34, 34)
                 .addComponent(btnnuevo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnguardar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btneditar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnsalir)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -297,27 +242,22 @@ public class taxista extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 8, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 9, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(30, 30, 30))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -418,18 +358,19 @@ public class taxista extends javax.swing.JInternalFrame {
             else if(txttelefono.getText().length()>0 && txttelefono.getText().length()<9){
                 JOptionPane.showMessageDialog(null,"Teléfono incompleto","¡Error!",JOptionPane.ERROR_MESSAGE);
             }
-            else if(n==1){
+            else if(id==null){
             try{ 
+                                      JOptionPane.showMessageDialog(null,id+"ENTRO A GUARDAR","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
+
             Conectar cc=new Conectar();            
             Connection cn=cc.conexion();    
-            PreparedStatement pst=cn.prepareStatement("INSERT INTO taxista(dni_taxista,nombre_taxi,apellido_taxi,telefono_taxi) Values(?,?,?,?)");
+            PreparedStatement pst=cn.prepareStatement("INSERT INTO taxista(dni,nombre,apellido,telefono,id_taxista) Values(?,?,?,?,?)");
             pst.setString(1,txtdni.getText());
             pst.setString(2,txtnombre.getText());
             pst.setString(3,txtapellido.getText());
-            pst.setString(4,txttelefono.getText());        
-            jTable1.setEnabled(false);
-            btnguardar.setEnabled(false);
-            btneditar.setEnabled(false); 
+            pst.setString(4,txttelefono.getText());
+            pst.setString(5,null);
+            btnguardar.setEnabled(true);
             btnnuevo.setEnabled(true);
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null,"Registro exitoso","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
@@ -439,24 +380,23 @@ public class taxista extends javax.swing.JInternalFrame {
         }  
         }
         else
-        {
+        {  
+                                                  JOptionPane.showMessageDialog(null,id+"ENTRO A EDITAR","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
+
         try {
         Conectar cc=new Conectar();            
         Connection cn=cc.conexion();
-        PreparedStatement pst = cn.prepareStatement("UPDATE taxista SET nombre_taxi='"+txtnombre.getText()+"',apellido_taxi='"+txtapellido.getText()+"',telefono_taxi='"+txttelefono.getText()+"' WHERE dni_taxista='"+txtdni.getText()+"'");
+        PreparedStatement pst = cn.prepareStatement("UPDATE taxista SET nombre='"+txtnombre.getText()+"', apellido='"+txtapellido.getText()+"',telefono='"+txttelefono.getText()+"' WHERE id_taxista="+id);
         pst.executeUpdate();
         JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
         cc.desconectar();
-        n=1;
-        jTable1.setEnabled(false);
-            btnguardar.setEnabled(false);
-            btneditar.setEnabled(false);            
+        id="null";
+            btnguardar.setEnabled(true);           
             btnnuevo.setEnabled(true);
         } catch (SQLException e) {
         System.out.print(e.getMessage());
     }
-        }
-        mostrardatos("");                       
+        }                    
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
@@ -474,11 +414,8 @@ public class taxista extends javax.swing.JInternalFrame {
         txtapellido.setEnabled(true);
         txtdni.setEnabled(true);
         txttelefono.setEnabled(true);
-        btneditar.setEnabled(true);
         btnguardar.setEnabled(true);
         btnnuevo.setEnabled(false);
-        mostrardatos("");
-        jTable1.setEnabled(false);
     }//GEN-LAST:event_btnnuevoActionPerformed
   
     private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
@@ -487,29 +424,11 @@ public class taxista extends javax.swing.JInternalFrame {
 
     private void txtnombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyReleased
         // TODO add your handling code here:
-        mostrardatos(txtnombre.getText());
     }//GEN-LAST:event_txtnombreKeyReleased
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         //TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
-        // TODO add your handling code here:    
-        jTable1.setEnabled(true);
-        txtdni.setText("");
-        txtnombre.setText("");
-        txtapellido.setText("");
-        txttelefono.setText("");
-        
-        txtapellido.setEnabled(false);
-        txtdni.setEnabled(false);
-        txttelefono.setEnabled(false);   
-        btnguardar.setEnabled(true);
-        btnnuevo.setEnabled(false);
-        btneditar.setEnabled(false);
-        n=2;
-    }//GEN-LAST:event_btneditarActionPerformed
 
     private void txtdniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdniKeyTyped
         // TODO add your handling code here:
@@ -536,28 +455,19 @@ public class taxista extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtdniKeyTyped
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-        int fila= jTable1.getSelectedRow();
-        txtapellido.setEnabled(true);
-        txtdni.setEnabled(true);
-        txttelefono.setEnabled(true);
-       
-        if(fila>=0){
-        txtdni.setText(jTable1.getValueAt(fila, 0).toString());
-        txtnombre.setText(jTable1.getValueAt(fila, 1).toString());
-        txtapellido.setText(jTable1.getValueAt(fila, 2).toString());
-        txttelefono.setText(jTable1.getValueAt(fila, 3).toString());
-        }
-    }//GEN-LAST:event_jTable1MouseClicked
-
     private void txtdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdniActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtdniActionPerformed
 
+    private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
+        // TODO add your handling code here:    
+            seleccion_tax=new seleccion_taxista(this,true);
+            seleccion_tax.setVisible(true);
+    }//GEN-LAST:event_btnbuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btneditar;
+    private javax.swing.JButton btnbuscar;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
@@ -568,13 +478,11 @@ public class taxista extends javax.swing.JInternalFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel paneldatos;
-    private javax.swing.JTextField txtapellido;
-    private javax.swing.JTextField txtdni;
-    private javax.swing.JTextField txtnombre;
-    private javax.swing.JTextField txttelefono;
+    public static javax.swing.JTextField txtapellido;
+    public static javax.swing.JTextField txtdni;
+    public static javax.swing.JTextField txtnombre;
+    public static javax.swing.JTextField txttelefono;
     // End of variables declaration//GEN-END:variables
 
 }

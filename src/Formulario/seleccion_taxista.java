@@ -6,7 +6,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class seleccion_taxista extends javax.swing.JDialog {
@@ -16,17 +21,18 @@ public class seleccion_taxista extends javax.swing.JDialog {
     Connection cn=cc.conexion();
     ResultSet datos;
     DefaultTableModel model;
-    String nrohab,nom_tipo,estado,costo,camas;
+    String dni,nomb,apellido,fono;
     /////////////
-    public seleccion_taxista(alquiler parent, boolean modal) {
+    public seleccion_taxista(taxista parent, boolean modal) {
         //super(parent, modal);
         this.tax= parent;
         this.setModal(modal);
-        this.setTitle("Seleccion de Habitación");
+        this.setTitle("Seleccionar taxista");
         initComponents();
         cargar("");
         this.setLocationRelativeTo(this);        
     }
+
     ///7///
     //public void enviodato(){
     //    alquile.poner();
@@ -34,24 +40,53 @@ public class seleccion_taxista extends javax.swing.JDialog {
     //////////////////
     void cargar(String valor)
     {
-        String [] titulos = {"Nro de Habitacion", "Tipo", "Estado","Costo","Nro Camas"};
-        model =new DefaultTableModel(null,titulos);
-        try{            
-            PreparedStatement pst=cn.prepareStatement("SELECT  nro_hab,nombre_tipo,estado,costo,nro_camas "
-                    + "FROM tip_habitacion inner join  habitacion on habitacion.tip_habitacion_id_tipo=tip_habitacion.id_tipo where nombre_tipo LIKE '%"+valor+"%' order by nro_hab");
-            datos = pst.executeQuery();//buscando datos y guardando en datos           
-            String [] fila = new String[5];
-            while(datos.next()){
-                fila[0]=datos.getString("nro_hab");
-                fila[1]=datos.getString("nombre_tipo");
-                fila[2]=datos.getString("estado");
-                fila[3]=datos.getString("costo");
-                fila[4]=datos.getString("nro_camas");
-                model.addRow(fila); 
-            } 
-            jTable1.setModel(model);
-        }catch(HeadlessException | SQLException e){
-            System.err.println("No dispone de ese tipo");
+        DefaultTableModel modelo= new DefaultTableModel();
+    
+    modelo.addColumn("  Nº");
+    modelo.addColumn("DOC. IDENTIDAD");
+    modelo.addColumn("     NOMBRES");
+    modelo.addColumn("     APELLIDOS");
+    modelo.addColumn("    TELEFONO");      
+    jTable1.setModel(modelo);
+    String SQL="";
+    if(valor.equals(""))
+    {    String []datos = new String [5];
+
+        SQL="SELECT * FROM taxista";
+    }
+    else{
+        SQL="SELECT * FROM taxista WHERE nombre_taxi LIKE '%"+valor+"%'";
+    }
+ 
+    String []datos = new String [5];
+        try {
+            Conectar cc=new Conectar();            
+            Connection cn=cc.conexion();
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while(rs.next()){
+                datos[0]=rs.getString(5);                
+                datos[1]=rs.getString(1);
+                datos[2]=rs.getString(2);
+                datos[3]=rs.getString(3);               
+                datos[4]=rs.getString(4);
+                modelo.addRow(datos);
+            }
+            jTable1.setModel(modelo);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(50);         
+            jTable1.getColumnModel().getColumn(1).setMaxWidth(350);
+             
+            jTable1.getColumnModel().getColumn(2).setMaxWidth(350);
+            jTable1.getColumnModel().getColumn(3).setMaxWidth(350);     
+            jTable1.getColumnModel().getColumn(4).setMaxWidth(300);
+            DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+            tcr.setHorizontalAlignment(SwingConstants.CENTER);
+            jTable1.getColumnModel().getColumn(0).setCellRenderer(tcr);           
+            jTable1.getColumnModel().getColumn(1).setCellRenderer(tcr);
+            jTable1.getColumnModel().getColumn(4).setCellRenderer(tcr);
+            cc.desconectar();
+        } catch (SQLException ex) {
+            Logger.getLogger(taxista.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
 
@@ -62,8 +97,7 @@ public class seleccion_taxista extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lb_tip_hab_alq = new javax.swing.JLabel();
-        tipo_ha_alq = new javax.swing.JTextField();
-        btnseleccionar = new javax.swing.JButton();
+        txtnombre = new javax.swing.JTextField();
         btnsalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -75,26 +109,19 @@ public class seleccion_taxista extends javax.swing.JDialog {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         lb_tip_hab_alq.setFont(new java.awt.Font("URW Gothic L", 1, 14)); // NOI18N
-        lb_tip_hab_alq.setText("Tipo:");
+        lb_tip_hab_alq.setText("Nombre:");
 
-        tipo_ha_alq.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        tipo_ha_alq.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtnombre.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        txtnombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                tipo_ha_alqKeyReleased(evt);
+                txtnombreKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                tipo_ha_alqKeyTyped(evt);
+                txtnombreKeyTyped(evt);
             }
         });
 
-        btnseleccionar.setText("Seleccionar");
-        btnseleccionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnseleccionarActionPerformed(evt);
-            }
-        });
-
-        btnsalir.setText("Salir");
+        btnsalir.setText("Cancelar");
         btnsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnsalirActionPerformed(evt);
@@ -108,28 +135,25 @@ public class seleccion_taxista extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lb_tip_hab_alq)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tipo_ha_alq, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnseleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lb_tip_hab_alq)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tipo_ha_alq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnseleccionar)
-                        .addComponent(btnsalir)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addComponent(btnsalir))
+                .addContainerGap())
         );
 
-        jTable1.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
+        jTable1.setAutoCreateRowSorter(true);
+        jTable1.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -142,6 +166,11 @@ public class seleccion_taxista extends javax.swing.JDialog {
 
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -150,16 +179,16 @@ public class seleccion_taxista extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
                 .addContainerGap())
@@ -171,7 +200,7 @@ public class seleccion_taxista extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(1, 1, 1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,12 +212,12 @@ public class seleccion_taxista extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tipo_ha_alqKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tipo_ha_alqKeyReleased
+    private void txtnombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyReleased
         // TODO add your handling code here:
-        cargar(tipo_ha_alq.getText());
-    }//GEN-LAST:event_tipo_ha_alqKeyReleased
+        cargar(txtnombre.getText());
+    }//GEN-LAST:event_txtnombreKeyReleased
 
-    private void tipo_ha_alqKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tipo_ha_alqKeyTyped
+    private void txtnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
         if (Character.isDigit(c))
@@ -197,43 +226,28 @@ public class seleccion_taxista extends javax.swing.JDialog {
             evt.consume();
             JOptionPane.showMessageDialog(null,"Solo letras","Advertencia.!!",JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_tipo_ha_alqKeyTyped
-
-    private void btnseleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnseleccionarActionPerformed
-        //boton seleccionar
-        int fsel= jTable1.getSelectedRow();
-        try {            
-            int canti=0;
-            if (fsel==-1) {
-                JOptionPane.showMessageDialog(null, "Debe seleccionar una habitacion");
-            }else{
-                //System.out.println("habitacion seleccionada");
-                //"Nro de Habitacion", "Tipo", "Estado","Costo","Nro Camas"
-                model= (DefaultTableModel) jTable1.getModel();
-                nrohab= jTable1.getValueAt(fsel, 0).toString();
-                nom_tipo= jTable1.getValueAt (fsel,1).toString();
-                costo= jTable1.getValueAt (fsel,3).toString();
-                camas=jTable1.getValueAt (fsel,4).toString();
-                estado= jTable1.getValueAt (fsel,2).toString().toUpperCase();                
-                if (estado.equals("DISPONIBLE")) {
-                    //System.out.println("numero habitacion: "+nrohab);
-                    alquiler.txtnumeroha.setText(nrohab);
-                    alquiler.txttipoha.setText(nom_tipo);
-                    alquiler.txtmontototal.setText(costo);
-                    alquiler.txtnumeroca.setText(camas);                    
-                    this.dispose();
-                }else{
-                    JOptionPane.showMessageDialog(null, "Seleccionar habitacion disponible");
-                }
-            }
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_btnseleccionarActionPerformed
+    }//GEN-LAST:event_txtnombreKeyTyped
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnsalirActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int fsel= jTable1.getSelectedRow();
+        try {
+                
+            taxista.id=jTable1.getValueAt(fsel, 0).toString();
+            taxista.txtdni.setText(jTable1.getValueAt(fsel, 1).toString());
+            taxista.txtnombre.setText(jTable1.getValueAt(fsel, 2).toString());
+            taxista.txtapellido.setText(jTable1.getValueAt(fsel, 3).toString());
+            taxista.txttelefono.setText(jTable1.getValueAt(fsel, 4).toString());           
+            this.dispose();
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -277,12 +291,11 @@ public class seleccion_taxista extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnsalir;
-    private javax.swing.JButton btnseleccionar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lb_tip_hab_alq;
-    private javax.swing.JTextField tipo_ha_alq;
+    private javax.swing.JTextField txtnombre;
     // End of variables declaration//GEN-END:variables
 }
