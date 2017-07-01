@@ -235,17 +235,16 @@ public class buscar_habitacion extends javax.swing.JDialog {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         int fsel= jTable1.getSelectedRow();
-        //System.out.println("habitacion seleccionada");
-        //"Nro de Habitacion", "Tipo", "Estado","Costo","Nro Camas"
         model= (DefaultTableModel) jTable1.getModel();
         habitacion.id= jTable1.getValueAt(fsel, 0).toString();
         habitacion.txthabitacion.setText(jTable1.getValueAt(fsel, 1).toString());
         habitacion.cmbtipo.setSelectedItem(jTable1.getValueAt (fsel,2).toString());
-        habitacion.txtcosto.setText(jTable1.getValueAt (fsel,4).toString());
+        habitacion.cmbestado.setSelectedItem(jTable1.getValueAt (fsel,3).toString()); 
+        /*habitacion.txtcosto.setText(jTable1.getValueAt (fsel,4).toString());
         habitacion.txtcamas.setText(jTable1.getValueAt (fsel,5).toString());
-        habitacion.cmbestado.setSelectedItem(jTable1.getValueAt (fsel,3).toString());  
-        habitacion.txtcosto.setEnabled(true);
-        habitacion.txtcamas.setEnabled(true);
+         
+        habitacion.txtcosto.setEnabled(false);
+        habitacion.txtcamas.setEnabled(false);*/
         this.dispose();
 
     }//GEN-LAST:event_jTable1MouseClicked

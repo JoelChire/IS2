@@ -239,7 +239,8 @@ public class seleccion_taxista extends javax.swing.JDialog {
         taxista.txtdni.setText(jTable1.getValueAt(fsel, 1).toString());
         taxista.txtnombre.setText(jTable1.getValueAt(fsel, 2).toString());
         taxista.txtapellido.setText(jTable1.getValueAt(fsel, 3).toString());
-        taxista.txttelefono.setText(jTable1.getValueAt(fsel, 4).toString());           
+        taxista.txttelefono.setText(jTable1.getValueAt(fsel, 4).toString());       
+        
         this.dispose();
     }//GEN-LAST:event_jTable1MouseClicked
 

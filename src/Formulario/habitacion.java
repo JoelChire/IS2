@@ -6,38 +6,35 @@
 package Formulario;
 
 import ClaseConectar.Conectar;
-import java.awt.HeadlessException;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+import java.awt.HeadlessException;
+import java.sql.Statement;
 
 /**
  *
- * @author ALCAZAR
+ * @author usuario
  */
 public class habitacion extends javax.swing.JInternalFrame {
 
-    String r;
+    /**
+     * Creates new form habitacion
+     */
+    Integer r;
     Integer n=1;
     ResultSet rs;
     public static String bandera_habitacion;       
     public static String id;
     public static buscar_habitacion buscar_habit;
-    
     public habitacion() {
+        initComponents();
         Conectar cc=new Conectar();
         Connection cn=cc.conexion();
-        initComponents();
         try{      
-            PreparedStatement sent = cn.prepareStatement("select id_tipo, nombre_tipo from tip_habitacion order by nombre_tipo");
+            PreparedStatement sent = cn.prepareStatement("select id_tipo, nombre_tipo from tip_habitacion order by id_tipo");
             rs = sent.executeQuery(); 
             this.cmbtipo.removeAllItems();
             while(rs.next()){
@@ -49,11 +46,11 @@ public class habitacion extends javax.swing.JInternalFrame {
         }
         btnguardar.setEnabled(true);
         btnnuevo.setEnabled(false);
-        txtcosto.setEnabled(false);
-        txtcamas.setEnabled(false);
+        //txtcosto.setEnabled(false);
+        //txtcamas.setEnabled(false);
         bandera_habitacion="bandera";
     }
-   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,92 +59,47 @@ public class habitacion extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        panel1 = new java.awt.Panel();
-        cmbtipo = new javax.swing.JComboBox<>();
-        cmbestado = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         txthabitacion = new javax.swing.JTextField();
-        txtcosto = new javax.swing.JTextField();
-        txtcamas = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        cmbestado = new javax.swing.JComboBox<>();
+        cmbtipo = new javax.swing.JComboBox<>();
         btnbuscar = new javax.swing.JButton();
-        panel12 = new java.awt.Panel();
+        jPanel2 = new javax.swing.JPanel();
         btnnuevo = new javax.swing.JButton();
         btnguardar = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
 
-        setTitle("REGISTRO DE HABITACION");
+        setTitle("REGISTRO DE HABITACIÓN");
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de Nueva Habitación", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Nº Habitación:");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Estado:");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Tipo:");
+
+        txthabitacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        cmbestado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cmbestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Ocupado", "Inhabilitado", "Reservad" }));
 
         cmbtipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cmbtipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmbtipo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cmbtipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbtipoActionPerformed(evt);
             }
         });
 
-        cmbestado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cmbestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Ocupado", "Reservado", "Inhabilitado" }));
-        cmbestado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbestadoActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("N° Habitación:");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Estado:");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Tipo:");
-
-        txthabitacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txthabitacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txthabitacionActionPerformed(evt);
-            }
-        });
-        txthabitacion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txthabitacionKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txthabitacionKeyTyped(evt);
-            }
-        });
-
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, cmbtipo, org.jdesktop.beansbinding.ELProperty.create("${toolTipText}"), txtcosto, org.jdesktop.beansbinding.BeanProperty.create("text"));
-        bindingGroup.addBinding(binding);
-
-        txtcosto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcostoActionPerformed(evt);
-            }
-        });
-        txtcosto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtcostoKeyTyped(evt);
-            }
-        });
-
-        txtcamas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcamasActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Costo:");
-
-        jLabel4.setText("Nº Camas:");
-
+        btnbuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnbuscar.setText("Buscar");
         btnbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,58 +107,42 @@ public class habitacion extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-        panel1.setLayout(panel1Layout);
-        panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addComponent(txthabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnbuscar))
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbtipo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbestado, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtcamas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                                .addComponent(txtcosto, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addGap(0, 9, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txthabitacion)
+                    .addComponent(cmbestado, 0, 105, Short.MAX_VALUE)
+                    .addComponent(cmbtipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnbuscar)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
-        panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txthabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnbuscar))
                 .addGap(18, 18, 18)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cmbestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbtipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtcosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtcamas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(cmbtipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         btnnuevo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -219,7 +155,6 @@ public class habitacion extends javax.swing.JInternalFrame {
 
         btnguardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnguardar.setText("Guardar");
-        btnguardar.setName("btnguardar"); // NOI18N
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnguardarActionPerformed(evt);
@@ -230,32 +165,32 @@ public class habitacion extends javax.swing.JInternalFrame {
         btnsalir.setText("Salir");
         btnsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnsalirActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout panel12Layout = new javax.swing.GroupLayout(panel12);
-        panel12.setLayout(panel12Layout);
-        panel12Layout.setHorizontalGroup(
-            panel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(panel12Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addGroup(panel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnguardar)
-                    .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnguardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnnuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnsalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
-        panel12Layout.setVerticalGroup(
-            panel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel12Layout.createSequentialGroup()
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnnuevo)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(btnguardar)
-                .addGap(54, 54, 54)
+                .addGap(18, 18, 18)
                 .addComponent(btnsalir)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -264,104 +199,95 @@ public class habitacion extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(panel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 17, Short.MAX_VALUE))
         );
-
-        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cmbestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbestadoActionPerformed
-
-        //estado: Disponible,Ocupado,Reservado,Inhabilitado
-    }//GEN-LAST:event_cmbestadoActionPerformed
-
-    private void cmbtipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbtipoActionPerformed
-        // TODO add your handling code here:
-        Conectar cc=new Conectar();
-        Connection cn=cc.conexion();
-        try{
-            Statement sent1 = cn.createStatement();
-            ResultSet rs1 = sent1.executeQuery("select id_tipo, nombre_tipo from tip_habitacion where nombre_tipo = '"+this.cmbtipo.getSelectedItem()+"'");
-            if(rs1.next()){
-            r = String.valueOf(rs1.getString("id_tipo"));
-            }    
-            cc.desconectar();
-        }catch(SQLException e){
-                JOptionPane.showMessageDialog(null, e);  
-        }
-        
-    }//GEN-LAST:event_cmbtipoActionPerformed
-
-    private void txthabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txthabitacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txthabitacionActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
         // TODO add your handling code here:
         bandera_habitacion=null;
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnsalirActionPerformed
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // TODO add your handling code here:
+        String numero=null;
         if(txthabitacion.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Ingrese el nombre","¡Error!",JOptionPane.ERROR_MESSAGE);
-            }
-        else if(id==null){
-            
-        Conectar cc=new Conectar();
-        Connection cn=cc.conexion();
-                    JOptionPane.showMessageDialog(null,id+"ENTRE","¡Error!",JOptionPane.ERROR_MESSAGE);
-
+        }
+        else if(id==null){      
         try{
-            PreparedStatement pst=cn.prepareStatement("INSERT INTO habitacion(id_habitacion,nro_hab,estado,tip_habitacion_id_tipo) Values(?,?,?,?)");
-            pst.setString(1,null);
-            pst.setString(2,txthabitacion.getText());
-            pst.setString(3,(String)cmbestado.getSelectedItem());
-            pst.setString(4,r);
-
-            int a=pst.executeUpdate();
-            if(a>0){
-                JOptionPane.showMessageDialog(null,"registro exitoso");
-
+            Conectar cc=new Conectar();
+            Connection cn=cc.conexion();
+            PreparedStatement sent = cn.prepareStatement("select nro_hab from habitacion where nro_hab='"+txthabitacion.getText()+"'");
+            rs = sent.executeQuery(); 
+            while(rs.next()){  
+                 numero = rs.getString("nro_hab");
             }
-            else{
-                JOptionPane.showMessageDialog(null,"error al agregar");
-            }
+            if ( txthabitacion.getText().equals(numero) ){
+                    JOptionPane.showMessageDialog(null, "Numero de habitacion ya existe: " + numero, "Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    PreparedStatement pst=cn.prepareStatement("INSERT INTO habitacion(id_habitacion,nro_hab,estado,tip_habitacion_id_tipo) Values(?,?,?,?)");
+                    pst.setString(1,null);
+                    pst.setString(2,String.valueOf(txthabitacion.getText()));
+                    pst.setString(3,(String)cmbestado.getSelectedItem());
+                    pst.setString(4,String.valueOf(r));
+                    int a=pst.executeUpdate();
+                    if(a>0){
+                        JOptionPane.showMessageDialog(null,"registro exitoso");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null,"error al agregar");
+                    }
+                }
             cc.desconectar();
-        }catch(HeadlessException | SQLException e){
-        }
-        }
+            }catch(HeadlessException | SQLException e){
+            }
+        }       
         else
         {
         try {
-        Conectar cc=new Conectar();            
-        Connection cn=cc.conexion();
-        PreparedStatement pst = cn.prepareStatement("UPDATE habitacion SET nro_hab='"+txthabitacion.getText()+"',estado='"+(String) cmbestado.getSelectedItem()+"',tip_habitacion_id_tipo='"+(String) cmbtipo.getSelectedItem()+"' WHERE id_habitacion="+id);
-        pst.executeUpdate();
-        JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
-        cc.desconectar();
-        id=null;
-            btnguardar.setEnabled(false);          
-            btnnuevo.setEnabled(true);
-        } catch (SQLException e) {
-        System.out.print(e.getMessage());
-    }
-        }        
+                Conectar cc=new Conectar();            
+                Connection cn=cc.conexion();
+                /*PreparedStatement sent = cn.prepareStatement("select nro_hab from habitacion where nro_hab='"+txthabitacion.getText()+"'");
+                rs = sent.executeQuery(); 
+                while(rs.next()){
+                    numero = rs.getString("nro_hab");
+                }
+                if ( txthabitacion.getText().equals(numero) ){
+                        JOptionPane.showMessageDialog(null, "Numero de habitacion ya existe: " + numero, "Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{*/
+                        Integer tip=cmbtipo.getSelectedIndex()+1; 
+                        JOptionPane.showMessageDialog(null,tip,"¡Aviso!",JOptionPane.INFORMATION_MESSAGE);                      
+                        PreparedStatement pst = cn.prepareStatement("UPDATE habitacion SET nro_hab='"+txthabitacion.getText()+"',estado='"+(String) cmbestado.getSelectedItem()+"',tip_habitacion_id_tipo='"+tip+"' WHERE id_habitacion="+id);
+                        pst.executeUpdate();
+                        JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
+                        cc.desconectar();
+                        id=null;
+                        btnguardar.setEnabled(false);          
+                        btnnuevo.setEnabled(true);
+                    //} 
+                cc.desconectar();
+            }
+            catch (SQLException e) {
+                System.out.print(e.getMessage());
+            }   
+        }       
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
@@ -375,73 +301,27 @@ public class habitacion extends javax.swing.JInternalFrame {
         btnnuevo.setEnabled(false);
     }//GEN-LAST:event_btnnuevoActionPerformed
 
-    private void txthabitacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txthabitacionKeyTyped
-        // TODO add your handling code here:
-        int numerocaracteres=5;
-        char d=evt.getKeyChar();
-        if (txthabitacion.getText().length()>=numerocaracteres){
-        evt.consume();
-            JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-        else if (Character.isLetter(d)) 
-        {
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(null,"Solo números","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        } 
-        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
-            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
-            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
-        {
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_txthabitacionKeyTyped
-
-    private void txthabitacionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txthabitacionKeyReleased
-        // TODO add your handling code her
-    }//GEN-LAST:event_txthabitacionKeyReleased
-
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
         // TODO add your handling code here:
         buscar_habit=new buscar_habitacion(this,true);
         buscar_habit.setVisible(true);
     }//GEN-LAST:event_btnbuscarActionPerformed
 
-    private void txtcostoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcostoKeyTyped
+    private void cmbtipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbtipoActionPerformed
         // TODO add your handling code here:
-        int numerocaracteres=9;
-        char d=evt.getKeyChar();
-        if (txtcosto.getText().length()>=numerocaracteres){
-        evt.consume();
-            JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        Conectar cc=new Conectar();
+        Connection cn=cc.conexion();
+        try{
+            Statement sent1 = cn.createStatement();
+            ResultSet rs1 = sent1.executeQuery("select id_tipo, nombre_tipo from tip_habitacion where nombre_tipo = '"+this.cmbtipo.getSelectedItem()+"'");
+            if(rs1.next()){
+                r = Integer.valueOf(rs1.getString("id_tipo"));
+            }
+            cc.desconectar();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
         }
-        else if (Character.isLetter(d)) 
-        {
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(null,"Solo números","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        } 
-        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
-            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
-            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
-        {
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_txtcostoKeyTyped
-
-    private void txtcamasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcamasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcamasActionPerformed
-
-    private void txtcostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcostoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcostoActionPerformed
+    }//GEN-LAST:event_cmbtipoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -454,13 +334,8 @@ public class habitacion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private java.awt.Panel panel1;
-    private java.awt.Panel panel12;
-    public static javax.swing.JTextField txtcamas;
-    public static javax.swing.JTextField txtcosto;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     public static javax.swing.JTextField txthabitacion;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
