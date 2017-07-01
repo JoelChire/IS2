@@ -25,6 +25,7 @@ public class alquiler extends javax.swing.JInternalFrame {
     Integer cantidadpersonas;
     public static String bandera_alquiler;//guardar el usuario que inicio sesion
     public String usuario_alquiler;
+    public static String id_habitacion_seleccion;
     ///////////////
     public alquiler() {
         super();
@@ -114,7 +115,7 @@ public class alquiler extends javax.swing.JInternalFrame {
             //obteniendo id de alquila.. id maximo            
             ResultSet rsa;
             Statement sent = cn.createStatement();
-            rsa = sent.executeQuery("SELECT IFNULL(MAX(CAST(id_alquila AS UNSIGNED)), 0) codigoExterno FROM hotel_version7.alquila");
+            rsa = sent.executeQuery("SELECT IFNULL(MAX(CAST(id_alquila AS UNSIGNED)), 0) codigoExterno FROM hotel_version10.alquila");
             int cont;
             while(rsa.next()){
                 cont =Integer.parseInt(rsa.getString("codigoExterno"))+1;
@@ -566,7 +567,7 @@ public class alquiler extends javax.swing.JInternalFrame {
                 .addComponent(lb_obs_alq)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtobservacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Miembros en la habitación"));
@@ -648,7 +649,7 @@ public class alquiler extends javax.swing.JInternalFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtdni_mi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnagregar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtnombre_mi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
@@ -843,7 +844,7 @@ public class alquiler extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtcantKeyTyped
 
     private void btnbuscar_hActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscar_hActionPerformed
-        // TODO add your handling code here:
+        // boton buscar huesped
         if (txtdni.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Ingrese Documento de Identidad");
         }
@@ -854,7 +855,8 @@ public class alquiler extends javax.swing.JInternalFrame {
             String dni= (txtdni.getText());
             try{
                 ResultSet rs1;
-                PreparedStatement pst=cn.prepareStatement("SELECT nombre_h,apellidos_h FROM hotel_version7.huesped where dni_huesped='"+dni+"'");
+                PreparedStatement pst=cn.prepareStatement("SELECT nombre_h,apellidos_h "
+                        + "FROM hotel_version10.huesped where dni_huesped='"+dni+"'");
                 rs1 = pst.executeQuery();//buscando datos y guardando en interfaz
                 while(rs1.next()){
                     txtnombre.setText(rs1.getString("nombre_h"));
@@ -876,7 +878,6 @@ public class alquiler extends javax.swing.JInternalFrame {
                 System.err.println("No se pudo buscar");
             }
         }
-
     }//GEN-LAST:event_btnbuscar_hActionPerformed
 
     private void txtnumerohaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnumerohaActionPerformed
@@ -887,6 +888,9 @@ public class alquiler extends javax.swing.JInternalFrame {
         //boton buscar
         // mostrar_seleccion_habitacion();
         //if(Integer.parseInt(txtcant.getText())>0||txtcant.getText().isEmpty()==false){
+        
+        System.out.println("id habitacion en alquiler xD : "+id_habitacion_seleccion);
+        
         btnbuscar_h.setEnabled(false);
         txtdni.setEditable(false);
         //        
@@ -957,7 +961,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             try
             {
-                PreparedStatement pst=cn.prepareStatement("INSERT INTO hotel_version7.alquila (habitacion_nro_hab,"
+                PreparedStatement pst=cn.prepareStatement("INSERT INTO hotel_version10.alquila (habitacion_id_habitacion,"
                         + "huesped_dni_huesped,id_alquila,fecha_llegada,fecha_salida,num_dias,num_camas,observacion,"
                     + "usuario_id_usuario,monto_total) VALUES (?,?,?,?,?,?,?,?,?,?)");
                 pst.setString(1,txtnumeroha.getText());
