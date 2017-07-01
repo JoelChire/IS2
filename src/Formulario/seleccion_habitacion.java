@@ -17,6 +17,7 @@ public class seleccion_habitacion extends javax.swing.JDialog {
     ResultSet datos;
     DefaultTableModel model;
     String nrohab,nom_tipo,estado,costo,camas;
+    String idhab="";
     /////////////
     public seleccion_habitacion(alquiler parent, boolean modal) {
         //super(parent, modal);
@@ -27,11 +28,7 @@ public class seleccion_habitacion extends javax.swing.JDialog {
         cargar("");
         this.setLocationRelativeTo(this);        
     }
-    ///7///
-    //public void enviodato(){
-    //    alquile.poner();
-    // }
-    //////////////////
+  
     void cargar(String valor)
     {
         String [] titulos = {"Nro de Habitacion", "Tipo", "Estado","Costo","Nro Camas"};
@@ -217,6 +214,16 @@ public class seleccion_habitacion extends javax.swing.JDialog {
                 estado= jTable1.getValueAt (fsel,2).toString().toUpperCase();                
                 if (estado.equals("DISPONIBLE")) {
                     //System.out.println("numero habitacion: "+nrohab);
+                    //conseguimos id habitacion
+                    PreparedStatement pst=cn.prepareStatement("SELECT id_habitacion FROM hotel_version10.habitacion"
+                            + " where nro_hab='"+nrohab+"'");
+                    datos = pst.executeQuery();//buscando datos y guardando en datos           
+                    
+                    while(datos.next()){
+                    idhab=datos.getString("id_habitacion");
+                    }
+                    //
+                    alquiler.id_habitacion_seleccion=idhab;
                     alquiler.txtnumeroha.setText(nrohab);
                     alquiler.txttipoha.setText(nom_tipo);
                     alquiler.txtmontototal.setText(costo);
