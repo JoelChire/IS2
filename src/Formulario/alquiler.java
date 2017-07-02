@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 public class alquiler extends javax.swing.JInternalFrame {
 
     public static seleccion_habitacion seleccion_ha;
+    public static elegir_huesped elegir_h;
     DefaultTableModel modelo;
     Conectar cc=new Conectar();
     Connection cn=cc.conexion();
@@ -26,12 +27,12 @@ public class alquiler extends javax.swing.JInternalFrame {
     public static String bandera_alquiler;//guardar el usuario que inicio sesion
     public String usuario_alquiler;
     public static String id_habitacion_seleccion; //guarda el id retornado
-    String id_huesped_huesped;
+    public String id_huesped_huesped;//recibe el huesped de la interfaz elegir
     ///////////////
     public alquiler() {
         super();
         initComponents();
-        this.setLocation(5, 10);
+        this.setLocation(5,5);
         setResizable(false);
         this.setTitle("Alquiler");
         usuario_alquiler=MenuPrincipal.usuario_actual; 
@@ -56,14 +57,16 @@ public class alquiler extends javax.swing.JInternalFrame {
     }
     void bloqueorestantes(){
         btnbuscar_h.setEnabled(false);
-        btnhuesped.setEnabled(false);  
+        btnhuesped.setEnabled(false); 
+        btnexplorar.setEnabled(false);
         txtdni.setEnabled(false);
         txtnombre.setEnabled(false);
         txtapellido.setEnabled(false);
     }    
     void btnnuevo(){
         btnbuscar_h.setEnabled(true);
-        btnhuesped.setEnabled(true);  
+        btnhuesped.setEnabled(true); 
+        btnexplorar.setEnabled(true);
         btnbuscar_th.setEnabled(false);
         btnagregar.setEnabled(false);
         btneditar.setEnabled(false);
@@ -181,6 +184,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         txtcant = new javax.swing.JTextField();
         btnbuscar_h = new javax.swing.JButton();
         btnhuesped = new javax.swing.JButton();
+        btnexplorar = new javax.swing.JButton();
         panel_dt_hab = new javax.swing.JPanel();
         lb_num_hab_alq = new javax.swing.JLabel();
         lb_tip_hab_alq = new javax.swing.JLabel();
@@ -312,6 +316,13 @@ public class alquiler extends javax.swing.JInternalFrame {
             }
         });
 
+        btnexplorar.setText("Explorar");
+        btnexplorar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnexplorarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel_dt_huespLayout = new javax.swing.GroupLayout(panel_dt_huesp);
         panel_dt_huesp.setLayout(panel_dt_huespLayout);
         panel_dt_huespLayout.setHorizontalGroup(
@@ -338,8 +349,11 @@ public class alquiler extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnhuesped)
-                            .addComponent(btnbuscar_h))))
-                .addGap(48, 48, 48))
+                            .addGroup(panel_dt_huespLayout.createSequentialGroup()
+                                .addComponent(btnbuscar_h)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnexplorar)))))
+                .addGap(44, 44, 44))
         );
         panel_dt_huespLayout.setVerticalGroup(
             panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,7 +362,8 @@ public class alquiler extends javax.swing.JInternalFrame {
                 .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_dni_alq)
                     .addComponent(txtdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnbuscar_h))
+                    .addComponent(btnbuscar_h)
+                    .addComponent(btnexplorar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnhuesped)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
@@ -417,7 +432,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         panel_dt_habLayout.setHorizontalGroup(
             panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_dt_habLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_dt_habLayout.createSequentialGroup()
                         .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -430,20 +445,20 @@ public class alquiler extends javax.swing.JInternalFrame {
                                 .addComponent(lb_num_camas_hab_alq1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panel_dt_habLayout.createSequentialGroup()
-                                .addComponent(txttipoha)
-                                .addGap(106, 106, 106))
                             .addComponent(txtnumeroca, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panel_dt_habLayout.createSequentialGroup()
-                                .addComponent(txtnumeroha, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnbuscar_th)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_dt_habLayout.createSequentialGroup()
+                                .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txttipoha, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panel_dt_habLayout.createSequentialGroup()
+                                        .addComponent(txtnumeroha, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnbuscar_th)))
                                 .addGap(27, 27, 27))))
                     .addGroup(panel_dt_habLayout.createSequentialGroup()
-                        .addComponent(lb_num_camas_hab_alq, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtmontototal, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69))))
+                        .addComponent(lb_num_camas_hab_alq, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(txtmontototal, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         panel_dt_habLayout.setVerticalGroup(
             panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -457,14 +472,14 @@ public class alquiler extends javax.swing.JInternalFrame {
                     .addComponent(lb_tip_hab_alq)
                     .addComponent(txttipoha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_num_camas_hab_alq1)
                     .addComponent(txtnumeroca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lb_num_camas_hab_alq)
-                    .addComponent(txtmontototal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtmontototal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lb_num_camas_hab_alq))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -508,6 +523,11 @@ public class alquiler extends javax.swing.JInternalFrame {
         jLabel1.setText("Fech. Nacimiento");
 
         txtciudad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtciudad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtciudadKeyTyped(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Ciudad Origen:");
@@ -528,15 +548,35 @@ public class alquiler extends javax.swing.JInternalFrame {
         cmbestadocivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No se sabe", "Casado", "Soltero", "Viudo", "Divorciado" }));
 
         txtpais.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtpais.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtpaisKeyTyped(evt);
+            }
+        });
 
         txttelefono.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txttelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txttelefonoKeyTyped(evt);
+            }
+        });
 
         txtocupacion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtocupacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtocupacionKeyTyped(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel11.setText("Dirección:");
 
         txtdireccion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtdireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtdireccionKeyTyped(evt);
+            }
+        });
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -689,7 +729,6 @@ public class alquiler extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tb_det.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
         tb_det.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -935,8 +974,15 @@ public class alquiler extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtdniActionPerformed
 
     private void txtdniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdniKeyTyped
-        // TODO add your handling code here:
+        // TIPEO DNI
         int numerocaracteres=8;
+        char c = evt.getKeyChar();       
+        if (Character.isLetter(c))
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+        }
         if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
@@ -961,8 +1007,7 @@ public class alquiler extends javax.swing.JInternalFrame {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(rootPane, "Solo numeros");
-        } else 
-        if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+        } else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
             ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
@@ -979,8 +1024,8 @@ public class alquiler extends javax.swing.JInternalFrame {
 
     private void btnbuscar_hActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscar_hActionPerformed
         // boton buscar huesped
-        if (txtdni.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Ingrese Documento de Identidad");
+        if (txtdni.getText().length()!=8){
+            JOptionPane.showMessageDialog(null,"Ingrese DNI Completo");
         }
         else
         {
@@ -1025,7 +1070,10 @@ public class alquiler extends javax.swing.JInternalFrame {
         
         System.out.println("id habitacion en alquiler xD : "+id_habitacion_seleccion);
         
+        btnhuesped.setEnabled(false);  
+        btnguardar.setEnabled(true);
         btnbuscar_h.setEnabled(false);
+        btnexplorar.setEnabled(false);
         txtdni.setEditable(false);
         //        
         if(txtcant.getText().isEmpty()){
@@ -1073,12 +1121,15 @@ public class alquiler extends javax.swing.JInternalFrame {
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // boton guardar
-        if(txtdni.getText().isEmpty()){
+        //if(txtdni.getText().isEmpty()){
+        if(txtdni.getText().length()!=8){
             JOptionPane.showMessageDialog(null,"Elija Huésped","ERROR",JOptionPane.ERROR_MESSAGE);
         }else if(txtcant.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Ingresa Cantidas de Personas","ERROR",JOptionPane.ERROR_MESSAGE);
         }else if (txtnumeroca.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null,"Ingresa Cantidad de camas","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if (txtmontototal.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null,"Ingresa Monto Total","ERROR",JOptionPane.ERROR_MESSAGE);
         }else if(txtidalquiler.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"No existe ID_Alquiler","ERROR",JOptionPane.ERROR_MESSAGE);
         }else if (txtllegada.getText().isEmpty()) {
@@ -1196,12 +1247,18 @@ public class alquiler extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtllegadaActionPerformed
 
     private void txtmontototalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmontototalKeyTyped
-        // TODO add your handling code here:       
-        int numerocaracteres=7;        
-        if(txtmontototal.getText().length()>=numerocaracteres){
+        // monto total      
+        int numerocaracteres=7;      
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c))
+        {
             getToolkit().beep();
             evt.consume();
-        }
+            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+        }else if(txtmontototal.getText().length()>=numerocaracteres){
+            getToolkit().beep();
+            evt.consume();
+        }       
     }//GEN-LAST:event_txtmontototalKeyTyped
 
     private void txtobservacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtobservacionKeyTyped
@@ -1238,36 +1295,51 @@ public class alquiler extends javax.swing.JInternalFrame {
 
     private void btnagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarActionPerformed
         // boton agregar
-        String []Dato=new String [10];
-        /*Nombres,Apellidos,DNI,Fecha Nacimiento,Ciudad,Estado Civil,País,Teléfono,Ocupacion,Dirección*/  
-        
-        Dato[0]=txtnombre_mi.getText();
-        Dato[1]=txtapellido_mi.getText();
-        Dato[2]=txtdni_mi.getText();
-        Dato[3]=fecha.getFecha(txtnacimiento);        
-        Dato[4]=txtciudad.getText();
-        Dato[5]=((String) cmbestadocivil.getSelectedItem());
-        Dato[6]=txtpais.getText();
-        Dato[7]=txttelefono.getText();
-        Dato[8]=txtocupacion.getText();
-        Dato[9]=txtdireccion.getText();                
-        ///limpiando campos
-        limpiaringresohuesped();
-        btnbuscar_th.setEnabled(false);
-        modelo.addRow(Dato);
-        //
-        btneditar.setEnabled(true);
-        btnactualizar.setEnabled(false);
-        btneliminar.setEnabled(true);
-        btneliminart.setEnabled(true);
-        //
-        cantidadpersonas=cantidadpersonas-1;
-        if(cantidadpersonas<=1){
-            btnagregar.setEnabled(false);
-            //bloqueando campos
-            bloquearcampoingreso(0);
+        if(txtnombre_mi.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese Nombre");
+        }else if(txtapellido_mi.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese Apellidos");
+        }else if (txtdni_mi.getText().length()!=8) {
+            JOptionPane.showMessageDialog(null,"Ingrese DNI Completo","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if (txtnacimiento.getDate()==null) {
+            JOptionPane.showMessageDialog(null,"Ingrese Fecha de Nacimiento","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if (txtciudad.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null,"Ingrese ciudad de origen","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if(txtpais.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese país de origen","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if(txttelefono.getText().length()>0 && txttelefono.getText().length()<9){
+            JOptionPane.showMessageDialog(null,"Ingrese Teléfono correctamente","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else{
+             /*Nombres,Apellidos,DNI,Fecha Nacimiento,Ciudad,Estado Civil,País,Teléfono,Ocupacion,Dirección*/  
+            String []Dato=new String [10];
+            Dato[0]=txtnombre_mi.getText();
+            Dato[1]=txtapellido_mi.getText();
+            Dato[2]=txtdni_mi.getText();
+            Dato[3]=fecha.getFecha(txtnacimiento);        
+            Dato[4]=txtciudad.getText();
+            Dato[5]=((String) cmbestadocivil.getSelectedItem());
+            Dato[6]=txtpais.getText();
+            Dato[7]=txttelefono.getText();
+            Dato[8]=txtocupacion.getText();
+            Dato[9]=txtdireccion.getText();                
+            ///limpiando campos
+            limpiaringresohuesped();
+            btnbuscar_th.setEnabled(false);
+            modelo.addRow(Dato);
+            //
+            btneditar.setEnabled(true);
             btnactualizar.setEnabled(false);
-        }
+            btneliminar.setEnabled(true);
+            btneliminart.setEnabled(true);
+            //
+            cantidadpersonas=cantidadpersonas-1;
+            if(cantidadpersonas<=1){
+                btnagregar.setEnabled(false);
+                //bloqueando campos
+                bloquearcampoingreso(0);
+                btnactualizar.setEnabled(false);
+            }            
+        }     
     }//GEN-LAST:event_btnagregarActionPerformed
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
@@ -1277,12 +1349,7 @@ public class alquiler extends javax.swing.JInternalFrame {
             modelo.removeRow(filasel);
             cantidadpersonas=cantidadpersonas+1;            
             bloquearcampoingreso(1);//desbloquenado campos
-            btnagregar.setEnabled(true);
-            
-            //btneditar.setEnabled(false);
-            //btnactualizar.setEnabled(true);
-            //btneliminar.setEnabled(false);
-            //btneliminart.setEnabled(false);            
+            btnagregar.setEnabled(true);               
         }else{
             JOptionPane.showMessageDialog(null,"Elije registro para eliminar","ERROR",JOptionPane.ERROR_MESSAGE);
         }
@@ -1295,39 +1362,48 @@ public class alquiler extends javax.swing.JInternalFrame {
         btneditar.setEnabled(false);
         btnactualizar.setEnabled(false);
         btneliminar.setEnabled(false);
-        btneliminart.setEnabled(false);
-        
+        btneliminart.setEnabled(false);        
         bloquearcampoingreso(1);           
     }//GEN-LAST:event_btneliminartActionPerformed
 
     private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
         // Actualizar
-        /*Nombres,Apellidos,DNI,Fecha Nacimiento,Ciudad,Estado Civil,País,Teléfono,Ocupacion,Dirección*/
-        modelo.setValueAt(txtnombre_mi.getText(), seleccionado, 0);
-        modelo.setValueAt(txtapellido_mi.getText(), seleccionado, 1);
-        modelo.setValueAt(txtdni_mi.getText(), seleccionado, 2);
-        modelo.setValueAt(fecha.getFecha(txtnacimiento), seleccionado, 3);
-        modelo.setValueAt(txtciudad.getText(), seleccionado, 4);
-        modelo.setValueAt(((String) cmbestadocivil.getSelectedItem()), seleccionado, 5);
-        modelo.setValueAt(txtpais.getText(), seleccionado, 6);
-        modelo.setValueAt(txttelefono.getText(), seleccionado, 7);
-        modelo.setValueAt(txtocupacion.getText(), seleccionado, 8);
-        modelo.setValueAt(txtdireccion.getText(), seleccionado, 9);
-      
-        //poner resetear
-        limpiaringresohuesped();
-                
-        btneditar.setEnabled(true);
-        btnactualizar.setEnabled(false);
-        btneliminar.setEnabled(true);
-        btneliminart.setEnabled(true);
-        
-        btnagregar.setEnabled(true);
-        
-        if(cantidadpersonas<=1){
-            ///bloqueando campos
-            bloquearcampoingreso(0);            
-            btnagregar.setEnabled(false); 
+        if(txtnombre_mi.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese Nombre");
+        }else if(txtapellido_mi.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese Apellidos");
+        }else if (txtdni_mi.getText().length()!=8) {
+            JOptionPane.showMessageDialog(null,"Ingrese DNI","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if (txtnacimiento.getDate()==null) {
+            JOptionPane.showMessageDialog(null,"Ingrese Fecha de Nacimiento","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if (txtciudad.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null,"Ingrese Ciudad de Origen","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if(txtpais.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese País de Origen","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else{        
+            /*Nombres,Apellidos,DNI,Fecha Nacimiento,Ciudad,Estado Civil,País,Teléfono,Ocupacion,Dirección*/
+            modelo.setValueAt(txtnombre_mi.getText(), seleccionado, 0);
+            modelo.setValueAt(txtapellido_mi.getText(), seleccionado, 1);
+            modelo.setValueAt(txtdni_mi.getText(), seleccionado, 2);
+            modelo.setValueAt(fecha.getFecha(txtnacimiento), seleccionado, 3);
+            modelo.setValueAt(txtciudad.getText(), seleccionado, 4);
+            modelo.setValueAt(((String) cmbestadocivil.getSelectedItem()), seleccionado, 5);
+            modelo.setValueAt(txtpais.getText(), seleccionado, 6);
+            modelo.setValueAt(txttelefono.getText(), seleccionado, 7);
+            modelo.setValueAt(txtocupacion.getText(), seleccionado, 8);
+            modelo.setValueAt(txtdireccion.getText(), seleccionado, 9);
+            //poner resetear
+            limpiaringresohuesped();
+            btneditar.setEnabled(true);
+            btnactualizar.setEnabled(false);
+            btneliminar.setEnabled(true);
+            btneliminart.setEnabled(true);
+            btnagregar.setEnabled(true);
+            if(cantidadpersonas<=1){
+                ///bloqueando campos
+                bloquearcampoingreso(0);            
+                btnagregar.setEnabled(false); 
+            }
         }
     }//GEN-LAST:event_btnactualizarActionPerformed
 
@@ -1374,8 +1450,7 @@ public class alquiler extends javax.swing.JInternalFrame {
             txtocupacion.setText(tb_det.getValueAt(seleccionado,8).toString());
             txtdireccion.setText(tb_det.getValueAt(seleccionado,9).toString());
             //////////            
-            bloquearcampoingreso(1);//desb campos
-            
+            bloquearcampoingreso(1);//desb campos            
             btnagregar.setEnabled(false); 
             /////
             btneditar.setEnabled(false);
@@ -1390,7 +1465,7 @@ public class alquiler extends javax.swing.JInternalFrame {
 
     private void txtllegadaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtllegadaKeyTyped
         // fecha llegada        
-        int numerocaracteres=11;        
+        int numerocaracteres=20;        
         if(txtllegada.getText().length()>=numerocaracteres){
             getToolkit().beep();
             evt.consume();
@@ -1399,7 +1474,15 @@ public class alquiler extends javax.swing.JInternalFrame {
 
     private void txtdni_miKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdni_miKeyTyped
         // dni de miembro habitacion
+        char c = evt.getKeyChar();
         int numerocaracteres=8;
+        if (Character.isLetter(c))
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+        }
+        
         if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
@@ -1417,6 +1500,14 @@ public class alquiler extends javax.swing.JInternalFrame {
     private void txtnombre_miKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombre_miKeyTyped
         // nombre miembro habitacion
         int numerocaracteres=20;
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c))
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        
         if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
@@ -1433,7 +1524,14 @@ public class alquiler extends javax.swing.JInternalFrame {
 
     private void txtapellido_miKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellido_miKeyTyped
         // apellido de miembro habitacion
-        int numerocaracteres=20;
+        int numerocaracteres=25;
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c))
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
         if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
@@ -1448,6 +1546,126 @@ public class alquiler extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtapellido_miKeyTyped
 
+    private void btnexplorarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexplorarActionPerformed
+        // Boton explorar
+        elegir_h=new elegir_huesped(this,true);
+        elegir_h.setVisible(true);                
+        txtcant.setEnabled(true);
+        btnbuscar_th.setEnabled(true);        
+        txtnumeroha.setEnabled(true);
+        txttipoha.setEnabled(true);
+        //
+        System.out.println("el ide huesped regresado: "+id_huesped_huesped);
+        
+    }//GEN-LAST:event_btnexplorarActionPerformed
+
+    private void txtciudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtciudadKeyTyped
+        // typo dato CIUDAD
+        int numerocaracteres=15;
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c))
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
+            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }else if(txtciudad.getText().length()>=numerocaracteres){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtciudadKeyTyped
+
+    private void txtpaisKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpaisKeyTyped
+        // CLIC EN PAIS
+        int numerocaracteres=25;
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c))
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
+            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }else if(txtpais.getText().length()>=numerocaracteres){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtpaisKeyTyped
+
+    private void txtocupacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtocupacionKeyTyped
+        // oCUPACION
+        int numerocaracteres=25;
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c))
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
+            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }else if(txtocupacion.getText().length()>=numerocaracteres){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtocupacionKeyTyped
+
+    private void txtdireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdireccionKeyTyped
+        // DIRECCION
+        int numerocaracteres=30;
+        if(txtdireccion.getText().length()>=numerocaracteres){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtdireccionKeyTyped
+
+    private void txttelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyTyped
+        // TODO add your handling code here:
+        int numerocaracteres=9;
+        char c = evt.getKeyChar();       
+        if (Character.isLetter(c))
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+        }
+        if ((int)
+                evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
+            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }else if(txttelefono.getText().length()>=numerocaracteres){
+            getToolkit().beep();
+            evt.consume();
+            //JOptionPane.showMessageDialog(null,"Exceso de dígitos","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }   
+    }//GEN-LAST:event_txttelefonoKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnactualizar;
@@ -1457,6 +1675,7 @@ public class alquiler extends javax.swing.JInternalFrame {
     private javax.swing.JButton btneditar;
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btneliminart;
+    private javax.swing.JButton btnexplorar;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnhuesped;
     private javax.swing.JButton btnnuevo;
@@ -1495,18 +1714,18 @@ public class alquiler extends javax.swing.JInternalFrame {
     private javax.swing.JPanel panel_dt_hab;
     private javax.swing.JPanel panel_dt_huesp;
     private javax.swing.JTable tb_det;
-    private javax.swing.JTextField txtapellido;
+    public static javax.swing.JTextField txtapellido;
     private javax.swing.JTextField txtapellido_mi;
     private javax.swing.JTextField txtcant;
     private javax.swing.JTextField txtciudad;
     private javax.swing.JTextField txtdireccion;
-    private javax.swing.JTextField txtdni;
+    public static javax.swing.JTextField txtdni;
     private javax.swing.JTextField txtdni_mi;
     private javax.swing.JTextField txtidalquiler;
     private javax.swing.JTextField txtllegada;
     public static javax.swing.JTextField txtmontototal;
     private com.toedter.calendar.JDateChooser txtnacimiento;
-    private javax.swing.JTextField txtnombre;
+    public static javax.swing.JTextField txtnombre;
     private javax.swing.JTextField txtnombre_mi;
     public static javax.swing.JTextField txtnumeroca;
     public static javax.swing.JTextField txtnumeroha;

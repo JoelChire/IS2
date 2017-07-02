@@ -101,7 +101,7 @@ public class editar_huesped extends javax.swing.JDialog {
             }
             jTable1.setModel(modelo);
             
-            ;
+            
             /*jTable1.getColumnModel().getColumn(0).setMaxWidth(50);         
             jTable1.getColumnModel().getColumn(1).setMaxWidth(350);             
             jTable1.getColumnModel().getColumn(2).setMaxWidth(350);

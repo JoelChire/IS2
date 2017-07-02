@@ -60,7 +60,6 @@ public class seleccion_habitacion extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         lb_tip_hab_alq = new javax.swing.JLabel();
         tipo_ha_alq = new javax.swing.JTextField();
-        btnseleccionar = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -84,13 +83,6 @@ public class seleccion_habitacion extends javax.swing.JDialog {
             }
         });
 
-        btnseleccionar.setText("Seleccionar");
-        btnseleccionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnseleccionarActionPerformed(evt);
-            }
-        });
-
         btnsalir.setText("Salir");
         btnsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,11 +99,9 @@ public class seleccion_habitacion extends javax.swing.JDialog {
                 .addComponent(lb_tip_hab_alq)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tipo_ha_alq, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnseleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(58, 58, 58)
                 .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,7 +111,6 @@ public class seleccion_habitacion extends javax.swing.JDialog {
                     .addComponent(lb_tip_hab_alq)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tipo_ha_alq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnseleccionar)
                         .addComponent(btnsalir)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
@@ -139,6 +128,11 @@ public class seleccion_habitacion extends javax.swing.JDialog {
 
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -149,7 +143,7 @@ public class seleccion_habitacion extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -196,17 +190,22 @@ public class seleccion_habitacion extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_tipo_ha_alqKeyTyped
 
-    private void btnseleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnseleccionarActionPerformed
-        //boton seleccionar
+    private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnsalirActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // clic mouse sobre tabla
         int fsel= jTable1.getSelectedRow();
         try {            
-            int canti=0;
+            //int canti=0;
             if (fsel==-1) {
                 JOptionPane.showMessageDialog(null, "Debe seleccionar una habitacion");
             }else{
                 //System.out.println("habitacion seleccionada");
                 //"Nro de Habitacion", "Tipo", "Estado","Costo","Nro Camas"
-                model= (DefaultTableModel) jTable1.getModel();
+                //model= (DefaultTableModel) jTable1.getModel();
                 nrohab= jTable1.getValueAt(fsel, 0).toString();
                 nom_tipo= jTable1.getValueAt (fsel,1).toString();
                 costo= jTable1.getValueAt (fsel,3).toString();
@@ -235,12 +234,8 @@ public class seleccion_habitacion extends javax.swing.JDialog {
             }
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_btnseleccionarActionPerformed
-
-    private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_btnsalirActionPerformed
+        
+    }//GEN-LAST:event_jTable1MouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -283,7 +278,6 @@ public class seleccion_habitacion extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnsalir;
-    private javax.swing.JButton btnseleccionar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
