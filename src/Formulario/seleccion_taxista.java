@@ -54,7 +54,7 @@ public class seleccion_taxista extends javax.swing.JDialog {
         SQL="SELECT * FROM taxista";
     }
     else{
-        SQL="SELECT * FROM taxista WHERE nombre_taxi LIKE '%"+valor+"%'";
+        SQL="SELECT * FROM taxista WHERE nombre LIKE '%"+valor+"%'";
     }
  
     String []datos = new String [5];
@@ -239,8 +239,13 @@ public class seleccion_taxista extends javax.swing.JDialog {
         taxista.txtdni.setText(jTable1.getValueAt(fsel, 1).toString());
         taxista.txtnombre.setText(jTable1.getValueAt(fsel, 2).toString());
         taxista.txtapellido.setText(jTable1.getValueAt(fsel, 3).toString());
-        taxista.txttelefono.setText(jTable1.getValueAt(fsel, 4).toString());       
-        
+        taxista.txttelefono.setText(jTable1.getValueAt(fsel, 4).toString());   
+        taxista.txtnombre.setEnabled(true);
+        taxista.txtapellido.setEnabled(true);
+        taxista.txtdni.setEnabled(true);
+        taxista.txttelefono.setEnabled(true);
+        taxista.btnactualizar.setEnabled(true);
+        taxista.btnguardar.setEnabled(false);
         this.dispose();
     }//GEN-LAST:event_jTable1MouseClicked
 

@@ -232,7 +232,7 @@ public class habitacion extends javax.swing.JInternalFrame {
         try{
             Conectar cc=new Conectar();
             Connection cn=cc.conexion();
-            PreparedStatement sent = cn.prepareStatement("select nro_hab from habitacion where nro_hab='"+txthabitacion.getText()+"'");
+            PreparedStatement sent = cn.prepareStatement("select nro_hab,from habitacion where nro_hab='"+txthabitacion.getText()+"'");
             rs = sent.executeQuery(); 
             while(rs.next()){  
                  numero = rs.getString("nro_hab");

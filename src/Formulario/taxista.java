@@ -33,9 +33,8 @@ public class taxista extends javax.swing.JInternalFrame {
     public static seleccion_taxista seleccion_tax;
     public taxista() {
         initComponents();
-        btnguardar.setEnabled(true);
-        btnnuevo.setEnabled(false);  
-        bandera_taxista="bandera";     
+        bandera_taxista="bandera";
+        btnactualizar.setEnabled(false);
     }
     
   
@@ -64,6 +63,7 @@ public class taxista extends javax.swing.JInternalFrame {
         btnguardar = new javax.swing.JButton();
         btnnuevo = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
+        btnactualizar = new javax.swing.JButton();
 
         jMenuItem1.setText("modificar");
         jMenuItem1.setToolTipText("");
@@ -213,28 +213,41 @@ public class taxista extends javax.swing.JInternalFrame {
             }
         });
 
+        btnactualizar.setText("Actualizar");
+        btnactualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnactualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnguardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnnuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnsalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnguardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnnuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnsalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 4, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addContainerGap()
                 .addComponent(btnnuevo)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnactualizar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnguardar)
                 .addGap(18, 18, 18)
                 .addComponent(btnsalir)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -246,7 +259,7 @@ public class taxista extends javax.swing.JInternalFrame {
                 .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 9, Short.MAX_VALUE))
+                .addGap(0, 5, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,7 +371,7 @@ public class taxista extends javax.swing.JInternalFrame {
             else if(txttelefono.getText().length()>0 && txttelefono.getText().length()<9){
                 JOptionPane.showMessageDialog(null,"Teléfono incompleto","¡Error!",JOptionPane.ERROR_MESSAGE);
             }
-            else if(id==null){
+            else{
             try{ 
 
             Conectar cc=new Conectar();            
@@ -369,31 +382,19 @@ public class taxista extends javax.swing.JInternalFrame {
             pst.setString(3,txtapellido.getText());
             pst.setString(4,txttelefono.getText());
             pst.setString(5,null);
-            btnguardar.setEnabled(true);
-            btnnuevo.setEnabled(true);
             pst.executeUpdate();
+            txtnombre.setEnabled(false);
+        txtapellido.setEnabled(false);
+        txtdni.setEnabled(false);
+        txttelefono.setEnabled(false);
+        btnguardar.setEnabled(false);
+        btnactualizar.setEnabled(false);
             JOptionPane.showMessageDialog(null,"Registro exitoso","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
             cc.desconectar();
         }catch (HeadlessException | SQLException e){
             System.out.print(e.getMessage());
         }  
         }
-        else
-        {   
-        try {
-        Conectar cc=new Conectar();            
-        Connection cn=cc.conexion();
-        PreparedStatement pst = cn.prepareStatement("UPDATE taxista SET nombre='"+txtnombre.getText()+"', apellido='"+txtapellido.getText()+"',telefono='"+txttelefono.getText()+"' WHERE id_taxista="+id);
-        pst.executeUpdate();        
-        id="null";
-        JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
-        cc.desconectar();
-            btnguardar.setEnabled(true);           
-            btnnuevo.setEnabled(true);
-        } catch (SQLException e) {
-        System.out.print(e.getMessage());
-    }
-        }                    
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
@@ -408,11 +409,13 @@ public class taxista extends javax.swing.JInternalFrame {
         txtnombre.setText("");
         txtapellido.setText("");
         txttelefono.setText("");      
+        txtnombre.setEnabled(true);
         txtapellido.setEnabled(true);
         txtdni.setEnabled(true);
         txttelefono.setEnabled(true);
         btnguardar.setEnabled(true);
-        btnnuevo.setEnabled(false);
+        btnactualizar.setEnabled(false);
+        btnnuevo.setEnabled(true);
     }//GEN-LAST:event_btnnuevoActionPerformed
   
     private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
@@ -462,10 +465,47 @@ public class taxista extends javax.swing.JInternalFrame {
             seleccion_tax.setVisible(true);
     }//GEN-LAST:event_btnbuscarActionPerformed
 
+    private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
+        // TODO add your handling code here:
+        
+        if(txtnombre.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese el nombre","¡Error!",JOptionPane.ERROR_MESSAGE);
+            }
+            else if(txtapellido.getText().isEmpty()){
+             JOptionPane.showMessageDialog(null,"Ingrese el apellido","¡Error!",JOptionPane.ERROR_MESSAGE);
+            }
+            else if(txtdni.getText().length()!=8){
+                JOptionPane.showMessageDialog(null,"DNI incompleto","¡Error!",JOptionPane.ERROR_MESSAGE);
+            }
+            else if(txttelefono.getText().length()>0 && txttelefono.getText().length()<9){
+                JOptionPane.showMessageDialog(null,"Teléfono incompleto","¡Error!",JOptionPane.ERROR_MESSAGE);
+            }
+                
+        else
+        {   
+        try {
+        Conectar cc=new Conectar();            
+        Connection cn=cc.conexion();
+        PreparedStatement pst = cn.prepareStatement("UPDATE taxista SET nombre='"+txtnombre.getText()+"', apellido='"+txtapellido.getText()+"',telefono='"+txttelefono.getText()+"' WHERE id_taxista="+id);
+        pst.executeUpdate();        
+        txtnombre.setEnabled(false);
+        txtapellido.setEnabled(false);
+        txtdni.setEnabled(false);
+        txttelefono.setEnabled(false);
+        btnguardar.setEnabled(false);
+        btnactualizar.setEnabled(false);
+        JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
+        cc.desconectar();
+        } catch (SQLException e) {
+        }
+        }
+    }//GEN-LAST:event_btnactualizarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JButton btnactualizar;
     private javax.swing.JButton btnbuscar;
-    private javax.swing.JButton btnguardar;
+    public static javax.swing.JButton btnguardar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
     private javax.swing.JLabel jLabel3;
