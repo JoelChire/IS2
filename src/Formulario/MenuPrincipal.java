@@ -67,6 +67,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem10 = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jSeparator8 = new javax.swing.JPopupMenu.Separator();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
@@ -78,11 +79,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1004, Short.MAX_VALUE)
+            .addGap(0, 947, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 657, Short.MAX_VALUE)
+            .addGap(0, 610, Short.MAX_VALUE)
         );
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/INICIO.png"))); // NOI18N
@@ -188,6 +189,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem11);
+        jMenu3.add(jSeparator8);
 
         jMenuItem1.setText("Taxista recomienda");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -467,5 +469,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator7;
+    private javax.swing.JPopupMenu.Separator jSeparator8;
     // End of variables declaration//GEN-END:variables
 }

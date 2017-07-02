@@ -38,11 +38,14 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
     public String usuario_huespedporhabitacion;
     public huespedportaxista() {
         initComponents();
+         this.setLocation(15, 10);
+        setResizable(false);
+        this.setTitle("Taxista recomienda");
         btneditar.setEnabled(true);
         btnguardar.setEnabled(true);
         btnnuevo.setEnabled(false);
-        txtfecha.setEnabled(false);
-        txtusuario.setEnabled(false);
+        txtfecha.setEditable(false);
+        txtusuario.setEditable(false);
         mostrardatos("");
         jTable1.setEnabled(false);       
         bandera_huespedportaxista="bandera";
@@ -58,18 +61,24 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         SimpleDateFormat formatofecha= new SimpleDateFormat("YYYY-MM-dd h:mm:ss"); 
        return formatofecha.format(fecha); 
     }
-    /*public static String fecha_actual(){
+    /*public static String limpiar(){
         Date fecha = new Date();
         SimpleDateFormat formatoFecha= new SimpleDateFormat("YYYY-MM-dd");
         return formatoFecha.format(fecha);
         
     }  */ 
-    
+    void limpiar(){
+        txtfecha.setText(fecha_actual());
+        txtusuario.setText(usuario_huespedporhabitacion);
+        txtdni.setText("");
+        txtpersonas.setText("");
+        txthabitaciones.setText("");
+    }
     
     void mostrardatos(String valor){
     DefaultTableModel modelo= new DefaultTableModel();
     modelo.addColumn("USUARIO");
-    modelo.addColumn("DNI TAXISTA");
+    modelo.addColumn("ID TAXISTA");
     modelo.addColumn("FECHA");
     modelo.addColumn("NRO PERSONAS");
     modelo.addColumn("NRO HABITACIONES");      
@@ -81,7 +90,7 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         SQL="SELECT * FROM recomienda";
     }
     else{
-        SQL="SELECT * FROM recomienda WHERE fecha_actual_r LIKE '%"+valor+"%'";
+        SQL="SELECT * FROM recomienda WHERE fecha_actual LIKE '%"+valor+"%'";
     }
  
     String []datos = new String [5];
@@ -135,8 +144,6 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        txtusuario.setEditable(false);
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Usuario :");
 
@@ -147,7 +154,7 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("DNI Taxista :");
+        jLabel3.setText("ID Taxista :");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Fecha :");
@@ -162,7 +169,7 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         jLabel4.setText("Numero de Personas :");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Numero de Habitaciones :");
+        jLabel5.setText("Numero de las Habitaciones :");
 
         txtpersonas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -185,6 +192,15 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(107, 107, 107)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtdni, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -193,16 +209,7 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
                             .addComponent(txtfecha, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                             .addComponent(txtpersonas)
                             .addComponent(txthabitaciones))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(88, 88, 88)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtdni, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                            .addComponent(txtusuario))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,7 +346,7 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
 
     private void txtdniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdniKeyTyped
         // TODO add your handling code here:
-        int numerocaracteres=8;
+        /*int numerocaracteres=8;
         char d=evt.getKeyChar();
         if (txtdni.getText().length()>=numerocaracteres){
         evt.consume();
@@ -359,7 +366,7 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
+        }*/
     }//GEN-LAST:event_txtdniKeyTyped
 
     private void txtpersonasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpersonasKeyTyped
@@ -390,7 +397,7 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
 
     private void txthabitacionesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txthabitacionesKeyTyped
         // TODO add your handling code here:
-        int numerocaracteres=1;
+        /*int numerocaracteres=1;
         char c = evt.getKeyChar(); 
         if (Character.isLetter(c)) 
         {
@@ -411,7 +418,7 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
+        }*/
     }//GEN-LAST:event_txthabitacionesKeyTyped
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
@@ -422,16 +429,23 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
 
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
         // TODO add your handling code here:
-        txtfecha.setText(fecha_actual());
-        //txtusuario.setText("");
-        txtdni.setText("");
-        //txtfecha.setText("");
-        txtpersonas.setText("");
-        txthabitaciones.setText("");
-        //txtusuario.setEnabled(true);
+        //txtfecha.setText(fecha_actual());
+        //txtdni.setText("");
+        //txtpersonas.setText("");
+        //txthabitaciones.setText("");
+        limpiar();
         txtdni.setEnabled(true);
         txtpersonas.setEnabled(true);
         txthabitaciones.setEnabled(true);
+        txtusuario.setEditable(false);
+        txtfecha.setEditable(false);
+        txtusuario.setEnabled(true);
+        
+        txtfecha.setEnabled(true);
+        txtdni.setEditable(true);
+        txtpersonas.setEditable(true);
+        txthabitaciones.setEditable(true);
+        
         btneditar.setEnabled(true);
         btnguardar.setEnabled(true);
         btnnuevo.setEnabled(false);
@@ -444,21 +458,21 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // TODO add your handling code here:
-        if(txtdni.getText().length()!=8){
-            JOptionPane.showMessageDialog(null,"DNI incompleto","¡Error!",JOptionPane.ERROR_MESSAGE);
+        if(txtdni.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese el id del taxista","¡Error!",JOptionPane.ERROR_MESSAGE);
             }
             else if(txtpersonas.getText().isEmpty()){
              JOptionPane.showMessageDialog(null,"Ingrese el nro de personas","¡Error!",JOptionPane.ERROR_MESSAGE);
             }
        
             else if(txthabitaciones.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null,"Ingrese el nro de habitaciones","¡Error!",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Ingrese el nro de las habitaciones","¡Error!",JOptionPane.ERROR_MESSAGE);
             }
             else if(n==1){
             try{ 
             Conectar cc=new Conectar();            
             Connection cn=cc.conexion();    
-            PreparedStatement pst=cn.prepareStatement("INSERT INTO recomienda(usuario_id_usuario,taxista_dni_taxista,fecha_actual_r,num_persona,num_habitacion) VALUES(?,?,?,?,?)");            
+            PreparedStatement pst=cn.prepareStatement("INSERT INTO recomienda(usuario_id_usuario,taxista_id_taxista,fecha_actual,num_persona,num_habitacion) VALUES(?,?,?,?,?)");            
             pst.setString(1,txtusuario.getText());
             pst.setString(2,txtdni.getText());
             pst.setString(3,txtfecha.getText());           
@@ -481,20 +495,27 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         try {
         Conectar cc=new Conectar();            
         Connection cn=cc.conexion();
-        PreparedStatement pst = cn.prepareStatement("UPDATE recomienda SET usuario_id_usuario='"+txtusuario.getText()+"',taxista_dni_taxista='"+txtdni.getText()+"',num_persona='"+txtpersonas.getText()+"',num_habitacion='"+txthabitaciones.getText()+"' WHERE fecha_actual_r='"+txtfecha.getText()+"'");
+        PreparedStatement pst = cn.prepareStatement("UPDATE recomienda SET usuario_id_usuario='"+txtusuario.getText()+"',taxista_id_taxista='"+txtdni.getText()+"',num_persona='"+txtpersonas.getText()+"',num_habitacion='"+txthabitaciones.getText()+"' WHERE fecha_actual='"+txtfecha.getText()+"'");
         pst.executeUpdate();
         JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
         cc.desconectar();
         n=1;
         jTable1.setEnabled(false);
             btnguardar.setEnabled(false);
-            btneditar.setEnabled(false);            
+            btneditar.setEnabled(true);            
             btnnuevo.setEnabled(true);
         } catch (SQLException e) {
         System.out.print(e.getMessage());
     }
         }
         mostrardatos("");
+        
+        txtpersonas.setEnabled(false);
+        txthabitaciones.setEnabled(false);
+        txtdni.setEnabled(false);
+        txtusuario.setEnabled(false);
+        txtfecha.setEnabled(false);
+        btneditar.setEnabled(true);
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
@@ -502,13 +523,15 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         jTable1.setEnabled(true);
         //txtusuario.setEnabled(true);
         txtfecha.setEnabled(true);
-        txtdni.setEnabled(true);
-        txtpersonas.setEnabled(true);
-        txthabitaciones.setEnabled(true);
-        //txtusuario.setEnabled(false);
+        txtfecha.setEditable(true);
+        txtdni.setEditable(false);
+        txtpersonas.setEditable(false);
+        txthabitaciones.setEditable(false);
         txtdni.setEnabled(false);
-        txtpersonas.setEnabled(false); 
+        txtpersonas.setEnabled(false);
         txthabitaciones.setEnabled(false);
+        txtusuario.setEnabled(false);
+        
         
         btnguardar.setEnabled(true);
         btnnuevo.setEnabled(false);
@@ -526,9 +549,12 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int fila= jTable1.getSelectedRow();
         //txtusuario.setEnabled(true);
-        txtdni.setEnabled(false);
-        txtusuario.setEnabled(false);
+        txtdni.setEditable(false);
+        txtusuario.setEditable(false);
+        txtfecha.setEditable(false);
         txtfecha.setEnabled(false);
+        txtpersonas.setEditable(true);
+        txthabitaciones.setEditable(true);
         txtpersonas.setEnabled(true);
         txthabitaciones.setEnabled(true);
         if(fila>=0){
