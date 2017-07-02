@@ -44,10 +44,7 @@ public class habitacion extends javax.swing.JInternalFrame {
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);
         }
-        btnguardar.setEnabled(true);
-        btnnuevo.setEnabled(false);
-        //txtcosto.setEnabled(false);
-        //txtcamas.setEnabled(false);
+        btnactualizar.setEnabled(false);
         bandera_habitacion="bandera";
     }
 
@@ -72,6 +69,7 @@ public class habitacion extends javax.swing.JInternalFrame {
         btnnuevo = new javax.swing.JButton();
         btnguardar = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
+        btnactualizar = new javax.swing.JButton();
 
         setTitle("REGISTRO DE HABITACIÓN");
 
@@ -169,6 +167,14 @@ public class habitacion extends javax.swing.JInternalFrame {
             }
         });
 
+        btnactualizar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnactualizar.setText("Actualizar");
+        btnactualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnactualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -178,19 +184,21 @@ public class habitacion extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnguardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnnuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnsalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnsalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnactualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(btnnuevo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnactualizar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(btnguardar)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnsalir)
-                .addGap(25, 25, 25))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -228,7 +236,7 @@ public class habitacion extends javax.swing.JInternalFrame {
         if(txthabitacion.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Ingrese el nombre","¡Error!",JOptionPane.ERROR_MESSAGE);
         }
-        else if(id==null){      
+        else {      
         try{
             Conectar cc=new Conectar();
             Connection cn=cc.conexion();
@@ -249,45 +257,21 @@ public class habitacion extends javax.swing.JInternalFrame {
                     int a=pst.executeUpdate();
                     if(a>0){
                         JOptionPane.showMessageDialog(null,"registro exitoso");
+                        txthabitacion.setEnabled(false);
+                        cmbtipo.setEnabled(false);
+                        cmbestado.setEnabled(false);
+                        btnactualizar.setEnabled(false);
+                        btnguardar.setEnabled(false);
                     }
                     else{
                         JOptionPane.showMessageDialog(null,"error al agregar");
                     }
+                    
                 }
             cc.desconectar();
             }catch(HeadlessException | SQLException e){
             }
-        }       
-        else
-        {
-        try {
-                Conectar cc=new Conectar();            
-                Connection cn=cc.conexion();
-                /*PreparedStatement sent = cn.prepareStatement("select nro_hab from habitacion where nro_hab='"+txthabitacion.getText()+"'");
-                rs = sent.executeQuery(); 
-                while(rs.next()){
-                    numero = rs.getString("nro_hab");
-                }
-                if ( txthabitacion.getText().equals(numero) ){
-                        JOptionPane.showMessageDialog(null, "Numero de habitacion ya existe: " + numero, "Mensaje",JOptionPane.INFORMATION_MESSAGE);
-                    }
-                    else{*/
-                        Integer tip=cmbtipo.getSelectedIndex()+1; 
-                        JOptionPane.showMessageDialog(null,tip,"¡Aviso!",JOptionPane.INFORMATION_MESSAGE);                      
-                        PreparedStatement pst = cn.prepareStatement("UPDATE habitacion SET nro_hab='"+txthabitacion.getText()+"',estado='"+(String) cmbestado.getSelectedItem()+"',tip_habitacion_id_tipo='"+tip+"' WHERE id_habitacion="+id);
-                        pst.executeUpdate();
-                        JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
-                        cc.desconectar();
-                        id=null;
-                        btnguardar.setEnabled(false);          
-                        btnnuevo.setEnabled(true);
-                    //} 
-                cc.desconectar();
-            }
-            catch (SQLException e) {
-                System.out.print(e.getMessage());
-            }   
-        }       
+        }
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
@@ -323,10 +307,50 @@ public class habitacion extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_cmbtipoActionPerformed
 
+    private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
+        // TODO add your handling code here:
+        String numero=null;
+        if(txthabitacion.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese el nombre","¡Error!",JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+        try {
+                Conectar cc=new Conectar();            
+                Connection cn=cc.conexion();
+                PreparedStatement sent = cn.prepareStatement("select nro_hab from habitacion where nro_hab='"+txthabitacion.getText()+"'");
+                rs = sent.executeQuery(); 
+                while(rs.next()){
+                    numero = rs.getString("nro_hab");
+                }
+                if ( txthabitacion.getText().equals(numero)){
+                        JOptionPane.showMessageDialog(null, "Numero de habitacion ya existe: " + numero, "Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+                        Integer tip=cmbtipo.getSelectedIndex()+1; 
+                        JOptionPane.showMessageDialog(null,tip,"¡Aviso!",JOptionPane.INFORMATION_MESSAGE);                      
+                        PreparedStatement pst = cn.prepareStatement("UPDATE habitacion SET nro_hab='"+txthabitacion.getText()+"',estado='"+(String) cmbestado.getSelectedItem()+"',tip_habitacion_id_tipo='"+tip+"' WHERE id_habitacion="+id);
+                        pst.executeUpdate();
+                        JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
+                        cc.desconectar();
+                        txthabitacion.setEnabled(false);
+                        cmbtipo.setEnabled(false);
+                        cmbestado.setEnabled(false);
+                        btnactualizar.setEnabled(false);
+                        btnguardar.setEnabled(false);} 
+                cc.desconectar();
+            }
+            catch (SQLException e) {
+                System.out.print(e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_btnactualizarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JButton btnactualizar;
     private javax.swing.JButton btnbuscar;
-    private javax.swing.JButton btnguardar;
+    public static javax.swing.JButton btnguardar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
     public static javax.swing.JComboBox<String> cmbestado;

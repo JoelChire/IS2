@@ -240,11 +240,11 @@ public class buscar_habitacion extends javax.swing.JDialog {
         habitacion.txthabitacion.setText(jTable1.getValueAt(fsel, 1).toString());
         habitacion.cmbtipo.setSelectedItem(jTable1.getValueAt (fsel,2).toString());
         habitacion.cmbestado.setSelectedItem(jTable1.getValueAt (fsel,3).toString()); 
-        /*habitacion.txtcosto.setText(jTable1.getValueAt (fsel,4).toString());
-        habitacion.txtcamas.setText(jTable1.getValueAt (fsel,5).toString());
-         
-        habitacion.txtcosto.setEnabled(false);
-        habitacion.txtcamas.setEnabled(false);*/
+        habitacion.txthabitacion.setEnabled(true);
+        habitacion.cmbtipo.setEnabled(true);
+        habitacion.cmbestado.setEnabled(true);
+        habitacion.btnguardar.setEnabled(false);
+        habitacion.btnactualizar.setEnabled(true);
         this.dispose();
 
     }//GEN-LAST:event_jTable1MouseClicked
