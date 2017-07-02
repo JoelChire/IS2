@@ -3,6 +3,8 @@ package Formulario;
 
 import ClaseConectar.Conectar;
 import Clases.fecha;
+//import static Formulario.taxista.bandera_taxista;
+import java.text.DateFormat;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,65 +22,51 @@ public class huesped extends javax.swing.JInternalFrame {
     //Conectar cc=new Conectar();
     //Connection cn=cc.conexion();
     //ResultSet datos;
+    
     fecha fecha=new fecha();
     Integer n=1;
+    public static String id;
     public static String bandera_huesped;
+    public static editar_huesped editar_hues;
+  //  public static editar_huesped editar_huespededi;    
     public huesped() {
         initComponents();
-        //this.setLocation(10, 10);  
-        btneditar.setEnabled(true);
+        this.setTitle("DATOS DEL NUEVO HUESPED");
+        //this.setLocation(10, 10);      
         btnguardar.setEnabled(true);
-        btnnuevo.setEnabled(false);
-        mostrardatos("");
-        jTable1.setEnabled(false); 
+        btnnuevo.setEnabled(false);     
+        btneditar.setEnabled(false);
+        //mostrardatos("");
+        //jTable1.setEnabled(false); 
         bandera_huesped="bandera";
       
     }
     
-    
-    void mostrardatos(String valor){
-    DefaultTableModel modelo= new DefaultTableModel();    
-    modelo.addColumn("DNI"); 
-    modelo.addColumn("NOMBRES");
-    modelo.addColumn("APELLIDOS");      
-    modelo.addColumn("FECHA NACIMIENTO");
-    modelo.addColumn("PROCEDENCIA");
-    modelo.addColumn("TELEFONO"); 
-    jTable1.setModel(modelo);
-    String SQL="";
-    if(valor.equals(""))
-    {
-        String []datos = new String [6];
-
-        SQL="SELECT * FROM huesped";
-    }
-    else{
-        SQL="SELECT * FROM huesped WHERE nombre_h LIKE  '%"+valor+"%'";
-    }
- 
-    String []datos = new String [6];
-        try {
-            Conectar cc=new Conectar();            
-            Connection cn=cc.conexion();
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while(rs.next()){
-                datos[0]=rs.getString(1);                
-                datos[1]=rs.getString(2);
-                datos[2]=rs.getString(3);
-                datos[3]=rs.getString(4);
-                datos[4]=rs.getString(5);
-                datos[5]=rs.getString(6);
-                modelo.addRow(datos);
-            }
-            jTable1.setModel(modelo);
-            cc.desconectar();
-        } catch (SQLException ex) {
-            Logger.getLogger(huesped.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
-
+    void limpiar(){
+        txtdni.setText("");       
+        txtnombre.setText("");
+        txtapellido.setText("");
+        txtfecha.setDate(null);  
+        cmbestadocivil.setSelectedIndex(-1);
+        txttelefono.setText("");  
+        txtciudad.setText("");
+        txtpais.setText(""); 
+        txtdireccion.setText("");
+        txtocupacion.setText("");
+                
+        /*txtdni.setEnabled(false);       
+        txtnombre.setEnabled(false);
+        txtapellido.setEnabled(false);        
+        txtfecha.setEnabled(false);         
+        txtestadocivil.setEnabled(false);
+        txttelefono.setEnabled(false);
+        txtciudad.setEnabled(false);
+        txtpais.setEnabled(false);
+        txtdireccion.setEnabled(false);         
+        txtocupacion.setEnabled(false);*/
+        //eliminarelementos();       
+    }    
+            
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -92,24 +80,30 @@ public class huesped extends javax.swing.JInternalFrame {
         txtnombre = new javax.swing.JTextField();
         txtapellido = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        txtprocedencia = new javax.swing.JTextField();
-        txttelefono = new javax.swing.JTextField();
         txtfecha = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         txtdni = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txttelefono = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtciudad = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtpais = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txtdireccion = new javax.swing.JTextField();
+        txtocupacion = new javax.swing.JTextField();
+        cmbestadocivil = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         btnguardar = new javax.swing.JButton();
-        btnnuevo = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
         btneditar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        btnnuevo = new javax.swing.JButton();
+        btnbuscar = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
         jPopupMenu1.add(jMenuItem1);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del Huesped"));
         jPanel1.setForeground(java.awt.Color.white);
         jPanel1.setToolTipText("");
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -147,24 +141,7 @@ public class huesped extends javax.swing.JInternalFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
-        jLabel6.setText("Procedencia:");
-
-        jLabel7.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
-        jLabel7.setText("Telefono:");
-
-        txtprocedencia.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
-        txtprocedencia.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtprocedenciaKeyTyped(evt);
-            }
-        });
-
-        txttelefono.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
-        txttelefono.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txttelefonoKeyTyped(evt);
-            }
-        });
+        jLabel6.setText("Estado Civil:");
 
         jLabel2.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
         jLabel2.setText("DNI:");
@@ -181,22 +158,64 @@ public class huesped extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
+        jLabel7.setText("Telefono:");
+
+        txttelefono.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
+        txttelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txttelefonoKeyTyped(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
+        jLabel8.setText("Ciudad:");
+
+        txtciudad.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
+        txtciudad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtciudadKeyTyped(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
+        jLabel9.setText("Pais:");
+
+        txtpais.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
+        txtpais.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtpaisKeyTyped(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
+        jLabel10.setText("Direccion:");
+
+        jLabel11.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
+        jLabel11.setText("Ocupación:");
+
+        txtdireccion.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
+        txtdireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtdireccionKeyTyped(evt);
+            }
+        });
+
+        txtocupacion.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
+        txtocupacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtocupacionKeyTyped(evt);
+            }
+        });
+
+        cmbestadocivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No se sabe", "Casado", "Soltero", "Viudo", "Divorciado" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(jLabel6))
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txttelefono)
-                            .addComponent(txtprocedencia)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -212,14 +231,48 @@ public class huesped extends javax.swing.JInternalFrame {
                                 .addGap(47, 47, 47)
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(jLabel10)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(327, 327, 327))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cmbestadocivil, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txttelefono)
+                                            .addComponent(txtciudad)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(39, 39, 39)
+                                                .addComponent(jLabel9))
+                                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtdireccion, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtpais)
+                                            .addComponent(txtocupacion, javax.swing.GroupLayout.Alignment.TRAILING))))))
+                        .addGap(1, 1, 1)))
+                .addGap(292, 292, 292))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,17 +293,34 @@ public class huesped extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6)
+                    .addComponent(cmbestadocivil, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtprocedencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtciudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(txtpais, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(txtdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtocupacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
+        btnguardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnguardar.setText("Guardar");
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,13 +328,7 @@ public class huesped extends javax.swing.JInternalFrame {
             }
         });
 
-        btnnuevo.setText("Nuevo");
-        btnnuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnnuevoActionPerformed(evt);
-            }
-        });
-
+        btnsalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnsalir.setText("Salir");
         btnsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -272,10 +336,27 @@ public class huesped extends javax.swing.JInternalFrame {
             }
         });
 
-        btneditar.setText("Editar");
+        btneditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btneditar.setText("Actualizar");
         btneditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btneditarActionPerformed(evt);
+            }
+        });
+
+        btnnuevo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnnuevo.setText("Nuevo");
+        btnnuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnuevoActionPerformed(evt);
+            }
+        });
+
+        btnbuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnbuscar.setText("Buscar");
+        btnbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarActionPerformed(evt);
             }
         });
 
@@ -283,79 +364,56 @@ public class huesped extends javax.swing.JInternalFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnsalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnnuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnguardar, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                    .addComponent(btneditar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
-                .addGap(24, 24, 24))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnnuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnsalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnguardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btneditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnbuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnguardar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnnuevo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnsalir)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(btnbuscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btneditar)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnnuevo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnguardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnsalir)
+                .addContainerGap())
         );
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(30, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.getAccessibleContext().setAccessibleName("");
+        getAccessibleContext().setAccessibleName("REGISTRO DE HUESPED");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -366,7 +424,7 @@ public class huesped extends javax.swing.JInternalFrame {
 
     private void txtnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyTyped
         // TODO add your handling code here:
-        btnguardar.setEnabled(true);
+        //btnguardar.setEnabled(true);
         int numerocaracteres=25;
         char c = evt.getKeyChar();
         if (Character.isDigit(c))
@@ -420,56 +478,6 @@ public class huesped extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtapellidoKeyTyped
 
-    private void txtprocedenciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtprocedenciaKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        int numerocaracteres=25;
-        if (Character.isDigit(c))
-        {
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-        else if (txtapellido.getText().length()>=numerocaracteres){
-        evt.consume();
-        JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
-            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
-            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
-        {
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_txtprocedenciaKeyTyped
-
-    private void txttelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyTyped
-        // TODO add your handling code here:
-        int numerocaracteres=9;
-        char d=evt.getKeyChar();
-        if (txttelefono.getText().length()>=numerocaracteres){
-        evt.consume();
-            JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-        else if (Character.isLetter(d)) 
-        {
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(null,"Solo números","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        } 
-        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
-            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
-            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
-        {
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_txttelefonoKeyTyped
-
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // TODO add your handling code here:
         if(txtnombre.getText().isEmpty()){
@@ -484,69 +492,68 @@ public class huesped extends javax.swing.JInternalFrame {
             else if(txttelefono.getText().length()>0 && txttelefono.getText().length()<9){
                 JOptionPane.showMessageDialog(null,"Teléfono incompleto","¡Error!",JOptionPane.ERROR_MESSAGE);
             }
+            else if(txtpais.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null,"Ingrese Pais","¡Error!",JOptionPane.ERROR_MESSAGE);
+            }             
             else if(n==1){
             try{ 
             Conectar cc=new Conectar();            
             Connection cn=cc.conexion();    
-            PreparedStatement pst=cn.prepareStatement("INSERT INTO huesped(dni_huesped,nombre_h,apellidos_h,fecha_nacimiento,procedencia,telefono) Values(?,?,?,?,?,?)");
+            PreparedStatement pst=cn.prepareStatement("INSERT INTO huesped(dni_huesped,nombre_h,apellidos_h,nacimiento,ciudad,telefono,estado_civil,pais,direccion,ocupacion) Values(?,?,?,?,?,?,?,?,?,?)");
             pst.setString(1,txtdni.getText());
             pst.setString(2,txtnombre.getText());
             pst.setString(3,txtapellido.getText());
-            pst.setString(4,fecha.getFecha(txtfecha));            
-            pst.setString(5,txtprocedencia.getText());
-            pst.setString(6,txttelefono.getText());        
-            jTable1.setEnabled(false);
+            pst.setString(4,fecha.getFecha(txtfecha));   
+            pst.setString(5,txtciudad.getText());  
+            pst.setString(6,txttelefono.getText());
+            pst.setString(7,(String) cmbestadocivil.getSelectedItem());             
+            pst.setString(8,txtpais.getText());
+            pst.setString(9,txtdireccion.getText());
+            pst.setString(10,txtocupacion.getText());
+                      
+            //jTable1.setEnabled(false);
             btnguardar.setEnabled(false);
             btneditar.setEnabled(false); 
             btnnuevo.setEnabled(true);
             pst.executeUpdate();
+            //limpiar();
+            txtapellido.setEnabled(false);
+            txtdni.setEnabled(false);
+            txtfecha.setEnabled(false);
+            cmbestadocivil.setEnabled(false);
+            txttelefono.setEnabled(false);        
+            txtdireccion.setEnabled(false);
+            txtnombre.setEnabled(false);
+            txtciudad.setEnabled(false);
+            txtpais.setEnabled(false);
+            txtocupacion.setEnabled(false); 
             JOptionPane.showMessageDialog(null,"Registro exitoso","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
             cc.desconectar();
         }catch (HeadlessException | SQLException e){
             System.out.print(e.getMessage());
         }  
         }
-        else
-        {
-        try {
-        Conectar cc=new Conectar();            
-        Connection cn=cc.conexion();
-        PreparedStatement pst;
-        pst = cn.prepareStatement("UPDATE huesped SET nombre_h='"+txtnombre.getText()+"',apellidos_h='"+txtapellido.getText()+"',fecha_nacimiento='"+fecha.getFecha(txtfecha)+"', procedencia='"+txtprocedencia.getText()+"',telefono='"+txttelefono.getText()+"'   WHERE dni_huesped='"+txtdni.getText()+"'" );
-        pst.executeUpdate();
-        JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
-        cc.desconectar();
-        n=1;
-        jTable1.setEnabled(false);
-            btnguardar.setEnabled(false);
-            btneditar.setEnabled(false);            
-            btnnuevo.setEnabled(true);
-        } catch (SQLException e) {
-        System.out.print(e.getMessage());
-    }
-        }
-        mostrardatos("");
+        
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
         // TODO add your handling code here:
-                
-        txtnombre.setText("");
-        txtapellido.setText("");
-        txtdni.setText("");
-        txtfecha.setDate(null);  
-        txtprocedencia.setText("");
-        txttelefono.setText("");  
+        limpiar(); 
         txtapellido.setEnabled(true);
         txtdni.setEnabled(true);
-        //jDateChooser1.setEnabled(jDateChooser1);         
-        txtprocedencia.setEnabled(true);
-        txttelefono.setEnabled(true);
-        btneditar.setEnabled(true);
+        txtfecha.setEnabled(true);
+        cmbestadocivil.setEnabled(true);
+        txttelefono.setEnabled(true);        
+        txtdireccion.setEnabled(true);
+        txtnombre.setEnabled(true);
+        txtciudad.setEnabled(true);
+        txtpais.setEnabled(true);
+        txtocupacion.setEnabled(true);
+        btneditar.setEnabled(false);
         btnguardar.setEnabled(true);
         btnnuevo.setEnabled(false);
-        mostrardatos("");
-        jTable1.setEnabled(false);
+       // mostrardatos("");
+        //jTable1.setEnabled(false);
     }//GEN-LAST:event_btnnuevoActionPerformed
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
@@ -557,45 +564,73 @@ public class huesped extends javax.swing.JInternalFrame {
 
     private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
         // TODO add your handling code here:
-        jTable1.setEnabled(true);
-        txtapellido.setEnabled(true);
-        txtdni.setEnabled(true);
-        txtfecha.setEnabled(true);
-        txtprocedencia.setEnabled(true);
-        txttelefono.setEnabled(true);        
+       // jTable1.setEnabled(true);
+    
+    try {
+            Conectar cc=new Conectar();            
+            Connection cn=cc.conexion();
+
+            PreparedStatement pst;
+            pst = cn.prepareStatement("UPDATE huesped SET dni_huesped='"+txtdni.getText()+"',nombre_h='"+txtnombre.getText()+"',apellidos_h='"+txtapellido.getText()+"',nacimiento='"+fecha.getFecha(txtfecha)+"',ciudad='"+txtciudad.getText()+"',telefono='"+txttelefono.getText()+"', estado_civil='"+(String) cmbestadocivil.getSelectedItem()+"',pais='"+txtpais.getText()+"',direccion='"+txtdireccion.getText()+"',ocupacion='"+txtocupacion.getText()+"'   WHERE id_huesped="+id );
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);  
+            txtapellido.setEnabled(true);
+            txtdni.setEnabled(true);
+            txtfecha.setEnabled(true);
+            cmbestadocivil.setEnabled(true);
+            txttelefono.setEnabled(true);        
+            txtdireccion.setEnabled(true);
+            txtnombre.setEnabled(true);
+            txtciudad.setEnabled(true);
+            txtpais.setEnabled(true);
+            txtocupacion.setEnabled(true);
+            cc.desconectar();
+            id="null";
+            //jTable1.setEnabled(false);
+                btnguardar.setEnabled(false);
+                btneditar.setEnabled(false);      // CAMBIO       
+                btnnuevo.setEnabled(true);
+            } catch (SQLException e) {
+            System.out.print(e.getMessage());
+        }
+       
+       
+       /* try {
+        Conectar cc=new Conectar();            
+        Connection cn=cc.conexion();
+        
+        PreparedStatement pst;
+        pst = cn.prepareStatement("UPDATE huesped SET dni_huesped='"+txtdni.getText()+"',nombre_h='"+txtnombre.getText()+"',apellidos_h='"+txtapellido.getText()+"',nacimiento='"+fecha.getFecha(txtfecha)+"',ciudad='"+txtciudad.getText()+"',telefono='"+txttelefono.getText()+"', estado_civil='"+txtestadocivil.getText()+"',pais='"+txtpais.getText()+"',direccion='"+txtdireccion.getText()+"',ocupacion='"+txtocupacion.getText()+"'   WHERE id_huesped=id_huesped" );
+        pst.executeUpdate();
+        JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
+        cc.desconectar();
+        n=1;
+        //jTable1.setEnabled(false);
+            btnguardar.setEnabled(false);
+            btneditar.setEnabled(true);            
+            btnnuevo.setEnabled(true);
+        } catch (SQLException e) {
+        System.out.print(e.getMessage());
+    }*/
         txtapellido.setEnabled(false);
         txtdni.setEnabled(false);
         txtfecha.setEnabled(false);
-        txtprocedencia.setEnabled(false);
+        cmbestadocivil.setEnabled(false);
         txttelefono.setEnabled(false);        
-        btnguardar.setEnabled(true);
+        txtdireccion.setEnabled(false);
+        txtnombre.setEnabled(false);
+        txtciudad.setEnabled(false);
+        txtpais.setEnabled(false);
+        txtocupacion.setEnabled(false);      
+        /*btnguardar.setEnabled(true);
         btnnuevo.setEnabled(false);
         btneditar.setEnabled(false);
-        n=2;
+      n=2; */
     }//GEN-LAST:event_btneditarActionPerformed
-
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-        int fila= jTable1.getSelectedRow();
-        txtapellido.setEnabled(true);
-        txtdni.setEnabled(true);
-        txtfecha.setEnabled(true);
-        txtprocedencia.setEnabled(true);
-        txttelefono.setEnabled(true);        
-        
-        if(fila>=0){
-        txtdni.setText(jTable1.getValueAt(fila, 0).toString());
-        txtnombre.setText(jTable1.getValueAt(fila, 1).toString());
-        txtapellido.setText(jTable1.getValueAt(fila, 2).toString());
-        //.getFecha(jTable1.getValueAt(fila, 3).toString());
-        txtprocedencia.setText(jTable1.getValueAt(fila, 4).toString());
-        txttelefono.setText(jTable1.getValueAt(fila, 5).toString());
-        }
-    }//GEN-LAST:event_jTable1MouseClicked
 
     private void txtnombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyReleased
         // TODO add your handling code here:
-        mostrardatos(txtnombre.getText());
+        //mostrardatos(txtnombre.getText());
     }//GEN-LAST:event_txtnombreKeyReleased
 
     private void txtdniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdniKeyTyped
@@ -623,28 +658,185 @@ public class huesped extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtdniKeyTyped
 
+    private void txtpaisKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpaisKeyTyped
+        // TODO add your handling code here:
+        //btnguardar.setEnabled(true);
+        int numerocaracteres=25;
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c))
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if (txtpais.getText().length()>=numerocaracteres){
+        evt.consume();
+        JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
+            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtpaisKeyTyped
+
+    private void txtciudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtciudadKeyTyped
+        // TODO add your handling code here:
+        //btnguardar.setEnabled(true);
+        int numerocaracteres=25;
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c))
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if (txtciudad.getText().length()>=numerocaracteres){
+        evt.consume();
+        JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
+            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtciudadKeyTyped
+
+    private void txttelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyTyped
+        // TODO add your handling code here:
+        int numerocaracteres=9;
+        char d=evt.getKeyChar();
+        if (txttelefono.getText().length()>=numerocaracteres){
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if (Character.isLetter(d))
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Solo números","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
+            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txttelefonoKeyTyped
+
+    private void txtdireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdireccionKeyTyped
+        // TODO add your handling code here:
+        //btnguardar.setEnabled(true);
+        int numerocaracteres=40;
+        /*char c = evt.getKeyChar();
+        if (Character.isDigit(c))
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }*/
+        //else 
+        if (txtdireccion.getText().length()>=numerocaracteres){
+        evt.consume();
+        JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        /*else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
+            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }*/
+    }//GEN-LAST:event_txtdireccionKeyTyped
+
+    private void txtocupacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtocupacionKeyTyped
+        // TODO add your handling code here:
+        //btnguardar.setEnabled(true);
+        int numerocaracteres=25;
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c))
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if (txtocupacion.getText().length()>=numerocaracteres){
+        evt.consume();
+        JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
+            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtocupacionKeyTyped
+
+    private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
+        // TODO add your handling code here: 
+        editar_hues=new editar_huesped(this,true);
+        editar_hues.setVisible(true);
+        txtapellido.setEnabled(true);
+        txtdni.setEnabled(true);
+        txtfecha.setEnabled(true);
+        cmbestadocivil.setEnabled(true);
+        txttelefono.setEnabled(true);        
+        txtdireccion.setEnabled(true);
+        txtnombre.setEnabled(true);
+        txtciudad.setEnabled(true);
+        txtpais.setEnabled(true);
+        txtocupacion.setEnabled(true);
+        btneditar.setEnabled(true);
+        btnguardar.setEnabled(false);
+        btnnuevo.setEnabled(true);
+        
+    }//GEN-LAST:event_btnbuscarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnbuscar;
     private javax.swing.JButton btneditar;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
+    public static javax.swing.JComboBox<String> cmbestadocivil;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtapellido;
-    private javax.swing.JTextField txtdni;
-    private com.toedter.calendar.JDateChooser txtfecha;
-    private javax.swing.JTextField txtnombre;
-    private javax.swing.JTextField txtprocedencia;
-    private javax.swing.JTextField txttelefono;
+    public static javax.swing.JTextField txtapellido;
+    public static javax.swing.JTextField txtciudad;
+    public static javax.swing.JTextField txtdireccion;
+    public static javax.swing.JTextField txtdni;
+    public static com.toedter.calendar.JDateChooser txtfecha;
+    public static javax.swing.JTextField txtnombre;
+    public static javax.swing.JTextField txtocupacion;
+    public static javax.swing.JTextField txtpais;
+    public static javax.swing.JTextField txttelefono;
     // End of variables declaration//GEN-END:variables
 }

@@ -28,7 +28,7 @@ public class buscar_usuario extends javax.swing.JDialog {
     Connection cn=cc.conexion();
     ResultSet datos;
     DefaultTableModel model;
-    String nomb,apellido,turno,fono,tipo;
+    String nomb,apellido,turno,contra,fono,tipo;
     
     public buscar_usuario(usuario parent, boolean modal) {
         //super(parent, modal);
@@ -48,47 +48,57 @@ public class buscar_usuario extends javax.swing.JDialog {
     modelo.addColumn("NOMBRES");
     modelo.addColumn("APELLIDOS");
     modelo.addColumn("TURNO");
+    modelo.addColumn("CONTRASEÑA");
     modelo.addColumn("TELEFONO");  
     modelo.addColumn("TIPO");     
     jTable1.setModel(modelo);
     String SQL="";
     if(valor.equals(""))
-    {    String []datos = new String [5];
+    {    //String []datos = new String [7];
 
-        SQL="SELECT nombre,apellido,turno,telefono,tipo_usu FROM usuario";
+        SQL="SELECT * FROM usuario";
     }
     else{
         SQL="SELECT * FROM usuario WHERE nombre LIKE '%"+valor+"%'";
     }
  
-    String []datos = new String [6];
+    String []datos = new String [7];
         try {
             Conectar cc=new Conectar();            
             Connection cn=cc.conexion();
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(SQL);
             while(rs.next()){
-                datos[0]=rs.getString(6);                
-                datos[1]=rs.getString(1);
-                datos[2]=rs.getString(2);
-                datos[3]=rs.getString(3);               
-                datos[4]=rs.getString(4);
-                datos[5]=rs.getString(5);
+                datos[0]=rs.getString(1);                
+                datos[1]=rs.getString(2);
+                datos[2]=rs.getString(3);
+                datos[3]=rs.getString(4);               
+                datos[4]=rs.getString(5);
+                datos[5]=rs.getString(6);
+                datos[6]=rs.getString(7);
                 modelo.addRow(datos);
             }
             jTable1.setModel(modelo);
+            
             jTable1.getColumnModel().getColumn(0).setMaxWidth(50);         
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(250);
+            jTable1.getColumnModel().getColumn(1).setMaxWidth(350);
              
-            jTable1.getColumnModel().getColumn(2).setMaxWidth(350);
+            jTable1.getColumnModel().getColumn(2).setMaxWidth(400);
             jTable1.getColumnModel().getColumn(3).setMaxWidth(350);     
-            jTable1.getColumnModel().getColumn(4).setMaxWidth(300);
-            jTable1.getColumnModel().getColumn(5).setMaxWidth(300);
+            jTable1.getColumnModel().getColumn(4).setMaxWidth(400);
+            jTable1.getColumnModel().getColumn(5).setMaxWidth(350);
+            jTable1.getColumnModel().getColumn(6).setMaxWidth(350);
             DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
             tcr.setHorizontalAlignment(SwingConstants.CENTER);
             jTable1.getColumnModel().getColumn(0).setCellRenderer(tcr);           
             jTable1.getColumnModel().getColumn(1).setCellRenderer(tcr);
+            jTable1.getColumnModel().getColumn(2).setCellRenderer(tcr);           
+            jTable1.getColumnModel().getColumn(3).setCellRenderer(tcr);
+         
             jTable1.getColumnModel().getColumn(4).setCellRenderer(tcr);
+            jTable1.getColumnModel().getColumn(5).setCellRenderer(tcr);           
+            jTable1.getColumnModel().getColumn(6).setCellRenderer(tcr);
+          
             cc.desconectar();
         } catch (SQLException ex) {
             Logger.getLogger(taxista.class.getName()).log(Level.SEVERE, null, ex);
@@ -134,6 +144,11 @@ public class buscar_usuario extends javax.swing.JDialog {
         });
 
         btnsalir.setText("Salir");
+        btnsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -156,7 +171,7 @@ public class buscar_usuario extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnsalir))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -170,6 +185,11 @@ public class buscar_usuario extends javax.swing.JDialog {
 
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -178,21 +198,19 @@ public class buscar_usuario extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         pack();
@@ -220,6 +238,31 @@ public class buscar_usuario extends javax.swing.JDialog {
         }  
         
     }//GEN-LAST:event_txtnombreKeyTyped
+
+    private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnsalirActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // click en la tabla
+        int fsel= jTable1.getSelectedRow();
+        try {
+                
+            usuario.txtusuario.setText(jTable1.getValueAt(fsel, 0).toString());
+            usuario.txtnombre.setText(jTable1.getValueAt(fsel, 1).toString());
+            usuario.txtapellido.setText(jTable1.getValueAt(fsel, 2).toString());
+
+            usuario.cmbtipo.setSelectedItem(jTable1.getValueAt(fsel, 6).toString());
+            usuario.txtcontrasena.setText(jTable1.getValueAt(fsel, 4).toString());  
+            usuario.txttelefono.setText(jTable1.getValueAt(fsel, 5).toString()); 
+            usuario.cmbturno.setSelectedItem(jTable1.getValueAt(fsel, 3).toString()); 
+            this.dispose();
+
+        } catch (Exception e) {
+        }
+        
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

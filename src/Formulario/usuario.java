@@ -14,12 +14,27 @@ public class usuario extends javax.swing.JInternalFrame {
     Conectar cc=new Conectar();
     Connection cn=cc.conexion();
     ResultSet datos;
+    Integer n=1;
     public static String bandera_usuario;
     public static buscar_usuario buscar_usu;
     public usuario() {
         initComponents();
-        btneditar.setEnabled(false);
+        btnactualizar.setEnabled(false);
     }
+    
+    //AGREGAR BLOQUEO DE TEXTFIEL Y BOTON GUARDAR
+    
+    void bloqueorestantes(){
+        //btnbuscar.setEnabled(false);
+        btnguardar.setEnabled(false);  
+        txtnombre.setEnabled(false);
+        txtapellido.setEnabled(false);
+        txtusuario.setEnabled(false);
+        txtcontrasena.setEnabled(false);
+        txttelefono.setEnabled(false);
+        cmbtipo.setEnabled(false);
+        cmbturno.setEnabled(false);
+    }    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -44,7 +59,7 @@ public class usuario extends javax.swing.JInternalFrame {
         panelbotones3 = new javax.swing.JPanel();
         btnnuevo = new javax.swing.JButton();
         btnguardar = new javax.swing.JButton();
-        btneditar = new javax.swing.JButton();
+        btnactualizar = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
 
         setTitle("REGISTRO DE USUARIO");
@@ -62,8 +77,7 @@ public class usuario extends javax.swing.JInternalFrame {
         jLabel5.setText("Turno:");
 
         cmbturno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cmbturno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mañana", "Tarde" }));
-        cmbturno.setSelectedIndex(-1);
+        cmbturno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mañana", "Tarde", "Completo" }));
         cmbturno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbturnoActionPerformed(evt);
@@ -120,7 +134,11 @@ public class usuario extends javax.swing.JInternalFrame {
 
         cmbtipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cmbtipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Recepcionista", "Administrador" }));
-        cmbtipo.setSelectedIndex(-1);
+        cmbtipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbtipoActionPerformed(evt);
+            }
+        });
 
         txtcontrasena.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtcontrasena.addActionListener(new java.awt.event.ActionListener() {
@@ -246,7 +264,12 @@ public class usuario extends javax.swing.JInternalFrame {
             }
         });
 
-        btneditar.setText("Editar");
+        btnactualizar.setText("Actualizar");
+        btnactualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnactualizarActionPerformed(evt);
+            }
+        });
 
         btnsalir.setText("Salir");
         btnsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -263,10 +286,10 @@ public class usuario extends javax.swing.JInternalFrame {
                 .addGap(23, 23, 23)
                 .addGroup(panelbotones3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnsalir)
-                    .addComponent(btneditar)
+                    .addComponent(btnactualizar)
                     .addComponent(btnnuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelbotones3Layout.setVerticalGroup(
             panelbotones3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,7 +299,7 @@ public class usuario extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnguardar)
                 .addGap(18, 18, 18)
-                .addComponent(btneditar)
+                .addComponent(btnactualizar)
                 .addGap(18, 18, 18)
                 .addComponent(btnsalir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -319,7 +342,7 @@ public class usuario extends javax.swing.JInternalFrame {
             evt.consume();
             JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         } int numerocaracteres=20;
-        if (txtusuario.getText().length()>=numerocaracteres){
+        if (txtapellido.getText().length()>=numerocaracteres){
         evt.consume();
         JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
@@ -336,14 +359,15 @@ public class usuario extends javax.swing.JInternalFrame {
 
     private void txtnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyTyped
         // TODO add your handling code here:
+        
         char c = evt.getKeyChar();
         if (Character.isDigit(c))
         {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        } int numerocaracteres=25;
-        if (txtusuario.getText().length()>=numerocaracteres){
+        } int numerocaracteres=18;
+        if (txtnombre.getText().length()>=numerocaracteres){
         evt.consume();
         JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
@@ -376,6 +400,7 @@ public class usuario extends javax.swing.JInternalFrame {
             evt.consume();
             JOptionPane.showMessageDialog(null,"Solo números","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         } 
+        
     }//GEN-LAST:event_txttelefonoKeyTyped
 
     private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
@@ -391,39 +416,69 @@ public class usuario extends javax.swing.JInternalFrame {
         txtusuario.setText("");
         txtnombre.setText("");
         txtapellido.setText("");
-        cmbturno.setSelectedIndex(-1); 
+        cmbturno.setSelectedIndex(0); 
         txtcontrasena.setText("");
         txttelefono.setText("");
-        cmbtipo.setSelectedIndex(-1); 
-        btneditar.setEnabled(false);        
+        cmbtipo.setSelectedIndex(0); 
+        btnactualizar.setEnabled(false);        
         btnguardar.setEnabled(true);
-        btnnuevo.setEnabled(false);        
+     
+        btnbuscar.setEnabled(true);
+          
+        txtnombre.setEnabled(true);
+        txtapellido.setEnabled(true);
+        txtusuario.setEnabled(true);
+        txtcontrasena.setEnabled(true);
+        txttelefono.setEnabled(true);
+        cmbtipo.setEnabled(true);
+        cmbturno.setEnabled(true);
     }//GEN-LAST:event_btnnuevoActionPerformed
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // TODO add your handling code here:
+        if(txtnombre.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese Nombre","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if(txtapellido.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingresa Apellidos","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if (txtusuario.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null,"Ingresa Usuario","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if(txtcontrasena.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese contraseña","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if(txttelefono.getText().length()>0 && txttelefono.getText().length()<9){
+                JOptionPane.showMessageDialog(null,"Teléfono incompleto","¡Error!",JOptionPane.ERROR_MESSAGE);
+            }
+        /*else if((String)cmbtipo.getSelectedItem().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese contraseña","ERROR",JOptionPane.ERROR_MESSAGE);
+        }*/
+        
+        else if(n==1)
+        {
         try{
-            PreparedStatement pst=cn.prepareStatement("INSERT INTO usuario(id_usuario,nombre_usu,apellido_usu,turno_usu,contraseña,telefono_usu,tipo_usu) Values(?,?,?,?,?,?,?)");
+            PreparedStatement pst=cn.prepareStatement("INSERT INTO usuario(id_usuario,nombre,apellido,turno,contrasena,telefono,tipo_usu) Values(?,?,?,?,?,?,?)");
             pst.setString(1,txtusuario.getText());
             pst.setString(2,txtnombre.getText());
             pst.setString(3,txtapellido.getText());
             pst.setString(4,((String) cmbturno.getSelectedItem()));
             pst.setString(5,txtcontrasena.getText());
             pst.setString(6,txttelefono.getText());
-            pst.setString(7,((String) cmbtipo.getSelectedItem()));
-            int a=pst.executeUpdate();
-            if(a>0){
-                JOptionPane.showMessageDialog(null,"registro exitoso");
+            pst.setString(7,((String) cmbtipo.getSelectedItem()));            
+           // if(n==1){
+            JOptionPane.showMessageDialog(null,"registro exitoso");
                
-            }
-            else{
-                JOptionPane.showMessageDialog(null,"error al agregar");
-            }
-            btneditar.setEnabled(true);        
+            
+            //else{
+               // JOptionPane.showMessageDialog(null,"error al agregar");
+            
+            btnactualizar.setEnabled(false);        
             btnguardar.setEnabled(false);
-            btnnuevo.setEnabled(true);        
-        }catch(HeadlessException | SQLException e){
-    }     
+            btnnuevo.setEnabled(true);  
+            btnbuscar.setEnabled(true);
+            pst.executeUpdate();
+            bloqueorestantes();
+            
+        }catch(HeadlessException | SQLException e){} 
+        
+        }
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
@@ -456,7 +511,7 @@ public class usuario extends javax.swing.JInternalFrame {
     private void txtcontrasenaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcontrasenaKeyTyped
         // TODO add your handling code here
         int numerocaracteres=10;
-        if (txtusuario.getText().length()>=numerocaracteres){
+        if (txtcontrasena.getText().length()>=numerocaracteres){
         evt.consume();
         JOptionPane.showMessageDialog(null,"Exceso de dígitos","!Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
@@ -482,18 +537,59 @@ public class usuario extends javax.swing.JInternalFrame {
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
         // TODO add your handling code here:
         buscar_usu=new buscar_usuario(this,true);
-            buscar_usu.setVisible(true);
+        buscar_usu.setVisible(true);
+        txtnombre.setEnabled(true);
+        txtapellido.setEnabled(true);
+        txtcontrasena.setEnabled(true);
+        txttelefono.setEnabled(true);
+        txtusuario.setEnabled(false);
+        cmbtipo.setEnabled(true);
+        cmbturno.setEnabled(true);
+        btnactualizar.setEnabled(true);
+       
+        
+            
     }//GEN-LAST:event_btnbuscarActionPerformed
+
+    private void cmbtipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbtipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbtipoActionPerformed
+
+    private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
+        // TODO add your handling code here:
+        try {
+                Conectar cc=new Conectar();            
+        Connection cn=cc.conexion();
+                //PARA NO GUARDAR EL MISMO USUARIO
+            //String idusu=txtusuario.getText();
+            //txtusuario.setText(jTable1.getValueAt(fsel,0));
+                PreparedStatement pst1=cn.prepareStatement("UPDATE hotel_version10.usuario SET nombre='"+txtnombre.getText()+"',apellido='"+txtapellido.getText()+"',turno='"+(String) cmbturno.getSelectedItem()+"',contrasena='"+txtcontrasena.getText()+"',telefono='"+txttelefono.getText()+"', tipo_usu='"+(String) cmbtipo.getSelectedItem()+"' WHERE id_usuario='"+txtusuario.getText()+"'");
+                int b=pst1.executeUpdate();                
+                if(b>0){
+                    System.out.println("Actualizacion exitosa en Usuario");  
+                    JOptionPane.showMessageDialog(null,"Usuario Modificado","!Aviso!",JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Error al actualizar ","Error",1);
+                } 
+                }
+                catch (SQLException e) {
+        System.out.print(e.getMessage());
+                }
+        bloqueorestantes();
+        btnbuscar.setEnabled(true);
+        btnactualizar.setEnabled(false);
+    }//GEN-LAST:event_btnactualizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnactualizar;
     private javax.swing.JButton btnbuscar;
-    private javax.swing.JButton btneditar;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
-    private javax.swing.JComboBox<String> cmbtipo;
-    private javax.swing.JComboBox<String> cmbturno;
+    public static javax.swing.JComboBox<String> cmbtipo;
+    public static javax.swing.JComboBox<String> cmbturno;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -503,10 +599,10 @@ public class usuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel panelbotones3;
     private javax.swing.JPanel paneldatos;
-    private javax.swing.JTextField txtapellido;
-    private javax.swing.JTextField txtcontrasena;
-    private javax.swing.JTextField txtnombre;
-    private javax.swing.JTextField txttelefono;
-    private javax.swing.JTextField txtusuario;
+    public static javax.swing.JTextField txtapellido;
+    public static javax.swing.JTextField txtcontrasena;
+    public static javax.swing.JTextField txtnombre;
+    public static javax.swing.JTextField txttelefono;
+    public static javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables
 }

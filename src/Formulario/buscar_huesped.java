@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -32,23 +34,38 @@ public class buscar_huesped extends javax.swing.JInternalFrame {
     
     void cargar(String valor)
     {
-        String [] titulos = {"DNI", "Nombres", "Apellidos", "F. Nacimiento", "Procedencia", "Telefono","Nº Habitación"};
+        String [] titulos = {"    DNI  ", "   Nombres y Apellidos  ",  "     Ciudad y País  ", "    Telefono","     Dirección  ","     Ocupación"," Nº Habitación"};
         model =new DefaultTableModel(null,titulos);
         try{            
-            PreparedStatement pst=cn.prepareStatement(" SELECT h.dni_huesped,h.nombre_h,h.apellidos_h,h.fecha_nacimiento,h.procedencia,h.telefono,a.habitacion_nro_hab\n" +
-"FROM  hotel_version7.huesped  h inner join hotel_version7.alquila a on hotel_version7.a.huesped_dni_huesped=hotel_version7.h.dni_huesped where hotel_version7.h.nombre_h LIKE '%"+valor+"%'");
+            PreparedStatement pst=cn.prepareStatement(" SELECT h.dni_huesped,h.nombre_h,h.apellidos_h,h.nacimiento,h.ciudad,h.telefono,h.estado_civil,h.pais,h.direccion,h.ocupacion,\n" +
+"ha.nro_hab FROM  hotel_version10.huesped  h inner join hotel_version10.alquila a on \n" +
+"hotel_version10.a.huesped_id_huesped=hotel_version10.h.id_huesped inner join hotel_version10.habitacion ha on hotel_version10.a.habitacion_id_habitacion=hotel_version10.ha.id_habitacion where hotel_version10.h.nombre_h LIKE '%"+valor+"%'");
             datos = pst.executeQuery();//buscando datos y guardando en datos           
             String [] fila = new String[7];
             while(datos.next()){
                 fila[0]=datos.getString("h.dni_huesped");
-                fila[1]=datos.getString("h.nombre_h");
-                fila[2]=datos.getString("h.apellidos_h");
-                fila[3]=datos.getString("h.fecha_nacimiento");
-                fila[4]=datos.getString("h.procedencia");  
-                fila[5]=datos.getString("h.telefono");   
-                fila[6]=datos.getString("a.habitacion_nro_hab");
+                fila[1]=datos.getString("h.nombre_h")+" , "+datos.getString("h.apellidos_h");
+                fila[2]=datos.getString("h.ciudad")+" , "+datos.getString("h.pais");  
+                fila[3]=datos.getString("h.telefono");   
+                fila[4]=datos.getString("h.direccion");
+                fila[5]=datos.getString("h.ocupacion");   
+                fila[6]=datos.getString("ha.nro_hab");
                 model.addRow(fila);            
             } 
+            t_datos.setModel(model);
+            t_datos.getColumnModel().getColumn(0).setMaxWidth(500);
+            t_datos.getColumnModel().getColumn(1).setMaxWidth(3000);
+            t_datos.getColumnModel().getColumn(2).setMaxWidth(1700);
+            t_datos.getColumnModel().getColumn(3).setMaxWidth(390);
+            t_datos.getColumnModel().getColumn(4).setMaxWidth(1700);
+            t_datos.getColumnModel().getColumn(5).setMaxWidth(1000);
+            t_datos.getColumnModel().getColumn(6).setMaxWidth(320);
+            
+            DefaultTableCellRenderer tcr= new DefaultTableCellRenderer();
+            tcr.setHorizontalAlignment(SwingConstants.CENTER);
+            t_datos.getColumnModel().getColumn(0).setCellRenderer(tcr);
+            t_datos.getColumnModel().getColumn(3).setCellRenderer(tcr);
+            t_datos.getColumnModel().getColumn(6).setCellRenderer(tcr);
             t_datos.setModel(model);
         }catch(HeadlessException | SQLException e){
             System.err.println("El cliente no se encuentra registrado");
@@ -131,40 +148,36 @@ public class buscar_huesped extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(139, 139, 139)
-                        .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnresetear))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(614, 614, 614)
-                        .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(53, 53, 53)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(23, 23, 23))
+                        .addComponent(jLabel3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnresetear)
+                .addGap(46, 46, 46)
+                .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnresetear)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(btnsalir))
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnresetear)
+                            .addComponent(btnsalir)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(jLabel3)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 32, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
         );
 
         pack();
