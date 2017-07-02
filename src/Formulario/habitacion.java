@@ -215,10 +215,13 @@ public class habitacion extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 17, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -232,7 +235,7 @@ public class habitacion extends javax.swing.JInternalFrame {
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // TODO add your handling code here:
-        String numero=null;
+        String numero1=null;
         if(txthabitacion.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Ingrese el nombre","¡Error!",JOptionPane.ERROR_MESSAGE);
         }
@@ -240,15 +243,15 @@ public class habitacion extends javax.swing.JInternalFrame {
         try{
             Conectar cc=new Conectar();
             Connection cn=cc.conexion();
-            PreparedStatement sent = cn.prepareStatement("select nro_hab,from habitacion where nro_hab='"+txthabitacion.getText()+"'");
+            PreparedStatement sent = cn.prepareStatement("select nro_hab from habitacion where nro_hab='"+txthabitacion.getText()+"'");
             rs = sent.executeQuery(); 
             while(rs.next()){  
-                 numero = rs.getString("nro_hab");
-            }
-            if ( txthabitacion.getText().equals(numero) ){
-                    JOptionPane.showMessageDialog(null, "Numero de habitacion ya existe: " + numero, "Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                 numero1= rs.getString("nro_hab");
+            }              
+            if (txthabitacion.getText().equals(numero1)){
+                    JOptionPane.showMessageDialog(null, "Numero de habitacion ya existe: " + numero1, "Mensaje",JOptionPane.INFORMATION_MESSAGE);
                 }
-                else{
+            else{
                     PreparedStatement pst=cn.prepareStatement("INSERT INTO habitacion(id_habitacion,nro_hab,estado,tip_habitacion_id_tipo) Values(?,?,?,?)");
                     pst.setString(1,null);
                     pst.setString(2,String.valueOf(txthabitacion.getText()));
@@ -280,9 +283,9 @@ public class habitacion extends javax.swing.JInternalFrame {
         cmbestado.setSelectedIndex(0); 
         cmbtipo.setSelectedIndex(0);      
         cmbestado.setEnabled(true);
+        txthabitacion.setEnabled(true);
         cmbtipo.setEnabled(true);
         btnguardar.setEnabled(true);
-        btnnuevo.setEnabled(false);
     }//GEN-LAST:event_btnnuevoActionPerformed
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
@@ -310,6 +313,7 @@ public class habitacion extends javax.swing.JInternalFrame {
     private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
         // TODO add your handling code here:
         String numero=null;
+        String id_hab=null;
         if(txthabitacion.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Ingrese el nombre","¡Error!",JOptionPane.ERROR_MESSAGE);
         }
@@ -318,17 +322,16 @@ public class habitacion extends javax.swing.JInternalFrame {
         try {
                 Conectar cc=new Conectar();            
                 Connection cn=cc.conexion();
-                PreparedStatement sent = cn.prepareStatement("select nro_hab from habitacion where nro_hab='"+txthabitacion.getText()+"'");
+                PreparedStatement sent = cn.prepareStatement("select id_habitacion,nro_hab from habitacion where nro_hab='"+txthabitacion.getText()+"'");
                 rs = sent.executeQuery(); 
                 while(rs.next()){
                     numero = rs.getString("nro_hab");
+                    id_hab =rs.getString("id_habitacion");
                 }
-                if ( txthabitacion.getText().equals(numero)){
-                        JOptionPane.showMessageDialog(null, "Numero de habitacion ya existe: " + numero, "Mensaje",JOptionPane.INFORMATION_MESSAGE);
-                    }
-                    else{
-                        Integer tip=cmbtipo.getSelectedIndex()+1; 
-                        JOptionPane.showMessageDialog(null,tip,"¡Aviso!",JOptionPane.INFORMATION_MESSAGE);                      
+                JOptionPane.showMessageDialog(null,id+id_hab+txthabitacion.getText()+ numero, "Mensaje",JOptionPane.INFORMATION_MESSAGE);
+
+                if ((id==id_hab && txthabitacion.getText().equals(numero))|| (!txthabitacion.getText().equals(numero))){
+                    Integer tip=cmbtipo.getSelectedIndex()+1; 
                         PreparedStatement pst = cn.prepareStatement("UPDATE habitacion SET nro_hab='"+txthabitacion.getText()+"',estado='"+(String) cmbestado.getSelectedItem()+"',tip_habitacion_id_tipo='"+tip+"' WHERE id_habitacion="+id);
                         pst.executeUpdate();
                         JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
@@ -337,9 +340,13 @@ public class habitacion extends javax.swing.JInternalFrame {
                         cmbtipo.setEnabled(false);
                         cmbestado.setEnabled(false);
                         btnactualizar.setEnabled(false);
-                        btnguardar.setEnabled(false);} 
-                cc.desconectar();
-            }
+                        btnguardar.setEnabled(false);
+                        cc.desconectar();    
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Numero de habitacion ya existe: " + numero, "Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                    }
+        }
             catch (SQLException e) {
                 System.out.print(e.getMessage());
             }
