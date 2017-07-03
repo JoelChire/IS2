@@ -3,190 +3,203 @@ package Formulario;
 
 import ClaseConectar.Conectar;
 import Clases.fecha;
-import static Formulario.alquiler.seleccion_ha;
-import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 import java.awt.HeadlessException;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class reserva extends javax.swing.JInternalFrame {
 
     Conectar cc=new Conectar();
     Connection cn=cc.conexion();
     public static String bandera_reserva;
-    public String usuario_alquiler; 
-    public static seleccion_habitacion seleccion_h;
-    
-    
+    public String usuario_reserva; 
+    //public static seleccion_habitacion seleccion_h;
+    public static seleccion_habitacion_re seleccion_ha;
+    public static elegir_huesped_re elegir_h;
+    DefaultTableModel modelo;
+    Integer seleccionado;
+    fecha fecha=new fecha();
+    //String rtta;//r
+    Integer cantidadpersonas;    
+    public String id_huesped_huesped;//recibe el huesped de la interfaz elegir
+    //"Nro de Habitacion", "Tipo", "Estado","Costo","Nro Camas"
+    public static String id_habitacion_seleccion; //guarda el id retornado
+    public static String numero_h;
+    public static String tipo_h;
+    public static String estado_h;
+    public static String costo_h;
+    public static String camas_h;
+    ////
     
     public reserva() {
         initComponents();
-        this.setTitle("RESERVA");
+        this.setTitle("Reserva");
         bandera_reserva="bandera";
-        //txtdni.setEnabled(false);
+        this.setLocation(5,5);
+        setResizable(false);
+        
+        usuario_reserva=MenuPrincipal.usuario_actual; 
+        bandera_reserva="bandera";
+        ////Tabla              
+        modelo= new DefaultTableModel();        
+        modelo.addColumn("Nro de Habitacion");
+        modelo.addColumn("Tipo");
+        modelo.addColumn("Estado");
+        modelo.addColumn("Costo");       
+        modelo.addColumn("Nro Camas");                
+        this.tb_det.setModel(modelo);
+        ///
+        limpiar();  
+        btnnuevo();        
         obt_id();
     }
+    
+    void bloqueorestantes(){
+        btnbuscar_h.setEnabled(false);
+        btnhuesped.setEnabled(false); 
+        btnexplorar.setEnabled(false);
+        txtdni.setEnabled(false);
+        txtnombre.setEnabled(false);
+        txtapellido.setEnabled(false);
+    }    
+    void btnnuevo(){
+        btnbuscar_h.setEnabled(true);
+        btnhuesped.setEnabled(true); 
+        btnexplorar.setEnabled(true);
+        btnbuscar_th.setEnabled(false);
+        btneliminar.setEnabled(false);
+        btneliminart.setEnabled(false);
+        
+        btnguardar.setEnabled(false);
+        //
+        txtdni.setEnabled(true);
+        txtdni.setEditable(true);
+        txtnombre.setEnabled(true);
+        txtapellido.setEnabled(true);
+        txtcant.setEnabled(false);
+        txtcant.setEditable(true);
+        txtadelanto.setEnabled(false);
+        
+        txtidreserva.setEnabled(false);
+        txtllegada.setEnabled(false);
+        txtsalida.setEnabled(false);
+        txtusuario.setEnabled(false);
+        txtmontototal.setEnabled(false);
+        txthabitaciones.setEnabled(false);          
+    }    
+    void limpiar(){
+        txtdni.setText("");
+        txtnombre.setText("");
+        txtapellido.setText("");
+        txtcant.setText("0");
+        txtadelanto.setText("");
+        obt_id(); 
+        
+        txtusuario.setText(usuario_reserva);
+        txtmontototal.setText("");
+        txthabitaciones.setText("");
+        
+        eliminarelementos();       
+    }
+    
+    void eliminarelementos(){
+        int cantfil=tb_det.getRowCount();
+        for(int i=cantfil-1;i>=0;i--){
+            modelo.removeRow(i);
+            cantidadpersonas=cantidadpersonas+1;
+        }
+    }
+    
     public void obt_id(){
         try{
             //obteniendo id de alquila.. id maximo            
             ResultSet rsa;
             Statement sent = cn.createStatement();
-            rsa = sent.executeQuery("SELECT IFNULL(MAX(CAST(id_reserva AS UNSIGNED)), 0) codigoExterno FROM hotel_version7.reserva");
+            rsa = sent.executeQuery("SELECT IFNULL(MAX(CAST(id_alquila AS UNSIGNED)), 0) codigoExterno FROM hotel_version10.alquila");
             int cont;
             while(rsa.next()){
                 cont =Integer.parseInt(rsa.getString("codigoExterno"))+1;
                 this.txtidreserva.setText(String.valueOf(cont));
-            }            
+            }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);
-        }      
-    }  
-    
-    public void cerrar(){
-        try {
-            this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-            addWindowListener(new WindowAdapter(){
-                public void windowClosing(WindowEvent e){
-                    confirmarSalida();
-                }
-            });
-        } catch (Exception e) {
         }
-    }    
-    public void confirmarSalida(){
-        int valor=JOptionPane.showConfirmDialog(this,"¿Esta seguro de cerrar la ventana?","Advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if (valor==JOptionPane.YES_OPTION){
-            //JOptionPane.showMessageDialog(null,"gracias", "Gracias",JOptionPane.INFORMATION_MESSAGE);
-            this.dispose(); 
-        }                  
-    }
-
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
+    }  
+ 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panel_dt_hab = new javax.swing.JPanel();
-        lb_num_hab_alq = new javax.swing.JLabel();
-        lb_tip_hab_alq = new javax.swing.JLabel();
-        txthabitacion = new javax.swing.JTextField();
-        txttipo = new javax.swing.JTextField();
-        btnbuscarth = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         panel_dt_huesp = new javax.swing.JPanel();
         lb_dni_alq = new javax.swing.JLabel();
         txtdni = new javax.swing.JTextField();
         lb_nom_alq = new javax.swing.JLabel();
-        txtnombres = new javax.swing.JTextField();
-        txtapellidos = new javax.swing.JTextField();
+        txtnombre = new javax.swing.JTextField();
+        txtapellido = new javax.swing.JTextField();
         lb_ape_alq = new javax.swing.JLabel();
-        btnbuscarh = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        txtcant = new javax.swing.JTextField();
+        btnbuscar_h = new javax.swing.JButton();
         btnhuesped = new javax.swing.JButton();
-        panel_datos_reser = new javax.swing.JPanel();
-        lb_id_alq = new javax.swing.JLabel();
-        lb_fech_lleg = new javax.swing.JLabel();
-        lb_fech_sal_reser = new javax.swing.JLabel();
-        lb_cant_hab = new javax.swing.JLabel();
+        btnexplorar = new javax.swing.JButton();
+        panel_dt_hab = new javax.swing.JPanel();
+        lb_num_camas_hab_alq1 = new javax.swing.JLabel();
         lb_num_camas_hab_alq = new javax.swing.JLabel();
-        num_camas_alq = new javax.swing.JTextField();
-        lb_mont_tot = new javax.swing.JLabel();
-        lb_num_pers_reser = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        txtidreserva = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        lb_obs_alq1 = new javax.swing.JLabel();
         txtadelanto = new javax.swing.JTextField();
-        txtpersonas = new javax.swing.JTextField();
-        txtdias = new javax.swing.JTextField();
-        txtllegada = new com.toedter.calendar.JDateChooser();
+        txthabitaciones = new javax.swing.JTextField();
+        txtmontototal = new javax.swing.JTextField();
+        jPanel5 = new javax.swing.JPanel();
+        btneliminar = new javax.swing.JButton();
+        btneliminart = new javax.swing.JButton();
+        btnbuscar_th = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tb_det = new javax.swing.JTable();
+        panel_dt_reserva = new javax.swing.JPanel();
+        lb_id_alq1 = new javax.swing.JLabel();
+        lb_fech_lleg1 = new javax.swing.JLabel();
+        lb_fech_sal1 = new javax.swing.JLabel();
+        lb_id_recep1 = new javax.swing.JLabel();
+        txtidreserva = new javax.swing.JTextField();
+        txtusuario = new javax.swing.JTextField();
         txtsalida = new com.toedter.calendar.JDateChooser();
-        jPanel1 = new javax.swing.JPanel();
-        btnguardar = new javax.swing.JButton();
-        btneditar = new javax.swing.JButton();
+        txtllegada = new com.toedter.calendar.JDateChooser();
+        jPanel4 = new javax.swing.JPanel();
         btnnuevo = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
+        btnguardar = new javax.swing.JButton();
 
-        panel_dt_hab.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS DE HABITACIÓN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("URW Gothic L", 1, 12))); // NOI18N
-
-        lb_num_hab_alq.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
-        lb_num_hab_alq.setText("N° Habitación:");
-
-        lb_tip_hab_alq.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
-        lb_tip_hab_alq.setText("Tipo:");
-
-        txthabitacion.setEditable(false);
-        txthabitacion.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
-        txthabitacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txthabitacionActionPerformed(evt);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
 
-        txttipo.setEditable(false);
-        txttipo.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
-
-        btnbuscarth.setText("Buscar");
-        btnbuscarth.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbuscarthActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panel_dt_habLayout = new javax.swing.GroupLayout(panel_dt_hab);
-        panel_dt_hab.setLayout(panel_dt_habLayout);
-        panel_dt_habLayout.setHorizontalGroup(
-            panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_dt_habLayout.createSequentialGroup()
-                .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel_dt_habLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lb_tip_hab_alq)
-                            .addComponent(lb_num_hab_alq))
-                        .addGap(14, 14, 14)
-                        .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txthabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txttipo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panel_dt_habLayout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(btnbuscarth, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-        panel_dt_habLayout.setVerticalGroup(
-            panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_dt_habLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txthabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lb_num_hab_alq))
-                .addGap(18, 18, 18)
-                .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lb_tip_hab_alq)
-                    .addComponent(txttipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnbuscarth, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        panel_dt_huesp.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS DEL HUÉSPED", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("URW Gothic L", 1, 12))); // NOI18N
-        panel_dt_huesp.setForeground(java.awt.Color.white);
+        panel_dt_huesp.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Huésped", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("URW Gothic L", 1, 12))); // NOI18N
         panel_dt_huesp.setToolTipText("");
-        panel_dt_huesp.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
 
         lb_dni_alq.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
         lb_dni_alq.setText("DNI:");
 
-        txtdni.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
+        txtdni.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtdni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtdniActionPerformed(evt);
@@ -201,29 +214,29 @@ public class reserva extends javax.swing.JInternalFrame {
         lb_nom_alq.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
         lb_nom_alq.setText("Nombres:");
 
-        txtnombres.setEditable(false);
-        txtnombres.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
-        txtnombres.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtnombresKeyTyped(evt);
-            }
-        });
+        txtnombre.setEditable(false);
+        txtnombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        txtapellidos.setEditable(false);
-        txtapellidos.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
-        txtapellidos.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtapellidosKeyTyped(evt);
-            }
-        });
+        txtapellido.setEditable(false);
+        txtapellido.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        lb_ape_alq.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
+        lb_ape_alq.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lb_ape_alq.setText("Apellidos:");
 
-        btnbuscarh.setText("Buscar");
-        btnbuscarh.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
+        jLabel2.setText("Cantidad de personas:");
+
+        txtcant.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        txtcant.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcantKeyTyped(evt);
+            }
+        });
+
+        btnbuscar_h.setText("Buscar");
+        btnbuscar_h.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbuscarhActionPerformed(evt);
+                btnbuscar_hActionPerformed(evt);
             }
         });
 
@@ -234,156 +247,286 @@ public class reserva extends javax.swing.JInternalFrame {
             }
         });
 
+        btnexplorar.setText("Explorar");
+        btnexplorar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnexplorarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel_dt_huespLayout = new javax.swing.GroupLayout(panel_dt_huesp);
         panel_dt_huesp.setLayout(panel_dt_huespLayout);
         panel_dt_huespLayout.setHorizontalGroup(
             panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_dt_huespLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panel_dt_huespLayout.createSequentialGroup()
-                        .addComponent(lb_dni_alq)
-                        .addGap(49, 49, 49)
-                        .addComponent(txtdni, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnbuscarh, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_dt_huespLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnhuesped, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panel_dt_huespLayout.createSequentialGroup()
-                        .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panel_dt_huespLayout.createSequentialGroup()
-                                .addComponent(lb_ape_alq)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtapellidos))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panel_dt_huespLayout.createSequentialGroup()
-                                .addComponent(lb_nom_alq)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtnombres, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(txtcant, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel_dt_huespLayout.createSequentialGroup()
+                        .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lb_nom_alq)
+                            .addComponent(lb_ape_alq))
+                        .addGap(33, 33, 33)
+                        .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtnombre, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                            .addComponent(txtapellido)))
+                    .addGroup(panel_dt_huespLayout.createSequentialGroup()
+                        .addComponent(lb_dni_alq)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtdni, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnhuesped)
+                            .addGroup(panel_dt_huespLayout.createSequentialGroup()
+                                .addComponent(btnbuscar_h)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnexplorar)))))
+                .addGap(330, 330, 330))
         );
         panel_dt_huespLayout.setVerticalGroup(
             panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_dt_huespLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
                 .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnhuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnbuscarh, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtdni, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lb_dni_alq))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lb_nom_alq)
-                    .addComponent(txtnombres, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                    .addComponent(lb_dni_alq)
+                    .addComponent(txtdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnbuscar_h)
+                    .addComponent(btnexplorar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnhuesped)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lb_nom_alq)
+                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lb_ape_alq)
-                    .addComponent(txtapellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                    .addComponent(txtapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(txtcant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panel_datos_reser.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS DE RESERVA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("URW Gothic L", 1, 12))); // NOI18N
-        panel_datos_reser.setLayout(null);
+        panel_dt_hab.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de Habitación", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("URW Gothic L", 1, 12))); // NOI18N
 
-        lb_id_alq.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
-        lb_id_alq.setText("ID Reserva:");
-        panel_datos_reser.add(lb_id_alq);
-        lb_id_alq.setBounds(20, 60, 80, 20);
+        lb_num_camas_hab_alq1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lb_num_camas_hab_alq1.setText("Adelanto");
 
-        lb_fech_lleg.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
-        lb_fech_lleg.setText("Fecha Llegada:");
-        panel_datos_reser.add(lb_fech_lleg);
-        lb_fech_lleg.setBounds(20, 100, 85, 16);
+        lb_num_camas_hab_alq.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lb_num_camas_hab_alq.setText("Monto Total:");
 
-        lb_fech_sal_reser.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
-        lb_fech_sal_reser.setText("Fecha Salida:");
-        panel_datos_reser.add(lb_fech_sal_reser);
-        lb_fech_sal_reser.setBounds(20, 140, 75, 16);
+        lb_obs_alq1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lb_obs_alq1.setText("Cantidad de Habitaciones:");
 
-        lb_cant_hab.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
-        lb_cant_hab.setText("N° Días:");
-        panel_datos_reser.add(lb_cant_hab);
-        lb_cant_hab.setBounds(310, 100, 46, 16);
-
-        lb_num_camas_hab_alq.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
-        lb_num_camas_hab_alq.setText("Monto Adelantado:");
-        lb_num_camas_hab_alq.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                lb_num_camas_hab_alqKeyTyped(evt);
-            }
-        });
-        panel_datos_reser.add(lb_num_camas_hab_alq);
-        lb_num_camas_hab_alq.setBounds(310, 140, 182, 16);
-
-        num_camas_alq.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
-        panel_datos_reser.add(num_camas_alq);
-        num_camas_alq.setBounds(1409, 158, 160, 25);
-
-        lb_mont_tot.setText("Monto Total:");
-        panel_datos_reser.add(lb_mont_tot);
-        lb_mont_tot.setBounds(1661, 76, 61, 14);
-
-        lb_num_pers_reser.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
-        lb_num_pers_reser.setText("N° Personas:");
-        panel_datos_reser.add(lb_num_pers_reser);
-        lb_num_pers_reser.setBounds(310, 60, 74, 16);
-
-        jTextField1.setText("jTextField1");
-        panel_datos_reser.add(jTextField1);
-        jTextField1.setBounds(1409, 42, 59, 20);
-
-        txtidreserva.setEditable(false);
-        panel_datos_reser.add(txtidreserva);
-        txtidreserva.setBounds(120, 50, 120, 30);
-
-        jTextField4.setText("jTextField4");
-        panel_datos_reser.add(jTextField4);
-        jTextField4.setBounds(1409, 76, 160, 20);
-
-        txtadelanto.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
+        txtadelanto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtadelanto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtadelantoKeyTyped(evt);
             }
         });
-        panel_datos_reser.add(txtadelanto);
-        txtadelanto.setBounds(420, 130, 116, 25);
 
-        txtpersonas.addKeyListener(new java.awt.event.KeyAdapter() {
+        txthabitaciones.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txthabitaciones.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtpersonasKeyTyped(evt);
+                txthabitacionesKeyTyped(evt);
             }
         });
-        panel_datos_reser.add(txtpersonas);
-        txtpersonas.setBounds(420, 50, 117, 30);
 
-        txtdias.setEditable(false);
-        txtdias.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
-        txtdias.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtmontototal.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtmontototal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtdiasKeyTyped(evt);
-            }
-        });
-        panel_datos_reser.add(txtdias);
-        txtdias.setBounds(420, 90, 116, 27);
-        panel_datos_reser.add(txtllegada);
-        txtllegada.setBounds(120, 90, 140, 30);
-        panel_datos_reser.add(txtsalida);
-        txtsalida.setBounds(120, 130, 140, 30);
-
-        btnguardar.setText("Guardar");
-        btnguardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnguardarActionPerformed(evt);
+                txtmontototalKeyTyped(evt);
             }
         });
 
-        btneditar.setText("Editar");
-        btneditar.addActionListener(new java.awt.event.ActionListener() {
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btneliminar.setText("Eliminar");
+        btneliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneditarActionPerformed(evt);
+                btneliminarActionPerformed(evt);
             }
         });
+
+        btneliminart.setText("Eliminar Todo");
+        btneliminart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneliminartActionPerformed(evt);
+            }
+        });
+
+        btnbuscar_th.setText("Buscar");
+        btnbuscar_th.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscar_thActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnbuscar_th, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btneliminart)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btneliminar)
+                    .addComponent(btneliminart)
+                    .addComponent(btnbuscar_th))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        tb_det.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tb_det);
+
+        javax.swing.GroupLayout panel_dt_habLayout = new javax.swing.GroupLayout(panel_dt_hab);
+        panel_dt_hab.setLayout(panel_dt_habLayout);
+        panel_dt_habLayout.setHorizontalGroup(
+            panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_dt_habLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(panel_dt_habLayout.createSequentialGroup()
+                        .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panel_dt_habLayout.createSequentialGroup()
+                                .addComponent(lb_num_camas_hab_alq1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtadelanto, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panel_dt_habLayout.createSequentialGroup()
+                                .addComponent(lb_num_camas_hab_alq, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtmontototal, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panel_dt_habLayout.createSequentialGroup()
+                                .addComponent(lb_obs_alq1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txthabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(218, 218, 218))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panel_dt_habLayout.setVerticalGroup(
+            panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_dt_habLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb_num_camas_hab_alq1)
+                    .addComponent(txtadelanto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb_num_camas_hab_alq)
+                    .addComponent(txtmontototal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb_obs_alq1)
+                    .addComponent(txthabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        panel_dt_reserva.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del Reserva"));
+        panel_dt_reserva.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
+
+        lb_id_alq1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lb_id_alq1.setText("ID Reserva");
+
+        lb_fech_lleg1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lb_fech_lleg1.setText("Fecha Llegada:");
+
+        lb_fech_sal1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lb_fech_sal1.setText("Fecha Salida:");
+
+        lb_id_recep1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lb_id_recep1.setText("ID recepcionista:");
+
+        txtidreserva.setEditable(false);
+        txtidreserva.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        txtidreserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtidreservaActionPerformed(evt);
+            }
+        });
+
+        txtusuario.setEditable(false);
+        txtusuario.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+
+        javax.swing.GroupLayout panel_dt_reservaLayout = new javax.swing.GroupLayout(panel_dt_reserva);
+        panel_dt_reserva.setLayout(panel_dt_reservaLayout);
+        panel_dt_reservaLayout.setHorizontalGroup(
+            panel_dt_reservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_dt_reservaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panel_dt_reservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panel_dt_reservaLayout.createSequentialGroup()
+                        .addGroup(panel_dt_reservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lb_fech_sal1)
+                            .addComponent(lb_fech_lleg1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panel_dt_reservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtidreserva, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                            .addComponent(txtsalida, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                            .addComponent(txtllegada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panel_dt_reservaLayout.createSequentialGroup()
+                        .addComponent(lb_id_alq1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panel_dt_reservaLayout.createSequentialGroup()
+                        .addComponent(lb_id_recep1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panel_dt_reservaLayout.setVerticalGroup(
+            panel_dt_reservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_dt_reservaLayout.createSequentialGroup()
+                .addGroup(panel_dt_reservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb_id_alq1)
+                    .addComponent(txtidreserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel_dt_reservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lb_fech_lleg1)
+                    .addComponent(txtllegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(panel_dt_reservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtsalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lb_fech_sal1))
+                .addGap(18, 18, 18)
+                .addGroup(panel_dt_reservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb_id_recep1)
+                    .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnnuevo.setText("Nuevo");
         btnnuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -399,373 +542,510 @@ public class reserva extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        btnguardar.setText("Guardar");
+        btnguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguardarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btneditar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(148, 148, 148))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnsalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnnuevo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnguardar, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnnuevo)
                 .addGap(18, 18, 18)
-                .addComponent(btneditar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnguardar)
+                .addGap(18, 18, 18)
+                .addComponent(btnsalir)
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panel_dt_huesp, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panel_dt_reserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panel_dt_hab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(panel_dt_hab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(panel_dt_huesp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(panel_dt_reserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(panel_dt_huesp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(panel_dt_hab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(panel_datos_reser, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(panel_dt_hab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(panel_dt_huesp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panel_datos_reser, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txthabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txthabitacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txthabitacionActionPerformed
-
     private void txtdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdniActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtdniActionPerformed
 
-    private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
-        // TODO add your handling code here:
-        btnguardar.setEnabled(false);
-        btnnuevo.setEnabled(true); 
-        btneditar.setEnabled(true);
-        /*if(txtpersonas.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Ingresa Cantidas de Personas","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else   if (txtsalida.getDate()==null) {
-            JOptionPane.showMessageDialog(null,"Ingresa Fecha Salida","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else   if (txtllegada.getDate()==null) {
-            JOptionPane.showMessageDialog(null,"Ingresa Fecha Salida","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if(txttipo.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Elije habitacion","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else{
-            try
-            {
-               PreparedStatement pst=cn.prepareStatement("INSERT INTO hotel_version7.reserva (id_reserva,fecha_llega_rese,"
-                    + "fecha_sali_rese,nro_persona_rese,mon_adelanto,nro_dias,num_habita_rese,huesped_dni_huesped) VALUES (?,?,?,?,?,?,?,?)");
-                pst.setString(1,txtidreserva.getText());
-                pst.setString(2,fecha.getFecha(txtllegada));
-                pst.setString(3,fecha.getFecha(txtsalida));
-                pst.setString(4,txtpersonas.getText());
-                pst.setString(5,txtadelanto.getText());
-                pst.setString(6,txtdias.getText());
-                pst.setString(7,txthabitacion.getText());
-                pst.setString(8,txtdni.getText());
-                int a=pst.executeUpdate();
-                //
-                String habb=txthabitacion.getText();
-                PreparedStatement pst1=cn.prepareStatement("UPDATE hotel_version7.habitacion SET estado='Ocupado' WHERE nro_hab='"+habb+"'");
-                int b=pst1.executeUpdate();
-                if((a>0)&&(b>0)){
-                    btnnuevo.setEnabled(true);
-                    btnguardar.setEnabled(false);
-                    txtdni.setEnabled(false);
-                    JOptionPane.showMessageDialog(null,"registro exitoso ");
-                    //obtenar cantidad de personas para abrir formato
-                    int personas=Integer.parseInt(txtpersonas.getText());
-                }
-                else{
-                    JOptionPane.showMessageDialog(null,"error al agregar ");
-                }
-            }catch(HeadlessException | SQLException e){
-                JOptionPane.showMessageDialog(null, "error al agegar datos en reserva " +e);
-            }//fin trycatch
-        }
-        ///*/
-        
-        
-         
-    }//GEN-LAST:event_btnguardarActionPerformed
-
-    private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
-        // TODO add your handling code here:
-        btnnuevo.setEnabled(false);
-        btnguardar.setEnabled(true);
-        btneditar.setEnabled(false);
-    }//GEN-LAST:event_btneditarActionPerformed
-
-    private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
-        // TODO add your handling code here:
-   
-        txtdni.setEnabled(false);
-        btnguardar.setEnabled(true);
-        btneditar.setEnabled(false);
-        btnnuevo.setEnabled(false);
-      
-        txtdni.setText("");
-        txtnombres.setText("");
-        txtapellidos.setText("");
-        txthabitacion.setText("");
-        txtadelanto.setText("");
-        txttipo.setText("");
-        txtidreserva.setText("");
-        txtpersonas.setText(""); 
-        txtdias.setText("");
-        txtllegada.setDate(new Date());
-        txtsalida.setDate(new Date());
-        
-           
-    }//GEN-LAST:event_btnnuevoActionPerformed
-
-    private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
-        // TODO add your handling code here:
-        cc.desconectar();
-        bandera_reserva=null;
-        this.dispose();   
-    }//GEN-LAST:event_btnsalirActionPerformed
-
-    private void txtnombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombresKeyTyped
-        // TODO add your handling code here:
-        
-        int numerocaracteres=25;
-        char d = evt.getKeyChar();
-        if (Character.isLetter(d))
-        {
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-        if (txtnombres.getText().length()>=numerocaracteres)
-        {
-            evt.consume();
-            JOptionPane.showMessageDialog(null,"Exceso de digitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_txtnombresKeyTyped
-
-    private void txtapellidosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidosKeyTyped
-        // TODO add your handling code here:
-        
-        int numerocaracteres=25;
-        char d = evt.getKeyChar();
-        if (Character.isLetter(d))
-        {
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-        if (txtapellidos.getText().length()>=numerocaracteres)
-        {
-            evt.consume();
-            JOptionPane.showMessageDialog(null,"Exceso de digitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_txtapellidosKeyTyped
-
     private void txtdniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdniKeyTyped
-        // TODO add your handling code here:
+        // TIPEO DNI
         int numerocaracteres=8;
-        char d = evt.getKeyChar();
-        if (Character.isLetter(d))
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c))
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
         }
-        if (txtdni.getText().length()!=numerocaracteres)
+        if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
+            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
         {
+            getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"numero de digitos incorrecto","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }else if(txtdni.getText().length()>=numerocaracteres){
+            getToolkit().beep();
+            evt.consume();
+            //JOptionPane.showMessageDialog(null,"Exceso de dígitos","!Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_txtdniKeyTyped
 
-    private void txtpersonasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpersonasKeyTyped
-        // TODO add your handling code here:
+    private void txtcantKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantKeyTyped
+        // cantidad de huespedes
+        char c = evt.getKeyChar();
         int numerocaracteres=1;
-        char c = evt.getKeyChar(); 
-        if (Character.isLetter(c)) 
+        if (Character.isLetter(c))
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"Ingresar solo numeros","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-        if (txtpersonas.getText().length()>=numerocaracteres)
-        {
-            evt.consume();
-            JOptionPane.showMessageDialog(null,"Exceso de digitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_txtpersonasKeyTyped
-
-    private void txtdiasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdiasKeyTyped
-        // TODO add your handling code here:
-        int numerocaracteres=2;
-        char c = evt.getKeyChar(); 
-        if (Character.isLetter(c)) 
+            //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+        } else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
+            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"Ingresar solo numeros","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-        if (txtdias.getText().length()>=numerocaracteres)
-        {
-            evt.consume();
-            JOptionPane.showMessageDialog(null,"Exceso de digitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_txtdiasKeyTyped
-
-    private void txtadelantoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtadelantoKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar(); 
-        if (Character.isLetter(c)) 
-        {
+            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }else if(txtcant.getText().length()>=numerocaracteres){
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"Ingresar solo numeros","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(null,"Exceso de dígitos","!Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_txtadelantoKeyTyped
+    }//GEN-LAST:event_txtcantKeyTyped
 
-    private void btnbuscarthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarthActionPerformed
-        // TODO add your handling code here:
-       // seleccion_ha=new seleccion_habitacion(this,true);
-       // seleccion_ha.setVisible(true);
-       
-        
-        
-       
-        
-    }//GEN-LAST:event_btnbuscarthActionPerformed
-
-    private void btnbuscarhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarhActionPerformed
-        // TODO add your handling code here:
-        //txtdni.setEnabled(true);
-        if (txtdni.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Ingresa DNI","ERROR",JOptionPane.ERROR_MESSAGE);
+    private void btnbuscar_hActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscar_hActionPerformed
+        // boton buscar huesped
+        if (txtdni.getText().length()!=8){
+            JOptionPane.showMessageDialog(null,"Ingrese DNI Completo");
         }
         else
-        {            
-            String dni= (txtdni.getText());        
-            try{          
+        {
+            txtnombre.setText("");
+            txtapellido.setText("");
+            String dni= (txtdni.getText());
+            try{
                 ResultSet rs1;
-                PreparedStatement pst=cn.prepareStatement("SELECT nombre_h,apellidos_h FROM hotel_version7.huesped where dni_huesped='"+dni+"'");
-                rs1 = pst.executeQuery();//buscando datos y guardando en interfaz                                
-                while(rs1.next()){                    
-                    txtnombres.setText(rs1.getString("nombre_h"));
-                    txtapellidos.setText(rs1.getString("apellidos_h"));                    
+                PreparedStatement pst=cn.prepareStatement("SELECT nombre_h,apellidos_h,id_huesped "
+                    + "FROM hotel_version10.huesped where dni_huesped='"+dni+"'");
+                rs1 = pst.executeQuery();//buscando datos y guardando en interfaz
+                while(rs1.next()){
+                    txtnombre.setText(rs1.getString("nombre_h"));
+                    txtapellido.setText(rs1.getString("apellidos_h"));
+                    id_huesped_huesped=rs1.getString("id_huesped");
                 }
-                if (txtnombres.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(null,"No existe ese DNI","ERROR",JOptionPane.ERROR_MESSAGE);
+                if (txtnombre.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"DNI no encontrado, por favor registre al cliente","AVISO",JOptionPane.INFORMATION_MESSAGE);
+                    txtdni.setText("");
                 }else{
-                    btnbuscarth.setEnabled(true);
+                    //desbloqueo
+                    btnhuesped.setEnabled(false);
+                    txtcant.setEnabled(true);
+                    btnbuscar_th.setEnabled(true);
                     btnguardar.setEnabled(true);
-                }                   
+                    //txtnumeroha.setEnabled(true);
+                    //txttipoha.setEnabled(true);
+                }
             }catch(HeadlessException | SQLException e){
                 System.err.println("No se pudo buscar");
             }
         }
-    }//GEN-LAST:event_btnbuscarhActionPerformed
-
-    private void lb_num_camas_hab_alqKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lb_num_camas_hab_alqKeyTyped
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_lb_num_camas_hab_alqKeyTyped
+    }//GEN-LAST:event_btnbuscar_hActionPerformed
 
     private void btnhuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhuespedActionPerformed
-        // TODO add your handling code here:
+        // boton nuevo huesped
         String bandera=huesped.bandera_huesped;
-        try{            
-            if(bandera==null){            
+        try{
+            if(bandera==null){
                 huesped a= new huesped();
                 this.getDesktopPane().add(a);
-                a.setVisible(true);            
+                a.setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(rootPane,"La ventana ya esta abierta!");
-            }    
+            }
         }catch(Exception e){
-            e.printStackTrace();    
+            e.printStackTrace();
         }
+
     }//GEN-LAST:event_btnhuespedActionPerformed
+
+    private void btnexplorarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexplorarActionPerformed
+        // Boton explorar
+        elegir_h=new elegir_huesped_re(this,true);
+        elegir_h.setVisible(true);
+        txtcant.setEnabled(true);
+        btnbuscar_th.setEnabled(true);
+        //txtnumeroha.setEnabled(true);
+        //txttipoha.setEnabled(true);
+        //
+        System.out.println("el ide huesped regresado: "+id_huesped_huesped);
+
+    }//GEN-LAST:event_btnexplorarActionPerformed
+
+    private void btnbuscar_thActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscar_thActionPerformed
+        //boton buscar habitacin
+        
+        //{"Nro de Habitacion", "Tipo", "Estado","Costo","Nro Camas"};  
+        System.out.println("id habitacion en alquiler xD : "+id_habitacion_seleccion);
+
+        btnhuesped.setEnabled(false);
+        btnguardar.setEnabled(true);
+        btnbuscar_h.setEnabled(false);
+        btnexplorar.setEnabled(false);
+        txtdni.setEditable(false);
+        //
+        if(txtcant.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingresa Cantidad de Personas","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if(Integer.parseInt(txtcant.getText())>0){
+            cantidadpersonas=Integer.parseInt(txtcant.getText());
+            seleccion_ha=new seleccion_habitacion_re(this,true);
+            seleccion_ha.setVisible(true);
+            //
+
+            txtcant.setEditable(false);
+            txtadelanto.setEnabled(true);
+            txtidreserva.setEnabled(true);
+            txtllegada.setEnabled(true);
+            txtsalida.setEnabled(true);
+            txtusuario.setEnabled(true);
+            txtmontototal.setEnabled(true);
+            btnguardar.setEnabled(true);
+            txthabitaciones.setEnabled(true);
+            ////
+            //if(cantidadpersonas>=2){         
+               
+            //}
+            /////
+            String []Dato=new String [10];
+            Dato[0]=numero_h;
+            Dato[1]=tipo_h;
+            Dato[2]=estado_h;
+            Dato[3]=costo_h;
+            Dato[4]=camas_h;
+            modelo.addRow(Dato);            
+            //btnbuscar_th.setEnabled(false);            
+            btneliminar.setEnabled(true);
+            btneliminart.setEnabled(true);
+            //
+            cantidadpersonas=cantidadpersonas-1;
+            if(cantidadpersonas<=1){
+               
+            }
+            //
+        }else{
+            JOptionPane.showMessageDialog(null,"Ingresa número válido de Personas","ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btnbuscar_thActionPerformed
+
+    private void txtadelantoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtadelantoKeyTyped
+        // adelanto
+        int numerocaracteres=7;
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c))
+        {
+            getToolkit().beep();
+            evt.consume();
+            //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+        }else if(txtmontototal.getText().length()>=numerocaracteres){
+            getToolkit().beep();
+            evt.consume();        
+        }
+    }//GEN-LAST:event_txtadelantoKeyTyped
+
+    private void txtmontototalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmontototalKeyTyped
+        // monto total
+        int numerocaracteres=7;
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c))
+        {
+            getToolkit().beep();
+            evt.consume();
+            //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+        }else if(txtmontototal.getText().length()>=numerocaracteres){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtmontototalKeyTyped
+
+    private void txtidreservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidreservaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtidreservaActionPerformed
+
+    private void txthabitacionesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txthabitacionesKeyTyped
+        // cantidad de habitaciones
+        int numerocaracteres=7;
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c))
+        {
+            getToolkit().beep();
+            evt.consume();
+            //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+        }else if(txtmontototal.getText().length()>=numerocaracteres){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txthabitacionesKeyTyped
+
+    private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
+        // boton nuevo
+        limpiar();
+        btnnuevo();
+    }//GEN-LAST:event_btnnuevoActionPerformed
+
+    private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
+        // boton salir
+        cc.desconectar();
+        bandera_reserva=null;
+        this.dispose();
+    }//GEN-LAST:event_btnsalirActionPerformed
+
+    private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
+        // boton guardar
+        //if(txtdni.getText().isEmpty()){
+            if(txtdni.getText().length()!=8){
+                JOptionPane.showMessageDialog(null,"Elija Huésped","ERROR",JOptionPane.ERROR_MESSAGE);
+            }else if(txtcant.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null,"Ingresa Cantidas de Personas","ERROR",JOptionPane.ERROR_MESSAGE);
+            }else if (txtadelanto.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null,"Ingresa Cantidad de camas","ERROR",JOptionPane.ERROR_MESSAGE);
+            }else if (txtmontototal.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null,"Ingresa Monto Total","ERROR",JOptionPane.ERROR_MESSAGE);
+            }else if(txtidreserva.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null,"No existe ID_Alquiler","ERROR",JOptionPane.ERROR_MESSAGE);
+            }else if (txtllegada.getDate()==null) {
+                JOptionPane.showMessageDialog(null,"Error al Obtener Fecha de llegada","ERROR",JOptionPane.ERROR_MESSAGE);
+            }else if (txtsalida.getDate()==null) {
+                JOptionPane.showMessageDialog(null,"Ingresa Fecha Salida","ERROR",JOptionPane.ERROR_MESSAGE);
+            }else if (txtusuario.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null,"Error al obtener Usuario ","ERROR",JOptionPane.ERROR_MESSAGE);
+            }else if((Integer.parseInt(txtcant.getText())>1) && ((tb_det.getRowCount()+1)!=Integer.parseInt(txtcant.getText()))){
+                JOptionPane.showMessageDialog(null,"Completa la Tabla de Huespedes en esta habitación","ERROR",JOptionPane.ERROR_MESSAGE);
+            }else
+            {
+                try
+                {
+                    PreparedStatement pst=cn.prepareStatement("INSERT INTO hotel_version10.alquila(id_alquila,huesped_id_huesped,"
+                        + "usuario_id_usuario,fecha_llegada,fecha_salida,num_dias,num_camas,observacion,monto_total,"
+                        + "habitacion_id_habitacion) VALUES (?,?,?,?,?,?,?,?,?,?)");
+                    //pst.setString(1,txtnumeroha.getText());
+                    pst.setString(1,txtidreserva.getText());//id alquiler
+                    pst.setString(2,id_huesped_huesped);
+                    pst.setString(3,txtusuario.getText());
+                    pst.setString(4,fecha.getFecha(txtllegada));
+                    pst.setString(5,fecha.getFecha(txtsalida));//fecha salida
+                    pst.setString(6,"1");//num dias
+                    pst.setString(7,txtadelanto.getText());//num camas
+                    pst.setString(8,txthabitaciones.getText());
+                    pst.setString(9,txtmontototal.getText());
+                    pst.setString(10,id_habitacion_seleccion);
+
+                    int a=pst.executeUpdate();
+                    if(a>0){
+                        System.out.println("Registro exitoso en Alquila");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null,"Error al agregar en Alquila ","Error",1);
+                    }
+                    //
+                    //String habb=txtnumeroha.getText();
+                    PreparedStatement pst1=cn.prepareStatement("UPDATE hotel_version10.habitacion"
+                        + " SET estado='Ocupado' WHERE id_habitacion='"+id_habitacion_seleccion+"'");
+                    int b=pst1.executeUpdate();
+                    if(b>0){
+                        System.out.println("Actualizacion exitosa en Habitacion");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null,"Error al actualizar habitación ","Error",1);
+                    }
+                    int c=1;
+                    ////  actualizar tabla detalle
+                    if(Integer.parseInt(txtcant.getText())>1)
+                    {
+                        c=0;//sirve para dar mensaje de confirmacion
+                        try
+                        {
+                            String id="";
+                            ResultSet rsa;
+                            int cont;
+                            for(int i=0;i<tb_det.getRowCount();i++)
+                            {
+                                Statement sent = cn.createStatement();
+                                rsa = sent.executeQuery("SELECT IFNULL(MAX(CAST(id_detalle AS UNSIGNED)), 0) codigoExterno FROM hotel_version10.detalle_alquila");
+                                while(rsa.next()){
+                                    cont =Integer.parseInt(rsa.getString("codigoExterno"))+1;
+                                    id=(String.valueOf(cont));
+                                }/////detalle de alquiler
+                                PreparedStatement pst2=cn.prepareStatement("INSERT INTO hotel_version10.detalle_alquila"
+                                    + "(id_detalle,Nombres,Apellidos,dni,nacimiento,ciudad,estado_civil,pais,telefono,"
+                                    + "ocupacion,direccion,alquila_id_alquila) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+                                /*Nombres,Apellidos,DNI,Fecha Nacimiento,Ciudad,Estado Civil,País,Teléfono,Ocupacion,Dirección*/
+                                pst2.setString(1,id);// id detalle
+                                pst2.setString(2,tb_det.getValueAt(i,0).toString());//nombre
+                                pst2.setString(3,tb_det.getValueAt(i,1).toString());//apellido
+                                pst2.setString(4,tb_det.getValueAt(i,2).toString());//dni
+                                pst2.setString(5,tb_det.getValueAt(i,3).toString());//
+                                pst2.setString(6,tb_det.getValueAt(i,4).toString());//
+                                pst2.setString(7,tb_det.getValueAt(i,5).toString());//estado civil
+                                pst2.setString(8,tb_det.getValueAt(i,6).toString());//
+                                pst2.setString(9,tb_det.getValueAt(i,7).toString());//telefono
+                                pst2.setString(10,tb_det.getValueAt(i,8).toString());//
+                                pst2.setString(11,tb_det.getValueAt(i,9).toString());//direccion
+                                pst2.setString(12,txtidreserva.getText());//id alquiler
+                                c=pst2.executeUpdate();
+                                if(c>0){
+                                    System.out.println("Registro exitoso en detalle_alquiler");
+                                }
+                                else{
+                                    JOptionPane.showMessageDialog(null,"Error al agregar ","Error",1);
+                                }
+                            }//fin for
+                        } catch (Exception e) {
+                            System.out.println("no se pudo actualizar detalle alquiler: "+e.getMessage());
+                        }//fin trycatch
+                    }// fin if para detalle alquiler
+                    if((a>0)&&(b>0)&&(c>0)){
+                        JOptionPane.showMessageDialog(null,"Registro Exitoso","FELICITACIONES",JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null,"Error al agregar ");
+                    }
+                    btnnuevo();
+                    eliminarelementos();
+                    bloqueorestantes();///fin de todos los insert
+
+                }catch(HeadlessException | SQLException e){
+                    JOptionPane.showMessageDialog(null, "error al agegar datos en alquila y detalle " +e);
+                }//fin trycatch
+            }//fn else
+            ///
+    }//GEN-LAST:event_btnguardarActionPerformed
+
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+        // cerrrando ventana
+        bandera_reserva=null;
+    }//GEN-LAST:event_formInternalFrameClosing
+
+    private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
+        // btn eliminar
+        int filasel=tb_det.getSelectedRow();
+        if(filasel>=0){
+            modelo.removeRow(filasel);
+            cantidadpersonas=cantidadpersonas+1;
+            //bloquearcampoingreso(1);//desbloquenado campos
+            
+        }else{
+            JOptionPane.showMessageDialog(null,"Elije registro para eliminar","ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btneliminarActionPerformed
+
+    private void btneliminartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminartActionPerformed
+        // boton eliminar todos elementos
+        eliminarelementos();       
+        btneliminar.setEnabled(false);
+        btneliminart.setEnabled(false);
+        //bloquearcampoingreso(1);
+    }//GEN-LAST:event_btneliminartActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnbuscarh;
-    private javax.swing.JButton btnbuscarth;
-    private javax.swing.JButton btneditar;
+    private javax.swing.JButton btnbuscar_h;
+    private javax.swing.JButton btnbuscar_th;
+    private javax.swing.JButton btneliminar;
+    private javax.swing.JButton btneliminart;
+    private javax.swing.JButton btnexplorar;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnhuesped;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lb_ape_alq;
-    private javax.swing.JLabel lb_cant_hab;
     private javax.swing.JLabel lb_dni_alq;
-    private javax.swing.JLabel lb_fech_lleg;
-    private javax.swing.JLabel lb_fech_sal_reser;
-    private javax.swing.JLabel lb_id_alq;
-    private javax.swing.JLabel lb_mont_tot;
+    private javax.swing.JLabel lb_fech_lleg1;
+    private javax.swing.JLabel lb_fech_sal1;
+    private javax.swing.JLabel lb_id_alq1;
+    private javax.swing.JLabel lb_id_recep1;
     private javax.swing.JLabel lb_nom_alq;
     private javax.swing.JLabel lb_num_camas_hab_alq;
-    private javax.swing.JLabel lb_num_hab_alq;
-    private javax.swing.JLabel lb_num_pers_reser;
-    private javax.swing.JLabel lb_tip_hab_alq;
-    private javax.swing.JTextField num_camas_alq;
-    private javax.swing.JPanel panel_datos_reser;
+    private javax.swing.JLabel lb_num_camas_hab_alq1;
+    private javax.swing.JLabel lb_obs_alq1;
     private javax.swing.JPanel panel_dt_hab;
     private javax.swing.JPanel panel_dt_huesp;
-    private javax.swing.JTextField txtadelanto;
-    private javax.swing.JTextField txtapellidos;
-    private javax.swing.JTextField txtdias;
-    private javax.swing.JTextField txtdni;
-    private javax.swing.JTextField txthabitacion;
+    private javax.swing.JPanel panel_dt_reserva;
+    private javax.swing.JTable tb_det;
+    public static javax.swing.JTextField txtadelanto;
+    public static javax.swing.JTextField txtapellido;
+    private javax.swing.JTextField txtcant;
+    public static javax.swing.JTextField txtdni;
+    private javax.swing.JTextField txthabitaciones;
     private javax.swing.JTextField txtidreserva;
     private com.toedter.calendar.JDateChooser txtllegada;
-    private javax.swing.JTextField txtnombres;
-    private javax.swing.JTextField txtpersonas;
+    public static javax.swing.JTextField txtmontototal;
+    public static javax.swing.JTextField txtnombre;
     private com.toedter.calendar.JDateChooser txtsalida;
-    private javax.swing.JTextField txttipo;
+    public static javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables
 }

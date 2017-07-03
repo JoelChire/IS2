@@ -981,7 +981,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+            //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
         }
         if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
@@ -990,7 +990,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
         }else if(txtdni.getText().length()>=numerocaracteres){
             getToolkit().beep();
             evt.consume();
@@ -1006,7 +1006,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+            //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
         } else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
@@ -1014,7 +1014,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
         }else if(txtcant.getText().length()>=numerocaracteres){
             getToolkit().beep();
             evt.consume();
@@ -1254,7 +1254,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+            //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
         }else if(txtmontototal.getText().length()>=numerocaracteres){
             getToolkit().beep();
             evt.consume();
@@ -1278,7 +1278,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+            //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
         }else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
@@ -1286,7 +1286,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
         }else if(txtnumeroca.getText().length()>=numerocaracteres){
             getToolkit().beep();
             evt.consume();
@@ -1480,7 +1480,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+            //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
         }
         
         if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
@@ -1490,7 +1490,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
         }else if(txtdni_mi.getText().length()>=numerocaracteres){
             getToolkit().beep();
             evt.consume();
@@ -1505,7 +1505,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
         
         if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
@@ -1515,7 +1515,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
         }else if(txtnombre_mi.getText().length()>=numerocaracteres){
             getToolkit().beep();
             evt.consume();
@@ -1530,7 +1530,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
         if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
@@ -1539,7 +1539,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
         }else if(txtapellido_mi.getText().length()>=numerocaracteres){
             getToolkit().beep();
             evt.consume();
@@ -1567,7 +1567,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
         if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
@@ -1576,7 +1576,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
         }else if(txtciudad.getText().length()>=numerocaracteres){
             getToolkit().beep();
             evt.consume();
@@ -1591,7 +1591,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
         if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
@@ -1600,7 +1600,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
         }else if(txtpais.getText().length()>=numerocaracteres){
             getToolkit().beep();
             evt.consume();
@@ -1615,7 +1615,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
         if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
@@ -1624,7 +1624,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
         }else if(txtocupacion.getText().length()>=numerocaracteres){
             getToolkit().beep();
             evt.consume();
@@ -1648,7 +1648,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+            //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
         }
         if ((int)
                 evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
@@ -1658,7 +1658,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
         }else if(txttelefono.getText().length()>=numerocaracteres){
             getToolkit().beep();
             evt.consume();

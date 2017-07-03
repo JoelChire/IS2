@@ -330,7 +330,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        /*reserva
+        //reserva
         String bandera_reserva=reserva.bandera_reserva;
         try{            
             if(bandera_reserva==null){            
@@ -342,7 +342,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }    
         }catch(Exception e){
             e.printStackTrace();    
-        }*/
+        }
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed

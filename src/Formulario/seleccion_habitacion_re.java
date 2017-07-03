@@ -9,9 +9,9 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class seleccion_habitacion extends javax.swing.JDialog {
+public class seleccion_habitacion_re extends javax.swing.JDialog {
 
-    public static alquiler alquile;
+    public static reserva reserva;
     Conectar cc=new Conectar();
     Connection cn=cc.conexion();
     ResultSet datos;
@@ -19,9 +19,9 @@ public class seleccion_habitacion extends javax.swing.JDialog {
     String nrohab,nom_tipo,estado,costo,camas;
     String idhab="";
     /////////////
-    public seleccion_habitacion(alquiler parent, boolean modal) {
+    public seleccion_habitacion_re(reserva parent, boolean modal) {
         //super(parent, modal);
-        this.alquile= parent;
+        this.reserva= parent;
         this.setModal(modal);
         this.setTitle("Seleccion de Habitación");
         initComponents();
@@ -35,7 +35,8 @@ public class seleccion_habitacion extends javax.swing.JDialog {
         model =new DefaultTableModel(null,titulos);
         try{            
             PreparedStatement pst=cn.prepareStatement("SELECT  nro_hab,nombre_tipo,estado,costo,nro_camas "
-                    + "FROM tip_habitacion inner join  habitacion on habitacion.tip_habitacion_id_tipo=tip_habitacion.id_tipo where nombre_tipo LIKE '%"+valor+"%' and estado='disponible' order by nro_hab");
+                    + "FROM tip_habitacion inner join  habitacion on habitacion.tip_habitacion_id_tipo=tip_habitacion.id_tipo"
+                    + " where nombre_tipo LIKE '%"+valor+"%' and estado='disponible' order by nro_hab");
             datos = pst.executeQuery();//buscando datos y guardando en datos           
             String [] fila = new String[5];
             while(datos.next()){
@@ -202,39 +203,35 @@ public class seleccion_habitacion extends javax.swing.JDialog {
             //int canti=0;
             if (fsel==-1) {
                 JOptionPane.showMessageDialog(null, "Debe seleccionar una habitacion");
-            }else{
-                //System.out.println("habitacion seleccionada");
-                //"Nro de Habitacion", "Tipo", "Estado","Costo","Nro Camas"
-                //model= (DefaultTableModel) jTable1.getModel();
+            }else{              
+                //"Nro de Habitacion", "Tipo", "Estado","Costo","Nro Camas"                
                 nrohab= jTable1.getValueAt(fsel, 0).toString();
                 nom_tipo= jTable1.getValueAt (fsel,1).toString();
+                estado= jTable1.getValueAt (fsel,2).toString().toUpperCase();  
                 costo= jTable1.getValueAt (fsel,3).toString();
-                camas=jTable1.getValueAt (fsel,4).toString();
-                estado= jTable1.getValueAt (fsel,2).toString().toUpperCase();                
+                camas=jTable1.getValueAt (fsel,4).toString();               
                 if (estado.equals("DISPONIBLE")) {
                     //System.out.println("numero habitacion: "+nrohab);
                     //conseguimos id habitacion
                     PreparedStatement pst=cn.prepareStatement("SELECT id_habitacion FROM hotel_version10.habitacion"
                             + " where nro_hab='"+nrohab+"'");
                     datos = pst.executeQuery();//buscando datos y guardando en datos           
-                    
                     while(datos.next()){
-                    idhab=datos.getString("id_habitacion");
+                        idhab=datos.getString("id_habitacion");
                     }
-                    //
-                    alquile.id_habitacion_seleccion=idhab;
-                    alquile.txtnumeroha.setText(nrohab);
-                    alquile.txttipoha.setText(nom_tipo);
-                    alquile.txtmontototal.setText(costo);
-                    alquile.txtnumeroca.setText(camas);                    
+                    reserva.id_habitacion_seleccion=idhab;
+                    reserva.numero_h=nrohab;
+                    reserva.tipo_h=nom_tipo;
+                    reserva.estado_h=estado;
+                    reserva.costo_h=costo;
+                    reserva.camas_h=camas;                    
                     this.dispose();
                 }else{
                     JOptionPane.showMessageDialog(null, "Seleccionar habitacion disponible");
                 }
             }
         } catch (Exception e) {
-        }
-        
+        }        
     }//GEN-LAST:event_jTable1MouseClicked
 
     public static void main(String args[]) {
@@ -251,20 +248,21 @@ public class seleccion_habitacion extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(seleccion_habitacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(seleccion_habitacion_re.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(seleccion_habitacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(seleccion_habitacion_re.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(seleccion_habitacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(seleccion_habitacion_re.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(seleccion_habitacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(seleccion_habitacion_re.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                seleccion_habitacion dialog = new seleccion_habitacion(alquile, true);
+                seleccion_habitacion_re dialog = new seleccion_habitacion_re(reserva, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
