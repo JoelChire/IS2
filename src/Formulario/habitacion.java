@@ -334,7 +334,6 @@ public class habitacion extends javax.swing.JInternalFrame {
                     numero = rs.getString("nro_hab");
                     id_hab =rs.getString("id_habitacion");
                 }
-                JOptionPane.showMessageDialog(null,id+id_hab+txthabitacion.getText()+ numhabitacion, "Mensaje",JOptionPane.INFORMATION_MESSAGE);
 
                 if ((id.equals(id_hab) && txthabitacion.getText().equals(numhabitacion))|| (!txthabitacion.getText().equals(numero))){
                     Integer tip=cmbtipo.getSelectedIndex()+1; 
