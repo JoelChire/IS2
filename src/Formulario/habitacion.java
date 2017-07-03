@@ -86,6 +86,11 @@ public class habitacion extends javax.swing.JInternalFrame {
         jLabel3.setText("Tipo:");
 
         txthabitacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txthabitacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txthabitacionKeyTyped(evt);
+            }
+        });
 
         cmbestado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cmbestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Ocupado", "Inhabilitado", "Reservad" }));
@@ -238,7 +243,7 @@ public class habitacion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         String numero1=null;
         if(txthabitacion.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Ingrese el nombre","¡Error!",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Ingrese el Nº de habitación","¡Error!",JOptionPane.ERROR_MESSAGE);
         }
         else {      
         try{
@@ -316,7 +321,7 @@ public class habitacion extends javax.swing.JInternalFrame {
         String numero=null;
         String id_hab=null;
         if(txthabitacion.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Ingrese el nombre","¡Error!",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Ingrese el Nº habitación","¡Error!",JOptionPane.ERROR_MESSAGE);
         }
         else
         {
@@ -353,6 +358,31 @@ public class habitacion extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_btnactualizarActionPerformed
+
+    private void txthabitacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txthabitacionKeyTyped
+        // TODO add your handling code here:
+        int numerocaracteres=5;
+        char d=evt.getKeyChar();
+        if (txthabitacion.getText().length()>=numerocaracteres){
+        evt.consume();
+            JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if (Character.isLetter(d)) 
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Solo números","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        } 
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
+            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txthabitacionKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
