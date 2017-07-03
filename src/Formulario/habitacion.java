@@ -292,6 +292,7 @@ public class habitacion extends javax.swing.JInternalFrame {
         txthabitacion.setEnabled(true);
         cmbtipo.setEnabled(true);
         btnguardar.setEnabled(true);
+        btnactualizar.setEnabled(false);
     }//GEN-LAST:event_btnnuevoActionPerformed
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
