@@ -93,7 +93,7 @@ public class habitacion extends javax.swing.JInternalFrame {
         });
 
         cmbestado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cmbestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Ocupado", "Inhabilitado", "Reservad" }));
+        cmbestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Ocupado", "Inhabilitado" }));
 
         cmbtipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cmbtipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));

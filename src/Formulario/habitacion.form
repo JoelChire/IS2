@@ -148,11 +148,10 @@
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="3">
                 <StringItem index="0" value="Disponible"/>
                 <StringItem index="1" value="Ocupado"/>
                 <StringItem index="2" value="Inhabilitado"/>
-                <StringItem index="3" value="Reservad"/>
               </StringArray>
             </Property>
           </Properties>
