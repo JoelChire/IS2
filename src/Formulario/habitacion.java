@@ -27,7 +27,8 @@ public class habitacion extends javax.swing.JInternalFrame {
     Integer n=1;
     ResultSet rs;
     public static String bandera_habitacion;       
-    public static String id;
+    public static String id;   
+    public static String numhabitacion;
     public static buscar_habitacion buscar_habit;
     public habitacion() {
         initComponents();
@@ -328,9 +329,9 @@ public class habitacion extends javax.swing.JInternalFrame {
                     numero = rs.getString("nro_hab");
                     id_hab =rs.getString("id_habitacion");
                 }
-                JOptionPane.showMessageDialog(null,id+id_hab+txthabitacion.getText()+ numero, "Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,id+id_hab+txthabitacion.getText()+ numhabitacion, "Mensaje",JOptionPane.INFORMATION_MESSAGE);
 
-                if ((id==id_hab && txthabitacion.getText().equals(numero))|| (!txthabitacion.getText().equals(numero))){
+                if ((id.equals(id_hab) && txthabitacion.getText().equals(numhabitacion))|| (!txthabitacion.getText().equals(numero))){
                     Integer tip=cmbtipo.getSelectedIndex()+1; 
                         PreparedStatement pst = cn.prepareStatement("UPDATE habitacion SET nro_hab='"+txthabitacion.getText()+"',estado='"+(String) cmbestado.getSelectedItem()+"',tip_habitacion_id_tipo='"+tip+"' WHERE id_habitacion="+id);
                         pst.executeUpdate();

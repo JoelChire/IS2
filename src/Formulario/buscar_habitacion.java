@@ -237,7 +237,8 @@ public class buscar_habitacion extends javax.swing.JDialog {
         int fsel= jTable1.getSelectedRow();
         model= (DefaultTableModel) jTable1.getModel();
         habitacion.id= jTable1.getValueAt(fsel, 0).toString();
-        habitacion.txthabitacion.setText(jTable1.getValueAt(fsel, 1).toString());
+        habitacion.txthabitacion.setText(jTable1.getValueAt(fsel, 1).toString());      
+        habitacion.numhabitacion= jTable1.getValueAt(fsel, 1).toString();
         habitacion.cmbtipo.setSelectedItem(jTable1.getValueAt (fsel,2).toString());
         habitacion.cmbestado.setSelectedItem(jTable1.getValueAt (fsel,3).toString()); 
         habitacion.txthabitacion.setEnabled(true);
