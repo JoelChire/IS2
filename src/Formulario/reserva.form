@@ -110,7 +110,7 @@
                               <Component id="txtdni" min="-2" pref="96" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnhuesped" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnnuevohuesped" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="btnbuscar_h" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -134,7 +134,7 @@
                           <Component id="btnexplorar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnhuesped" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnnuevohuesped" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lb_nom_alq" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -242,12 +242,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnbuscar_hActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnhuesped">
+            <Component class="javax.swing.JButton" name="btnnuevohuesped">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nuevo Huesped"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnhuespedActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnnuevohuespedActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnexplorar">
@@ -319,7 +319,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnbuscar_th" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="btnbuscarhabitacion" min="-2" pref="95" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btneliminar" min="-2" pref="102" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -335,7 +335,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btneliminar" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btneliminart" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnbuscar_th" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnbuscarhabitacion" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -359,12 +359,12 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btneliminartActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnbuscar_th">
+                <Component class="javax.swing.JButton" name="btnbuscarhabitacion">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Buscar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnbuscar_thActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnbuscarhabitacionActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
