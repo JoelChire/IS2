@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -101,7 +102,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/INICIO.png"))); // NOI18N
         jMenu1.setText("Login");
-        jMenu1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jMenu1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
         MPcerrarsesion.setText("Cerrar Sesión");
         MPcerrarsesion.addActionListener(new java.awt.event.ActionListener() {
@@ -125,7 +126,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/GUARDAR.png"))); // NOI18N
         jMenu2.setText("Registro");
-        jMenu2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jMenu2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
         jMenuItem3.setText("Huésped");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -166,7 +167,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/RECEPCION.png"))); // NOI18N
         jMenu3.setText("Recepción");
-        jMenu3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jMenu3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
         jMenuItem8.setText("Alquiler");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
@@ -216,7 +217,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/CONSULTAS.png"))); // NOI18N
         jMenu4.setText("Consultas");
-        jMenu4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jMenu4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
         jMenuItem12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem12.setText("Buscar  Húesped");
@@ -231,7 +232,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/REPORTE.png"))); // NOI18N
         jMenu5.setText("Reportes");
-        jMenu5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jMenu5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
         jMenuItem2.setText("Detalle de alquileres");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -438,13 +439,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-        
-         JasperReport reporte; //Creo el objeto reporte
+        // TODO add your handling code here:        
+         //JasperReport reporte; //Creo el objeto reporte
          // Ubicacion del Reporte
         String path = "C:\\Users\\ISAIAS\\Documents\\NetBeansProjects\\TerrazasHostal\\IS2\\src\\Formulario\\huespedxhabitacion.jasper";
+        //String path = "huespedxhabitacion.jasper";
         try {
-            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Cargo el reporte al objeto
+            //reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Cargo el reporte al objeto
             JasperPrint jprint = JasperFillManager.fillReport(path, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
             JasperViewer viewer = new JasperViewer(jprint,false); //Creamos la vista del Reporte
              viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
@@ -452,25 +453,28 @@ public class MenuPrincipal extends javax.swing.JFrame {
         } catch (JRException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-           JasperReport reporte; //Creo el objeto reporte
-         // Ubicacion del Reporte
-        String path = "C:\\Users\\ISAIAS\\Documents\\NetBeansProjects\\TerrazasHostal\\IS2\\src\\Formulario\\huespedxhabitacion.jasper";
+        /*String path = "C:\\Users\\ISAIAS\\Documents\\NetBeansProjects\\TerrazasHostal\\IS2\\src\\Formulario\\huespedxhabitacion.jasper";
         try {
-            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Cargo el reporte al objeto
             JasperPrint jprint = JasperFillManager.fillReport(path, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
             JasperViewer viewer = new JasperViewer(jprint,false); //Creamos la vista del Reporte
-             viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
+            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
             viewer.setVisible(true); //Inicializamos la vista del Reporte
         } catch (JRException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } */
+        try {            
+            JasperReport reportes=JasperCompileManager.compileReport("huespedxhabitacion.jrxml");            
+            JasperPrint print=JasperFillManager.fillReport(reportes, null,cc.conexion());           
+            JasperViewer.viewReport(print);            
+        } catch (Exception e) {
+            System.out.printf(e.getMessage());
+        }     
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+    
     Conectar cc = new Conectar();
     Connection cn = cc.conexion();
 
