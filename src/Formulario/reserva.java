@@ -15,17 +15,16 @@ import javax.swing.table.DefaultTableModel;
 public class reserva extends javax.swing.JInternalFrame {
 
     Conectar cc=new Conectar();
-    Connection cn=cc.conexion();
-    public static String bandera_reserva;
-    public String usuario_reserva; 
-    //public static seleccion_habitacion seleccion_h;
+    Connection cn=cc.conexion();    
     public static seleccion_habitacion_re seleccion_ha;
     public static elegir_huesped_re elegir_h;
+    fecha fecha=new fecha();
     DefaultTableModel modelo;
-    Integer seleccionado;
-    fecha fecha=new fecha();    
-    Integer cantidadhabitaciones=0;    
+    Integer seleccionado,cantidadhabitaciones=0;
+    double montototal=0.0;    
     public String id_huesped_huesped;//recibe el huesped de la interfaz elegir
+    public static String bandera_reserva;
+    public String usuario_reserva; 
     //"Nro de Habitacion", "Tipo", "Estado","Costo","Nro Camas"
     public static String id_habitacion_seleccion; //guarda el id retornado
     public static String numero_h;
@@ -50,7 +49,8 @@ public class reserva extends javax.swing.JInternalFrame {
         modelo.addColumn("Tipo");
         modelo.addColumn("Estado");
         modelo.addColumn("Costo");       
-        modelo.addColumn("Nro Camas");                
+        modelo.addColumn("Nro Camas");
+        modelo.addColumn("Id Habitación");
         this.tb_det.setModel(modelo);
         ///
         limpiar();  
@@ -111,7 +111,9 @@ public class reserva extends javax.swing.JInternalFrame {
         for(int i=cantfil-1;i>=0;i--){
             modelo.removeRow(i);
             cantidadhabitaciones--;
+            txthabitaciones.setText(cantidadhabitaciones.toString());
         }
+        txtmontototal.setText("00");
     }
     
     public void obt_id(){
@@ -387,8 +389,9 @@ public class reserva extends javax.swing.JInternalFrame {
         });
 
         lb_num_camas_hab_alq.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lb_num_camas_hab_alq.setText("Monto Total:");
+        lb_num_camas_hab_alq.setText("Monto total propuesto:");
 
+        txtmontototal.setEditable(false);
         txtmontototal.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtmontototal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -396,6 +399,7 @@ public class reserva extends javax.swing.JInternalFrame {
             }
         });
 
+        txthabitaciones.setEditable(false);
         txthabitaciones.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txthabitaciones.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -412,20 +416,21 @@ public class reserva extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lb_num_camas_hab_alq1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtadelanto, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lb_num_camas_hab_alq, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lb_num_camas_hab_alq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtmontototal, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lb_obs_alq1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txthabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(59, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txthabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lb_num_camas_hab_alq1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(144, 144, 144)
+                        .addComponent(txtadelanto, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(80, 80, 80))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -451,15 +456,13 @@ public class reserva extends javax.swing.JInternalFrame {
             panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_dt_habLayout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 81, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(panel_dt_habLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(panel_dt_habLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel_dt_habLayout.setVerticalGroup(
             panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -602,9 +605,9 @@ public class reserva extends javax.swing.JInternalFrame {
                     .addComponent(panel_dt_reserva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel_dt_hab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -756,11 +759,7 @@ public class reserva extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnexplorarActionPerformed
 
     private void btnbuscarhabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarhabitacionActionPerformed
-        //boton buscar habitacin
-        
-        //{"Nro de Habitacion", "Tipo", "Estado","Costo","Nro Camas"};  
-        //System.out.println("id habitacion en alquiler xD : "+id_habitacion_seleccion);
-
+        //boton buscar habitacin        
         btnnuevohuesped.setEnabled(false);
         btnguardar.setEnabled(true);
         btnbuscar_h.setEnabled(false);
@@ -785,15 +784,25 @@ public class reserva extends javax.swing.JInternalFrame {
             txthabitaciones.setEnabled(true);
             ////
             btnguardar.setEnabled(true);
-            
+            ////{"Nro de Habitacion", "Tipo", "Estado","Costo","Nro Camas"};  
             String []Dato=new String [10];
             Dato[0]=numero_h;
             Dato[1]=tipo_h;
             Dato[2]=estado_h;
             Dato[3]=costo_h;
             Dato[4]=camas_h;
+            Dato[5]=id_habitacion_seleccion;
+            
             modelo.addRow(Dato);            
-            cantidadhabitaciones++;     
+            cantidadhabitaciones++;//aumenta las habitaciones elegidas    
+            txthabitaciones.setText(cantidadhabitaciones.toString());
+            //
+            int d;
+            //montototal=montototal;
+            //d=Integer.parseInt(costo_h);
+            System.out.print(costo_h);
+            //txtmontototal.setText(montototal.toString());
+            //
             btneliminar.setEnabled(true);
             btneliminart.setEnabled(true);
             
@@ -812,7 +821,7 @@ public class reserva extends javax.swing.JInternalFrame {
             getToolkit().beep();
             evt.consume();
             //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
-        }else if(txtmontototal.getText().length()>=numerocaracteres){
+        }else if(txtadelanto.getText().length()>=numerocaracteres){
             getToolkit().beep();
             evt.consume();        
         }
@@ -839,14 +848,14 @@ public class reserva extends javax.swing.JInternalFrame {
 
     private void txthabitacionesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txthabitacionesKeyTyped
         // cantidad de habitaciones
-        int numerocaracteres=7;
+        int numerocaracteres=2;
         char c = evt.getKeyChar();
         if (Character.isLetter(c))
         {
             getToolkit().beep();
             evt.consume();
             //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
-        }else if(txtmontototal.getText().length()>=numerocaracteres){
+        }else if(txthabitaciones.getText().length()>=numerocaracteres){
             getToolkit().beep();
             evt.consume();
         }
@@ -866,8 +875,7 @@ public class reserva extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnsalirActionPerformed
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
-        // boton guardar
-        
+        // boton guardar        
             if(txtdni.getText().length()!=8){
                 JOptionPane.showMessageDialog(null,"Elija Huésped","ERROR",JOptionPane.ERROR_MESSAGE);
             }else if(txtcant.getText().isEmpty()){
@@ -895,7 +903,7 @@ public class reserva extends javax.swing.JInternalFrame {
                 {
                     PreparedStatement pst=cn.prepareStatement("INSERT INTO hotel_version10.reserva"
                             + " (id_reserva,fecha_llegada,fecha_salida,nro_persona,mon_adelanto,nro_dias,"
-                            + "num_habita_rese,huesped_id_huesped) VALUES ('1', '2017-07-07', '2017-07-08', '3', '100', '1', '3', '1')");
+                            + "num_habita_rese,huesped_id_huesped) VALUES (?,?,?,?,?,?,?,?)");
                     //pst.setString(1,txtnumeroha.getText());
                     pst.setString(1,txtidreserva.getText());//id alquiler
                     pst.setString(2,fecha.getFecha(txtllegada));
@@ -904,8 +912,7 @@ public class reserva extends javax.swing.JInternalFrame {
                     pst.setString(5,txtadelanto.getText());//num camas
                     pst.setString(6,"1");//num dias
                     pst.setString(7,txthabitaciones.getText());
-                    pst.setString(8,id_huesped_huesped);
-                    
+                    pst.setString(8,id_huesped_huesped);                    
                     int a=pst.executeUpdate();
                     if(a>0){
                         System.out.println("Registro exitoso en Reserva");
@@ -913,69 +920,28 @@ public class reserva extends javax.swing.JInternalFrame {
                     else{
                         JOptionPane.showMessageDialog(null,"Error al agregar en Reserva ","Error",1);
                     }
-                    int c=1;
-                    String id="";
-                    ResultSet rsa;
-                    int cont;
+                    int c=1;                   
                     for(int i=0;i<tb_det.getRowCount();i++)
-                    {
-                        /*Statement sent = cn.createStatement();
-                        rsa = sent.executeQuery("SELECT IFNULL(MAX(CAST(id_detalle AS UNSIGNED)), 0) codigoExterno FROM hotel_version10.detalle_alquila");
-                        while(rsa.next()){
-                            cont =Integer.parseInt(rsa.getString("codigoExterno"))+1;
-                            id=(String.valueOf(cont));
-                        }/////detalle de alquiler
-                        */
+                    {                        
                         PreparedStatement pst2=cn.prepareStatement("INSERT INTO hotel_version10.detalle_reserva"
-                                + " (reserva_id_reserva,habitacion_id_habitacion,estado) VALUES ('1', '1', 'Pendiente');");
-                        /*Nombres,Apellidos,DNI,Fecha Nacimiento,Ciudad,Estado Civil,País,Teléfono,Ocupacion,Dirección*/
+                                + " (reserva_id_reserva,habitacion_id_habitacion,estado) VALUES (?,?,?)");                       
                         pst2.setString(1,txtidreserva.getText());// id detalle
-                        pst2.setString(2,tb_det.getValueAt(i,0).toString());//nombre
-                        pst2.setString(3,tb_det.getValueAt(i,1).toString());//apellido
-                        pst2.setString(4,tb_det.getValueAt(i,2).toString());//dni
-                        
+                        pst2.setString(2,tb_det.getValueAt(i,5).toString());//id habitacion
+                        pst2.setString(3,"Reservado");// estado                        
                         c=pst2.executeUpdate();
                         if(c>0){
-                            System.out.println("Registro exitoso en detalle_alquiler");
+                            System.out.println("Registro exitoso en Detalle Reserva");
                         }
                         else{
-                            JOptionPane.showMessageDialog(null,"Error al agregar ","Error",1);
+                            JOptionPane.showMessageDialog(null,"Error al Agreegar habitación en Detalle de Reserva ","Error",1);
                         }
-                    }//fin for
-                    
-                    
-                    
-                    
-                    //String habb=txtnumeroha.getText();
-                    PreparedStatement pst1=cn.prepareStatement("UPDATE hotel_version10.habitacion"
-                        + " SET estado='Ocupado' WHERE id_habitacion='"+id_habitacion_seleccion+"'");
-                    int b=pst1.executeUpdate();
-                    if(b>0){
-                        System.out.println("Actualizacion exitosa en Habitacion");
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null,"Error al actualizar habitación ","Error",1);
-                    }
-                    
-                    ////  actualizar tabla detalle
-                    if(Integer.parseInt(txtcant.getText())>1)
-                    {
-                        c=0;//sirve para dar mensaje de confirmacion
-                        try
-                        {
-                            
-                        } catch (Exception e) {
-                            System.out.println("no se pudo actualizar detalle alquiler: "+e.getMessage());
-                        }//fin trycatch
-                    }// fin if para detalle alquiler
-                    
-                    if((a>0)&&(b>0)&&(c>0)){
+                    }//fin for  
+                    if((a>0)&&(c>0)){
                         JOptionPane.showMessageDialog(null,"Registro Exitoso","FELICITACIONES",JOptionPane.INFORMATION_MESSAGE);
                     }
                     else{
                         JOptionPane.showMessageDialog(null,"Error al agregar ");
-                    }
-                    
+                    }                    
                     btnnuevo();
                     eliminarelementos();
                     bloqueorestantes();///fin de todos los insert
@@ -998,8 +964,9 @@ public class reserva extends javax.swing.JInternalFrame {
         if(filasel>=0){
             modelo.removeRow(filasel);
             cantidadhabitaciones--;
-            //bloquearcampoingreso(1);//desbloquenado campos
-            
+            txthabitaciones.setText(cantidadhabitaciones.toString());  
+            montototal=montototal-Integer.parseInt(tb_det.getValueAt(filasel,3).toString());
+            //txtmontototal.setText(montototal.toString());
         }else{
             JOptionPane.showMessageDialog(null,"Elije registro para eliminar","ERROR",JOptionPane.ERROR_MESSAGE);
         }
