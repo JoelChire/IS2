@@ -9,16 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author Usuario
- */
 public class cobro_diario extends javax.swing.JInternalFrame {
 
     Conectar cc=new Conectar();
@@ -33,8 +23,7 @@ public class cobro_diario extends javax.swing.JInternalFrame {
         bandera_cobro="bc";
         txtfechaactual.setText(fecha_actual());
     }
-    
-    
+   
     public static String fecha_actual(){
         Date fecha = new Date();
         SimpleDateFormat formatoFecha= new SimpleDateFormat("YYYY-MM-dd");

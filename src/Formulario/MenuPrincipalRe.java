@@ -16,7 +16,6 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class MenuPrincipalRe extends javax.swing.JFrame {
@@ -27,12 +26,12 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("HOTEL TERRAZAS");
         cerrar(); 
-        usuario_actual=Sesion.user;//para obtener usuario actual
-        //System.out.println("usuario en menu: "+usuario_actual);   
         Image icono = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Iconos/usuario.png"));
         this.setIconImage(icono);
     }
-    
+    public void obtenerusuario (String u){
+        usuario_actual=u;        
+    }
     public void cerrar(){
         try {
             this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -65,7 +64,6 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenuItem5 = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -81,9 +79,6 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -134,7 +129,6 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem3);
         jMenu2.add(jSeparator2);
-        jMenu2.add(jSeparator3);
 
         jMenuItem5.setText("Taxista");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -220,28 +214,6 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/REPORTE.png"))); // NOI18N
-        jMenu5.setText("Reportes");
-        jMenu5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-
-        jMenuItem2.setText("Detalle de alquileres");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem2);
-
-        jMenuItem7.setText("Estado de habitaciones");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem7);
-
-        jMenuBar1.add(jMenu5);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -325,7 +297,9 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
             if(bandera==null){            
                 alquiler a= new alquiler();  
                 this.escritorio.add(a);
-                a.setVisible(true);            
+                a.obtenerusuario(usuario_actual);
+                a.txtusuario.setText(usuario_actual);             
+                a.setVisible(true);                
             }else{
                 JOptionPane.showMessageDialog(rootPane,"La ventana ya esta abierta!");
             }    
@@ -341,6 +315,8 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
             if(bandera_reserva==null){            
                 reserva a= new reserva();
                 this.escritorio.add(a);
+                a.obtenerusuario(usuario_actual);
+                a.txtusuario.setText(usuario_actual);
                 a.setVisible(true);            
             }else{
                 JOptionPane.showMessageDialog(rootPane,"La ventana ya esta abierta!");
@@ -403,6 +379,8 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
             if(bandera==null){            
                 huespedportaxista a= new huespedportaxista();  
                 this.escritorio.add(a);
+                a.obtenerusuario(usuario_actual);
+                a.txtusuario.setText(usuario_actual);
                 a.setVisible(true);            
             }else{
                 JOptionPane.showMessageDialog(rootPane,"La ventana ya esta abierta!");
@@ -411,43 +389,6 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
             e.printStackTrace();    
         } 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:        
-         //JasperReport reporte; //Creo el objeto reporte
-         // Ubicacion del Reporte
-        String path = "C:\\Users\\ISAIAS\\Documents\\NetBeansProjects\\TerrazasHostal\\IS2\\src\\Formulario\\huespedxhabitacion.jasper";
-        //String path = "huespedxhabitacion.jasper";
-        try {
-            //reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Cargo el reporte al objeto
-            JasperPrint jprint = JasperFillManager.fillReport(path, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
-            JasperViewer viewer = new JasperViewer(jprint,false); //Creamos la vista del Reporte
-             viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
-            viewer.setVisible(true); //Inicializamos la vista del Reporte
-        } catch (JRException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        // TODO add your handling code here:
-        /*String path = "C:\\Users\\ISAIAS\\Documents\\NetBeansProjects\\TerrazasHostal\\IS2\\src\\Formulario\\huespedxhabitacion.jasper";
-        try {
-            JasperPrint jprint = JasperFillManager.fillReport(path, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
-            JasperViewer viewer = new JasperViewer(jprint,false); //Creamos la vista del Reporte
-            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
-            viewer.setVisible(true); //Inicializamos la vista del Reporte
-        } catch (JRException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        } */
-        try {            
-            JasperReport reportes=JasperCompileManager.compileReport("huespedxhabitacion.jrxml");            
-            JasperPrint print=JasperFillManager.fillReport(reportes, null,cc.conexion());           
-            JasperViewer.viewReport(print);            
-        } catch (Exception e) {
-            System.out.printf(e.getMessage());
-        }     
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
     
     Conectar cc = new Conectar();
     Connection cn = cc.conexion();
@@ -497,22 +438,18 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
-    public javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
-    private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;

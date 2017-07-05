@@ -17,7 +17,6 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class MenuPrincipal extends javax.swing.JFrame {
@@ -27,13 +26,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("HOTEL TERRAZAS");
-        cerrar(); 
-        usuario_actual=Sesion.user;//para obtener usuario actual
-        //System.out.println("usuario en menu: "+usuario_actual);   
+        cerrar();
         Image icono = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Iconos/usuario.png"));
         this.setIconImage(icono);
+    }    
+    public void obtenerusuario (String u){
+        usuario_actual=u;        
     }
-    
+ 
     public void cerrar(){
         try {
             this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -351,7 +351,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
             if(bandera==null){            
                 alquiler a= new alquiler();  
                 this.escritorio.add(a);
-                a.setVisible(true);            
+                a.obtenerusuario(usuario_actual);
+                a.txtusuario.setText(usuario_actual);
+                a.setVisible(true);                
             }else{
                 JOptionPane.showMessageDialog(rootPane,"La ventana ya esta abierta!");
             }    
@@ -367,6 +369,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             if(bandera_reserva==null){            
                 reserva a= new reserva();
                 this.escritorio.add(a);
+                a.obtenerusuario(usuario_actual);
+                a.txtusuario.setText(usuario_actual);
                 a.setVisible(true);            
             }else{
                 JOptionPane.showMessageDialog(rootPane,"La ventana ya esta abierta!");
@@ -429,6 +433,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             if(bandera==null){            
                 huespedportaxista a= new huespedportaxista();  
                 this.escritorio.add(a);
+                a.obtenerusuario(usuario_actual);
+                a.txtusuario.setText(usuario_actual);
                 a.setVisible(true);            
             }else{
                 JOptionPane.showMessageDialog(rootPane,"La ventana ya esta abierta!");

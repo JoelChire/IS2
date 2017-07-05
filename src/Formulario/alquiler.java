@@ -37,7 +37,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         this.setLocation(5,5);
         setResizable(false);
         this.setTitle("Alquiler");
-        usuario_alquiler=MenuPrincipal.usuario_actual; 
+        //usuario_alquiler=MenuPrincipal.usuario_actual; 
         bandera_alquiler="bandera";
         ////Tabla
         modelo= new DefaultTableModel();        
@@ -62,6 +62,9 @@ public class alquiler extends javax.swing.JInternalFrame {
         ///
         limpiar();  
         btnnuevo();  
+    }
+    public void obtenerusuario (String u){
+        usuario_alquiler=u;        
     }
     void bloqueorestantes(){
         btnbuscar_h.setEnabled(false);

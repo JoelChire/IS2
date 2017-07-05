@@ -40,9 +40,7 @@ public class reserva extends javax.swing.JInternalFrame {
         this.setTitle("Reserva");
         bandera_reserva="bandera";
         this.setLocation(5,5);
-        setResizable(false);
-        
-        usuario_reserva=MenuPrincipal.usuario_actual; 
+        setResizable(false);        
         bandera_reserva="bandera";
         ////Tabla              
         modelo= new DefaultTableModel();        
@@ -64,7 +62,9 @@ public class reserva extends javax.swing.JInternalFrame {
         btnnuevo();        
         obt_id();
     }
-    
+    public void obtenerusuario (String u){
+        usuario_reserva=u;        
+    }
     void bloqueorestantes(){
         btnbuscar_h.setEnabled(false);
         btnnuevohuesped.setEnabled(false); 

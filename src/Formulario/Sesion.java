@@ -13,10 +13,7 @@ import javax.swing.JOptionPane;
 
 public class Sesion extends javax.swing.JFrame {
 
-     
     ResultSet datos;
-    public static String user;
-    ////
     public Sesion() {
         initComponents();
         System.out.println("Iniciando Sesión");
@@ -35,7 +32,6 @@ public class Sesion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Ingrese el apellido","!Error!",JOptionPane.ERROR_MESSAGE);
         }
         else{
-            user=usu;
             String cap="";
             try{            
                 PreparedStatement pst=cn.prepareStatement("SELECT *from usuario where id_usuario='"+usu+"'&& contrasena='"+con+"'");
@@ -46,21 +42,23 @@ public class Sesion extends javax.swing.JFrame {
                 if(cap.equals("Administrador")){
                     this.setVisible(false);
                     JOptionPane.showMessageDialog(null,"Bienvenido Administrador "+usu);
-                    MenuPrincipal ingreso = new MenuPrincipal();
-                    ingreso.setVisible(true);             
+                    MenuPrincipal ingresoA = new MenuPrincipal();                    
+                    ingresoA.obtenerusuario(usu);
+                    ingresoA.setVisible(true);     
                 }
                 if(cap.equals("Recepcionista")){
                     this.setVisible(false);
                     JOptionPane.showMessageDialog(null,"Bienvenido Recepcionista "+usu);
-                    MenuPrincipalRe ingreso = new MenuPrincipalRe();
-                    ingreso.setVisible(true);                
+                    MenuPrincipalRe ingresoR = new MenuPrincipalRe();
+                    ingresoR.obtenerusuario(usu);
+                    ingresoR.setVisible(true);       
                 }
                 if((!cap.equals("Administrador"))&&(!cap.equals("Recepcionista")))
                 {
                     JOptionPane.showMessageDialog(null,"No existe sus datos");
                     txtusuario.requestFocus();
-                    txtusuario.setText("");
-                    txtcontrasena.setText("");
+                    txtusuario.setText(null);
+                    txtcontrasena.setText(null);
                 }
                 cc.desconectar();
             }catch(HeadlessException | SQLException e){

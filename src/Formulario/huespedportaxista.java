@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Formulario;
 
 import ClaseConectar.Conectar;
-import Clases.fecha;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,17 +14,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
-/**
- *
- * @author MALY
- */
 public class huespedportaxista extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form huespedxtaxista
-     */
-    //fecha fecha=new fecha();
     Integer n=1;
     Conectar cc=new Conectar();
     Connection cn=cc.conexion();
@@ -49,24 +34,20 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         mostrardatos("");
         jTable1.setEnabled(false);       
         bandera_huespedportaxista="bandera";
-        usuario_huespedporhabitacion=MenuPrincipal.usuario_actual; 
+        //usuario_huespedporhabitacion=MenuPrincipal.usuario_actual; 
         txtusuario.setText(usuario_huespedporhabitacion);
-        txtfecha.setText(fecha_actual());
-        
+        txtfecha.setText(fecha_actual());        
     }
-    
+     public void obtenerusuario (String u){
+        usuario_huespedporhabitacion=u;        
+    }
      public static String fecha_actual(){
         Date fecha = new Date(System.currentTimeMillis());
         //SimpleDateFormat formatodate= new SimpleDateFormat("YYYY-MM-dd");
         SimpleDateFormat formatofecha= new SimpleDateFormat("YYYY-MM-dd h:mm:ss"); 
        return formatofecha.format(fecha); 
     }
-    /*public static String limpiar(){
-        Date fecha = new Date();
-        SimpleDateFormat formatoFecha= new SimpleDateFormat("YYYY-MM-dd");
-        return formatoFecha.format(fecha);
-        
-    }  */ 
+  
     void limpiar(){
         txtfecha.setText(fecha_actual());
         txtusuario.setText(usuario_huespedporhabitacion);
@@ -198,7 +179,7 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtdni, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 12, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -585,6 +566,6 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtfecha;
     private javax.swing.JTextField txthabitaciones;
     private javax.swing.JTextField txtpersonas;
-    private javax.swing.JTextField txtusuario;
+    public static javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables
 }
