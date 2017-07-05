@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 
 public class reserva extends javax.swing.JInternalFrame {
@@ -20,7 +21,7 @@ public class reserva extends javax.swing.JInternalFrame {
     public static elegir_huesped_re elegir_h;
     fecha fecha=new fecha();
     DefaultTableModel modelo;
-    Integer seleccionado,cantidadhabitaciones=0;
+    Integer seleccionado,cantidadhabitaciones=0,totalpersonas;
     double montototal=0.0;    
     public String id_huesped_huesped;//recibe el huesped de la interfaz elegir
     public static String bandera_reserva;
@@ -53,6 +54,12 @@ public class reserva extends javax.swing.JInternalFrame {
         modelo.addColumn("Id Habitación");
         this.tb_det.setModel(modelo);
         ///
+        spinner.setValue(0);
+        SpinnerNumberModel nm=new SpinnerNumberModel();
+        nm.setMaximum(10);
+        nm.setMinimum(0);     
+        spinner.setModel(nm);
+        //
         limpiar();  
         btnnuevo();        
         obt_id();
@@ -80,8 +87,7 @@ public class reserva extends javax.swing.JInternalFrame {
         txtdni.setEditable(true);
         txtnombre.setEnabled(true);
         txtapellido.setEnabled(true);
-        txtcant.setEnabled(false);
-        txtcant.setEditable(true);
+        spinner.setEnabled(false);
         txtadelanto.setEnabled(false);
         
         txtidreserva.setEnabled(false);
@@ -95,7 +101,7 @@ public class reserva extends javax.swing.JInternalFrame {
         txtdni.setText(null);
         txtnombre.setText(null);
         txtapellido.setText(null);
-        txtcant.setText("0");
+        spinner.setValue(0);
         txtadelanto.setText(null);
         obt_id();         
         txtusuario.setText(usuario_reserva);
@@ -144,10 +150,10 @@ public class reserva extends javax.swing.JInternalFrame {
         txtapellido = new javax.swing.JTextField();
         lb_ape_alq = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtcant = new javax.swing.JTextField();
         btnbuscar_h = new javax.swing.JButton();
         btnnuevohuesped = new javax.swing.JButton();
         btnexplorar = new javax.swing.JButton();
+        spinner = new javax.swing.JSpinner();
         panel_dt_hab = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         btneliminar = new javax.swing.JButton();
@@ -231,13 +237,6 @@ public class reserva extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
         jLabel2.setText("Cantidad de personas:");
 
-        txtcant.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        txtcant.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtcantKeyTyped(evt);
-            }
-        });
-
         btnbuscar_h.setText("Buscar");
         btnbuscar_h.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,8 +267,8 @@ public class reserva extends javax.swing.JInternalFrame {
                 .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_dt_huespLayout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtcant, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
+                        .addComponent(spinner, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panel_dt_huespLayout.createSequentialGroup()
                         .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lb_nom_alq)
@@ -310,10 +309,13 @@ public class reserva extends javax.swing.JInternalFrame {
                 .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lb_ape_alq)
                     .addComponent(txtapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
                 .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(txtcant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel_dt_huespLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel2))
+                    .addGroup(panel_dt_huespLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -671,30 +673,6 @@ public class reserva extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtdniKeyTyped
 
-    private void txtcantKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantKeyTyped
-        // cantidad de huespedes
-        char c = evt.getKeyChar();
-        int numerocaracteres=1;
-        if (Character.isLetter(c))
-        {
-            getToolkit().beep();
-            evt.consume();
-            //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
-        } else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
-            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
-            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
-        {
-            getToolkit().beep();
-            evt.consume();
-            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }else if(txtcant.getText().length()>=numerocaracteres){
-            getToolkit().beep();
-            evt.consume();
-            //JOptionPane.showMessageDialog(null,"Exceso de dígitos","!Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_txtcantKeyTyped
-
     private void btnbuscar_hActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscar_hActionPerformed
         // boton buscar huesped
         if (txtdni.getText().length()!=8){
@@ -721,7 +699,7 @@ public class reserva extends javax.swing.JInternalFrame {
                 }else{
                     //desbloqueo
                     btnnuevohuesped.setEnabled(false);
-                    txtcant.setEnabled(true);
+                    spinner.setEnabled(true);
                     btnbuscarhabitacion.setEnabled(true);
                     btnguardar.setEnabled(true);
                     //txtnumeroha.setEnabled(true);
@@ -754,7 +732,7 @@ public class reserva extends javax.swing.JInternalFrame {
         // Boton explorar
         elegir_h=new elegir_huesped_re(this,true);
         elegir_h.setVisible(true);
-        txtcant.setEnabled(true);
+        spinner.setEnabled(true);
         btnbuscarhabitacion.setEnabled(true);
         //txtnumeroha.setEnabled(true);
         //txttipoha.setEnabled(true);
@@ -771,14 +749,13 @@ public class reserva extends javax.swing.JInternalFrame {
         btnexplorar.setEnabled(false);
         txtdni.setEditable(false);
         //
-        if(txtcant.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Ingresa Cantidad de Personas","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if(Integer.parseInt(txtcant.getText())>0){
+        totalpersonas=Integer.parseInt(spinner.getValue().toString());
+        if(totalpersonas>0){
             
             seleccion_ha=new seleccion_habitacion_re(this,true);
             seleccion_ha.setVisible(true);
             //
-            txtcant.setEditable(false);            
+            spinner.setEnabled(false);            
             txtidreserva.setEnabled(true);
             txtllegada.setEnabled(true);
             txtsalida.setEnabled(true);
@@ -875,9 +852,7 @@ public class reserva extends javax.swing.JInternalFrame {
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // boton guardar        
             if(txtdni.getText().length()!=8){
-                JOptionPane.showMessageDialog(null,"Elija Huésped","ERROR",JOptionPane.ERROR_MESSAGE);
-            }else if(txtcant.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null,"Ingresa Cantidad de Personas","ERROR",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Elija Huésped","ERROR",JOptionPane.ERROR_MESSAGE);            
             }else if(txtidreserva.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null,"No existe ID_Alquiler","ERROR",JOptionPane.ERROR_MESSAGE);
             }else if (txtllegada.getDate()==null) {
@@ -903,7 +878,7 @@ public class reserva extends javax.swing.JInternalFrame {
                     pst.setString(1,txtidreserva.getText());//id alquiler
                     pst.setString(2,fecha.getFecha(txtllegada));
                     pst.setString(3,fecha.getFecha(txtsalida));//fecha salida
-                    pst.setString(4,txtcant.getText());
+                    pst.setString(4,totalpersonas.toString());
                     pst.setString(5,txtadelanto.getText());//num camas
                     pst.setString(6,"1");//num dias
                     pst.setString(7,txthabitaciones.getText());
@@ -1004,10 +979,10 @@ public class reserva extends javax.swing.JInternalFrame {
     private javax.swing.JPanel panel_dt_hab;
     private javax.swing.JPanel panel_dt_huesp;
     private javax.swing.JPanel panel_dt_reserva;
+    private javax.swing.JSpinner spinner;
     private javax.swing.JTable tb_det;
     public static javax.swing.JTextField txtadelanto;
     public static javax.swing.JTextField txtapellido;
-    private javax.swing.JTextField txtcant;
     public static javax.swing.JTextField txtdni;
     private javax.swing.JTextField txthabitaciones;
     private javax.swing.JTextField txtidreserva;

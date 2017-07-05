@@ -11,9 +11,8 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 
 public class alquiler extends javax.swing.JInternalFrame {
@@ -26,7 +25,7 @@ public class alquiler extends javax.swing.JInternalFrame {
     Integer seleccionado;
     fecha fecha=new fecha();
     //String rtta;//r
-    Integer cantidadpersonas;
+    Integer cantidadpersonas,totalpersonas;
     public static String bandera_alquiler;//guardar el usuario que inicio sesion
     public String usuario_alquiler;
     public static String id_habitacion_seleccion; //guarda el id retornado
@@ -51,9 +50,15 @@ public class alquiler extends javax.swing.JInternalFrame {
         modelo.addColumn("País");
         modelo.addColumn("Teléfono");
         modelo.addColumn("Ocupacion");
-        modelo.addColumn("Dirección");
-        
+        modelo.addColumn("Dirección");        
         this.tb_det.setModel(modelo);
+        ///
+        spinner.setValue(0);
+        SpinnerNumberModel nm=new SpinnerNumberModel();
+        nm.setMaximum(10);
+        nm.setMinimum(0);
+        //nm.setStepSize(1);
+        spinner.setModel(nm);
         ///
         limpiar();  
         btnnuevo();  
@@ -81,9 +86,8 @@ public class alquiler extends javax.swing.JInternalFrame {
         txtdni.setEnabled(true);
         txtdni.setEditable(true);
         txtnombre.setEnabled(true);
-        txtapellido.setEnabled(true);
-        txtcant.setEnabled(false);
-        txtcant.setEditable(true);
+        txtapellido.setEnabled(true);        
+        spinner.setEnabled(false);//spiner true
         txtnumeroha.setEnabled(false);
         txttipoha.setEnabled(false);
         txtnumeroca.setEnabled(false);
@@ -101,12 +105,13 @@ public class alquiler extends javax.swing.JInternalFrame {
         txtdni.setText("");
         txtnombre.setText("");
         txtapellido.setText("");
-        txtcant.setText("0");
+        spinner.setValue(0);//spiner a 0
         txtnumeroha.setText("");
         txttipoha.setText("");
         txtnumeroca.setText("");
         obt_id(); 
         txtllegada.setText(fecha_actual());
+        resetearfecha();//resetear fecha salida
         txtusuario.setText(usuario_alquiler);
         txtmontototal.setText("");
         txtobservacion.setText("");
@@ -116,10 +121,8 @@ public class alquiler extends javax.swing.JInternalFrame {
     void limpiaringresohuesped(){        
         txtnombre_mi.setText(null);
         txtapellido_mi.setText(null);
-        txtdni_mi.setText(null);
-        //set fecha
-        fechadefecto();
-        //
+        txtdni_mi.setText(null);        
+        fechadefecto();//set fecha        
         txtciudad.setText(null);
         cmbestadocivil.setSelectedIndex(0);
         txtpais.setText(null);
@@ -155,6 +158,17 @@ public class alquiler extends javax.swing.JInternalFrame {
         }catch(ParseException ex){
             //Logger.getLogger(alquiler.class.getName()).log(Level.WARNING);
         }
+    }
+    void resetearfecha(){
+        try{
+            String fec ="";
+            SimpleDateFormat df= new SimpleDateFormat("yyyy-MM-dd");
+            Date fech;
+            fech = df.parse(fec);
+            this.txtsalida.setDate(fech); 
+        }catch(ParseException e){
+            
+        }     
     }
     
     public void obt_id(){
@@ -193,10 +207,10 @@ public class alquiler extends javax.swing.JInternalFrame {
         txtapellido = new javax.swing.JTextField();
         lb_ape_alq = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtcant = new javax.swing.JTextField();
         btnbuscar_h = new javax.swing.JButton();
         btnhuesped = new javax.swing.JButton();
         btnexplorar = new javax.swing.JButton();
+        spinner = new javax.swing.JSpinner();
         panel_dt_hab = new javax.swing.JPanel();
         lb_num_hab_alq = new javax.swing.JLabel();
         lb_tip_hab_alq = new javax.swing.JLabel();
@@ -307,13 +321,6 @@ public class alquiler extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
         jLabel2.setText("Cantidad de personas:");
 
-        txtcant.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        txtcant.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtcantKeyTyped(evt);
-            }
-        });
-
         btnbuscar_h.setText("Buscar");
         btnbuscar_h.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -344,8 +351,8 @@ public class alquiler extends javax.swing.JInternalFrame {
                 .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_dt_huespLayout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtcant, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addComponent(spinner, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panel_dt_huespLayout.createSequentialGroup()
                         .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lb_nom_alq)
@@ -386,10 +393,10 @@ public class alquiler extends javax.swing.JInternalFrame {
                 .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lb_ape_alq)
                     .addComponent(txtapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(8, 8, 8)
+                .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtcant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
 
@@ -1010,30 +1017,6 @@ public class alquiler extends javax.swing.JInternalFrame {
         }        
     }//GEN-LAST:event_txtdniKeyTyped
 
-    private void txtcantKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantKeyTyped
-        // cantidad de huespedes
-        char c = evt.getKeyChar();
-        int numerocaracteres=1;
-        if (Character.isLetter(c))
-        {
-            getToolkit().beep();
-            evt.consume();
-            //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
-        } else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
-            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
-            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
-        {
-            getToolkit().beep();
-            evt.consume();
-            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }else if(txtcant.getText().length()>=numerocaracteres){
-            getToolkit().beep();
-            evt.consume();
-            //JOptionPane.showMessageDialog(null,"Exceso de dígitos","!Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_txtcantKeyTyped
-
     private void btnbuscar_hActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscar_hActionPerformed
         // boton buscar huesped
         if (txtdni.getText().length()!=8){
@@ -1060,7 +1043,7 @@ public class alquiler extends javax.swing.JInternalFrame {
                 }else{
                     //desbloqueo
                     btnhuesped.setEnabled(false);                    
-                    txtcant.setEnabled(true);
+                    spinner.setEnabled(true);//enabled spinner
                     btnbuscar_th.setEnabled(true);
                     btnguardar.setEnabled(true);
                     txtnumeroha.setEnabled(true);
@@ -1077,26 +1060,19 @@ public class alquiler extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtnumerohaActionPerformed
 
     private void btnbuscar_thActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscar_thActionPerformed
-        //boton buscar
-        // mostrar_seleccion_habitacion();
-        
-        System.out.println("id habitacion en alquiler xD : "+id_habitacion_seleccion);
-        
+        //boton buscar // mostrar_seleccion_habitacion();       
         btnhuesped.setEnabled(false);  
         btnguardar.setEnabled(true);
         btnbuscar_h.setEnabled(false);
         btnexplorar.setEnabled(false);
         txtdni.setEditable(false);
-        //        
-        if(txtcant.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Ingresa Cantidad de Personas","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if(Integer.parseInt(txtcant.getText())>0){    
-            cantidadpersonas=Integer.parseInt(txtcant.getText());
+       
+        totalpersonas=Integer.parseInt(spinner.getValue().toString());
+        if(totalpersonas>0){    
+            cantidadpersonas=totalpersonas;
             seleccion_ha=new seleccion_habitacion(this,true);
             seleccion_ha.setVisible(true);
-            //
-            
-            txtcant.setEditable(false);
+            spinner.setEnabled(false);//spinner desanilidado
             txtnumeroca.setEnabled(true);
             txtidalquiler.setEnabled(true);
             txtllegada.setEnabled(true);
@@ -1106,11 +1082,9 @@ public class alquiler extends javax.swing.JInternalFrame {
             btnguardar.setEnabled(true);
             txtobservacion.setEnabled(true);
             ////
-            if(cantidadpersonas>=2){
-                //configurar
+            if(totalpersonas>=2){                
                 btnagregar.setEnabled(true);                
-                bloquearcampoingreso(1);//desbloqueando campos
-                
+                bloquearcampoingreso(1);//desbloqueando campos                
             } 
         }else{
             JOptionPane.showMessageDialog(null,"Ingresa número válido de Personas","ERROR",JOptionPane.ERROR_MESSAGE);
@@ -1136,7 +1110,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         //if(txtdni.getText().isEmpty()){
         if(txtdni.getText().length()!=8){
             JOptionPane.showMessageDialog(null,"Elija Huésped","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if(txtcant.getText().isEmpty()){
+        }else if(totalpersonas<1){
             JOptionPane.showMessageDialog(null,"Ingresa Cantidas de Personas","ERROR",JOptionPane.ERROR_MESSAGE);
         }else if (txtnumeroca.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null,"Ingresa Cantidad de camas","ERROR",JOptionPane.ERROR_MESSAGE);
@@ -1152,7 +1126,7 @@ public class alquiler extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Error al obtener Usuario ","ERROR",JOptionPane.ERROR_MESSAGE);
         }else if(txttipoha.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Elije habitacion","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if((Integer.parseInt(txtcant.getText())>1) && ((tb_det.getRowCount()+1)!=Integer.parseInt(txtcant.getText()))){
+        }else if((totalpersonas>1) && ((tb_det.getRowCount()+1)!=totalpersonas)){
             JOptionPane.showMessageDialog(null,"Completa la Tabla de Huespedes en esta habitación","ERROR",JOptionPane.ERROR_MESSAGE);
         }else
         {
@@ -1193,7 +1167,7 @@ public class alquiler extends javax.swing.JInternalFrame {
                 } 
                 int c=1;
                 ////  actualizar tabla detalle              
-                if(Integer.parseInt(txtcant.getText())>1)
+                if(totalpersonas>1)
                 {
                     c=0;//sirve para dar mensaje de confirmacion
                     try 
@@ -1562,7 +1536,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         // Boton explorar
         elegir_h=new elegir_huesped(this,true);
         elegir_h.setVisible(true);                
-        txtcant.setEnabled(true);
+        spinner.setEnabled(true);//set enable spinner
         btnbuscar_th.setEnabled(true);        
         txtnumeroha.setEnabled(true);
         txttipoha.setEnabled(true);
@@ -1725,10 +1699,10 @@ public class alquiler extends javax.swing.JInternalFrame {
     private javax.swing.JPanel panel_dt_alq;
     private javax.swing.JPanel panel_dt_hab;
     private javax.swing.JPanel panel_dt_huesp;
+    private javax.swing.JSpinner spinner;
     private javax.swing.JTable tb_det;
     public static javax.swing.JTextField txtapellido;
     private javax.swing.JTextField txtapellido_mi;
-    private javax.swing.JTextField txtcant;
     private javax.swing.JTextField txtciudad;
     private javax.swing.JTextField txtdireccion;
     public static javax.swing.JTextField txtdni;
