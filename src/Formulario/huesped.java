@@ -3,20 +3,14 @@ package Formulario;
 
 import ClaseConectar.Conectar;
 import Clases.fecha;
-import java.text.DateFormat;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 public class huesped extends javax.swing.JInternalFrame {
 
@@ -35,7 +29,7 @@ public class huesped extends javax.swing.JInternalFrame {
         this.setTitle("DATOS DEL NUEVO HUESPED");
         //this.setLocation(10, 10);      
         btnguardar.setEnabled(true);
-        btnnuevo.setEnabled(false);     
+        btnnuevo.setEnabled(true);     
         btneditar.setEnabled(false);
         //mostrardatos("");
         //jTable1.setEnabled(false); 
@@ -479,20 +473,19 @@ public class huesped extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if(txtnombre.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Ingrese el nombre","¡Error!",JOptionPane.ERROR_MESSAGE);
-            }
-            else if(txtapellido.getText().isEmpty()){
-             JOptionPane.showMessageDialog(null,"Ingrese el apellido","¡Error!",JOptionPane.ERROR_MESSAGE);
-            }
-            else if(txtdni.getText().length()>0 && txtdni.getText().length()<8){
+            }else if(txtapellido.getText().isEmpty()){
+             JOptionPane.showMessageDialog(null,"Ingrese apellidos","¡Error!",JOptionPane.ERROR_MESSAGE);
+            }else if(txtdni.getText().length()>0 && txtdni.getText().length()<8){
                 JOptionPane.showMessageDialog(null,"DNI incompleto","¡Error!",JOptionPane.ERROR_MESSAGE);
-            }
-            else if(txttelefono.getText().length()>0 && txttelefono.getText().length()<9){
+            }else if (txtfecha.getDate()==null) {
+                JOptionPane.showMessageDialog(null,"Ingrese fecha de nacimiento","ERROR",JOptionPane.ERROR_MESSAGE);
+            }else if(txttelefono.getText().length()>0 && txttelefono.getText().length()<9){
                 JOptionPane.showMessageDialog(null,"Teléfono incompleto","¡Error!",JOptionPane.ERROR_MESSAGE);
-            }
-            else if(txtpais.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null,"Ingrese Pais","¡Error!",JOptionPane.ERROR_MESSAGE);
-            }             
-            else if(n==1){
+            }else if(txtciudad.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null,"Ingrese ciudad","¡Error!",JOptionPane.ERROR_MESSAGE);
+            }else if(txtpais.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null,"Ingrese País","¡Error!",JOptionPane.ERROR_MESSAGE);
+            }else if(n==1){
                 try{ 
                 Conectar cc=new Conectar();            
                 Connection cn=cc.conexion();    
