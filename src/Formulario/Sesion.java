@@ -35,37 +35,37 @@ public class Sesion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Ingrese el apellido","!Error!",JOptionPane.ERROR_MESSAGE);
         }
         else{
-        user=usu;
-        String cap="";
-        try{            
-            PreparedStatement pst=cn.prepareStatement("SELECT *from usuario where id_usuario='"+usu+"'&& contrasena='"+con+"'");
-            datos = pst.executeQuery();//buscando datos y guardando en datos           
-            while(datos.next()){
-                cap=datos.getString("tipo_usu");
-            } 
-            if(cap.equals("Administrador")){
-                this.setVisible(false);
-                JOptionPane.showMessageDialog(null,"Bienvenido Administrador "+usu);
-                MenuPrincipal ingreso = new MenuPrincipal();
-                ingreso.setVisible(true);             
+            user=usu;
+            String cap="";
+            try{            
+                PreparedStatement pst=cn.prepareStatement("SELECT *from usuario where id_usuario='"+usu+"'&& contrasena='"+con+"'");
+                datos = pst.executeQuery();//buscando datos y guardando en datos           
+                while(datos.next()){
+                    cap=datos.getString("tipo_usu");
+                } 
+                if(cap.equals("Administrador")){
+                    this.setVisible(false);
+                    JOptionPane.showMessageDialog(null,"Bienvenido Administrador "+usu);
+                    MenuPrincipal ingreso = new MenuPrincipal();
+                    ingreso.setVisible(true);             
+                }
+                if(cap.equals("Recepcionista")){
+                    this.setVisible(false);
+                    JOptionPane.showMessageDialog(null,"Bienvenido Recepcionista "+usu);
+                    MenuPrincipalRe ingreso = new MenuPrincipalRe();
+                    ingreso.setVisible(true);                
+                }
+                if((!cap.equals("Administrador"))&&(!cap.equals("Recepcionista")))
+                {
+                    JOptionPane.showMessageDialog(null,"No existe sus datos");
+                    txtusuario.requestFocus();
+                    txtusuario.setText("");
+                    txtcontrasena.setText("");
+                }
+                cc.desconectar();
+            }catch(HeadlessException | SQLException e){
+                JOptionPane.showMessageDialog(null,"El usuario no se encuentra registrado","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);
             }
-            if(cap.equals("Recepcionista")){
-                this.setVisible(false);
-                JOptionPane.showMessageDialog(null,"Bienvenido Recepcionista "+usu);
-                MenuPrincipal ingreso = new MenuPrincipal();
-                ingreso.setVisible(true);                
-            }
-            if((!cap.equals("Administrador"))&&(!cap.equals("Recepcionista")))
-            {
-                JOptionPane.showMessageDialog(null,"No existe sus datos");
-                txtusuario.requestFocus();
-                txtusuario.setText("");
-                txtcontrasena.setText("");
-            }
-            cc.desconectar();
-        }catch(HeadlessException | SQLException e){
-            JOptionPane.showMessageDialog(null,"El usuario no se encuentra registrado","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);
-        }
         }
     }
 
