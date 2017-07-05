@@ -3,7 +3,6 @@ package Formulario;
 
 import ClaseConectar.Conectar;
 import Clases.fecha;
-//import static Formulario.taxista.bandera_taxista;
 import java.text.DateFormat;
 import java.awt.HeadlessException;
 import java.sql.Connection;
@@ -11,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,33 +40,29 @@ public class huesped extends javax.swing.JInternalFrame {
         //mostrardatos("");
         //jTable1.setEnabled(false); 
         bandera_huesped="bandera";
-      
+        fechadefecto();      
     }
     
     void limpiar(){
         txtdni.setText("");       
         txtnombre.setText("");
         txtapellido.setText("");
-        txtfecha.setDate(null);  
+        fechadefecto(); 
         cmbestadocivil.setSelectedIndex(-1);
         txttelefono.setText("");  
         txtciudad.setText("");
         txtpais.setText(""); 
         txtdireccion.setText("");
-        txtocupacion.setText("");
-                
-        /*txtdni.setEnabled(false);       
-        txtnombre.setEnabled(false);
-        txtapellido.setEnabled(false);        
-        txtfecha.setEnabled(false);         
-        txtestadocivil.setEnabled(false);
-        txttelefono.setEnabled(false);
-        txtciudad.setEnabled(false);
-        txtpais.setEnabled(false);
-        txtdireccion.setEnabled(false);         
-        txtocupacion.setEnabled(false);*/
-        //eliminarelementos();       
-    }    
+        txtocupacion.setText("");        
+    } 
+    void fechadefecto(){
+        try{
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse("1990-01-01");
+            txtfecha.setDate(date);            
+        }catch(ParseException ex){
+            //Logger.getLogger(alquiler.class.getName()).log(Level.WARNING);
+        }
+    }
             
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -496,42 +493,42 @@ public class huesped extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null,"Ingrese Pais","¡Error!",JOptionPane.ERROR_MESSAGE);
             }             
             else if(n==1){
-            try{ 
-            Conectar cc=new Conectar();            
-            Connection cn=cc.conexion();    
-            PreparedStatement pst=cn.prepareStatement("INSERT INTO huesped(dni_huesped,nombre_h,apellidos_h,nacimiento,ciudad,telefono,estado_civil,pais,direccion,ocupacion) Values(?,?,?,?,?,?,?,?,?,?)");
-            pst.setString(1,txtdni.getText());
-            pst.setString(2,txtnombre.getText());
-            pst.setString(3,txtapellido.getText());
-            pst.setString(4,fecha.getFecha(txtfecha));   
-            pst.setString(5,txtciudad.getText());  
-            pst.setString(6,txttelefono.getText());
-            pst.setString(7,(String) cmbestadocivil.getSelectedItem());             
-            pst.setString(8,txtpais.getText());
-            pst.setString(9,txtdireccion.getText());
-            pst.setString(10,txtocupacion.getText());
-                      
-            //jTable1.setEnabled(false);
-            btnguardar.setEnabled(false);
-            btneditar.setEnabled(false); 
-            btnnuevo.setEnabled(true);
-            pst.executeUpdate();
-            //limpiar();
-            txtapellido.setEnabled(false);
-            txtdni.setEnabled(false);
-            txtfecha.setEnabled(false);
-            cmbestadocivil.setEnabled(false);
-            txttelefono.setEnabled(false);        
-            txtdireccion.setEnabled(false);
-            txtnombre.setEnabled(false);
-            txtciudad.setEnabled(false);
-            txtpais.setEnabled(false);
-            txtocupacion.setEnabled(false); 
-            JOptionPane.showMessageDialog(null,"Registro exitoso","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
-            cc.desconectar();
-        }catch (HeadlessException | SQLException e){
-            System.out.print(e.getMessage());
-        }  
+                try{ 
+                Conectar cc=new Conectar();            
+                Connection cn=cc.conexion();    
+                PreparedStatement pst=cn.prepareStatement("INSERT INTO huesped(dni_huesped,nombre_h,apellidos_h,nacimiento,ciudad,telefono,estado_civil,pais,direccion,ocupacion) Values(?,?,?,?,?,?,?,?,?,?)");
+                pst.setString(1,txtdni.getText());
+                pst.setString(2,txtnombre.getText());
+                pst.setString(3,txtapellido.getText());
+                pst.setString(4,fecha.getFecha(txtfecha));   
+                pst.setString(5,txtciudad.getText());  
+                pst.setString(6,txttelefono.getText());
+                pst.setString(7,(String) cmbestadocivil.getSelectedItem());             
+                pst.setString(8,txtpais.getText());
+                pst.setString(9,txtdireccion.getText());
+                pst.setString(10,txtocupacion.getText());
+
+                //jTable1.setEnabled(false);
+                btnguardar.setEnabled(false);
+                btneditar.setEnabled(false); 
+                btnnuevo.setEnabled(true);
+                pst.executeUpdate();
+                //limpiar();
+                txtapellido.setEnabled(false);
+                txtdni.setEnabled(false);
+                txtfecha.setEnabled(false);
+                cmbestadocivil.setEnabled(false);
+                txttelefono.setEnabled(false);        
+                txtdireccion.setEnabled(false);
+                txtnombre.setEnabled(false);
+                txtciudad.setEnabled(false);
+                txtpais.setEnabled(false);
+                txtocupacion.setEnabled(false); 
+                JOptionPane.showMessageDialog(null,"Registro exitoso","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
+                cc.desconectar();
+            }catch (HeadlessException | SQLException e){
+                System.out.print(e.getMessage());
+            }  
         }
         
     }//GEN-LAST:event_btnguardarActionPerformed
