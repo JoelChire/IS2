@@ -1,3 +1,4 @@
+
 package Formulario;
 
 import ClaseConectar.Conectar;
@@ -11,49 +12,39 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-public class buscar_huesped extends javax.swing.JInternalFrame {
-
-    Conectar cc=new Conectar();
+public class buscar_taxista_consulta extends javax.swing.JInternalFrame {
+Conectar cc=new Conectar();
     Connection cn=cc.conexion();
-    public static String bandera_buscar_huesped;
+    public static String bandera_buscar_taxista;
 
     ResultSet datos;
     DefaultTableModel model;
     
     void cargar(String valor)
     {
-        String [] titulos = {"    DNI  ", "   Nombres y Apellidos  ",  "     Ciudad y País  ", "    Telefono","     Dirección  ","     Ocupación"," Nº Habitación"};
+        String [] titulos = {"    DNI  ", "   Nombres y Apellidos  ",  "    Telefono"};
         model =new DefaultTableModel(null,titulos);
         try{            
-            PreparedStatement pst=cn.prepareStatement(" SELECT h.dni_huesped,h.nombre_h,h.apellidos_h,h.nacimiento,h.ciudad,h.telefono,h.estado_civil,h.pais,h.direccion,h.ocupacion,\n" +
-"ha.nro_hab FROM  hotel_version10.huesped  h inner join hotel_version10.alquila a on \n" +
-"hotel_version10.a.huesped_id_huesped=hotel_version10.h.id_huesped inner join hotel_version10.habitacion ha on hotel_version10.a.habitacion_id_habitacion=hotel_version10.ha.id_habitacion where hotel_version10.h.nombre_h LIKE '%"+valor+"%'");
+            PreparedStatement pst=cn.prepareStatement(" select dni,nombre,apellido,telefono from taxista where nombre LIKE '%"+valor+"%'");
             datos = pst.executeQuery();//buscando datos y guardando en datos           
-            String [] fila = new String[7];
+            String [] fila = new String[3];
             while(datos.next()){
-                fila[0]=datos.getString("h.dni_huesped");
-                fila[1]=datos.getString("h.nombre_h")+" , "+datos.getString("h.apellidos_h");
-                fila[2]=datos.getString("h.ciudad")+" , "+datos.getString("h.pais");  
-                fila[3]=datos.getString("h.telefono");   
-                fila[4]=datos.getString("h.direccion");
-                fila[5]=datos.getString("h.ocupacion");   
-                fila[6]=datos.getString("ha.nro_hab");
+                fila[0]=datos.getString("dni");
+                fila[1]=datos.getString("nombre")+" , "+datos.getString("apellido");
+                fila[2]=datos.getString("telefono");   
+             
                 model.addRow(fila);            
             } 
             t_datos.setModel(model);
             t_datos.getColumnModel().getColumn(0).setMaxWidth(500);
             t_datos.getColumnModel().getColumn(1).setMaxWidth(3000);
             t_datos.getColumnModel().getColumn(2).setMaxWidth(1700);
-            t_datos.getColumnModel().getColumn(3).setMaxWidth(390);
-            t_datos.getColumnModel().getColumn(4).setMaxWidth(1700);
-            t_datos.getColumnModel().getColumn(5).setMaxWidth(1000);
-            t_datos.getColumnModel().getColumn(6).setMaxWidth(320);
+            
             
             DefaultTableCellRenderer tcr= new DefaultTableCellRenderer();
             tcr.setHorizontalAlignment(SwingConstants.CENTER);
             t_datos.getColumnModel().getColumn(0).setCellRenderer(tcr);
-            t_datos.getColumnModel().getColumn(3).setCellRenderer(tcr);
-            t_datos.getColumnModel().getColumn(6).setCellRenderer(tcr);
+            t_datos.getColumnModel().getColumn(2).setCellRenderer(tcr);
             t_datos.setModel(model);
         }catch(HeadlessException | SQLException e){
             System.err.println("El cliente no se encuentra registrado");
@@ -61,10 +52,10 @@ public class buscar_huesped extends javax.swing.JInternalFrame {
         }
     }
    
-    public buscar_huesped() {
+    public buscar_taxista_consulta() {
         initComponents();
         cargar("");
-        bandera_buscar_huesped="a";
+        bandera_buscar_taxista="s";
     }
 
     /**
@@ -76,14 +67,17 @@ public class buscar_huesped extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtnombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        t_datos = new javax.swing.JTable();
+        txtnombre = new javax.swing.JTextField();
         btnresetear = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        t_datos = new javax.swing.JTable();
 
-        setTitle("BUSCAR HUÉSPED");
+        setTitle("Buscar Taxista");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Nombres:");
 
         txtnombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,20 +92,6 @@ public class buscar_huesped extends javax.swing.JInternalFrame {
                 txtnombreKeyTyped(evt);
             }
         });
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Nombres:");
-
-        t_datos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        t_datos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane2.setViewportView(t_datos);
 
         btnresetear.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnresetear.setText("Resetear");
@@ -129,44 +109,48 @@ public class buscar_huesped extends javax.swing.JInternalFrame {
             }
         });
 
+        t_datos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        t_datos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane2.setViewportView(t_datos);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jLabel3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnresetear)
-                .addGap(46, 46, 46)
-                .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 20, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(btnresetear)
+                .addGap(39, 39, 39)
+                .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnresetear)
-                            .addComponent(btnsalir)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel3)))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnresetear)
+                    .addComponent(btnsalir)
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -192,8 +176,8 @@ public class buscar_huesped extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Solo se permite el Ingreso de Letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }int numerocaracteres=30;
         if (txtnombre.getText().length()>=numerocaracteres){
-        evt.consume();
-        JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
         if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
@@ -204,7 +188,7 @@ public class buscar_huesped extends javax.swing.JInternalFrame {
             evt.consume();
             JOptionPane.showMessageDialog(null,"No se permite usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_txtnombreKeyTyped
 
     private void btnresetearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnresetearActionPerformed
@@ -216,17 +200,17 @@ public class buscar_huesped extends javax.swing.JInternalFrame {
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        bandera_buscar_huesped=null;
+        bandera_buscar_taxista=null;
         
     }//GEN-LAST:event_btnsalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnresetear;
-    private javax.swing.JButton btnsalir;
+    public javax.swing.JButton btnresetear;
+    public javax.swing.JButton btnsalir;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable t_datos;
-    private javax.swing.JTextField txtnombre;
+    public javax.swing.JTable t_datos;
+    public javax.swing.JTextField txtnombre;
     // End of variables declaration//GEN-END:variables
 }
