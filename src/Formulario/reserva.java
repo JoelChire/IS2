@@ -126,7 +126,7 @@ public class reserva extends javax.swing.JInternalFrame {
             //obteniendo id de alquila.. id maximo            
             ResultSet rsa;
             Statement sent = cn.createStatement();
-            rsa = sent.executeQuery("SELECT IFNULL(MAX(CAST(id_reserva AS UNSIGNED)), 0) codigoExterno FROM hotel_version10.reserva");
+            rsa = sent.executeQuery("SELECT IFNULL(MAX(CAST(id_reserva AS UNSIGNED)), 0) codigoExterno FROM reserva");
             int cont;
             while(rsa.next()){
                 cont =Integer.parseInt(rsa.getString("codigoExterno"))+1;
@@ -686,7 +686,7 @@ public class reserva extends javax.swing.JInternalFrame {
             try{
                 ResultSet rs1;
                 PreparedStatement pst=cn.prepareStatement("SELECT nombre_h,apellidos_h,id_huesped "
-                    + "FROM hotel_version10.huesped where dni_huesped='"+dni+"'");
+                    + "FROM huesped where dni_huesped='"+dni+"'");
                 rs1 = pst.executeQuery();//buscando datos y guardando en interfaz
                 while(rs1.next()){
                     txtnombre.setText(rs1.getString("nombre_h"));
@@ -882,7 +882,7 @@ public class reserva extends javax.swing.JInternalFrame {
             {
                 try
                 {
-                    PreparedStatement pst=cn.prepareStatement("INSERT INTO hotel_version10.reserva"
+                    PreparedStatement pst=cn.prepareStatement("INSERT INTO reserva"
                             + " (id_reserva,fecha_llegada,fecha_salida,nro_persona,mon_adelanto,nro_dias,"
                             + "num_habita_rese,huesped_id_huesped) VALUES (?,?,?,?,?,?,?,?)");
                     //pst.setString(1,txtnumeroha.getText());
@@ -905,7 +905,7 @@ public class reserva extends javax.swing.JInternalFrame {
                     for(int i=0;i<tb_det.getRowCount();i++)
                     {                        
                         c=0;
-                        PreparedStatement pst2=cn.prepareStatement("INSERT INTO hotel_version10.detalle_reserva"
+                        PreparedStatement pst2=cn.prepareStatement("INSERT INTO detalle_reserva"
                                 + " (reserva_id_reserva,habitacion_id_habitacion,estado) VALUES (?,?,?)");                       
                         pst2.setString(1,txtidreserva.getText());// id detalle
                         pst2.setString(2,tb_det.getValueAt(i,5).toString());//id habitacion

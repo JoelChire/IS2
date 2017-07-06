@@ -214,7 +214,7 @@ public class seleccion_habitacion extends javax.swing.JDialog {
                 if (estado.equals("DISPONIBLE")) {
                     //System.out.println("numero habitacion: "+nrohab);
                     //conseguimos id habitacion
-                    PreparedStatement pst=cn.prepareStatement("SELECT id_habitacion FROM hotel_version10.habitacion"
+                    PreparedStatement pst=cn.prepareStatement("SELECT id_habitacion FROM habitacion"
                             + " where nro_hab='"+nrohab+"'");
                     datos = pst.executeQuery();//buscando datos y guardando en datos           
                     

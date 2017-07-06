@@ -121,13 +121,13 @@ public class Sesion extends javax.swing.JFrame {
         txtusuario.setBounds(160, 290, 193, 35);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Usuario:");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(30, 290, 97, 35);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Contraseña:");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(30, 340, 120, 40);
@@ -169,7 +169,7 @@ public class Sesion extends javax.swing.JFrame {
         getContentPane().add(cancelar);
         cancelar.setBounds(210, 410, 130, 40);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/3a.jpg"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/9a.png"))); // NOI18N
         jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(0, 0, 390, 500);

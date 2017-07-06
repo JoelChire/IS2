@@ -179,7 +179,7 @@ public class alquiler extends javax.swing.JInternalFrame {
             //obteniendo id de alquila.. id maximo            
             ResultSet rsa;
             Statement sent = cn.createStatement();
-            rsa = sent.executeQuery("SELECT IFNULL(MAX(CAST(id_alquila AS UNSIGNED)), 0) codigoExterno FROM hotel_version10.alquila");
+            rsa = sent.executeQuery("SELECT IFNULL(MAX(CAST(id_alquila AS UNSIGNED)), 0) codigoExterno FROM alquila");
             int cont;
             while(rsa.next()){
                 cont =Integer.parseInt(rsa.getString("codigoExterno"))+1;
@@ -1029,7 +1029,7 @@ public class alquiler extends javax.swing.JInternalFrame {
             try{
                 ResultSet rs1;
                 PreparedStatement pst=cn.prepareStatement("SELECT nombre_h,apellidos_h,id_huesped "
-                        + "FROM hotel_version10.huesped where dni_huesped='"+dni+"'");
+                        + "FROM huesped where dni_huesped='"+dni+"'");
                 rs1 = pst.executeQuery();//buscando datos y guardando en interfaz
                 while(rs1.next()){
                     txtnombre.setText(rs1.getString("nombre_h"));
@@ -1131,7 +1131,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             try
             {
-                PreparedStatement pst=cn.prepareStatement("INSERT INTO hotel_version10.alquila(id_alquila,huesped_id_huesped,"
+                PreparedStatement pst=cn.prepareStatement("INSERT INTO alquila(id_alquila,huesped_id_huesped,"
                         + "usuario_id_usuario,fecha_llegada,fecha_salida,num_dias,num_camas,observacion,monto_total,"
                         + "habitacion_id_habitacion) VALUES (?,?,?,?,?,?,?,?,?,?)");
                 //pst.setString(1,txtnumeroha.getText());
@@ -1155,7 +1155,7 @@ public class alquiler extends javax.swing.JInternalFrame {
                 }              
                 //
                 //String habb=txtnumeroha.getText();
-                PreparedStatement pst1=cn.prepareStatement("UPDATE hotel_version10.habitacion"
+                PreparedStatement pst1=cn.prepareStatement("UPDATE habitacion"
                         + " SET estado='Ocupado' WHERE id_habitacion='"+id_habitacion_seleccion+"'");
                 int b=pst1.executeUpdate();                
                 if(b>0){
@@ -1177,12 +1177,12 @@ public class alquiler extends javax.swing.JInternalFrame {
                         for(int i=0;i<tb_det.getRowCount();i++)
                         {
                             Statement sent = cn.createStatement();   
-                            rsa = sent.executeQuery("SELECT IFNULL(MAX(CAST(id_detalle AS UNSIGNED)), 0) codigoExterno FROM hotel_version10.detalle_alquila");                                
+                            rsa = sent.executeQuery("SELECT IFNULL(MAX(CAST(id_detalle AS UNSIGNED)), 0) codigoExterno FROM detalle_alquila");                                
                             while(rsa.next()){
                                 cont =Integer.parseInt(rsa.getString("codigoExterno"))+1;
                                 id=(String.valueOf(cont));                                    
                             }/////detalle de alquiler
-                            PreparedStatement pst2=cn.prepareStatement("INSERT INTO hotel_version10.detalle_alquila"
+                            PreparedStatement pst2=cn.prepareStatement("INSERT INTO detalle_alquila"
                                     + "(id_detalle,Nombres,Apellidos,dni,nacimiento,ciudad,estado_civil,pais,telefono,"
                                     + "ocupacion,direccion,alquila_id_alquila) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");                               
                             /*Nombres,Apellidos,DNI,Fecha Nacimiento,Ciudad,Estado Civil,País,Teléfono,Ocupacion,Dirección*/
