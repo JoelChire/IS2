@@ -211,7 +211,7 @@ public class Sesion extends javax.swing.JFrame {
 
     private void txtusuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtusuarioKeyTyped
         // TODO add your handling code here:
-        int numerocaracteres=10;
+        int numerocaracteres=15;
         if (txtusuario.getText().length()>=numerocaracteres){
         evt.consume();
         JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
@@ -237,7 +237,7 @@ public class Sesion extends javax.swing.JFrame {
 
     private void txtcontrasenaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcontrasenaKeyTyped
         // TODO add your handling code here:
-        int numerocaracteres=10;
+        int numerocaracteres=15;
         if ( (txtcontrasena.getText()).length()>=numerocaracteres){
         evt.consume();
         JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
