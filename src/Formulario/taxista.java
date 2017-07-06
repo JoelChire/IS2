@@ -29,7 +29,9 @@ public class taxista extends javax.swing.JInternalFrame {
     Integer n=1;
     //ResultSet datos;
     public static String bandera_taxista;       
-    public static String id;
+    public static String idtaxista;
+    ResultSet rs;
+    public static String dnitaxista;
     public static seleccion_taxista seleccion_tax;
     public taxista() {
         initComponents();
@@ -468,6 +470,8 @@ public class taxista extends javax.swing.JInternalFrame {
     private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
         // TODO add your handling code here:
         
+        String dni_tax=null;
+        String id_tax=null;
         if(txtnombre.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Ingrese el nombre","¡Error!",JOptionPane.ERROR_MESSAGE);
             }
@@ -484,19 +488,29 @@ public class taxista extends javax.swing.JInternalFrame {
         else
         {   
         try {
-        Conectar cc=new Conectar();            
-        Connection cn=cc.conexion();
-        PreparedStatement pst = cn.prepareStatement("UPDATE taxista SET nombre='"+txtnombre.getText()+"', apellido='"+txtapellido.getText()+"',telefono='"+txttelefono.getText()+"' WHERE id_taxista="+id);
-        pst.executeUpdate();        
-        txtnombre.setEnabled(false);
-        txtapellido.setEnabled(false);
-        txtdni.setEnabled(false);
-        txttelefono.setEnabled(false);
-        btnguardar.setEnabled(false);
-        btnactualizar.setEnabled(false);
-        //jajajajaja
-        JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
-        cc.desconectar();
+            Conectar cc=new Conectar();            
+            Connection cn=cc.conexion();
+            PreparedStatement sent = cn.prepareStatement("select id_taxista,dni from taxista where dni='"+txtdni.getText()+"'");
+            rs = sent.executeQuery(); 
+            while(rs.next()){
+                id_tax = rs.getString("id_taxista");
+                dni_tax =rs.getString("dni");
+            }
+           if ((idtaxista.equals(id_tax) && txtdni.getText().equals(dnitaxista))|| (!txtdni.getText().equals(dni_tax))){
+                PreparedStatement pst = cn.prepareStatement("UPDATE taxista SET nombre='"+txtnombre.getText()+"', apellido='"+txtapellido.getText()+"',telefono='"+txttelefono.getText()+"' WHERE id_taxista="+idtaxista);
+                pst.executeUpdate();        
+                txtnombre.setEnabled(false);
+                txtapellido.setEnabled(false);
+                txtdni.setEnabled(false);
+                txttelefono.setEnabled(false);
+                btnguardar.setEnabled(false);
+                btnactualizar.setEnabled(false);
+                JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
+                cc.desconectar();
+           }
+           else{
+                    JOptionPane.showMessageDialog(null, "DNI de taxista ya existe : " + dni_tax, "Mensaje",JOptionPane.INFORMATION_MESSAGE);
+                    }
         } catch (SQLException e) {
         }
         }
