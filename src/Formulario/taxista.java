@@ -494,6 +494,7 @@ public class taxista extends javax.swing.JInternalFrame {
         txttelefono.setEnabled(false);
         btnguardar.setEnabled(false);
         btnactualizar.setEnabled(false);
+        //jajajajaja
         JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
         cc.desconectar();
         } catch (SQLException e) {
