@@ -26,10 +26,10 @@ public class Sesion extends javax.swing.JFrame {
         Conectar cc= new Conectar();
         Connection cn= cc.conexion(); 
         if(txtusuario.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Ingrese el nombre","!Error!",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Ingrese Usuario","!Error!",JOptionPane.ERROR_MESSAGE);
         }
         else if(txtcontrasena.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Ingrese el apellido","!Error!",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Ingrese Contraseña","!Error!",JOptionPane.ERROR_MESSAGE);
         }
         else{
             String cap="";
