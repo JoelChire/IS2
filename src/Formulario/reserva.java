@@ -27,12 +27,12 @@ public class reserva extends javax.swing.JInternalFrame {
     public static String bandera_reserva;
     public String usuario_reserva; 
     //"Nro de Habitacion", "Tipo", "Estado","Costo","Nro Camas"
-    public static String id_habitacion_seleccion; //guarda el id retornado
-    public static String numero_h;
-    public static String tipo_h;
-    public static String estado_h;
-    public static String costo_h;
-    public static String camas_h;
+    public static String id_habitacion_seleccion=null; //guarda el id retornado
+    public static String numero_h=null;
+    public static String tipo_h=null;
+    public static String estado_h=null;
+    public static String costo_h=null;
+    public static String camas_h=null;
     ////
     
     public reserva() {
@@ -766,19 +766,30 @@ public class reserva extends javax.swing.JInternalFrame {
             txthabitaciones.setEnabled(true);
             ////
             btnguardar.setEnabled(true);
+            
+            if(numero_h!=null){
+                String []Dato=new String [10];
+                Dato[0]=numero_h;
+                Dato[1]=tipo_h;
+                Dato[2]=estado_h;
+                Dato[3]=costo_h;
+                Dato[4]=camas_h;
+                Dato[5]=id_habitacion_seleccion;            
+                modelo.addRow(Dato);    
+                cantidadhabitaciones++;//aumenta las habitaciones elegidas    
+                txthabitaciones.setText(cantidadhabitaciones.toString());            
+                montototal=montototal+Double.parseDouble(costo_h);            
+                txtmontototal.setText(String.valueOf(montototal));
+                //
+                numero_h=null;
+                tipo_h=null;
+                estado_h=null;
+                costo_h=null;
+                camas_h=null;
+                id_habitacion_seleccion=null;
+            }
             ////{"Nro de Habitacion", "Tipo", "Estado","Costo","Nro Camas"};  
-            String []Dato=new String [10];
-            Dato[0]=numero_h;
-            Dato[1]=tipo_h;
-            Dato[2]=estado_h;
-            Dato[3]=costo_h;
-            Dato[4]=camas_h;
-            Dato[5]=id_habitacion_seleccion;            
-            modelo.addRow(Dato);            
-            cantidadhabitaciones++;//aumenta las habitaciones elegidas    
-            txthabitaciones.setText(cantidadhabitaciones.toString());            
-            montototal=montototal+Double.parseDouble(costo_h);            
-            txtmontototal.setText(String.valueOf(montototal));
+            
             //
             btneliminar.setEnabled(true);
             btneliminart.setEnabled(true);            
@@ -850,7 +861,7 @@ public class reserva extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnsalirActionPerformed
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
-        // boton guardar        
+        // boton guardar
             if(txtdni.getText().length()!=8){
                 JOptionPane.showMessageDialog(null,"Elija Huésped","ERROR",JOptionPane.ERROR_MESSAGE);            
             }else if(txtidreserva.getText().isEmpty()){
@@ -893,6 +904,7 @@ public class reserva extends javax.swing.JInternalFrame {
                     int c=1;                   
                     for(int i=0;i<tb_det.getRowCount();i++)
                     {                        
+                        c=0;
                         PreparedStatement pst2=cn.prepareStatement("INSERT INTO hotel_version10.detalle_reserva"
                                 + " (reserva_id_reserva,habitacion_id_habitacion,estado) VALUES (?,?,?)");                       
                         pst2.setString(1,txtidreserva.getText());// id detalle
@@ -903,7 +915,7 @@ public class reserva extends javax.swing.JInternalFrame {
                             System.out.println("Registro exitoso en Detalle Reserva");
                         }
                         else{
-                            JOptionPane.showMessageDialog(null,"Error al Agreegar habitación en Detalle de Reserva ","Error",1);
+                            JOptionPane.showMessageDialog(null,"Error al Agregar habitación en Detalle de Reserva ","Error",1);
                         }
                     }//fin for  
                     if((a>0)&&(c>0)){
@@ -917,7 +929,7 @@ public class reserva extends javax.swing.JInternalFrame {
                     bloqueorestantes();///fin de todos los insert
 
                 }catch(HeadlessException | SQLException e){
-                    JOptionPane.showMessageDialog(null, "error al agegar datos en alquila y detalle " +e);
+                    JOptionPane.showMessageDialog(null, "error al agegar datos en Reserva y detalle reserva " +e);
                 }//fin trycatch
             }//fn else
     }//GEN-LAST:event_btnguardarActionPerformed

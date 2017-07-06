@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class elegir_huesped_re extends javax.swing.JDialog {
@@ -230,8 +231,7 @@ public class elegir_huesped_re extends javax.swing.JDialog {
         reserv.txtdni.setText(jTable1.getValueAt(fila, 0).toString());
         reserv.txtnombre.setText(jTable1.getValueAt(fila, 1).toString());
         reserv.txtapellido.setText(jTable1.getValueAt(fila, 2).toString());
-        reserv.id_huesped_huesped=jTable1.getValueAt(fila, 7).toString();
-        //id_huesped_huesped
+        reserv.id_huesped_huesped=jTable1.getValueAt(fila, 7).toString();        
         this.dispose();        
     }//GEN-LAST:event_jTable1MouseClicked
 
