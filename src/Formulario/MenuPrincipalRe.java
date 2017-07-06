@@ -337,17 +337,18 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // cobro diario
-       /* String bandera_cobro=cobro_diario.bandera_cobro;
+        String bandera_cobro=cobro_diario.bandera_cobro;
         try{            
             if(bandera_cobro==null){            
-                cobro_diario a= new cobro_diario();      
+                cobro_diario a= new cobro_diario();
+                this.escritorio.add(a);
                 a.setVisible(true);            
             }else{
                 JOptionPane.showMessageDialog(rootPane,"La ventana ya esta abierta!");
             }    
         }catch(Exception e){
             e.printStackTrace();    
-        }*/
+        }
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed

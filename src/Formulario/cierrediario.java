@@ -178,8 +178,6 @@ public class cierrediario extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         txtid = new javax.swing.JTextField();
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Fecha Actual");
 
@@ -273,8 +271,6 @@ public class cierrediario extends javax.swing.JInternalFrame {
                         .addComponent(txtneto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         btnguardar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnguardar.setText("Guardar");

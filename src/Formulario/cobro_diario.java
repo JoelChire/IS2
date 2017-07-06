@@ -178,8 +178,6 @@ public class cobro_diario extends javax.swing.JInternalFrame {
         setTitle("COBRO DIARIO");
         setToolTipText("");
 
-        jPanel2.setBackground(new java.awt.Color(221, 227, 238));
-
         btnguardar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnguardar.setText("Guardar");
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
@@ -241,8 +239,6 @@ public class cobro_diario extends javax.swing.JInternalFrame {
                 .addComponent(btnsalir)
                 .addGap(17, 17, 17))
         );
-
-        jPanel3.setBackground(new java.awt.Color(220, 226, 237));
 
         lb_id_alq_cb_diario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lb_id_alq_cb_diario.setText("Alquiler:");
