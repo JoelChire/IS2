@@ -225,7 +225,7 @@ public class seleccion_habitacion extends javax.swing.JDialog {
                     alquile.id_habitacion_seleccion=idhab;
                     alquile.txtnumeroha.setText(nrohab);
                     alquile.txttipoha.setText(nom_tipo);
-                    alquile.txtmontototal.setText(costo);
+                    alquile.txtmonto.setText(costo);
                     alquile.txtnumeroca.setText(camas);                    
                     this.dispose();
                 }else{

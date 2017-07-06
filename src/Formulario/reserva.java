@@ -9,6 +9,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
@@ -880,6 +884,24 @@ public class reserva extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null,"Ingresa Monto Total","ERROR",JOptionPane.ERROR_MESSAGE);            
             }else
             {
+                SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+                //Date fech = new Date();
+                String ll = fecha.getFecha(txtllegada);        
+                String sa = fecha.getFecha(txtsalida); 
+                double intmonto=0;
+                int numdias=0;
+                try {
+                    Date date1 = myFormat.parse(ll);
+                    Date date2 = myFormat.parse(sa);
+                    long diff = date2.getTime() - date1.getTime();
+                    System.out.println ("Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+                    String dias=String.valueOf(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+                    numdias=Integer.parseInt(dias);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                
                 try
                 {
                     PreparedStatement pst=cn.prepareStatement("INSERT INTO reserva"
@@ -891,7 +913,7 @@ public class reserva extends javax.swing.JInternalFrame {
                     pst.setString(3,fecha.getFecha(txtsalida));//fecha salida
                     pst.setString(4,totalpersonas.toString());
                     pst.setString(5,txtadelanto.getText());//num camas
-                    pst.setString(6,"1");//num dias
+                    pst.setString(6,String.valueOf(numdias));//num dias
                     pst.setString(7,txthabitaciones.getText());
                     pst.setString(8,id_huesped_huesped);                    
                     int a=pst.executeUpdate();

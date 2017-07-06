@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
@@ -101,7 +102,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         txtllegada.setEnabled(false);
         txtsalida.setEnabled(false);
         txtusuario.setEnabled(false);
-        txtmontototal.setEnabled(false);
+        txtmonto.setEnabled(false);
         txtobservacion.setEnabled(false);          
     }    
     void limpiar(){
@@ -116,7 +117,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         txtllegada.setText(fecha_actual());
         resetearfecha();//resetear fecha salida
         txtusuario.setText(usuario_alquiler);
-        txtmontototal.setText("");
+        txtmonto.setText("");
         txtobservacion.setText("");
         limpiaringresohuesped();
         eliminarelementos();       
@@ -223,7 +224,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         txtnumeroca = new javax.swing.JTextField();
         lb_num_camas_hab_alq1 = new javax.swing.JLabel();
         lb_num_camas_hab_alq = new javax.swing.JLabel();
-        txtmontototal = new javax.swing.JTextField();
+        txtmonto = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         txtdni_mi = new javax.swing.JTextField();
@@ -440,12 +441,12 @@ public class alquiler extends javax.swing.JInternalFrame {
         lb_num_camas_hab_alq1.setText("N° Camas: ");
 
         lb_num_camas_hab_alq.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lb_num_camas_hab_alq.setText("Monto Total:");
+        lb_num_camas_hab_alq.setText("Monto Diario:");
 
-        txtmontototal.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtmontototal.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtmonto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtmonto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtmontototalKeyTyped(evt);
+                txtmontoKeyTyped(evt);
             }
         });
 
@@ -479,7 +480,7 @@ public class alquiler extends javax.swing.JInternalFrame {
                     .addGroup(panel_dt_habLayout.createSequentialGroup()
                         .addComponent(lb_num_camas_hab_alq, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
-                        .addComponent(txtmontototal, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtmonto, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         panel_dt_habLayout.setVerticalGroup(
@@ -499,7 +500,7 @@ public class alquiler extends javax.swing.JInternalFrame {
                     .addComponent(txtnumeroca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtmontototal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtmonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lb_num_camas_hab_alq))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -1077,7 +1078,7 @@ public class alquiler extends javax.swing.JInternalFrame {
             txtllegada.setEnabled(true);
             txtsalida.setEnabled(true);
             txtusuario.setEnabled(true);
-            txtmontototal.setEnabled(true);
+            txtmonto.setEnabled(true);
             btnguardar.setEnabled(true);
             txtobservacion.setEnabled(true);
             ////
@@ -1106,14 +1107,13 @@ public class alquiler extends javax.swing.JInternalFrame {
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // boton guardar
-        //if(txtdni.getText().isEmpty()){
         if(txtdni.getText().length()!=8){
             JOptionPane.showMessageDialog(null,"Elija Huésped","ERROR",JOptionPane.ERROR_MESSAGE);
         }else if(totalpersonas<1){
             JOptionPane.showMessageDialog(null,"Ingresa Cantidas de Personas","ERROR",JOptionPane.ERROR_MESSAGE);
         }else if (txtnumeroca.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null,"Ingresa Cantidad de camas","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if (txtmontototal.getText().isEmpty()) {
+        }else if (txtmonto.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null,"Ingresa Monto Total","ERROR",JOptionPane.ERROR_MESSAGE);
         }else if(txtidalquiler.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"No existe ID_Alquiler","ERROR",JOptionPane.ERROR_MESSAGE);
@@ -1129,6 +1129,26 @@ public class alquiler extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Completa la Tabla de Huespedes en esta habitación","ERROR",JOptionPane.ERROR_MESSAGE);
         }else
         {
+            SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date fech = new Date();
+            String ll= myFormat.format(fech);        
+            String sa = fecha.getFecha(txtsalida); 
+            double montoneto=0,intmonto=0;
+            int numdias=0;
+            try {
+                Date date1 = myFormat.parse(ll);
+                Date date2 = myFormat.parse(sa);
+                long diff = date2.getTime() - date1.getTime();
+                System.out.println ("Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+                String dias=String.valueOf(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+                numdias=Integer.parseInt(dias);
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            intmonto=Double.parseDouble(txtmonto.getText());
+            montoneto=numdias*intmonto;
+            
             try
             {
                 PreparedStatement pst=cn.prepareStatement("INSERT INTO alquila(id_alquila,huesped_id_huesped,"
@@ -1140,10 +1160,10 @@ public class alquiler extends javax.swing.JInternalFrame {
                 pst.setString(3,txtusuario.getText());
                 pst.setString(4,txtllegada.getText());
                 pst.setString(5,fecha.getFecha(txtsalida));//fecha salida
-                pst.setString(6,"1");//num dias
+                pst.setString(6,String.valueOf(numdias));//num dias// corregir
                 pst.setString(7,txtnumeroca.getText());//num camas
                 pst.setString(8,txtobservacion.getText());
-                pst.setString(9,txtmontototal.getText());
+                pst.setString(9,String.valueOf(montoneto));//monto total, corregir!!
                 pst.setString(10,id_habitacion_seleccion);
                 
                 int a=pst.executeUpdate();
@@ -1231,7 +1251,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtllegadaActionPerformed
 
-    private void txtmontototalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmontototalKeyTyped
+    private void txtmontoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmontoKeyTyped
         // monto total      
         int numerocaracteres=7;      
         char c = evt.getKeyChar();
@@ -1240,11 +1260,11 @@ public class alquiler extends javax.swing.JInternalFrame {
             getToolkit().beep();
             evt.consume();
             //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
-        }else if(txtmontototal.getText().length()>=numerocaracteres){
+        }else if(txtmonto.getText().length()>=numerocaracteres){
             getToolkit().beep();
             evt.consume();
         }       
-    }//GEN-LAST:event_txtmontototalKeyTyped
+    }//GEN-LAST:event_txtmontoKeyTyped
 
     private void txtobservacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtobservacionKeyTyped
         // observacion        
@@ -1708,7 +1728,7 @@ public class alquiler extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtdni_mi;
     private javax.swing.JTextField txtidalquiler;
     private javax.swing.JTextField txtllegada;
-    public static javax.swing.JTextField txtmontototal;
+    public static javax.swing.JTextField txtmonto;
     private com.toedter.calendar.JDateChooser txtnacimiento;
     public static javax.swing.JTextField txtnombre;
     private javax.swing.JTextField txtnombre_mi;
