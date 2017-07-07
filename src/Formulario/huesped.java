@@ -17,7 +17,7 @@ public class huesped extends javax.swing.JInternalFrame {
     //Conectar cc=new Conectar();
     //Connection cn=cc.conexion();
     //ResultSet datos;
-    
+   
     fecha fecha=new fecha();
     Integer n=1;
     public static String id;
@@ -26,6 +26,9 @@ public class huesped extends javax.swing.JInternalFrame {
   //  public static editar_huesped editar_huespededi;    
     public huesped() {
         initComponents();
+        java.util.Date fecha = new java.util.Date();
+        java.sql.Date fechasq1 = new java.sql.Date(fecha.getTime());
+        txtfecha.setMaxSelectableDate(fechasq1);        
         this.setTitle("DATOS DEL NUEVO HUESPED");
         //this.setLocation(10, 10);      
         btnguardar.setEnabled(true);
