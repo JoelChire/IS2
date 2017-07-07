@@ -54,7 +54,7 @@ public class cierrediario extends javax.swing.JInternalFrame {
         String id =(txtrecepcionista.getText());
             try{
                 ResultSet rs1;
-                PreparedStatement pst=cn.prepareStatement("SELECT turno FROM hotel_version10.usuario where id_usuario='"+id+"'");
+                PreparedStatement pst=cn.prepareStatement("SELECT turno FROM usuario where id_usuario='"+id+"'");
                 rs1 = pst.executeQuery();//buscando datos y guardando en interfaz
                 while(rs1.next()){
                     txtturno.setText(rs1.getString("turno"));
@@ -138,7 +138,7 @@ public class cierrediario extends javax.swing.JInternalFrame {
             //obteniendo id de alquila.. id maximo            
             ResultSet rsa;
             Statement sent = cn.createStatement();
-            rsa = sent.executeQuery("SELECT IFNULL(MAX(CAST(id_cierre AS UNSIGNED)), 0) codigoExterno FROM hotel_version10.cierre_diario");
+            rsa = sent.executeQuery("SELECT IFNULL(MAX(CAST(id_cierre AS UNSIGNED)), 0) codigoExterno FROM cierre_diario");
             int cont;
             while(rsa.next()){
                 cont =Integer.parseInt(rsa.getString("codigoExterno"))+1;

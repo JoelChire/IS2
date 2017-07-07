@@ -69,7 +69,7 @@ public class cobro_diario extends javax.swing.JInternalFrame {
             //obteniendo id de alquila.. id maximo            
             ResultSet rsa;
             Statement sent = cn.createStatement();
-            rsa = sent.executeQuery("SELECT IFNULL(MAX(CAST(id_dinero AS UNSIGNED)), 0) codigoExterno FROM hotel_version10.detalle_diario_dinero");
+            rsa = sent.executeQuery("SELECT IFNULL(MAX(CAST(id_dinero AS UNSIGNED)), 0) codigoExterno FROM detalle_diario_dinero");
             int cont;
             while(rsa.next()){
                 cont =Integer.parseInt(rsa.getString("codigoExterno"))+1;
@@ -450,7 +450,7 @@ public class cobro_diario extends javax.swing.JInternalFrame {
         {
             try
             {            
-                PreparedStatement pst=cn.prepareStatement("INSERT INTO hotel_version10.detalle_diario_dinero"
+                PreparedStatement pst=cn.prepareStatement("INSERT INTO detalle_diario_dinero"
                     + " (id_dinero,fecha_actual_dinero,id_usuario_dinero,monto_cobrado,monto_xcobrado,vuelto,alquila_id_alquila)"
                      + " VALUES (?,?,?,?,?,?,?);");
                 pst.setString(1,txtid.getText());          
@@ -461,12 +461,7 @@ public class cobro_diario extends javax.swing.JInternalFrame {
                 pst.setString(6,txtvuelto.getText());   
                 pst.setString(7,txtalquiler.getText());
                 int a=pst.executeUpdate();
-                //
-               /*
-                String habb=nro_habitacion_a.getText();
-                PreparedStatement pst1=cn.prepareStatement("UPDATE hotel_version7.habitacion SET estado='Ocupado' WHERE nro_hab='"+habb+"'");                
-                int b=pst1.executeUpdate();
-                */
+               
                 if((a>0)){                    
                     JOptionPane.showMessageDialog(null,"Registro exitoso ");                                       
                 }
@@ -511,19 +506,19 @@ public class cobro_diario extends javax.swing.JInternalFrame {
         String id =(txtalquiler.getText());
             try{
                 ResultSet rs1;
-                PreparedStatement pst=cn.prepareStatement("SELECT alquila_id_alquila FROM hotel_version10.detalle_diario_dinero where alquila_id_alquila='"+id+"'");
+                PreparedStatement pst=cn.prepareStatement("SELECT alquila_id_alquila FROM detalle_diario_dinero where alquila_id_alquila='"+id+"'");
                 rs1 = pst.executeQuery();//buscando datos y guardando en interfaz
                 if(rs1.next()){
                     ResultSet moncob;
                     Statement sent = cn.createStatement();
-                    moncob = sent.executeQuery("Select min(monto_xcobrado) as monto_xcobrar from hotel_version10.detalle_diario_dinero where alquila_id_alquila='"+id+"'"); 
+                    moncob = sent.executeQuery("Select min(monto_xcobrado) as monto_xcobrar from detalle_diario_dinero where alquila_id_alquila='"+id+"'"); 
                     while(moncob.next()){ 
                     this.txtmontoporcobrar.setText(moncob.getString("monto_xcobrar"));}
                 }    
                 else{
                     ResultSet moncob;
                     Statement sent = cn.createStatement();
-                    moncob = sent.executeQuery("Select monto_total from hotel_version10.alquila where id_alquila='"+id+"'"); 
+                    moncob = sent.executeQuery("Select monto_total from alquila where id_alquila='"+id+"'"); 
                     while(moncob.next()){ 
                     this.txtmontoporcobrar.setText(moncob.getString("monto_total"));}
                 }   
@@ -551,12 +546,12 @@ public class cobro_diario extends javax.swing.JInternalFrame {
         String id =(txtalquiler.getText());
         try{
                 ResultSet rs1;
-                PreparedStatement pst=cn.prepareStatement("SELECT alquila_id_alquila FROM hotel_version10.detalle_diario_dinero where alquila_id_alquila='"+id+"'");
+                PreparedStatement pst=cn.prepareStatement("SELECT alquila_id_alquila FROM detalle_diario_dinero where alquila_id_alquila='"+id+"'");
                 rs1 = pst.executeQuery();//buscando datos y guardando en interfaz
                 if(rs1.next()){
                     ResultSet moncob;
                     Statement sent = cn.createStatement();
-                    moncob = sent.executeQuery("Select min(monto_xcobrado) as monto_xcobrar from hotel_version10.detalle_diario_dinero where alquila_id_alquila='"+id+"'"); 
+                    moncob = sent.executeQuery("Select min(monto_xcobrado) as monto_xcobrar from detalle_diario_dinero where alquila_id_alquila='"+id+"'"); 
                     while(moncob.next()){ 
                     Double montoxcobrar = Double.parseDouble(moncob.getString("monto_xcobrar"));
                     Double montoxcobrado = montoxcobrar - cobrado;
@@ -565,7 +560,7 @@ public class cobro_diario extends javax.swing.JInternalFrame {
                 else{
                     ResultSet moncob;
                     Statement sent = cn.createStatement();
-                    moncob = sent.executeQuery("Select monto_total from hotel_version10.alquila where id_alquila='"+id+"'"); 
+                    moncob = sent.executeQuery("Select monto_total from alquila where id_alquila='"+id+"'"); 
                     while(moncob.next()){
                     Double montoxcobrar = Double.parseDouble(moncob.getString("monto_total"));
                     Double montoxcobrado = montoxcobrar - cobrado;
@@ -587,19 +582,19 @@ public class cobro_diario extends javax.swing.JInternalFrame {
         String id =(txtalquiler.getText());
             try{
                 ResultSet rs1;
-                PreparedStatement pst=cn.prepareStatement("SELECT alquila_id_alquila FROM hotel_version10.detalle_diario_dinero where alquila_id_alquila='"+id+"'");
+                PreparedStatement pst=cn.prepareStatement("SELECT alquila_id_alquila FROM detalle_diario_dinero where alquila_id_alquila='"+id+"'");
                 rs1 = pst.executeQuery();//buscando datos y guardando en interfaz
                 if(rs1.next()){
                     ResultSet moncob;
                     Statement sent = cn.createStatement();
-                    moncob = sent.executeQuery("Select min(monto_xcobrado) as monto_xcobrar from hotel_version10.detalle_diario_dinero where alquila_id_alquila='"+id+"'"); 
+                    moncob = sent.executeQuery("Select min(monto_xcobrado) as monto_xcobrar from detalle_diario_dinero where alquila_id_alquila='"+id+"'"); 
                     while(moncob.next()){ 
                     this.txtmontoporcobrar.setText(moncob.getString("monto_xcobrar"));}
                 }    
                 else{
                     ResultSet moncob;
                     Statement sent = cn.createStatement();
-                    moncob = sent.executeQuery("Select monto_total from hotel_version10.alquila where id_alquila='"+id+"'"); 
+                    moncob = sent.executeQuery("Select monto_total from alquila where id_alquila='"+id+"'"); 
                     while(moncob.next()){ 
                     this.txtmontoporcobrar.setText(moncob.getString("monto_total"));}
                 }   

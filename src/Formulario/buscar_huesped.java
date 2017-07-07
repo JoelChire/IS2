@@ -26,8 +26,8 @@ public class buscar_huesped extends javax.swing.JInternalFrame {
         model =new DefaultTableModel(null,titulos);
         try{            
             PreparedStatement pst=cn.prepareStatement(" SELECT h.dni_huesped,h.nombre_h,h.apellidos_h,h.nacimiento,h.ciudad,h.telefono,h.estado_civil,h.pais,h.direccion,h.ocupacion,\n" +
-"ha.nro_hab FROM  hotel_version10.huesped  h inner join hotel_version10.alquila a on \n" +
-"hotel_version10.a.huesped_id_huesped=hotel_version10.h.id_huesped inner join hotel_version10.habitacion ha on hotel_version10.a.habitacion_id_habitacion=hotel_version10.ha.id_habitacion where hotel_version10.h.nombre_h LIKE '%"+valor+"%'");
+"ha.nro_hab FROM  huesped  h inner join alquila a on \n" +
+"a.huesped_id_huesped=h.id_huesped inner join habitacion ha on a.habitacion_id_habitacion=ha.id_habitacion where h.nombre_h LIKE '%"+valor+"%'");
             datos = pst.executeQuery();//buscando datos y guardando en datos           
             String [] fila = new String[7];
             while(datos.next()){

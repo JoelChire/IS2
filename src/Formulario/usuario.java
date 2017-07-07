@@ -546,26 +546,27 @@ public class usuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cmbtipoActionPerformed
 
     private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
-        // TODO add your handling code here:
+        // //PARA NO GUARDAR EL MISMO USUARIO
         try {
-                Conectar cc=new Conectar();            
-        Connection cn=cc.conexion();
-                //PARA NO GUARDAR EL MISMO USUARIO
-            //String idusu=txtusuario.getText();
-            //txtusuario.setText(jTable1.getValueAt(fsel,0));
-                PreparedStatement pst1=cn.prepareStatement("UPDATE hotel_version10.usuario SET nombre='"+txtnombre.getText()+"',apellido='"+txtapellido.getText()+"',turno='"+(String) cmbturno.getSelectedItem()+"',contrasena='"+txtcontrasena.getText()+"',telefono='"+txttelefono.getText()+"', tipo_usu='"+(String) cmbtipo.getSelectedItem()+"' WHERE id_usuario='"+txtusuario.getText()+"'");
-                int b=pst1.executeUpdate();                
-                if(b>0){
-                    System.out.println("Actualizacion exitosa en Usuario");  
-                    JOptionPane.showMessageDialog(null,"Usuario Modificado","!Aviso!",JOptionPane.INFORMATION_MESSAGE);
-                }
-                else{
-                    JOptionPane.showMessageDialog(null,"Error al actualizar ","Error",1);
-                } 
-                }
-                catch (SQLException e) {
-        System.out.print(e.getMessage());
-                }
+                //Conectar cc=new Conectar();            
+                //Connection cn=cc.conexion();
+            PreparedStatement pst1=cn.prepareStatement("UPDATE usuario SET nombre='"+txtnombre.getText()+
+                    "',apellido='"+txtapellido.getText()+"',turno='"+(String) cmbturno.getSelectedItem()+
+                    "',contrasena='"+txtcontrasena.getText()+"',telefono='"+txttelefono.getText()
+                    +"', tipo_usu='"+(String) cmbtipo.getSelectedItem()+"' WHERE id_usuario='"
+                    +txtusuario.getText()+"'");
+            int b=pst1.executeUpdate();                
+            if(b>0){
+                System.out.println("Actualizacion exitosa en Usuario");  
+                JOptionPane.showMessageDialog(null,"Usuario Modificado","!Aviso!",JOptionPane.INFORMATION_MESSAGE);
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Error al actualizar ","Error",1);
+            } 
+            }
+            catch (SQLException e) {
+                System.out.print(e.getMessage());
+             }
         bloqueorestantes();
         btnbuscar.setEnabled(true);
         btnactualizar.setEnabled(false);
