@@ -5,21 +5,14 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.security.Principal;
 import java.sql.Connection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.view.JasperViewer;
 
 public class MenuPrincipalRe extends javax.swing.JFrame {
 
+    Conectar cc = new Conectar();
+    Connection cn = cc.conexion();
     public static String usuario_actual;
     public MenuPrincipalRe() {
         initComponents();
@@ -469,14 +462,7 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jMenuItem15ActionPerformed
-    
-    Conectar cc = new Conectar();
-    Connection cn = cc.conexion();
 
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
