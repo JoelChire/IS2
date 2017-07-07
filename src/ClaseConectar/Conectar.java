@@ -13,7 +13,7 @@ public class Conectar {
         Connection conectar=null;
     public Connection conexion(){
         try{
-            Class.forName("com.mysql.jdbc.Driver");//            chire gay no cambies la contraseña
+            Class.forName("com.mysql.jdbc.Driver");
             conectar=DriverManager.getConnection("jdbc:mysql://localhost/hotel_version11","root","123456");
             System.out.println("conexion establecia");
            // JOptionPane.showMessageDialog(null, "Conexion establecia");
