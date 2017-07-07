@@ -79,7 +79,12 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenuItem13 = new javax.swing.JMenuItem();
+        jSeparator9 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jSeparator10 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem15 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,7 +112,6 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
         jMenu1.add(MPcerrarsesion);
         jMenu1.add(jSeparator1);
 
-        MPsalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         MPsalir.setText("Salir ");
         MPsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,7 +208,6 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
         jMenu4.setText("Consultas");
         jMenu4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
-        jMenuItem12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem12.setText("Buscar  Húesped");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,6 +215,7 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem12);
+        jMenu4.add(jSeparator3);
 
         jMenuItem13.setText("Buscar Taxista");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
@@ -220,6 +224,24 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem13);
+        jMenu4.add(jSeparator9);
+
+        jMenuItem14.setText("Buscar  Alquiler");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem14);
+        jMenu4.add(jSeparator10);
+
+        jMenuItem15.setText("Buscar Habitación");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem15);
 
         jMenuBar1.add(jMenu4);
 
@@ -415,6 +437,38 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        // Visualizar Alquileres
+        String bandera=visualizar_alquiler.bandera_visualizar_alquiler;
+        try{
+            if(bandera==null){
+                visualizar_alquiler a= new visualizar_alquiler();
+                this.escritorio.add(a);
+                a.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(rootPane,"La ventana ya esta abierta!");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        // Buscar habitacion
+        String bandera=visualizar_habitacion.bandera_visualizar_habitaciones;
+        try{
+            if(bandera==null){
+                visualizar_habitacion a= new visualizar_habitacion();
+                this.escritorio.add(a);
+                a.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(rootPane,"La ventana ya esta abierta!");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
     
     Conectar cc = new Conectar();
     Connection cn = cc.conexion();
@@ -470,17 +524,22 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
+    private javax.swing.JPopupMenu.Separator jSeparator9;
     // End of variables declaration//GEN-END:variables
 }

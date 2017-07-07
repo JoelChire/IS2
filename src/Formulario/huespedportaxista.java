@@ -19,22 +19,24 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
     Integer n=1;
     Conectar cc=new Conectar();
     Connection cn=cc.conexion();
+    public static String id;
     public static String bandera_huespedportaxista;
     public String usuario_huespedporhabitacion;
+    public static elegir_htaxista eleccion_htaxi;
     public huespedportaxista() {
         initComponents();
          this.setLocation(15, 10);
         setResizable(false);
         this.setTitle("Taxista recomienda");
-        btneditar.setEnabled(true);
+        btnActualizar.setEnabled(true);
         btnguardar.setEnabled(true);
         btnnuevo.setEnabled(false);
         txtfecha.setEditable(false);
         txtusuario.setEditable(false);
+        txtcod.setEditable(false);
         mostrardatos("");
         jTable1.setEnabled(false);       
         bandera_huespedportaxista="bandera";
-        //usuario_huespedporhabitacion=MenuPrincipal.usuario_actual; 
         txtusuario.setText(usuario_huespedporhabitacion);
         txtfecha.setText(fecha_actual());        
     }
@@ -51,7 +53,7 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
     void limpiar(){
         txtfecha.setText(fecha_actual());
         txtusuario.setText(usuario_huespedporhabitacion);
-        txtdni.setText("");
+        txtcod.setText("");
         txtpersonas.setText("");
         txthabitaciones.setText("");
     }
@@ -66,7 +68,7 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
     jTable1.setModel(modelo);
     String SQL="";
     if(valor.equals(""))
-    {    String []datos = new String [5];
+    {    //String []datos = new String [5];
 
         SQL="SELECT * FROM recomienda";
     }
@@ -75,9 +77,7 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
     }
  
     String []datos = new String [5];
-        try {
-            Conectar cc=new Conectar();            
-            Connection cn=cc.conexion();
+        try {            
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(SQL);
             while(rs.next()){
@@ -106,10 +106,12 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         txtusuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtdni = new javax.swing.JTextField();
+        txtcod = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtfecha = new javax.swing.JTextField();
@@ -117,28 +119,35 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         txtpersonas = new javax.swing.JTextField();
         txthabitaciones = new javax.swing.JTextField();
+        btnbuscar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnnuevo = new javax.swing.JButton();
         btnguardar = new javax.swing.JButton();
-        btneditar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Usuario :");
 
-        txtdni.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtcod.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtdniKeyTyped(evt);
+                txtcodKeyTyped(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("ID Taxista :");
+        jLabel3.setText("Código de Taxista:");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Fecha :");
+        jLabel1.setText("Fecha actual:");
 
         txtfecha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -164,6 +173,13 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
             }
         });
 
+        btnbuscar.setText("Buscar");
+        btnbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -172,37 +188,36 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(txtcod, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnbuscar))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(107, 107, 107)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtdni, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                             .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 12, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtfecha, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                            .addComponent(txtpersonas)
-                            .addComponent(txthabitaciones))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(20, 20, 20)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtfecha, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                                .addComponent(txtpersonas)
+                                .addComponent(txthabitaciones)))))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(txtcod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -215,8 +230,14 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txthabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnnuevo.setText("Nuevo");
         btnnuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -232,10 +253,10 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
             }
         });
 
-        btneditar.setText("Editar");
-        btneditar.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneditarActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
             }
         });
 
@@ -254,23 +275,23 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnsalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btneditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnguardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
                     .addComponent(btnnuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(13, 13, 13))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(17, 17, 17)
                 .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btneditar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -296,35 +317,31 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtdniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdniKeyTyped
+    private void txtcodKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcodKeyTyped
         // TODO add your handling code here:
         /*int numerocaracteres=8;
         char d=evt.getKeyChar();
@@ -347,7 +364,7 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
             evt.consume();
             JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }*/
-    }//GEN-LAST:event_txtdniKeyTyped
+    }//GEN-LAST:event_txtcodKeyTyped
 
     private void txtpersonasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpersonasKeyTyped
         // TODO add your handling code here:
@@ -408,13 +425,10 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnsalirActionPerformed
 
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
-        // TODO add your handling code here:
-        //txtfecha.setText(fecha_actual());
-        //txtdni.setText("");
-        //txtpersonas.setText("");
-        //txthabitaciones.setText("");
+        // boton nuevo
+        
         limpiar();
-        txtdni.setEnabled(true);
+        txtcod.setEnabled(true);
         txtpersonas.setEnabled(true);
         txthabitaciones.setEnabled(true);
         txtusuario.setEditable(false);
@@ -422,103 +436,93 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         txtusuario.setEnabled(true);
         
         txtfecha.setEnabled(true);
-        txtdni.setEditable(true);
+        txtcod.setEditable(true);
         txtpersonas.setEditable(true);
         txthabitaciones.setEditable(true);
         
-        btneditar.setEnabled(true);
+        btnActualizar.setEnabled(true);
         btnguardar.setEnabled(true);
         btnnuevo.setEnabled(false);
         mostrardatos("");
         jTable1.setEnabled(false); 
-        
-       
-       
+
     }//GEN-LAST:event_btnnuevoActionPerformed
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // TODO add your handling code here:
-        if(txtdni.getText().isEmpty()){
+        if(txtcod.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Ingrese el id del taxista","¡Error!",JOptionPane.ERROR_MESSAGE);
-            }
-            else if(txtpersonas.getText().isEmpty()){
-             JOptionPane.showMessageDialog(null,"Ingrese el nro de personas","¡Error!",JOptionPane.ERROR_MESSAGE);
-            }
-       
-            else if(txthabitaciones.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null,"Ingrese el nro de las habitaciones","¡Error!",JOptionPane.ERROR_MESSAGE);
-            }
-            else if(n==1){
+        }else if(txtpersonas.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese el nro de personas","¡Error!",JOptionPane.ERROR_MESSAGE);
+        }else if(txthabitaciones.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese el nro de las habitaciones","¡Error!",JOptionPane.ERROR_MESSAGE);
+        }else if(n==1){
             try{ 
-            Conectar cc=new Conectar();            
-            Connection cn=cc.conexion();    
-            PreparedStatement pst=cn.prepareStatement("INSERT INTO recomienda(usuario_id_usuario,taxista_id_taxista,fecha_actual,num_persona,num_habitacion) VALUES(?,?,?,?,?)");            
-            pst.setString(1,txtusuario.getText());
-            pst.setString(2,txtdni.getText());
-            pst.setString(3,txtfecha.getText());           
-            pst.setString(4,txtpersonas.getText());            
-            pst.setString(5,txthabitaciones.getText());  
-            //JOptionPane.showMessageDialog(null,"holu","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
-            jTable1.setEnabled(false);
-            btnguardar.setEnabled(false);
-            btneditar.setEnabled(false); 
-            btnnuevo.setEnabled(true);
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Registro exitoso","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
-            cc.desconectar();
-        }catch (HeadlessException | SQLException e){
+
+                PreparedStatement pst=cn.prepareStatement("INSERT INTO recomienda(usuario_id_usuario,"
+                        + "taxista_id_taxista,fecha_actual,num_persona,num_habitacion) VALUES(?,?,?,?,?)");            
+                pst.setString(1,txtusuario.getText());
+                pst.setString(2,txtcod.getText());
+                pst.setString(3,txtfecha.getText());           
+                pst.setString(4,txtpersonas.getText());            
+                pst.setString(5,txthabitaciones.getText());  
+                jTable1.setEnabled(false);
+                btnguardar.setEnabled(false);
+                btnActualizar.setEnabled(false); 
+                btnnuevo.setEnabled(true);
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(null,"Registro exitoso","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
+                cc.desconectar();
+            }catch (HeadlessException | SQLException e){
             System.out.print(e.getMessage());
-        }  
+            }  
         }
         else
         {
-        try {
-        Conectar cc=new Conectar();            
-        Connection cn=cc.conexion();
-        PreparedStatement pst = cn.prepareStatement("UPDATE recomienda SET usuario_id_usuario='"+txtusuario.getText()+"',taxista_id_taxista='"+txtdni.getText()+"',num_persona='"+txtpersonas.getText()+"',num_habitacion='"+txthabitaciones.getText()+"' WHERE fecha_actual='"+txtfecha.getText()+"'");
-        pst.executeUpdate();
-        JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
-        cc.desconectar();
-        n=1;
-        jTable1.setEnabled(false);
-            btnguardar.setEnabled(false);
-            btneditar.setEnabled(true);            
-            btnnuevo.setEnabled(true);
-        } catch (SQLException e) {
-        System.out.print(e.getMessage());
-    }
+            try {
+                PreparedStatement pst = cn.prepareStatement("UPDATE recomienda SET usuario_id_usuario='"
+                        +txtusuario.getText()+"',taxista_id_taxista='"+txtcod.getText()+"',num_persona='"
+                        +txtpersonas.getText()+"',num_habitacion='"+txthabitaciones.getText()
+                        +"' WHERE fecha_actual='"+txtfecha.getText()+"'");
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
+                cc.desconectar();
+                n=1;
+                jTable1.setEnabled(false);
+                btnguardar.setEnabled(false);
+                btnActualizar.setEnabled(true);            
+                btnnuevo.setEnabled(true);
+            } catch (SQLException e) {
+                System.out.print(e.getMessage());
+            }
         }
-        mostrardatos("");
-        
+        mostrardatos("");        
         txtpersonas.setEnabled(false);
         txthabitaciones.setEnabled(false);
-        txtdni.setEnabled(false);
+        txtcod.setEnabled(false);
         txtusuario.setEnabled(false);
         txtfecha.setEnabled(false);
-        btneditar.setEnabled(true);
+        btnActualizar.setEnabled(true);
     }//GEN-LAST:event_btnguardarActionPerformed
 
-    private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
-        // TODO add your handling code here:
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // boton actualizar
         jTable1.setEnabled(true);
-        //txtusuario.setEnabled(true);
         txtfecha.setEnabled(true);
         txtfecha.setEditable(true);
-        txtdni.setEditable(false);
+        txtcod.setEditable(false);
         txtpersonas.setEditable(false);
         txthabitaciones.setEditable(false);
-        txtdni.setEnabled(false);
+        txtcod.setEnabled(false);
         txtpersonas.setEnabled(false);
         txthabitaciones.setEnabled(false);
-        txtusuario.setEnabled(false);
-        
+        txtusuario.setEnabled(false);        
         
         btnguardar.setEnabled(true);
         btnnuevo.setEnabled(false);
-        btneditar.setEnabled(false);
-         n=2;
-        
-    }//GEN-LAST:event_btneditarActionPerformed
+        btnActualizar.setEnabled(false);
+        n=2;        
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void txtfechaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfechaKeyReleased
         // TODO add your handling code here:
@@ -529,7 +533,7 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int fila= jTable1.getSelectedRow();
         //txtusuario.setEnabled(true);
-        txtdni.setEditable(false);
+        txtcod.setEditable(false);
         txtusuario.setEditable(false);
         txtfecha.setEditable(false);
         txtfecha.setEnabled(false);
@@ -539,16 +543,23 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         txthabitaciones.setEnabled(true);
         if(fila>=0){
         txtusuario.setText(jTable1.getValueAt(fila, 0).toString());
-        txtdni.setText(jTable1.getValueAt(fila, 1).toString());
+        txtcod.setText(jTable1.getValueAt(fila, 1).toString());
         txtfecha.setText(jTable1.getValueAt(fila, 2).toString());
         txtpersonas.setText(jTable1.getValueAt(fila, 3).toString());
         txthabitaciones.setText(jTable1.getValueAt(fila, 4).toString());
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
+        // TODO add your handling code here:
+        eleccion_htaxi = new elegir_htaxista( this,true);
+        eleccion_htaxi.setVisible(true);
+    }//GEN-LAST:event_btnbuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btneditar;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnbuscar;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
@@ -560,8 +571,10 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtdni;
+    private javax.swing.JTextArea jTextArea1;
+    public static javax.swing.JTextField txtcod;
     private javax.swing.JTextField txtfecha;
     private javax.swing.JTextField txthabitaciones;
     private javax.swing.JTextField txtpersonas;
