@@ -35,10 +35,12 @@ public class alquiler extends javax.swing.JInternalFrame {
     public alquiler() {
         super();
         initComponents();
-        this.setLocation(5,5);
-        setResizable(false);
+        this.setLocation(5,5);        
         this.setTitle("Alquiler");
-        //usuario_alquiler=MenuPrincipal.usuario_actual; 
+        java.util.Date fechaa = new java.util.Date();
+        java.sql.Date fechasq1 = new java.sql.Date(fechaa.getTime());
+        txtnacimiento.setMaxSelectableDate(fechasq1); 
+        txtsalida.setMinSelectableDate(fechaa);
         bandera_alquiler="bandera";
         ////Tabla
         modelo= new DefaultTableModel();        
@@ -347,6 +349,12 @@ public class alquiler extends javax.swing.JInternalFrame {
             }
         });
 
+        spinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spinnerStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel_dt_huespLayout = new javax.swing.GroupLayout(panel_dt_huesp);
         panel_dt_huesp.setLayout(panel_dt_huespLayout);
         panel_dt_huespLayout.setHorizontalGroup(
@@ -491,7 +499,7 @@ public class alquiler extends javax.swing.JInternalFrame {
                     .addComponent(lb_num_hab_alq)
                     .addComponent(txtnumeroha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnbuscar_th))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(11, 11, 11)
                 .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_tip_hab_alq)
                     .addComponent(txttipoha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -794,6 +802,7 @@ public class alquiler extends javax.swing.JInternalFrame {
             }
         });
 
+        txtllegada.setEditable(false);
         txtllegada.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         txtllegada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1022,11 +1031,13 @@ public class alquiler extends javax.swing.JInternalFrame {
         // boton buscar huesped
         if (txtdni.getText().length()!=8){
             JOptionPane.showMessageDialog(null,"Ingrese DNI Completo");
+            txtnombre.setText(null);
+            txtapellido.setText(null);
         }
         else
         {
-            txtnombre.setText("");
-            txtapellido.setText("");
+            txtnombre.setText(null);
+            txtapellido.setText(null);
             String dni= (txtdni.getText());
             try{
                 ResultSet rs1;
@@ -1040,15 +1051,15 @@ public class alquiler extends javax.swing.JInternalFrame {
                 }
                 if (txtnombre.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null,"DNI no encontrado, por favor registre al cliente","AVISO",JOptionPane.INFORMATION_MESSAGE);
-                    txtdni.setText("");
+                    txtdni.setText(null);
                 }else{
                     //desbloqueo
                     btnhuesped.setEnabled(false);                    
                     spinner.setEnabled(true);//enabled spinner
-                    btnbuscar_th.setEnabled(true);
+                    txtdni.setEditable(false);
                     btnguardar.setEnabled(true);
-                    txtnumeroha.setEnabled(true);
-                    txttipoha.setEnabled(true);
+                    //txtnumeroha.setEnabled(true);
+                    //txttipoha.setEnabled(true);
                 }
             }catch(HeadlessException | SQLException e){
                 System.err.println("No se pudo buscar");
@@ -1082,7 +1093,7 @@ public class alquiler extends javax.swing.JInternalFrame {
             txtmonto.setEnabled(true);
             btnguardar.setEnabled(true);
             txtobservacion.setEnabled(true);
-            ////
+
             if(totalpersonas>=2){                
                 btnagregar.setEnabled(true);                
                 bloquearcampoingreso(1);//desbloqueando campos                
@@ -1557,12 +1568,8 @@ public class alquiler extends javax.swing.JInternalFrame {
         elegir_h=new elegir_huesped(this,true);
         elegir_h.setVisible(true);                
         spinner.setEnabled(true);//set enable spinner
-        btnbuscar_th.setEnabled(true);        
-        txtnumeroha.setEnabled(true);
-        txttipoha.setEnabled(true);
-        //
-        System.out.println("el ide huesped regresado: "+id_huesped_huesped);
-        
+        txtdni.setEditable(false);
+        System.out.println("el ide huesped regresado: "+id_huesped_huesped);        
     }//GEN-LAST:event_btnexplorarActionPerformed
 
     private void txtciudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtciudadKeyTyped
@@ -1671,6 +1678,17 @@ public class alquiler extends javax.swing.JInternalFrame {
             //JOptionPane.showMessageDialog(null,"Exceso de dígitos","!Advertencia!",JOptionPane.WARNING_MESSAGE);
         }   
     }//GEN-LAST:event_txttelefonoKeyTyped
+
+    private void spinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spinnerStateChanged
+        // cambio en spinner
+        txtnumeroha.setEnabled(true);
+        txttipoha.setEnabled(true);
+        //txtnumeroha.setEnabled(true);
+        //txttipoha.setEnabled(true);
+        btnbuscar_th.setEnabled(true);
+        //btnbuscarhabitacion.setEnabled(true);                  
+        //txtalquiler.setEnabled(true);        
+    }//GEN-LAST:event_spinnerStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

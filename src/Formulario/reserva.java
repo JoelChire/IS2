@@ -56,6 +56,11 @@ public class reserva extends javax.swing.JInternalFrame {
         modelo.addColumn("Id Habitación");
         this.tb_det.setModel(modelo);
         ///
+        java.util.Date fechaa = new java.util.Date();
+        //java.sql.Date fechasq1 = new java.sql.Date(fechaa.getTime());         
+        txtllegada.setMinSelectableDate(fechaa);
+        txtsalida.setMinSelectableDate(fechaa);
+        //
         spinner.setValue(0);
         SpinnerNumberModel nm=new SpinnerNumberModel();
         nm.setMaximum(10);
@@ -258,6 +263,17 @@ public class reserva extends javax.swing.JInternalFrame {
         btnexplorar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnexplorarActionPerformed(evt);
+            }
+        });
+
+        spinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spinnerStateChanged(evt);
+            }
+        });
+        spinner.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                spinnerMouseClicked(evt);
             }
         });
 
@@ -705,6 +721,7 @@ public class reserva extends javax.swing.JInternalFrame {
                     spinner.setEnabled(true);
                     btnbuscarhabitacion.setEnabled(true);
                     btnguardar.setEnabled(true);
+                    txtdni.setEditable(false);
                     //txtnumeroha.setEnabled(true);
                     //txttipoha.setEnabled(true);
                 }
@@ -736,20 +753,16 @@ public class reserva extends javax.swing.JInternalFrame {
         elegir_h=new elegir_huesped_re(this,true);
         elegir_h.setVisible(true);
         spinner.setEnabled(true);
-        btnbuscarhabitacion.setEnabled(true);
-        //txtnumeroha.setEnabled(true);
-        //txttipoha.setEnabled(true);
-        //
+        txtdni.setEditable(false);
         System.out.println("el ide huesped regresado: "+id_huesped_huesped);
 
     }//GEN-LAST:event_btnexplorarActionPerformed
 
     private void btnbuscarhabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarhabitacionActionPerformed
-        //boton buscar habitacin        
-        btnnuevohuesped.setEnabled(false);
-        btnguardar.setEnabled(true);
+        //boton buscar habitacin       
         btnbuscar_h.setEnabled(false);
         btnexplorar.setEnabled(false);
+        btnnuevohuesped.setEnabled(false);
         txtdni.setEditable(false);
         //
         totalpersonas=Integer.parseInt(spinner.getValue().toString());
@@ -757,12 +770,8 @@ public class reserva extends javax.swing.JInternalFrame {
             
             seleccion_ha=new seleccion_habitacion_re(this,true);
             seleccion_ha.setVisible(true);
-            //
-            spinner.setEnabled(false);            
-            txtidreserva.setEnabled(true);
-            txtllegada.setEnabled(true);
-            txtsalida.setEnabled(true);
-            txtusuario.setEnabled(true);
+            // 
+            spinner.setEnabled(false);  
             //
             txtadelanto.setEnabled(true);
             txtmontototal.setEnabled(true);
@@ -790,12 +799,14 @@ public class reserva extends javax.swing.JInternalFrame {
                 costo_h=null;
                 camas_h=null;
                 id_habitacion_seleccion=null;
+                btneliminar.setEnabled(true);
+                btneliminart.setEnabled(true);
+                btnguardar.setEnabled(true);
             }
             ////{"Nro de Habitacion", "Tipo", "Estado","Costo","Nro Camas"};  
             
             //
-            btneliminar.setEnabled(true);
-            btneliminart.setEnabled(true);            
+                        
         }else{
             JOptionPane.showMessageDialog(null,"Ingresa número válido de Personas","ERROR",JOptionPane.ERROR_MESSAGE);
         }
@@ -981,6 +992,21 @@ public class reserva extends javax.swing.JInternalFrame {
         btneliminart.setEnabled(false);
         //bloquearcampoingreso(1);
     }//GEN-LAST:event_btneliminartActionPerformed
+
+    private void spinnerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spinnerMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_spinnerMouseClicked
+
+    private void spinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spinnerStateChanged
+        // TODO add your handling code here:
+        //JOptionPane.showMessageDialog(null,"cambio");
+        btnbuscarhabitacion.setEnabled(true);                  
+        txtidreserva.setEnabled(true);
+        txtllegada.setEnabled(true);
+        txtsalida.setEnabled(true);
+        txtusuario.setEnabled(true);
+    }//GEN-LAST:event_spinnerStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

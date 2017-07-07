@@ -513,7 +513,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // estado habitaciones
-        /*String path = "C:\\Users\\ISAIAS\\Documents\\NetBeansProjects\\TerrazasHostal\\IS2\\src\\Formulario\\huespedxhabitacion.jasper";
+        /*String path = "C:\\Formulario\\huespedxhabitacion.jasper";
         try {
             JasperPrint jprint = JasperFillManager.fillReport(path, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
             JasperViewer viewer = new JasperViewer(jprint,false); //Creamos la vista del Reporte

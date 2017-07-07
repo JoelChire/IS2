@@ -29,8 +29,8 @@ public class huesped extends javax.swing.JInternalFrame {
         java.util.Date fecha = new java.util.Date();
         java.sql.Date fechasq1 = new java.sql.Date(fecha.getTime());
         txtfecha.setMaxSelectableDate(fechasq1);        
-        this.setTitle("DATOS DEL NUEVO HUESPED");
-        //this.setLocation(10, 10);      
+        this.setTitle("Datos de nuevo huésped");
+        this.setLocation(10, 10);      
         btnguardar.setEnabled(true);
         btnnuevo.setEnabled(true);     
         btneditar.setEnabled(false);
