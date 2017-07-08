@@ -343,10 +343,13 @@ public class taxista extends javax.swing.JInternalFrame {
         evt.consume();
         JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
-        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
-            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
-            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=64
+            ||(int)evt.getKeyChar()>90 && (int)evt.getKeyChar()<=96
+            ||(int)evt.getKeyChar()>122 && (int)evt.getKeyChar()<=125            
+            ||(int)evt.getKeyChar()>126 && (int)evt.getKeyChar()<=129            
+            ||(int)evt.getKeyChar()>130 && (int)evt.getKeyChar()<=143               
+            ||(int)evt.getKeyChar()>144 && (int)evt.getKeyChar()<=159                
+            ||(int)evt.getKeyChar()>165 && (int)evt.getKeyChar()<=255)
         {
             getToolkit().beep();
             evt.consume();
