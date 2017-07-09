@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Formulario;
 
 import ClaseConectar.Conectar;
@@ -12,62 +16,73 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-public class buscar_taxista_consulta extends javax.swing.JInternalFrame {
-Conectar cc=new Conectar();
-    Connection cn=cc.conexion();
-    public static String bandera_buscar_taxista;
+/**
+ * 
+ *
+ * @author usuario
+ */
+public class buscar_reservacion extends javax.swing.JInternalFrame {
 
+    Conectar cc=new Conectar();
+    Connection cn=cc.conexion();
+    public static String bandera_buscar_reserva;
+    
     ResultSet datos;
     DefaultTableModel model;
     
     void cargar(String valor)
     {
-        String [] titulos = {" Usuario","  DNI  ", " Nombres y Apellidos  ","  Telefono","Fecha Actual","NºPersonas","Nº Habitaciones"};
+        String [] titulos = {"Nº de Reserva","    DNI  ", "   Nombres y Apellidos  ", "Teléfono ", "   N° Habitación  ", " Fecha Llegada " ,"  Fecha de Salida  "," Nº Personas ","  Monto Adelantado "};
         model =new DefaultTableModel(null,titulos);
         try{            
-            PreparedStatement pst=cn.prepareStatement(" select rm.usuario_id_usuario,t.dni,t.nombre,t.apellido,t.telefono,rm.fecha_actual,rm.num_persona,rm.num_habitacion from taxista t inner join recomienda rm \n" +
-"on t.id_taxista=rm.taxista_id_taxista  where t.nombre LIKE '%"+valor+"%'");
+            PreparedStatement pst=cn.prepareStatement("SELECT *from consulta_reserva where nombre_h LIKE '%"+valor+"%'");
             datos = pst.executeQuery();//buscando datos y guardando en datos           
-            String [] fila = new String[8];
+            String [] fila = new String[9];
             while(datos.next()){
-                fila[0]=datos.getString("rm.usuario_id_usuario"); 
-                fila[1]=datos.getString("t.dni");
-                fila[2]=datos.getString("t.nombre")+" , "+datos.getString("t.apellido");
-                fila[3]=datos.getString("t.telefono");   
-                fila[4]=datos.getString("rm.fecha_actual"); 
-                fila[5]=datos.getString("rm.num_persona"); 
-                fila[6]=datos.getString("rm.num_habitacion"); 
-               
-                model.addRow(fila);            
-            } 
+                
+                fila[0]=datos.getString("id_reserva");
+                fila[1]=datos.getString("dni_huesped");
+                fila[2]=datos.getString("nombre_h")+"  "+datos.getString("apellidos_h");
+                fila[3]=datos.getString("telefono");  
+                fila[4]=datos.getString("num_habita_rese");
+                fila[5]=datos.getString("fecha_llegada"); 
+                fila[6]=datos.getString("fecha_salida");
+                fila[7]=datos.getString("nro_persona");
+                fila[8]=datos.getString("mon_adelanto");
+                model.addRow(fila);     
+            }
             t_datos.setModel(model);
-            t_datos.getColumnModel().getColumn(0).setMaxWidth(110);
-            t_datos.getColumnModel().getColumn(1).setMaxWidth(130);
-            t_datos.getColumnModel().getColumn(2).setMaxWidth(820);
-            t_datos.getColumnModel().getColumn(3).setMaxWidth(270);
-            t_datos.getColumnModel().getColumn(4).setMaxWidth(390);
-            t_datos.getColumnModel().getColumn(5).setMaxWidth(120);
-            t_datos.getColumnModel().getColumn(6).setMaxWidth(230);
-            
+            t_datos.getColumnModel().getColumn(0).setMaxWidth(100);
+            t_datos.getColumnModel().getColumn(1).setMaxWidth(200);
+            t_datos.getColumnModel().getColumn(2).setMaxWidth(1300);
+            t_datos.getColumnModel().getColumn(3).setMaxWidth(200);
+            t_datos.getColumnModel().getColumn(4).setMaxWidth(300);
+            t_datos.getColumnModel().getColumn(5).setMaxWidth(380);
+            t_datos.getColumnModel().getColumn(6).setMaxWidth(380);
+            t_datos.getColumnModel().getColumn(7).setMaxWidth(300);
+            t_datos.getColumnModel().getColumn(8).setMaxWidth(300);
             
             DefaultTableCellRenderer tcr= new DefaultTableCellRenderer();
             tcr.setHorizontalAlignment(SwingConstants.CENTER);
+            t_datos.getColumnModel().getColumn(0).setCellRenderer(tcr);
             t_datos.getColumnModel().getColumn(1).setCellRenderer(tcr);
             t_datos.getColumnModel().getColumn(3).setCellRenderer(tcr);
-            t_datos.getColumnModel().getColumn(4).setCellRenderer(tcr);
-            t_datos.getColumnModel().getColumn(5).setCellRenderer(tcr);
-            t_datos.getColumnModel().getColumn(6).setCellRenderer(tcr);
+            t_datos.getColumnModel().getColumn(7).setCellRenderer(tcr);
+            t_datos.getColumnModel().getColumn(8).setCellRenderer(tcr);
             t_datos.setModel(model);
-        }catch(HeadlessException | SQLException e){
+             
+             }catch(HeadlessException | SQLException e){
             System.err.println("El cliente no se encuentra registrado");
            
-        }
+        }   
+        
     }
    
-    public buscar_taxista_consulta() {
+    public buscar_reservacion() {
         initComponents();
         cargar("");
-        bandera_buscar_taxista="s";
+        bandera_buscar_reserva="r";
+  
     }
 
     /**
@@ -83,12 +98,12 @@ Conectar cc=new Conectar();
         txtnombre = new javax.swing.JTextField();
         btnresetear = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
         t_datos = new javax.swing.JTable();
 
-        setTitle("Buscar Taxista");
+        setTitle("Buscar Reservación");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Nombres:");
 
         txtnombre.addActionListener(new java.awt.event.ActionListener() {
@@ -123,46 +138,50 @@ Conectar cc=new Conectar();
 
         t_datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
 
             }
         ));
-        t_datos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane2.setViewportView(t_datos);
+        jScrollPane1.setViewportView(t_datos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(txtnombre)
-                .addGap(52, 52, 52)
-                .addComponent(btnresetear)
-                .addGap(56, 56, 56)
-                .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 812, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 882, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel3)
+                        .addGap(73, 73, 73)
+                        .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(btnresetear)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnresetear)
                     .addComponent(btnsalir)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
@@ -211,9 +230,8 @@ Conectar cc=new Conectar();
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-        bandera_buscar_taxista=null;
-        
+         this.dispose();
+        bandera_buscar_reserva=null;;
     }//GEN-LAST:event_btnsalirActionPerformed
 
 
@@ -221,7 +239,7 @@ Conectar cc=new Conectar();
     public javax.swing.JButton btnresetear;
     public javax.swing.JButton btnsalir;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable t_datos;
     public javax.swing.JTextField txtnombre;
     // End of variables declaration//GEN-END:variables
