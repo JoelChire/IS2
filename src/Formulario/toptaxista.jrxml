@@ -59,10 +59,6 @@ ORDER BY 3 DESC]]>
 					<text><![CDATA[HOTEL TERRAZAS]]></text>
 				</staticText>
 			</frame>
-			<image>
-				<reportElement x="449" y="0" width="156" height="72" uuid="8246e049-cd69-4258-bf63-a4514f405e0d"/>
-				<imageExpression><![CDATA["C:\\Users\\KarenMelba\\Desktop\\labrenda\\taxi.JPG"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>

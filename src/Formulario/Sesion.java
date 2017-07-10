@@ -101,7 +101,7 @@ public class Sesion extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/user.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/usuario.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(70, 20, 260, 256);
 
@@ -169,7 +169,7 @@ public class Sesion extends javax.swing.JFrame {
         getContentPane().add(cancelar);
         cancelar.setBounds(210, 410, 130, 40);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/9a.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/fond3.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(0, 0, 390, 500);
