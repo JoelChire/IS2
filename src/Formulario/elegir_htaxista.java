@@ -31,7 +31,7 @@ public class elegir_htaxista extends javax.swing.JDialog {
     {
         DefaultTableModel modelo= new DefaultTableModel();
     
-    modelo.addColumn("  CÓDIGO");
+    modelo.addColumn("  Nº");
     modelo.addColumn("  DNI ");
     modelo.addColumn("     NOMBRES");
     modelo.addColumn("     APELLIDOS");   

@@ -30,7 +30,7 @@ Conectar cc=new Conectar();
             String [] fila = new String[3];
             while(datos.next()){
                 fila[0]=datos.getString("dni");
-                fila[1]=datos.getString("nombre")+" , "+datos.getString("apellido");
+                fila[1]=datos.getString("nombre")+"  "+datos.getString("apellido");
                 fila[2]=datos.getString("telefono");   
              
                 model.addRow(fila);            

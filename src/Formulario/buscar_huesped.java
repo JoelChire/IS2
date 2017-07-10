@@ -32,7 +32,7 @@ public class buscar_huesped extends javax.swing.JInternalFrame {
             String [] fila = new String[7];
             while(datos.next()){
                 fila[0]=datos.getString("h.dni_huesped");
-                fila[1]=datos.getString("h.nombre_h")+" , "+datos.getString("h.apellidos_h");
+                fila[1]=datos.getString("h.nombre_h")+"  "+datos.getString("h.apellidos_h");
                 fila[2]=datos.getString("h.ciudad")+" , "+datos.getString("h.pais");  
                 fila[3]=datos.getString("h.telefono");   
                 fila[4]=datos.getString("h.direccion");

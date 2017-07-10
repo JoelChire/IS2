@@ -62,10 +62,10 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
     void mostrardatos(String valor){
     DefaultTableModel modelo= new DefaultTableModel();
     modelo.addColumn("USUARIO");
-    modelo.addColumn("ID TAXISTA");
+    modelo.addColumn("Nº TAXISTA");
     modelo.addColumn("FECHA");
-    modelo.addColumn("NRO PERSONAS");
-    modelo.addColumn("NRO HABITACIONES");      
+    modelo.addColumn("Nº PERSONAS");
+    modelo.addColumn("Nº HABITACIONES");      
     jTable1.setModel(modelo);
     String SQL="";
     if(valor.equals(""))
@@ -160,7 +160,7 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         jLabel4.setText("Numero de Personas :");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Numero de las Habitaciones :");
+        jLabel5.setText("Numero de Habitaciones :");
 
         txtpersonas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -185,11 +185,10 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(107, 107, 107)
+                        .addGap(88, 88, 88)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtcod, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 13, Short.MAX_VALUE))
+                            .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -199,8 +198,8 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtfecha, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                             .addComponent(txtpersonas)
-                            .addComponent(txthabitaciones))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(txthabitaciones))))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -455,7 +454,7 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // TODO add your handling code here:
         if(txtcod.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Ingrese el id del taxista","¡Error!",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Ingrese el Nº del taxista","¡Error!",JOptionPane.ERROR_MESSAGE);
             }
             else if(txtpersonas.getText().isEmpty()){
              JOptionPane.showMessageDialog(null,"Ingrese el nro de personas","¡Error!",JOptionPane.ERROR_MESSAGE);

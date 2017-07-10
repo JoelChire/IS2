@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b367a8ab-2ba3-4d79-bce0-3ccfda1ed8e2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<queryString language="SQL">
 		<![CDATA[select ha.nro_hab as 'N° de Habitación',th.nombre_tipo as 'Tipo de Habitación',ha.estado as 'Estado de la Habitación',a.fecha_salida as 'Fecha de Salida'
 from habitacion ha inner join tip_habitacion th on 
@@ -23,14 +26,21 @@ order by ha.nro_hab]]>
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
-					<text><![CDATA[TITLE]]></text>
+					<text><![CDATA[]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="32383d89-0df2-4aa5-99b3-10b8f848d177"/>
 					<textElement textAlignment="Right">
 						<font size="14" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Add a description here]]></text>
+					<text><![CDATA[Hotel Terrazas]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="30" y="30" width="234" height="43" forecolor="#FFFFFF" uuid="ddb61c98-45c8-4398-b76d-cf2f65272b4d"/>
+					<textElement>
+						<font size="20" isBold="true"/>
+					</textElement>
+					<text><![CDATA[REPORTE DE ESTADO DE HABITACIONES]]></text>
 				</staticText>
 			</frame>
 		</band>

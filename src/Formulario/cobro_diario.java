@@ -49,6 +49,8 @@ public class cobro_diario extends javax.swing.JInternalFrame {
         txtalquiler.setEnabled(false);
         txtvuelto.setEnabled(false);
         btnguardar.setEnabled(false);
+        txtfechaactual.setEnabled(false);
+        txtrecepcionista.setEnabled(false);
         btncalcular.setEnabled(false);
         btnnuevo.setEnabled(false);
         txtid.setEnabled(false);
@@ -90,15 +92,16 @@ public class cobro_diario extends javax.swing.JInternalFrame {
         btncalcular.setEnabled(false);
         obt_id(); 
         txtfechaactual.setText(fecha_actual());
-        txtrecepcionista.setText(usuario_cobro);
+        txtrecepcionista.setText(usuario_cobro);    
+        jTable1.setEnabled(true);
         
                
     }
         
     void mostrardatos(String valor){
     DefaultTableModel modelo= new DefaultTableModel();
-    modelo.addColumn("ID ALQUILA");
-    modelo.addColumn("NOMRES");
+    modelo.addColumn("Nº ALQUILER");
+    modelo.addColumn("NOMBRES");
     modelo.addColumn("APELLIDOS");
     modelo.addColumn("NRO HABITACION");
     modelo.addColumn("FECHA_LLEGADA");      
@@ -289,7 +292,7 @@ public class cobro_diario extends javax.swing.JInternalFrame {
         });
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("ID:");
+        jLabel7.setText("Nº Cobro");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -299,26 +302,24 @@ public class cobro_diario extends javax.swing.JInternalFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lb_vuelt_cb_diario3)
+                        .addGap(4, 4, 4)
+                        .addComponent(txtfechaactual))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(lb_id_alq_cb_diario)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(lb_id_recep_cb_diario)))
+                                .addComponent(lb_id_recep_cb_diario))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lb_id_alq_cb_diario)
+                                    .addComponent(jLabel7))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtalquiler)
-                            .addComponent(txtrecepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtid))
-                            .addComponent(lb_vuelt_cb_diario3))
-                        .addGap(4, 4, 4)
-                        .addComponent(txtfechaactual)))
+                            .addComponent(txtrecepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lb_mont_xc_cb_diario2)
@@ -463,7 +464,16 @@ public class cobro_diario extends javax.swing.JInternalFrame {
                 int a=pst.executeUpdate();
                
                 if((a>0)){                    
-                    JOptionPane.showMessageDialog(null,"Registro exitoso ");                                       
+                    JOptionPane.showMessageDialog(null,"Registro exitoso ");  
+                    txtid.setEnabled(false);
+                    txtfechaactual.setEnabled(false);
+                    txtmontocobrado.setEnabled(false); 
+                    txtmontoporcobrar.setEnabled(false);
+                    txtvuelto.setEnabled(false);
+                    txtalquiler.setEnabled(false);
+                    txtrecibido.setEnabled(false);
+                    txtrecepcionista.setEnabled(false);
+                    jTable1.setEnabled(false);
                 }
                 else{
                     JOptionPane.showMessageDialog(null,"error al agregar ");
@@ -491,17 +501,16 @@ public class cobro_diario extends javax.swing.JInternalFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        btncalcular.setEnabled(true);
-        btnnuevo.setEnabled(false);
-        txtmontocobrado.setEnabled(true);
-        txtrecibido.setEnabled(true);
-        txtalquiler.setEnabled(true);
        int fila= jTable1.getSelectedRow();
         //txtusuario.setEnabled(true);
         
         if(fila>=0){
         txtalquiler.setText(jTable1.getValueAt(fila, 0).toString());
-        
+        btncalcular.setEnabled(true);
+        btnnuevo.setEnabled(false);
+        txtmontocobrado.setEnabled(true);
+        txtrecibido.setEnabled(true);
+        txtalquiler.setEnabled(true);
         }
         String id =(txtalquiler.getText());
             try{
@@ -624,7 +633,7 @@ public class cobro_diario extends javax.swing.JInternalFrame {
         btnguardar.setEnabled(false);
         btncalcular.setEnabled(false);
         btnnuevo.setEnabled(false);
-        txtid.setEnabled(false);
+        txtid.setEnabled(false); 
     }//GEN-LAST:event_btnnuevoActionPerformed
 
 
