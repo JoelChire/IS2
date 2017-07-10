@@ -94,13 +94,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem16 = new javax.swing.JMenuItem();
         jSeparator11 = new javax.swing.JPopupMenu.Separator();
         jMenuItem17 = new javax.swing.JMenuItem();
+        jSeparator13 = new javax.swing.JPopupMenu.Separator();
         jMenuItem19 = new javax.swing.JMenuItem();
+        jSeparator12 = new javax.swing.JPopupMenu.Separator();
         jMenuItem18 = new javax.swing.JMenuItem();
+        jSeparator14 = new javax.swing.JPopupMenu.Separator();
         jMenuItem20 = new javax.swing.JMenuItem();
+        jSeparator18 = new javax.swing.JPopupMenu.Separator();
+        visualizardetallealquiler = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jSeparator15 = new javax.swing.JPopupMenu.Separator();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jSeparator16 = new javax.swing.JPopupMenu.Separator();
         jMenuItem14 = new javax.swing.JMenuItem();
+        jSeparator17 = new javax.swing.JPopupMenu.Separator();
         jMenuItem15 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -272,6 +280,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem17);
+        jMenu4.add(jSeparator13);
 
         jMenuItem19.setText("Buscar Reserva");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
@@ -280,6 +289,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem19);
+        jMenu4.add(jSeparator12);
 
         jMenuItem18.setText("Buscar Clientes por taxista");
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
@@ -288,6 +298,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem18);
+        jMenu4.add(jSeparator14);
 
         jMenuItem20.setText("Huesped atendio por recepcionista");
         jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
@@ -296,6 +307,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem20);
+        jMenu4.add(jSeparator18);
+
+        visualizardetallealquiler.setText("Buscar detalle de alquiler");
+        visualizardetallealquiler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visualizardetallealquilerActionPerformed(evt);
+            }
+        });
+        jMenu4.add(visualizardetallealquiler);
 
         jMenuBar1.add(jMenu4);
 
@@ -310,6 +330,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu5.add(jMenuItem2);
+        jMenu5.add(jSeparator15);
 
         jMenuItem7.setText("Estado de habitaciones");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -318,6 +339,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu5.add(jMenuItem7);
+        jMenu5.add(jSeparator16);
 
         jMenuItem14.setText("Top de taxistas");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
@@ -326,6 +348,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu5.add(jMenuItem14);
+        jMenu5.add(jSeparator17);
 
         jMenuItem15.setText("Huésped atentido por recepcionista");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
@@ -657,6 +680,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.escritorio.add(a);
         a.setVisible(true);    }//GEN-LAST:event_jMenuItem20ActionPerformed
 
+    private void visualizardetallealquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizardetallealquilerActionPerformed
+        // visualizar detalle de alquiler
+        String bandera=visualizar_detalle_alquiler.bandera_visualizar_detalle_alquiler;
+        try{
+            if(bandera==null){
+                visualizar_detalle_alquiler a= new visualizar_detalle_alquiler();
+                this.escritorio.add(a);
+                a.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(rootPane,"La ventana ya esta abierta!");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_visualizardetallealquilerActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -722,6 +761,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
+    private javax.swing.JPopupMenu.Separator jSeparator12;
+    private javax.swing.JPopupMenu.Separator jSeparator13;
+    private javax.swing.JPopupMenu.Separator jSeparator14;
+    private javax.swing.JPopupMenu.Separator jSeparator15;
+    private javax.swing.JPopupMenu.Separator jSeparator16;
+    private javax.swing.JPopupMenu.Separator jSeparator17;
+    private javax.swing.JPopupMenu.Separator jSeparator18;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
@@ -732,6 +778,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator9;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
+    private javax.swing.JMenuItem visualizardetallealquiler;
     // End of variables declaration//GEN-END:variables
 
     
