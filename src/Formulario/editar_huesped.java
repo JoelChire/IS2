@@ -152,7 +152,7 @@ public class editar_huesped extends javax.swing.JDialog {
         });
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("SALIR");
+        jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -167,10 +167,10 @@ public class editar_huesped extends javax.swing.JDialog {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,8 +240,6 @@ public class editar_huesped extends javax.swing.JDialog {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         int fila= jTable1.getSelectedRow();
-        int colum = jTable1.getSelectedColumn();
-        
         try {
                 
             huesped.id=jTable1.getValueAt(fila, 0).toString();
@@ -255,9 +253,7 @@ public class editar_huesped extends javax.swing.JDialog {
             SimpleDateFormat df= new SimpleDateFormat("yyyy-MM-dd");
             Date fecha;
             fecha = df.parse(fechaSeleccionada);
-            huesped.txtfecha.setDate(fecha); 
-            
-            
+            huesped.txtfecha.setDate(fecha);           
             huesped.txtciudad.setText(jTable1.getValueAt(fila, 5).toString());             
            // int filaSeleccionada = jTable1.getSelectedRow();        
 
@@ -271,8 +267,18 @@ public class editar_huesped extends javax.swing.JDialog {
             huesped.txtpais.setText(jTable1.getValueAt(fila, 8).toString());            
             huesped.txtdireccion.setText(jTable1.getValueAt(fila, 9).toString());
             huesped.txtocupacion.setText(jTable1.getValueAt(fila, 10).toString());
-            
-                      
+            huesped.txtapellido.setEnabled(true);
+            huesped.txtdni.setEnabled(true);
+            huesped.txtfecha.setEnabled(true);
+            huesped.cmbestadocivil.setEnabled(true);
+            huesped.txttelefono.setEnabled(true);        
+            huesped.txtdireccion.setEnabled(true);
+            huesped.txtnombre.setEnabled(true);
+            huesped.txtciudad.setEnabled(true);
+            huesped.txtpais.setEnabled(true);
+            huesped.txtocupacion.setEnabled(true);            
+            huesped.btneditar.setEnabled(true);
+            huesped.btnguardar.setEnabled(false);                     
             this.dispose();
            
        /* txtapellido.setEnabled(true);

@@ -46,7 +46,7 @@ public class huesped extends javax.swing.JInternalFrame {
         txtnombre.setText("");
         txtapellido.setText("");
         fechadefecto(); 
-        cmbestadocivil.setSelectedIndex(-1);
+        cmbestadocivil.setSelectedIndex(0);
         txttelefono.setText("");  
         txtciudad.setText("");
         txtpais.setText(""); 
@@ -525,10 +525,11 @@ if (Character.isDigit(c))
                 JOptionPane.showMessageDialog(null,"Ingrese fecha de nacimiento","ERROR",JOptionPane.ERROR_MESSAGE);
             }else if(txttelefono.getText().length()>0 && txttelefono.getText().length()<9){
                 JOptionPane.showMessageDialog(null,"Teléfono incompleto","¡Error!",JOptionPane.ERROR_MESSAGE);
-            }else if(txtciudad.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null,"Ingrese ciudad","¡Error!",JOptionPane.ERROR_MESSAGE);
             }else if(txtpais.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null,"Ingrese País","¡Error!",JOptionPane.ERROR_MESSAGE);
+            }
+            else if(txtciudad.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null,"Ingrese ciudad","¡Error!",JOptionPane.ERROR_MESSAGE);
             }else if(n==1){
                 try{ 
                 Conectar cc=new Conectar();            
@@ -585,7 +586,7 @@ if (Character.isDigit(c))
         txtocupacion.setEnabled(true);
         btneditar.setEnabled(false);
         btnguardar.setEnabled(true);
-        btnnuevo.setEnabled(false);
+        btnnuevo.setEnabled(true);
        // mostrardatos("");
         //jTable1.setEnabled(false);
     }//GEN-LAST:event_btnnuevoActionPerformed
@@ -608,16 +609,16 @@ if (Character.isDigit(c))
             pst = cn.prepareStatement("UPDATE huesped SET dni_huesped='"+txtdni.getText()+"',nombre_h='"+txtnombre.getText()+"',apellidos_h='"+txtapellido.getText()+"',nacimiento='"+fecha.getFecha(txtfecha)+"',ciudad='"+txtciudad.getText()+"',telefono='"+txttelefono.getText()+"', estado_civil='"+(String) cmbestadocivil.getSelectedItem()+"',pais='"+txtpais.getText()+"',direccion='"+txtdireccion.getText()+"',ocupacion='"+txtocupacion.getText()+"'   WHERE id_huesped="+id );
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);  
-            txtapellido.setEnabled(true);
-            txtdni.setEnabled(true);
-            txtfecha.setEnabled(true);
-            cmbestadocivil.setEnabled(true);
-            txttelefono.setEnabled(true);        
-            txtdireccion.setEnabled(true);
-            txtnombre.setEnabled(true);
-            txtciudad.setEnabled(true);
-            txtpais.setEnabled(true);
-            txtocupacion.setEnabled(true);
+            txtapellido.setEnabled(false);
+            txtdni.setEnabled(false);
+            txtfecha.setEnabled(false);
+            cmbestadocivil.setEnabled(false);
+            txttelefono.setEnabled(false);        
+            txtdireccion.setEnabled(false);
+            txtnombre.setEnabled(false);
+            txtciudad.setEnabled(false);
+            txtpais.setEnabled(false);
+            txtocupacion.setEnabled(false);  
             cc.desconectar();
             id="null";
             //jTable1.setEnabled(false);
@@ -645,17 +646,7 @@ if (Character.isDigit(c))
             btnnuevo.setEnabled(true);
         } catch (SQLException e) {
         System.out.print(e.getMessage());
-    }*/
-        txtapellido.setEnabled(false);
-        txtdni.setEnabled(false);
-        txtfecha.setEnabled(false);
-        cmbestadocivil.setEnabled(false);
-        txttelefono.setEnabled(false);        
-        txtdireccion.setEnabled(false);
-        txtnombre.setEnabled(false);
-        txtciudad.setEnabled(false);
-        txtpais.setEnabled(false);
-        txtocupacion.setEnabled(false);      
+    }*/    
         /*btnguardar.setEnabled(true);
         btnnuevo.setEnabled(false);
         btneditar.setEnabled(false);
@@ -730,8 +721,8 @@ if (Character.isDigit(c))
         // TODO add your handling code here:
         //btnguardar.setEnabled(true);
          int numerocaracteres=25;
- char c = evt.getKeyChar();
-if (Character.isDigit(c))
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c))
         {
             getToolkit().beep();
             evt.consume();
@@ -816,8 +807,8 @@ if (Character.isDigit(c))
         // TODO add your handling code here:
         //btnguardar.setEnabled(true);
          int numerocaracteres=25;
- char c = evt.getKeyChar();
-if (Character.isDigit(c))
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c))
         {
             getToolkit().beep();
             evt.consume();
@@ -849,21 +840,7 @@ if (Character.isDigit(c))
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
         // TODO add your handling code here: 
         editar_hues=new editar_huesped(this,true);
-        editar_hues.setVisible(true);
-        txtapellido.setEnabled(true);
-        txtdni.setEnabled(true);
-        txtfecha.setEnabled(true);
-        cmbestadocivil.setEnabled(true);
-        txttelefono.setEnabled(true);        
-        txtdireccion.setEnabled(true);
-        txtnombre.setEnabled(true);
-        txtciudad.setEnabled(true);
-        txtpais.setEnabled(true);
-        txtocupacion.setEnabled(true);
-        btneditar.setEnabled(true);
-        btnguardar.setEnabled(false);
-        btnnuevo.setEnabled(true);
-        
+        editar_hues.setVisible(true);        
     }//GEN-LAST:event_btnbuscarActionPerformed
 
     private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
@@ -888,8 +865,8 @@ if (Character.isDigit(c))
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbuscar;
-    private javax.swing.JButton btneditar;
-    private javax.swing.JButton btnguardar;
+    public static javax.swing.JButton btneditar;
+    public static javax.swing.JButton btnguardar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
     public static javax.swing.JComboBox<String> cmbestadocivil;

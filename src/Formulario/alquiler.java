@@ -475,7 +475,7 @@ public class alquiler extends javax.swing.JInternalFrame {
                                 .addGap(31, 31, 31))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_dt_habLayout.createSequentialGroup()
                                 .addComponent(lb_num_camas_hab_alq1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtnumeroca, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_dt_habLayout.createSequentialGroup()
@@ -711,8 +711,8 @@ public class alquiler extends javax.swing.JInternalFrame {
                         .addComponent(txtocupacion)
                         .addComponent(txttelefono)
                         .addComponent(txtdireccion))
-                    .addComponent(txtdni_mi, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtnacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtnacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtdni_mi, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -784,7 +784,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         panel_dt_alq.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
 
         lb_id_alq.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lb_id_alq.setText("ID alquiler:");
+        lb_id_alq.setText("Nº alquiler:");
 
         lb_fech_lleg.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lb_fech_lleg.setText("Fecha Llegada:");
@@ -796,7 +796,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         lb_obs_alq.setText("Observación: ");
 
         lb_id_recep.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lb_id_recep.setText("ID recepcionista:");
+        lb_id_recep.setText("Recepcionista:");
 
         txtidalquiler.setEditable(false);
         txtidalquiler.addActionListener(new java.awt.event.ActionListener() {
@@ -844,16 +844,16 @@ public class alquiler extends javax.swing.JInternalFrame {
                             .addGap(19, 19, 19)
                             .addGroup(panel_dt_alqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(panel_dt_alqLayout.createSequentialGroup()
-                                    .addComponent(lb_id_recep)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panel_dt_alqLayout.createSequentialGroup()
                                     .addGroup(panel_dt_alqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(lb_obs_alq)
                                         .addComponent(lb_id_alq)
                                         .addComponent(lb_fech_lleg)
                                         .addComponent(lb_fech_sal))
-                                    .addGap(0, 0, Short.MAX_VALUE))))))
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(panel_dt_alqLayout.createSequentialGroup()
+                                    .addComponent(lb_id_recep)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel_dt_alqLayout.setVerticalGroup(
