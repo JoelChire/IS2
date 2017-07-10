@@ -3,6 +3,7 @@ package Formulario;
 
 import ClaseConectar.Conectar;
 import java.awt.HeadlessException;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -329,51 +330,67 @@ public class usuario extends javax.swing.JInternalFrame {
 
     private void txtapellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoKeyTyped
         // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (Character.isDigit(c))
+        int numerocaracteres=25;
+ char c = evt.getKeyChar();
+if (Character.isDigit(c))
         {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        } int numerocaracteres=20;
-        if (txtapellido.getText().length()>=numerocaracteres){
+        }
+       
+        else if (txtapellido.getText().length()>=numerocaracteres){
         evt.consume();
         JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-        if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+        } 
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
-        {
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=159
+             )
+ {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
+        }else if(!Character.isLetter(evt.getKeyChar()) && evt.getKeyChar() !='´' &&c != KeyEvent.VK_SPACE){
+    evt.consume();
+} 
+                else if (evt.getKeyChar()=='´' && txtapellido.getText().contains("´" )&&c != KeyEvent.VK_SPACE){
+    evt.consume();
+}
     }//GEN-LAST:event_txtapellidoKeyTyped
 
     private void txtnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyTyped
         // TODO add your handling code here:
         
-        char c = evt.getKeyChar();
-        if (Character.isDigit(c))
+        int numerocaracteres=25;
+ char c = evt.getKeyChar();
+if (Character.isDigit(c))
         {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        } int numerocaracteres=18;
-        if (txtnombre.getText().length()>=numerocaracteres){
+        }
+       
+        else if (txtnombre.getText().length()>=numerocaracteres){
         evt.consume();
         JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-        if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+        } 
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
-        {
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=159
+             )
+ {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
+        }else if(!Character.isLetter(evt.getKeyChar()) && evt.getKeyChar() !='´' &&c != KeyEvent.VK_SPACE){
+    evt.consume();
+} 
+                else if (evt.getKeyChar()=='´' && txtnombre.getText().contains("´" )&&c != KeyEvent.VK_SPACE){
+    evt.consume();
+}
     }//GEN-LAST:event_txtnombreKeyTyped
 
     private void txtusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuarioActionPerformed

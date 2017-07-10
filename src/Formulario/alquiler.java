@@ -398,7 +398,7 @@ public class alquiler extends javax.swing.JInternalFrame {
                     .addComponent(btnexplorar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnhuesped)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lb_nom_alq)
                     .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -545,6 +545,11 @@ public class alquiler extends javax.swing.JInternalFrame {
         });
 
         txtnombre_mi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtnombre_mi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnombre_miActionPerformed(evt);
+            }
+        });
         txtnombre_mi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtnombre_miKeyTyped(evt);
@@ -576,7 +581,6 @@ public class alquiler extends javax.swing.JInternalFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel10.setText("Ocupación:");
 
-        cmbestadocivil.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         cmbestadocivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No se sabe", "Casado", "Soltero", "Viudo", "Divorciado" }));
 
         txtpais.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -795,7 +799,6 @@ public class alquiler extends javax.swing.JInternalFrame {
         lb_id_recep.setText("ID recepcionista:");
 
         txtidalquiler.setEditable(false);
-        txtidalquiler.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         txtidalquiler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtidalquilerActionPerformed(evt);
@@ -803,7 +806,6 @@ public class alquiler extends javax.swing.JInternalFrame {
         });
 
         txtllegada.setEditable(false);
-        txtllegada.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         txtllegada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtllegadaActionPerformed(evt);
@@ -823,7 +825,6 @@ public class alquiler extends javax.swing.JInternalFrame {
         });
 
         txtusuario.setEditable(false);
-        txtusuario.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
 
         javax.swing.GroupLayout panel_dt_alqLayout = new javax.swing.GroupLayout(panel_dt_alq);
         panel_dt_alq.setLayout(panel_dt_alqLayout);
@@ -1537,6 +1538,7 @@ public class alquiler extends javax.swing.JInternalFrame {
             getToolkit().beep();
             evt.consume();
         }
+        
     }//GEN-LAST:event_txtnombre_miKeyTyped
 
     private void txtapellido_miKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellido_miKeyTyped
@@ -1689,6 +1691,10 @@ public class alquiler extends javax.swing.JInternalFrame {
         //btnbuscarhabitacion.setEnabled(true);                  
         //txtalquiler.setEnabled(true);        
     }//GEN-LAST:event_spinnerStateChanged
+
+    private void txtnombre_miActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombre_miActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnombre_miActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

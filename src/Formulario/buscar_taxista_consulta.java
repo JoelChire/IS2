@@ -22,41 +22,29 @@ Conectar cc=new Conectar();
     
     void cargar(String valor)
     {
-        String [] titulos = {" Usuario","  DNI  ", " Nombres y Apellidos  ","  Telefono","Fecha Actual","NºPersonas","Nº Habitaciones"};
+        String [] titulos = {"    DNI  ", "   Nombres y Apellidos  ",  "    Telefono"};
         model =new DefaultTableModel(null,titulos);
         try{            
-            PreparedStatement pst=cn.prepareStatement(" select rm.usuario_id_usuario,t.dni,t.nombre,t.apellido,t.telefono,rm.fecha_actual,rm.num_persona,rm.num_habitacion from taxista t inner join recomienda rm \n" +
-"on t.id_taxista=rm.taxista_id_taxista  where t.nombre LIKE '%"+valor+"%'");
+            PreparedStatement pst=cn.prepareStatement(" select dni,nombre,apellido,telefono from taxista where nombre LIKE '%"+valor+"%'");
             datos = pst.executeQuery();//buscando datos y guardando en datos           
-            String [] fila = new String[8];
+            String [] fila = new String[3];
             while(datos.next()){
-                fila[0]=datos.getString("rm.usuario_id_usuario"); 
-                fila[1]=datos.getString("t.dni");
-                fila[2]=datos.getString("t.nombre")+" , "+datos.getString("t.apellido");
-                fila[3]=datos.getString("t.telefono");   
-                fila[4]=datos.getString("rm.fecha_actual"); 
-                fila[5]=datos.getString("rm.num_persona"); 
-                fila[6]=datos.getString("rm.num_habitacion"); 
-               
+                fila[0]=datos.getString("dni");
+                fila[1]=datos.getString("nombre")+" , "+datos.getString("apellido");
+                fila[2]=datos.getString("telefono");   
+             
                 model.addRow(fila);            
             } 
             t_datos.setModel(model);
-            t_datos.getColumnModel().getColumn(0).setMaxWidth(110);
-            t_datos.getColumnModel().getColumn(1).setMaxWidth(130);
-            t_datos.getColumnModel().getColumn(2).setMaxWidth(820);
-            t_datos.getColumnModel().getColumn(3).setMaxWidth(270);
-            t_datos.getColumnModel().getColumn(4).setMaxWidth(390);
-            t_datos.getColumnModel().getColumn(5).setMaxWidth(120);
-            t_datos.getColumnModel().getColumn(6).setMaxWidth(230);
+            t_datos.getColumnModel().getColumn(0).setMaxWidth(500);
+            t_datos.getColumnModel().getColumn(1).setMaxWidth(3000);
+            t_datos.getColumnModel().getColumn(2).setMaxWidth(1700);
             
             
             DefaultTableCellRenderer tcr= new DefaultTableCellRenderer();
             tcr.setHorizontalAlignment(SwingConstants.CENTER);
-            t_datos.getColumnModel().getColumn(1).setCellRenderer(tcr);
-            t_datos.getColumnModel().getColumn(3).setCellRenderer(tcr);
-            t_datos.getColumnModel().getColumn(4).setCellRenderer(tcr);
-            t_datos.getColumnModel().getColumn(5).setCellRenderer(tcr);
-            t_datos.getColumnModel().getColumn(6).setCellRenderer(tcr);
+            t_datos.getColumnModel().getColumn(0).setCellRenderer(tcr);
+            t_datos.getColumnModel().getColumn(2).setCellRenderer(tcr);
             t_datos.setModel(model);
         }catch(HeadlessException | SQLException e){
             System.err.println("El cliente no se encuentra registrado");
@@ -136,19 +124,19 @@ Conectar cc=new Conectar();
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(txtnombre)
-                .addGap(52, 52, 52)
+                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addComponent(btnresetear)
-                .addGap(56, 56, 56)
+                .addGap(39, 39, 39)
                 .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 812, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -161,8 +149,8 @@ Conectar cc=new Conectar();
                     .addComponent(btnsalir)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();

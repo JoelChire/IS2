@@ -13,6 +13,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class visualizar_habitacion extends javax.swing.JInternalFrame {
 
+    static String bandera_visualizar_reserva;
+
     Conectar cc=new Conectar();
     Connection cn=cc.conexion();
     public static String bandera_visualizar_habitaciones;

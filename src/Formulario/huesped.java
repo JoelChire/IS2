@@ -4,6 +4,7 @@ package Formulario;
 import ClaseConectar.Conectar;
 import Clases.fecha;
 import java.awt.HeadlessException;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -113,6 +114,11 @@ public class huesped extends javax.swing.JInternalFrame {
         jLabel5.setText("Fecha de nacimiento:");
 
         txtnombre.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
+        txtnombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnombreActionPerformed(evt);
+            }
+        });
         txtnombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtnombreKeyReleased(evt);
@@ -166,6 +172,11 @@ public class huesped extends javax.swing.JInternalFrame {
         jLabel8.setText("Ciudad:");
 
         txtciudad.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
+        txtciudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtciudadActionPerformed(evt);
+            }
+        });
         txtciudad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtciudadKeyTyped(evt);
@@ -176,6 +187,11 @@ public class huesped extends javax.swing.JInternalFrame {
         jLabel9.setText("Pais:");
 
         txtpais.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
+        txtpais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtpaisActionPerformed(evt);
+            }
+        });
         txtpais.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtpaisKeyTyped(evt);
@@ -189,6 +205,11 @@ public class huesped extends javax.swing.JInternalFrame {
         jLabel11.setText("Ocupación:");
 
         txtdireccion.setFont(new java.awt.Font("URW Gothic L", 0, 14)); // NOI18N
+        txtdireccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtdireccionActionPerformed(evt);
+            }
+        });
         txtdireccion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtdireccionKeyTyped(evt);
@@ -202,7 +223,12 @@ public class huesped extends javax.swing.JInternalFrame {
             }
         });
 
-        cmbestadocivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No se sabe", "Casado", "Soltero", "Viudo", "Divorciado" }));
+        cmbestadocivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No se sabe", "Casado(a)", "Soltero(a)", "Viudo(a)", "Divorciado(a)" }));
+        cmbestadocivil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbestadocivilActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -416,27 +442,38 @@ public class huesped extends javax.swing.JInternalFrame {
     private void txtnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyTyped
         // TODO add your handling code here:
         //btnguardar.setEnabled(true);
-        int numerocaracteres=25;
-        char c = evt.getKeyChar();
-        if (Character.isDigit(c))
+ int numerocaracteres=25;
+ char c = evt.getKeyChar();
+if (Character.isDigit(c))
         {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
+       
         else if (txtnombre.getText().length()>=numerocaracteres){
         evt.consume();
         JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
+        } 
         else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
-        {
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=159
+             )
+ {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
+        }else if(!Character.isLetter(evt.getKeyChar()) && evt.getKeyChar() !='´' &&c != KeyEvent.VK_SPACE){
+    evt.consume();
+} 
+                else if (evt.getKeyChar()=='´' && txtnombre.getText().contains("´" )&&c != KeyEvent.VK_SPACE){
+    evt.consume();
+}
+
+
+
+
     }//GEN-LAST:event_txtnombreKeyTyped
 
     private void txtapellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtapellidoActionPerformed
@@ -446,27 +483,34 @@ public class huesped extends javax.swing.JInternalFrame {
 
     private void txtapellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoKeyTyped
         // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        int numerocaracteres=25;
-        if (Character.isDigit(c))
+ int numerocaracteres=25;
+ char c = evt.getKeyChar();
+if (Character.isDigit(c))
         {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
+       
         else if (txtapellido.getText().length()>=numerocaracteres){
         evt.consume();
         JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
+        } 
         else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
-        {
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=159
+             )
+ {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
+        }else if(!Character.isLetter(evt.getKeyChar()) && evt.getKeyChar() !='´' &&c != KeyEvent.VK_SPACE){
+    evt.consume();
+} 
+                else if (evt.getKeyChar()=='´' && txtapellido.getText().contains("´" )&&c != KeyEvent.VK_SPACE){
+    evt.consume();
+}
     }//GEN-LAST:event_txtapellidoKeyTyped
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
@@ -651,53 +695,69 @@ public class huesped extends javax.swing.JInternalFrame {
     private void txtpaisKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpaisKeyTyped
         // TODO add your handling code here:
         //btnguardar.setEnabled(true);
-        int numerocaracteres=25;
-        char c = evt.getKeyChar();
-        if (Character.isDigit(c))
+       int numerocaracteres=25;
+ char c = evt.getKeyChar();
+if (Character.isDigit(c))
         {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
+       
         else if (txtpais.getText().length()>=numerocaracteres){
         evt.consume();
         JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
+        } 
         else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
-        {
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=159
+             )
+ {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
+        }else if(!Character.isLetter(evt.getKeyChar()) && evt.getKeyChar() !='´' &&c != KeyEvent.VK_SPACE){
+    evt.consume();
+} 
+                else if (evt.getKeyChar()=='´' && txtpais.getText().contains("´" )&&c != KeyEvent.VK_SPACE){
+    evt.consume();
+}
+
     }//GEN-LAST:event_txtpaisKeyTyped
 
     private void txtciudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtciudadKeyTyped
         // TODO add your handling code here:
         //btnguardar.setEnabled(true);
-        int numerocaracteres=25;
-        char c = evt.getKeyChar();
-        if (Character.isDigit(c))
+         int numerocaracteres=25;
+ char c = evt.getKeyChar();
+if (Character.isDigit(c))
         {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
+       
         else if (txtciudad.getText().length()>=numerocaracteres){
         evt.consume();
         JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
+        } 
         else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
-        {
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=159
+             )
+ {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
+        }else if(!Character.isLetter(evt.getKeyChar()) && evt.getKeyChar() !='´' &&c != KeyEvent.VK_SPACE){
+    evt.consume();
+} 
+                else if (evt.getKeyChar()=='´' && txtciudad.getText().contains("´" )&&c != KeyEvent.VK_SPACE){
+    evt.consume();
+}
+
     }//GEN-LAST:event_txtciudadKeyTyped
 
     private void txttelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyTyped
@@ -741,7 +801,7 @@ public class huesped extends javax.swing.JInternalFrame {
         evt.consume();
         JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
-        /*else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+               /*else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
             ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
@@ -755,27 +815,35 @@ public class huesped extends javax.swing.JInternalFrame {
     private void txtocupacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtocupacionKeyTyped
         // TODO add your handling code here:
         //btnguardar.setEnabled(true);
-        int numerocaracteres=25;
-        char c = evt.getKeyChar();
-        if (Character.isDigit(c))
+         int numerocaracteres=25;
+ char c = evt.getKeyChar();
+if (Character.isDigit(c))
         {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
+       
         else if (txtocupacion.getText().length()>=numerocaracteres){
         evt.consume();
         JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
+        } 
         else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
-        {
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=159
+             )
+ {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
+        }else if(!Character.isLetter(evt.getKeyChar()) && evt.getKeyChar() !='´' &&c != KeyEvent.VK_SPACE){
+    evt.consume();
+} 
+                else if (evt.getKeyChar()=='´' && txtocupacion.getText().contains("´" )&&c != KeyEvent.VK_SPACE){
+    evt.consume();
+}
+
     }//GEN-LAST:event_txtocupacionKeyTyped
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
@@ -797,6 +865,26 @@ public class huesped extends javax.swing.JInternalFrame {
         btnnuevo.setEnabled(true);
         
     }//GEN-LAST:event_btnbuscarActionPerformed
+
+    private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnombreActionPerformed
+
+    private void cmbestadocivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbestadocivilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbestadocivilActionPerformed
+
+    private void txtpaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpaisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpaisActionPerformed
+
+    private void txtciudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtciudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtciudadActionPerformed
+
+    private void txtdireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdireccionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtdireccionActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbuscar;

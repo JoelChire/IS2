@@ -21,15 +21,25 @@ INNER JOIN huesped h on h.id_huesped=a.huesped_id_huesped]]>
 		<band/>
 	</background>
 	<title>
-		<band height="75">
+		<band height="74">
 			<frame>
-				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="640995f2-78f2-4587-9603-1f9e150fe564"/>
+				<reportElement mode="Opaque" x="-20" y="-19" width="595" height="92" backcolor="#006699" uuid="640995f2-78f2-4587-9603-1f9e150fe564"/>
 				<staticText>
-					<reportElement x="20" y="20" width="575" height="43" forecolor="#FFFFFF" uuid="7ea63c7e-1c53-452d-820c-ea86e1dc38c1"/>
+					<reportElement x="151" y="27" width="368" height="33" forecolor="#FFFFFF" uuid="7ea63c7e-1c53-452d-820c-ea86e1dc38c1"/>
 					<textElement textAlignment="Center">
 						<font size="24" isBold="true"/>
 					</textElement>
-					<text><![CDATA[HUÉSPED ATENDIDO POR RECEPCIONISTA]]></text>
+					<text><![CDATA[ATENCIÓN AL HUÉSPED]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement mode="Transparent" x="6" y="22" width="100" height="44" forecolor="#FFFFFF" backcolor="#3366FF" uuid="dcd71017-3e1f-4e06-87f0-c0af2f3b1883"/>
+				</rectangle>
+				<staticText>
+					<reportElement x="10" y="20" width="96" height="46" forecolor="#FFFFFF" uuid="b6e06a3f-b0dc-4bf4-850a-400d4b2669fc"/>
+					<textElement textAlignment="Center" verticalAlignment="Top">
+						<font fontName="Yu Mincho" size="12" isBold="true" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+					</textElement>
+					<text><![CDATA[HOTEL TERRAZAS]]></text>
 				</staticText>
 			</frame>
 		</band>
@@ -45,44 +55,44 @@ INNER JOIN huesped h on h.id_huesped=a.huesped_id_huesped]]>
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="-13" width="92" height="33" forecolor="#006699" backcolor="#E6E6E6" uuid="1a0755ee-223a-4b2e-9b6c-1d4e950a9247"/>
 				<textElement textAlignment="Center">
-					<font size="10" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[DATOS DEL RECEPCIONISTA]]></text>
+				<text><![CDATA[Datos del recepcionista]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="92" y="-13" width="92" height="33" forecolor="#006699" backcolor="#E6E6E6" uuid="601b04bf-5c4c-48d9-afb2-1086071786c0"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[TELÉFONO]]></text>
+				<text><![CDATA[Teléfono]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="184" y="-13" width="92" height="33" forecolor="#006699" backcolor="#E6E6E6" uuid="f12c5761-87f2-40f3-9f4e-a2555484a65b"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[TURNO]]></text>
+				<text><![CDATA[Turno]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="276" y="-13" width="92" height="33" forecolor="#006699" backcolor="#E6E6E6" uuid="70be1091-68ee-4b50-a1ad-bce850f46f99"/>
 				<textElement textAlignment="Center">
-					<font size="10" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[DATOS DE HUÉSPED]]></text>
+				<text><![CDATA[Datos del Huésped]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="368" y="-13" width="92" height="33" forecolor="#006699" backcolor="#E6E6E6" uuid="78ee2d87-6846-48f7-8566-ba1c01915319"/>
 				<textElement textAlignment="Center">
-					<font size="10" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[FECHA DE LLEGADA]]></text>
+				<text><![CDATA[Fecha de llegada]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="460" y="-13" width="92" height="33" forecolor="#006699" backcolor="#E6E6E6" uuid="ad64ce77-49c4-46d8-bf10-e6aae17eabcd"/>
 				<textElement textAlignment="Center">
-					<font size="10" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[TELÉFONO DE HUÉSPED]]></text>
+				<text><![CDATA[Teléfono del huésped]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
