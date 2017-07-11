@@ -695,32 +695,29 @@ public class huesped extends javax.swing.JInternalFrame {
 
     private void txtdniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdniKeyTyped
         // TODO add your handling code here:
-        int numerocaracteres=8;
         char d=evt.getKeyChar();
-        if (txtdni.getText().length()>=numerocaracteres){
+        if (txtdni.getText().length()>=15){
             evt.consume();
             JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
-        else if (Character.isLetter(d))
-        {
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(null,"Solo números","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=44
+               ||(int)evt.getKeyChar()>45 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=159)
         {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
+       /* else if (evt.getKeyChar()=='-' && txtapellido.getText().contains("-" )&&d != KeyEvent.VK_SPACE){
+            evt.consume();
+        }*/
     }//GEN-LAST:event_txtdniKeyTyped
 
     private void txttelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyTyped
         // TODO add your handling code here:
-        int numerocaracteres=9;
+        int numerocaracteres=20;
         char d=evt.getKeyChar();
         if (txttelefono.getText().length()>=numerocaracteres){
             evt.consume();
@@ -732,10 +729,11 @@ public class huesped extends javax.swing.JInternalFrame {
             evt.consume();
             JOptionPane.showMessageDialog(null,"Solo números","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
-        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+         else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=39
+               ||(int)evt.getKeyChar()>43 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=159)
         {
             getToolkit().beep();
             evt.consume();

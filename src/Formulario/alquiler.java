@@ -1071,26 +1071,20 @@ public class alquiler extends javax.swing.JInternalFrame {
 
     private void txtdniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdniKeyTyped
         // TIPEO DNI
-        int numerocaracteres=8;
-        char c = evt.getKeyChar();
-        if (Character.isLetter(c))
-        {
-            getToolkit().beep();
+       char d=evt.getKeyChar();
+        if (txtdni.getText().length()>=15){
             evt.consume();
-            //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+            JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
-        if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=44
+               ||(int)evt.getKeyChar()>45 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=159)
         {
             getToolkit().beep();
             evt.consume();
-            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }else if(txtdni.getText().length()>=numerocaracteres){
-            getToolkit().beep();
-            evt.consume();
-            //JOptionPane.showMessageDialog(null,"Exceso de dígitos","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_txtdniKeyTyped
 
@@ -1247,26 +1241,20 @@ public class alquiler extends javax.swing.JInternalFrame {
 
     private void txtdni_miKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdni_miKeyTyped
         // dni de miembro habitacion
-        char c = evt.getKeyChar();
-        int numerocaracteres=8;
-        if (Character.isLetter(c))
-        {
-            getToolkit().beep();
+        char d=evt.getKeyChar();
+        if (txtdni.getText().length()>=15){
             evt.consume();
-            //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+            JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
-
-        if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=44
+               ||(int)evt.getKeyChar()>45 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=159)
         {
             getToolkit().beep();
             evt.consume();
-            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }else if(txtdni_mi.getText().length()>=numerocaracteres){
-            getToolkit().beep();
-            evt.consume();
+            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_txtdni_miKeyTyped
 
@@ -1372,28 +1360,27 @@ public class alquiler extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtpaisKeyTyped
 
     private void txttelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyTyped
-        // TODO add your handling code here:
-        int numerocaracteres=9;
-        char c = evt.getKeyChar();
-        if (Character.isLetter(c))
+     int numerocaracteres=20;
+        char d=evt.getKeyChar();
+        if (txttelefono.getText().length()>=numerocaracteres){
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if (Character.isLetter(d))
         {
             getToolkit().beep();
             evt.consume();
-            //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+            JOptionPane.showMessageDialog(null,"Solo números","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
-        if ((int)
-            evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+         else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=39
+               ||(int)evt.getKeyChar()>43 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=159)
         {
             getToolkit().beep();
             evt.consume();
-            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }else if(txttelefono.getText().length()>=numerocaracteres){
-            getToolkit().beep();
-            evt.consume();
-            //JOptionPane.showMessageDialog(null,"Exceso de dígitos","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_txttelefonoKeyTyped
 
