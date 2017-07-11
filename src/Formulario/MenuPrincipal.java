@@ -103,6 +103,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem22 = new javax.swing.JMenuItem();
         jSeparator18 = new javax.swing.JPopupMenu.Separator();
         visualizardetallealquiler = new javax.swing.JMenuItem();
+        jMenuItem20 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jSeparator15 = new javax.swing.JPopupMenu.Separator();
@@ -319,6 +320,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu4.add(visualizardetallealquiler);
+
+        jMenuItem20.setText("Respaldo");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem20);
 
         jMenuBar1.add(jMenu4);
 
@@ -733,6 +742,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        // TODO add your handling code here:
+            exportacion a=new exportacion();          
+            this.escritorio.add(a);
+            a.setVisible(true);
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -787,6 +803,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     public javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem3;

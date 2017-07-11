@@ -5,6 +5,7 @@
  */
 package Formulario;
 
+import Clases.Exporta;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -89,7 +90,7 @@ public class exportacion extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-// chire gay este codigo selecciona la ruta donde se alojara el archivo exportado y lo muestra en tu anexo
+//selecciona la ruta donde se alojara el archivo exportado y lo muestra en tu anexo
 JFileChooser ch=new JFileChooser();       
     ch.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
     int se=ch.showSaveDialog(null);
@@ -101,7 +102,7 @@ JFileChooser ch=new JFileChooser();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//chire mariposa este codigo ejecuta runtime, que permite ejecutar aplicaciones fuera de java y le pasa los parametros de la BD(usuario, pass, nombre) para generar un archivivo mediante la ruta del boton ruta;
+//ejecuta runtime, que permite ejecutar aplicaciones fuera de java y le pasa los parametros de la BD(usuario, pass, nombre) para generar un archivivo mediante la ruta del boton ruta;
 String ruta=txtruta.getText();
     String nombre="\\backus.sql";
     
@@ -110,7 +111,7 @@ String ruta=txtruta.getText();
         {
        try
        {
-       backus = "C:\\wamp64\\bin\\mysql\\mysql5.7.14\\bin\\mysqldump --opt -u"+Exporta.getUs()+" -p"+Exporta.getPas()+" -B "+Exporta.getBd()+" -r "+ruta+nombre;
+       backus = "C:\\wamp\\bin\\mysql\\mysql5.5.24\\bin\\mysqldump --opt -u"+Exporta.getUs()+" -p"+Exporta.getPas()+" -B "+Exporta.getBd()+" -r "+ruta+nombre;
        //backus = "C:\wamp\bin\mysql\mysql5.5.24\bin\\mysqldump --user="+Exporta.getUs()+" --password="+Exporta.getPas()+" -v "+Exporta.getBd()+" > "+ruta+nombre;
        System.out.println(backus);
        Runtime rt=Runtime.getRuntime();
