@@ -204,6 +204,7 @@ public class alquiler extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jcMousePanel1 = new jcMousePanel.jcMousePanel();
         jPanel1 = new javax.swing.JPanel();
         panel_dt_huesp = new javax.swing.JPanel();
         lb_dni_alq = new javax.swing.JLabel();
@@ -255,8 +256,6 @@ public class alquiler extends javax.swing.JInternalFrame {
         btnactualizar = new javax.swing.JButton();
         btneliminar = new javax.swing.JButton();
         btneliminart = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tb_det = new javax.swing.JTable();
         panel_dt_alq = new javax.swing.JPanel();
         lb_id_alq = new javax.swing.JLabel();
         lb_fech_lleg = new javax.swing.JLabel();
@@ -272,11 +271,14 @@ public class alquiler extends javax.swing.JInternalFrame {
         btnnuevo = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
         btnguardar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tb_det = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("Alquiller");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -294,6 +296,8 @@ public class alquiler extends javax.swing.JInternalFrame {
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
+
+        jcMousePanel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/fond2.jpg"))); // NOI18N
 
         panel_dt_huesp.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Huésped", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("URW Gothic L", 1, 12))); // NOI18N
         panel_dt_huesp.setToolTipText("");
@@ -328,6 +332,8 @@ public class alquiler extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
         jLabel2.setText("Cantidad de personas:");
 
+        btnbuscar_h.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnbuscar_h.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscaaar13.png"))); // NOI18N
         btnbuscar_h.setText("Buscar");
         btnbuscar_h.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -335,6 +341,8 @@ public class alquiler extends javax.swing.JInternalFrame {
             }
         });
 
+        btnhuesped.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnhuesped.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevohuesped13.png"))); // NOI18N
         btnhuesped.setText("Nuevo Huesped");
         btnhuesped.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -342,6 +350,8 @@ public class alquiler extends javax.swing.JInternalFrame {
             }
         });
 
+        btnexplorar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnexplorar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/EXPLORAR1.PNG"))); // NOI18N
         btnexplorar.setText("Explorar");
         btnexplorar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -382,10 +392,10 @@ public class alquiler extends javax.swing.JInternalFrame {
                         .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnhuesped)
                             .addGroup(panel_dt_huespLayout.createSequentialGroup()
-                                .addComponent(btnbuscar_h)
+                                .addComponent(btnbuscar_h, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnexplorar)))))
-                .addGap(44, 44, 44))
+                .addGap(26, 26, 26))
         );
         panel_dt_huespLayout.setVerticalGroup(
             panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -394,11 +404,11 @@ public class alquiler extends javax.swing.JInternalFrame {
                 .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_dni_alq)
                     .addComponent(txtdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnbuscar_h)
-                    .addComponent(btnexplorar))
+                    .addComponent(btnbuscar_h, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnexplorar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnhuesped)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnhuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lb_nom_alq)
                     .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -432,6 +442,8 @@ public class alquiler extends javax.swing.JInternalFrame {
             }
         });
 
+        btnbuscar_th.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnbuscar_th.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscaaar13.png"))); // NOI18N
         btnbuscar_th.setText("Buscar");
         btnbuscar_th.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -477,15 +489,16 @@ public class alquiler extends javax.swing.JInternalFrame {
                                 .addComponent(lb_num_camas_hab_alq1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtnumeroca, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_dt_habLayout.createSequentialGroup()
-                                .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txttipoha, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panel_dt_habLayout.createSequentialGroup()
-                                        .addComponent(txtnumeroha, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnbuscar_th)))
-                                .addGap(27, 27, 27))))
+                                .addComponent(txtnumeroha, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnbuscar_th)
+                                .addContainerGap(22, Short.MAX_VALUE))
+                            .addGroup(panel_dt_habLayout.createSequentialGroup()
+                                .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtnumeroca, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txttipoha, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(panel_dt_habLayout.createSequentialGroup()
                         .addComponent(lb_num_camas_hab_alq, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
@@ -495,11 +508,12 @@ public class alquiler extends javax.swing.JInternalFrame {
         panel_dt_habLayout.setVerticalGroup(
             panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_dt_habLayout.createSequentialGroup()
-                .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(7, 7, 7)
+                .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_num_hab_alq)
                     .addComponent(txtnumeroha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnbuscar_th))
-                .addGap(11, 11, 11)
+                    .addComponent(btnbuscar_th, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_tip_hab_alq)
                     .addComponent(txttipoha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -511,12 +525,30 @@ public class alquiler extends javax.swing.JInternalFrame {
                 .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtmonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lb_num_camas_hab_alq))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panel_dt_huesp, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panel_dt_hab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(panel_dt_huesp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(panel_dt_hab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+        );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Miembros en la habitación"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 2, 11))); // NOI18N
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Miembros en la habitación", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         txtdni_mi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtdni_mi.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -614,8 +646,10 @@ public class alquiler extends javax.swing.JInternalFrame {
             }
         });
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
+        btnagregar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnagregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevohuesped13.png"))); // NOI18N
         btnagregar.setText("Agregar");
         btnagregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -623,6 +657,8 @@ public class alquiler extends javax.swing.JInternalFrame {
             }
         });
 
+        btneditar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btneditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/editar13.png"))); // NOI18N
         btneditar.setText("Editar");
         btneditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -630,6 +666,8 @@ public class alquiler extends javax.swing.JInternalFrame {
             }
         });
 
+        btnactualizar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnactualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/GUARdar1.png"))); // NOI18N
         btnactualizar.setText("Actualizar");
         btnactualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -637,6 +675,8 @@ public class alquiler extends javax.swing.JInternalFrame {
             }
         });
 
+        btneliminar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/eliminar13.png"))); // NOI18N
         btneliminar.setText("Eliminar");
         btneliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -644,6 +684,8 @@ public class alquiler extends javax.swing.JInternalFrame {
             }
         });
 
+        btneliminart.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btneliminart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/todoborrar.png"))); // NOI18N
         btneliminart.setText("Eliminar Todo");
         btneliminart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -657,28 +699,27 @@ public class alquiler extends javax.swing.JInternalFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btneliminart, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btneliminar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnagregar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btneditar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnactualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnactualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnagregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btneditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btneliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btneliminart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnagregar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btneditar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnagregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btneditar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnactualizar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btneliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btneliminart)
+                .addGap(18, 18, 18)
+                .addComponent(btneliminart, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -689,39 +730,55 @@ public class alquiler extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtapellido_mi, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtnombre_mi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(cmbestadocivil, 0, 122, Short.MAX_VALUE)
-                        .addComponent(txtciudad)
-                        .addComponent(txtpais)
-                        .addComponent(txtocupacion)
-                        .addComponent(txttelefono)
-                        .addComponent(txtdireccion))
-                    .addComponent(txtnacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtdni_mi, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cmbestadocivil, 0, 122, Short.MAX_VALUE)
+                                    .addComponent(txtciudad)))
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addComponent(jLabel11)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtdireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel8)
+                                        .addComponent(jLabel9)
+                                        .addComponent(jLabel10))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtpais, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                                        .addComponent(txttelefono)
+                                        .addComponent(txtocupacion)))))
+                        .addGap(60, 60, 60))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtapellido_mi, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtnombre_mi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtnacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtdni_mi, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)))
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtdni_mi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -737,7 +794,7 @@ public class alquiler extends javax.swing.JInternalFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(txtnacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(txtciudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -745,42 +802,27 @@ public class alquiler extends javax.swing.JInternalFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmbestadocivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtpais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)))
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtocupacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10)))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtocupacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel11)
+                    .addComponent(txtdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        tb_det.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(tb_det);
-
-        panel_dt_alq.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del Alquiler"));
+        panel_dt_alq.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Alquiler", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         panel_dt_alq.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
 
         lb_id_alq.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -854,7 +896,7 @@ public class alquiler extends javax.swing.JInternalFrame {
                                     .addComponent(lb_id_recep)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         panel_dt_alqLayout.setVerticalGroup(
             panel_dt_alqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -878,12 +920,14 @@ public class alquiler extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lb_obs_alq)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtobservacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(txtobservacion)
+                .addContainerGap())
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
+        btnnuevo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo13.png"))); // NOI18N
         btnnuevo.setText("Nuevo");
         btnnuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -891,6 +935,8 @@ public class alquiler extends javax.swing.JInternalFrame {
             }
         });
 
+        btnsalir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cerrar13.png"))); // NOI18N
         btnsalir.setText("Salir");
         btnsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -898,6 +944,8 @@ public class alquiler extends javax.swing.JInternalFrame {
             }
         });
 
+        btnguardar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/GUARdar1.png"))); // NOI18N
         btnguardar.setText("Guardar");
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -913,20 +961,20 @@ public class alquiler extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnsalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnnuevo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnguardar, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
+                    .addComponent(btnguardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnnuevo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnnuevo)
-                .addGap(18, 18, 18)
-                .addComponent(btnguardar)
-                .addGap(18, 18, 18)
+                .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnsalir)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -934,70 +982,88 @@ public class alquiler extends javax.swing.JInternalFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panel_dt_alq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(panel_dt_alq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel_dt_alq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(panel_dt_alq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(panel_dt_huesp, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panel_dt_hab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        tb_det.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tb_det);
+
+        javax.swing.GroupLayout jcMousePanel1Layout = new javax.swing.GroupLayout(jcMousePanel1);
+        jcMousePanel1.setLayout(jcMousePanel1Layout);
+        jcMousePanel1Layout.setHorizontalGroup(
+            jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jcMousePanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panel_dt_huesp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(panel_dt_hab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
-
-        jPanel3.getAccessibleContext().setAccessibleDescription("");
+        jcMousePanel1Layout.setVerticalGroup(
+            jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jcMousePanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jcMousePanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+        // cerrando ventana
+        bandera_alquiler=null;
+    }//GEN-LAST:event_formInternalFrameClosing
 
     private void txtdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdniActionPerformed
         // TODO add your handling code here:
@@ -1006,7 +1072,7 @@ public class alquiler extends javax.swing.JInternalFrame {
     private void txtdniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdniKeyTyped
         // TIPEO DNI
         int numerocaracteres=8;
-        char c = evt.getKeyChar();       
+        char c = evt.getKeyChar();
         if (Character.isLetter(c))
         {
             getToolkit().beep();
@@ -1025,7 +1091,7 @@ public class alquiler extends javax.swing.JInternalFrame {
             getToolkit().beep();
             evt.consume();
             //JOptionPane.showMessageDialog(null,"Exceso de dígitos","!Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }        
+        }
     }//GEN-LAST:event_txtdniKeyTyped
 
     private void btnbuscar_hActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscar_hActionPerformed
@@ -1043,7 +1109,7 @@ public class alquiler extends javax.swing.JInternalFrame {
             try{
                 ResultSet rs1;
                 PreparedStatement pst=cn.prepareStatement("SELECT nombre_h,apellidos_h,id_huesped "
-                        + "FROM huesped where dni_huesped='"+dni+"'");
+                    + "FROM huesped where dni_huesped='"+dni+"'");
                 rs1 = pst.executeQuery();//buscando datos y guardando en interfaz
                 while(rs1.next()){
                     txtnombre.setText(rs1.getString("nombre_h"));
@@ -1055,7 +1121,7 @@ public class alquiler extends javax.swing.JInternalFrame {
                     txtdni.setText(null);
                 }else{
                     //desbloqueo
-                    btnhuesped.setEnabled(false);                    
+                    btnhuesped.setEnabled(false);
                     spinner.setEnabled(true);//enabled spinner
                     txtdni.setEditable(false);
                     btnguardar.setEnabled(true);
@@ -1068,20 +1134,57 @@ public class alquiler extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnbuscar_hActionPerformed
 
+    private void btnhuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhuespedActionPerformed
+        // boton nuevo huesped
+
+        String bandera=huesped.bandera_huesped;
+        try{
+            if(bandera==null){
+                huesped a= new huesped();
+                this.getDesktopPane().add(a);
+                a.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(rootPane,"La ventana ya esta abierta!");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnhuespedActionPerformed
+
+    private void btnexplorarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexplorarActionPerformed
+        // Boton explorar
+        elegir_h=new elegir_huesped(this,true);
+        elegir_h.setVisible(true);
+        spinner.setEnabled(true);//set enable spinner
+        txtdni.setEditable(false);
+        System.out.println("el ide huesped regresado: "+id_huesped_huesped);
+    }//GEN-LAST:event_btnexplorarActionPerformed
+
+    private void spinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spinnerStateChanged
+        // cambio en spinner
+        txtnumeroha.setEnabled(true);
+        txttipoha.setEnabled(true);
+        //txtnumeroha.setEnabled(true);
+        //txttipoha.setEnabled(true);
+        btnbuscar_th.setEnabled(true);
+        //btnbuscarhabitacion.setEnabled(true);
+        //txtalquiler.setEnabled(true);
+    }//GEN-LAST:event_spinnerStateChanged
+
     private void txtnumerohaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnumerohaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnumerohaActionPerformed
 
     private void btnbuscar_thActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscar_thActionPerformed
-        //boton buscar // mostrar_seleccion_habitacion();       
-        btnhuesped.setEnabled(false);  
+        //boton buscar // mostrar_seleccion_habitacion();
+        btnhuesped.setEnabled(false);
         btnguardar.setEnabled(true);
         btnbuscar_h.setEnabled(false);
         btnexplorar.setEnabled(false);
         txtdni.setEditable(false);
-       
+
         totalpersonas=Integer.parseInt(spinner.getValue().toString());
-        if(totalpersonas>0){    
+        if(totalpersonas>0){
             cantidadpersonas=totalpersonas;
             seleccion_ha=new seleccion_habitacion(this,true);
             seleccion_ha.setVisible(true);
@@ -1095,198 +1198,14 @@ public class alquiler extends javax.swing.JInternalFrame {
             btnguardar.setEnabled(true);
             txtobservacion.setEnabled(true);
 
-            if(totalpersonas>=2){                
-                btnagregar.setEnabled(true);                
-                bloquearcampoingreso(1);//desbloqueando campos                
-            } 
+            if(totalpersonas>=2){
+                btnagregar.setEnabled(true);
+                bloquearcampoingreso(1);//desbloqueando campos
+            }
         }else{
             JOptionPane.showMessageDialog(null,"Ingresa número válido de Personas","ERROR",JOptionPane.ERROR_MESSAGE);
         }
-        
     }//GEN-LAST:event_btnbuscar_thActionPerformed
-
-    private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
-        // boton nuevo
-        limpiar(); 
-        btnnuevo();
-    }//GEN-LAST:event_btnnuevoActionPerformed
-
-    private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
-        // boton salir
-        cc.desconectar();
-        bandera_alquiler=null;
-        this.dispose();
-    }//GEN-LAST:event_btnsalirActionPerformed
-
-    private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
-        // boton guardar
-        if(txtdni.getText().length()!=8){
-            JOptionPane.showMessageDialog(null,"Elija Huésped","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if(totalpersonas<1){
-            JOptionPane.showMessageDialog(null,"Ingresa Cantidas de Personas","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if (txtnumeroca.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null,"Ingresa Cantidad de camas","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if (txtmonto.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null,"Ingresa Monto Total","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if(txtidalquiler.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"No existe ID_Alquiler","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if (txtllegada.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null,"Error al Obtener Fecha de llegada","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if (txtsalida.getDate()==null) {
-            JOptionPane.showMessageDialog(null,"Ingresa Fecha Salida","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if (txtusuario.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null,"Error al obtener Usuario ","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if(txttipoha.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Elije habitacion","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if((totalpersonas>1) && ((tb_det.getRowCount()+1)!=totalpersonas)){
-            JOptionPane.showMessageDialog(null,"Completa la Tabla de Huespedes en esta habitación","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else
-        {
-            SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date fech = new Date();
-            String ll= myFormat.format(fech);        
-            String sa = fecha.getFecha(txtsalida); 
-            double montoneto=0,intmonto=0;
-            int numdias=0;
-            try {
-                Date date1 = myFormat.parse(ll);
-                Date date2 = myFormat.parse(sa);
-                long diff = date2.getTime() - date1.getTime();
-                System.out.println ("Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
-                String dias=String.valueOf(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
-                numdias=Integer.parseInt(dias);
-
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            intmonto=Double.parseDouble(txtmonto.getText());
-            montoneto=numdias*intmonto;
-            
-            try
-            {
-                PreparedStatement pst=cn.prepareStatement("INSERT INTO alquila(id_alquila,huesped_id_huesped,"
-                        + "usuario_id_usuario,fecha_llegada,fecha_salida,num_dias,num_camas,observacion,monto_total,"
-                        + "habitacion_id_habitacion) VALUES (?,?,?,?,?,?,?,?,?,?)");
-                //pst.setString(1,txtnumeroha.getText());
-                pst.setString(1,txtidalquiler.getText());//id alquiler                
-                pst.setString(2,id_huesped_huesped);
-                pst.setString(3,txtusuario.getText());
-                pst.setString(4,txtllegada.getText());
-                pst.setString(5,fecha.getFecha(txtsalida));//fecha salida
-                pst.setString(6,String.valueOf(numdias));//num dias// corregir
-                pst.setString(7,txtnumeroca.getText());//num camas
-                pst.setString(8,txtobservacion.getText());
-                pst.setString(9,String.valueOf(montoneto));//monto total, corregir!!
-                pst.setString(10,id_habitacion_seleccion);
-                
-                int a=pst.executeUpdate();
-                if(a>0){
-                    System.out.println("Registro exitoso en Alquila");
-                }
-                else{
-                    JOptionPane.showMessageDialog(null,"Error al agregar en Alquila ","Error",1);
-                }              
-                //
-                //String habb=txtnumeroha.getText();
-                PreparedStatement pst1=cn.prepareStatement("UPDATE habitacion"
-                        + " SET estado='Ocupado' WHERE id_habitacion='"+id_habitacion_seleccion+"'");
-                int b=pst1.executeUpdate();                
-                if(b>0){
-                    System.out.println("Actualizacion exitosa en Habitacion");                    
-                }
-                else{
-                    JOptionPane.showMessageDialog(null,"Error al actualizar habitación ","Error",1);
-                } 
-                int c=1;
-                ////  actualizar tabla detalle              
-                if(totalpersonas>1)
-                {
-                    c=0;//sirve para dar mensaje de confirmacion
-                    try 
-                    {
-                        String id="";
-                        ResultSet rsa;
-                        int cont;
-                        for(int i=0;i<tb_det.getRowCount();i++)
-                        {
-                            Statement sent = cn.createStatement();   
-                            rsa = sent.executeQuery("SELECT IFNULL(MAX(CAST(id_detalle AS UNSIGNED)), 0) codigoExterno FROM detalle_alquila");                                
-                            while(rsa.next()){
-                                cont =Integer.parseInt(rsa.getString("codigoExterno"))+1;
-                                id=(String.valueOf(cont));                                    
-                            }/////detalle de alquiler
-                            PreparedStatement pst2=cn.prepareStatement("INSERT INTO detalle_alquila"
-                                    + "(id_detalle,Nombres,Apellidos,dni,nacimiento,ciudad,estado_civil,pais,telefono,"
-                                    + "ocupacion,direccion,alquila_id_alquila) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");                               
-                            /*Nombres,Apellidos,DNI,Fecha Nacimiento,Ciudad,Estado Civil,País,Teléfono,Ocupacion,Dirección*/
-                            pst2.setString(1,id);// id detalle                              
-                            pst2.setString(2,tb_det.getValueAt(i,0).toString());//nombre
-                            pst2.setString(3,tb_det.getValueAt(i,1).toString());//apellido
-                            pst2.setString(4,tb_det.getValueAt(i,2).toString());//dni
-                            pst2.setString(5,tb_det.getValueAt(i,3).toString());//
-                            pst2.setString(6,tb_det.getValueAt(i,4).toString());//
-                            pst2.setString(7,tb_det.getValueAt(i,5).toString());//estado civil
-                            pst2.setString(8,tb_det.getValueAt(i,6).toString());//
-                            pst2.setString(9,tb_det.getValueAt(i,7).toString());//telefono
-                            pst2.setString(10,tb_det.getValueAt(i,8).toString());//
-                            pst2.setString(11,tb_det.getValueAt(i,9).toString());//direccion
-                            pst2.setString(12,txtidalquiler.getText());//id alquiler                           
-                            c=pst2.executeUpdate();
-                            if(c>0){
-                                System.out.println("Registro exitoso en detalle_alquiler");
-                            }
-                            else{
-                                JOptionPane.showMessageDialog(null,"Error al agregar ","Error",1);
-                            }                                
-                        }//fin for                            
-                    } catch (Exception e) {
-                       System.out.println("no se pudo actualizar detalle alquiler: "+e.getMessage());
-                    }//fin trycatch
-                }// fin if para detalle alquiler                
-                if((a>0)&&(b>0)&&(c>0)){
-                    JOptionPane.showMessageDialog(null,"Registro Exitoso","FELICITACIONES",JOptionPane.INFORMATION_MESSAGE);
-                }
-                else{
-                    JOptionPane.showMessageDialog(null,"Error al agregar ");
-                }
-                btnnuevo();
-                eliminarelementos(); 
-                bloqueorestantes();///fin de todos los insert
-               
-            }catch(HeadlessException | SQLException e){
-                JOptionPane.showMessageDialog(null, "error al agegar datos en alquila y detalle " +e);
-            }//fin trycatch
-        }//fn else 
-        ///
-    }//GEN-LAST:event_btnguardarActionPerformed
-
-    private void txtllegadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtllegadaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtllegadaActionPerformed
-
-    private void txtmontoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmontoKeyTyped
-        // monto total      
-        int numerocaracteres=7;      
-        char c = evt.getKeyChar();
-        if (Character.isLetter(c))
-        {
-            getToolkit().beep();
-            evt.consume();
-            //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
-        }else if(txtmonto.getText().length()>=numerocaracteres){
-            getToolkit().beep();
-            evt.consume();
-        }       
-    }//GEN-LAST:event_txtmontoKeyTyped
-
-    private void txtobservacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtobservacionKeyTyped
-        // observacion        
-        int numerocaracteres=35;        
-        if(txtobservacion.getText().length()>=numerocaracteres){
-            getToolkit().beep();
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtobservacionKeyTyped
 
     private void txtnumerocaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnumerocaKeyTyped
         // camas
@@ -1311,184 +1230,20 @@ public class alquiler extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtnumerocaKeyTyped
 
-    private void btnagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarActionPerformed
-        // boton agregar
-        if(txtnombre_mi.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Ingrese Nombre");
-        }else if(txtapellido_mi.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Ingrese Apellidos");
-        }else if (txtdni_mi.getText().length()!=8) {
-            JOptionPane.showMessageDialog(null,"Ingrese DNI Completo","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if (txtnacimiento.getDate()==null) {
-            JOptionPane.showMessageDialog(null,"Ingrese Fecha de Nacimiento","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if (txtciudad.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null,"Ingrese ciudad de origen","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if(txtpais.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Ingrese país de origen","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if(txttelefono.getText().length()>0 && txttelefono.getText().length()<9){
-            JOptionPane.showMessageDialog(null,"Ingrese Teléfono correctamente","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else{
-             /*Nombres,Apellidos,DNI,Fecha Nacimiento,Ciudad,Estado Civil,País,Teléfono,Ocupacion,Dirección*/  
-            String []Dato=new String [10];
-            Dato[0]=txtnombre_mi.getText();
-            Dato[1]=txtapellido_mi.getText();
-            Dato[2]=txtdni_mi.getText();
-            Dato[3]=fecha.getFecha(txtnacimiento);        
-            Dato[4]=txtciudad.getText();
-            Dato[5]=((String) cmbestadocivil.getSelectedItem());
-            Dato[6]=txtpais.getText();
-            Dato[7]=txttelefono.getText();
-            Dato[8]=txtocupacion.getText();
-            Dato[9]=txtdireccion.getText();                
-            ///limpiando campos
-            limpiaringresohuesped();
-            btnbuscar_th.setEnabled(false);
-            modelo.addRow(Dato);
-            //
-            btneditar.setEnabled(true);
-            btnactualizar.setEnabled(false);
-            btneliminar.setEnabled(true);
-            btneliminart.setEnabled(true);
-            //
-            cantidadpersonas=cantidadpersonas-1;
-            if(cantidadpersonas<=1){
-                btnagregar.setEnabled(false);
-                //bloqueando campos
-                bloquearcampoingreso(0);
-                btnactualizar.setEnabled(false);
-            }            
-        }     
-    }//GEN-LAST:event_btnagregarActionPerformed
-
-    private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
-        // btn eliminar
-        int filasel=tb_det.getSelectedRow();
-        if(filasel>=0){
-            modelo.removeRow(filasel);
-            cantidadpersonas=cantidadpersonas+1;            
-            bloquearcampoingreso(1);//desbloquenado campos
-            btnagregar.setEnabled(true);               
-        }else{
-            JOptionPane.showMessageDialog(null,"Elije registro para eliminar","ERROR",JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btneliminarActionPerformed
-
-    private void btneliminartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminartActionPerformed
-        // boton eliminar todos elementos
-        eliminarelementos(); 
-        btnagregar.setEnabled(true);
-        btneditar.setEnabled(false);
-        btnactualizar.setEnabled(false);
-        btneliminar.setEnabled(false);
-        btneliminart.setEnabled(false);        
-        bloquearcampoingreso(1);           
-    }//GEN-LAST:event_btneliminartActionPerformed
-
-    private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
-        // Actualizar
-        if(txtnombre_mi.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Ingrese Nombre");
-        }else if(txtapellido_mi.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Ingrese Apellidos");
-        }else if (txtdni_mi.getText().length()!=8) {
-            JOptionPane.showMessageDialog(null,"Ingrese DNI","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if (txtnacimiento.getDate()==null) {
-            JOptionPane.showMessageDialog(null,"Ingrese Fecha de Nacimiento","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if (txtciudad.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null,"Ingrese Ciudad de Origen","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if(txtpais.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Ingrese País de Origen","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else{        
-            /*Nombres,Apellidos,DNI,Fecha Nacimiento,Ciudad,Estado Civil,País,Teléfono,Ocupacion,Dirección*/
-            modelo.setValueAt(txtnombre_mi.getText(), seleccionado, 0);
-            modelo.setValueAt(txtapellido_mi.getText(), seleccionado, 1);
-            modelo.setValueAt(txtdni_mi.getText(), seleccionado, 2);
-            modelo.setValueAt(fecha.getFecha(txtnacimiento), seleccionado, 3);
-            modelo.setValueAt(txtciudad.getText(), seleccionado, 4);
-            modelo.setValueAt(((String) cmbestadocivil.getSelectedItem()), seleccionado, 5);
-            modelo.setValueAt(txtpais.getText(), seleccionado, 6);
-            modelo.setValueAt(txttelefono.getText(), seleccionado, 7);
-            modelo.setValueAt(txtocupacion.getText(), seleccionado, 8);
-            modelo.setValueAt(txtdireccion.getText(), seleccionado, 9);
-            //poner resetear
-            limpiaringresohuesped();
-            btneditar.setEnabled(true);
-            btnactualizar.setEnabled(false);
-            btneliminar.setEnabled(true);
-            btneliminart.setEnabled(true);
-            btnagregar.setEnabled(true);
-            if(cantidadpersonas<=1){
-                ///bloqueando campos
-                bloquearcampoingreso(0);            
-                btnagregar.setEnabled(false); 
-            }
-        }
-    }//GEN-LAST:event_btnactualizarActionPerformed
-
-    private void txtidalquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidalquilerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtidalquilerActionPerformed
-
-    private void btnhuespedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhuespedActionPerformed
-        // boton nuevo huesped
-       
-        String bandera=huesped.bandera_huesped;
-        try{            
-            if(bandera==null){            
-                huesped a= new huesped();
-                this.getDesktopPane().add(a);
-                a.setVisible(true);            
-            }else{
-                JOptionPane.showMessageDialog(rootPane,"La ventana ya esta abierta!");
-            }    
-        }catch(Exception e){
-            e.printStackTrace();    
-        }
-        
-    }//GEN-LAST:event_btnhuespedActionPerformed
-
-    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
-        // cerrando ventana
-        bandera_alquiler=null;
-    }//GEN-LAST:event_formInternalFrameClosing
-
-    private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
-        // boton editar
-        seleccionado=tb_det.getSelectedRow();
-        if(seleccionado>-1){
-            /*Nombres,Apellidos,DNI,Fecha Nacimiento,Ciudad,Estado Civil,País,Teléfono,Ocupacion,Dirección*/
-            txtnombre_mi.setText(tb_det.getValueAt(seleccionado,0).toString());
-            txtapellido_mi.setText(tb_det.getValueAt(seleccionado,1).toString());
-            txtdni_mi.setText(tb_det.getValueAt(seleccionado,2).toString());
-            ////poner fecha
-            txtciudad.setText(tb_det.getValueAt(seleccionado,4).toString());
-            cmbestadocivil.setSelectedItem(tb_det.getValueAt(seleccionado, 5).toString());
-            txtpais.setText(tb_det.getValueAt(seleccionado,6).toString());
-            txttelefono.setText(tb_det.getValueAt(seleccionado,7).toString());
-            txtocupacion.setText(tb_det.getValueAt(seleccionado,8).toString());
-            txtdireccion.setText(tb_det.getValueAt(seleccionado,9).toString());
-            //////////            
-            bloquearcampoingreso(1);//desb campos            
-            btnagregar.setEnabled(false); 
-            /////
-            btneditar.setEnabled(false);
-            btnactualizar.setEnabled(true);
-            btneliminar.setEnabled(false);
-            btneliminart.setEnabled(false);           
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Seleccione un registro");
-        }
-    }//GEN-LAST:event_btneditarActionPerformed
-
-    private void txtllegadaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtllegadaKeyTyped
-        // fecha llegada        
-        int numerocaracteres=20;        
-        if(txtllegada.getText().length()>=numerocaracteres){
+    private void txtmontoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmontoKeyTyped
+        // monto total
+        int numerocaracteres=7;
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c))
+        {
+            getToolkit().beep();
+            evt.consume();
+            //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+        }else if(txtmonto.getText().length()>=numerocaracteres){
             getToolkit().beep();
             evt.consume();
         }
-    }//GEN-LAST:event_txtllegadaKeyTyped
+    }//GEN-LAST:event_txtmontoKeyTyped
 
     private void txtdni_miKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdni_miKeyTyped
         // dni de miembro habitacion
@@ -1500,7 +1255,7 @@ public class alquiler extends javax.swing.JInternalFrame {
             evt.consume();
             //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
         }
-        
+
         if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
@@ -1514,32 +1269,6 @@ public class alquiler extends javax.swing.JInternalFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtdni_miKeyTyped
-
-    private void txtnombre_miKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombre_miKeyTyped
-        // nombre miembro habitacion
-        int numerocaracteres=20;
-        char c = evt.getKeyChar();
-        if (Character.isDigit(c))
-        {
-            getToolkit().beep();
-            evt.consume();
-            //JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }
-        
-        if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
-            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
-            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
-        {
-            getToolkit().beep();
-            evt.consume();
-            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }else if(txtnombre_mi.getText().length()>=numerocaracteres){
-            getToolkit().beep();
-            evt.consume();
-        }
-        
-    }//GEN-LAST:event_txtnombre_miKeyTyped
 
     private void txtapellido_miKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellido_miKeyTyped
         // apellido de miembro habitacion
@@ -1565,14 +1294,34 @@ public class alquiler extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtapellido_miKeyTyped
 
-    private void btnexplorarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexplorarActionPerformed
-        // Boton explorar
-        elegir_h=new elegir_huesped(this,true);
-        elegir_h.setVisible(true);                
-        spinner.setEnabled(true);//set enable spinner
-        txtdni.setEditable(false);
-        System.out.println("el ide huesped regresado: "+id_huesped_huesped);        
-    }//GEN-LAST:event_btnexplorarActionPerformed
+    private void txtnombre_miActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombre_miActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnombre_miActionPerformed
+
+    private void txtnombre_miKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombre_miKeyTyped
+        // nombre miembro habitacion
+        int numerocaracteres=20;
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c))
+        {
+            getToolkit().beep();
+            evt.consume();
+            //JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+
+        if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
+            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+        {
+            getToolkit().beep();
+            evt.consume();
+            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }else if(txtnombre_mi.getText().length()>=numerocaracteres){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtnombre_miKeyTyped
 
     private void txtciudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtciudadKeyTyped
         // typo dato CIUDAD
@@ -1622,6 +1371,32 @@ public class alquiler extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtpaisKeyTyped
 
+    private void txttelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyTyped
+        // TODO add your handling code here:
+        int numerocaracteres=9;
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c))
+        {
+            getToolkit().beep();
+            evt.consume();
+            //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+        }
+        if ((int)
+            evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
+            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+        {
+            getToolkit().beep();
+            evt.consume();
+            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }else if(txttelefono.getText().length()>=numerocaracteres){
+            getToolkit().beep();
+            evt.consume();
+            //JOptionPane.showMessageDialog(null,"Exceso de dígitos","!Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txttelefonoKeyTyped
+
     private void txtocupacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtocupacionKeyTyped
         // oCUPACION
         int numerocaracteres=25;
@@ -1655,46 +1430,329 @@ public class alquiler extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtdireccionKeyTyped
 
-    private void txttelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyTyped
-        // TODO add your handling code here:
-        int numerocaracteres=9;
-        char c = evt.getKeyChar();       
-        if (Character.isLetter(c))
-        {
-            getToolkit().beep();
-            evt.consume();
-            //JOptionPane.showMessageDialog(rootPane, "Solo numeros");
+    private void btnagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarActionPerformed
+        // boton agregar
+        if(txtnombre_mi.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese Nombre");
+        }else if(txtapellido_mi.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese Apellidos");
+        }else if (txtdni_mi.getText().length()!=8) {
+            JOptionPane.showMessageDialog(null,"Ingrese DNI Completo","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if (txtnacimiento.getDate()==null) {
+            JOptionPane.showMessageDialog(null,"Ingrese Fecha de Nacimiento","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if (txtciudad.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null,"Ingrese ciudad de origen","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if(txtpais.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese país de origen","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if(txttelefono.getText().length()>0 && txttelefono.getText().length()<9){
+            JOptionPane.showMessageDialog(null,"Ingrese Teléfono correctamente","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else{
+            /*Nombres,Apellidos,DNI,Fecha Nacimiento,Ciudad,Estado Civil,País,Teléfono,Ocupacion,Dirección*/
+            String []Dato=new String [10];
+            Dato[0]=txtnombre_mi.getText();
+            Dato[1]=txtapellido_mi.getText();
+            Dato[2]=txtdni_mi.getText();
+            Dato[3]=fecha.getFecha(txtnacimiento);
+            Dato[4]=txtciudad.getText();
+            Dato[5]=((String) cmbestadocivil.getSelectedItem());
+            Dato[6]=txtpais.getText();
+            Dato[7]=txttelefono.getText();
+            Dato[8]=txtocupacion.getText();
+            Dato[9]=txtdireccion.getText();
+            ///limpiando campos
+            limpiaringresohuesped();
+            btnbuscar_th.setEnabled(false);
+            modelo.addRow(Dato);
+            //
+            btneditar.setEnabled(true);
+            btnactualizar.setEnabled(false);
+            btneliminar.setEnabled(true);
+            btneliminart.setEnabled(true);
+            //
+            cantidadpersonas=cantidadpersonas-1;
+            if(cantidadpersonas<=1){
+                btnagregar.setEnabled(false);
+                //bloqueando campos
+                bloquearcampoingreso(0);
+                btnactualizar.setEnabled(false);
+            }
         }
-        if ((int)
-                evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
-            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
-            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
-        {
-            getToolkit().beep();
-            evt.consume();
-            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }else if(txttelefono.getText().length()>=numerocaracteres){
-            getToolkit().beep();
-            evt.consume();
-            //JOptionPane.showMessageDialog(null,"Exceso de dígitos","!Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }   
-    }//GEN-LAST:event_txttelefonoKeyTyped
+    }//GEN-LAST:event_btnagregarActionPerformed
 
-    private void spinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spinnerStateChanged
-        // cambio en spinner
-        txtnumeroha.setEnabled(true);
-        txttipoha.setEnabled(true);
-        //txtnumeroha.setEnabled(true);
-        //txttipoha.setEnabled(true);
-        btnbuscar_th.setEnabled(true);
-        //btnbuscarhabitacion.setEnabled(true);                  
-        //txtalquiler.setEnabled(true);        
-    }//GEN-LAST:event_spinnerStateChanged
+    private void btneditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditarActionPerformed
+        // boton editar
+        seleccionado=tb_det.getSelectedRow();
+        if(seleccionado>-1){
+            /*Nombres,Apellidos,DNI,Fecha Nacimiento,Ciudad,Estado Civil,País,Teléfono,Ocupacion,Dirección*/
+            txtnombre_mi.setText(tb_det.getValueAt(seleccionado,0).toString());
+            txtapellido_mi.setText(tb_det.getValueAt(seleccionado,1).toString());
+            txtdni_mi.setText(tb_det.getValueAt(seleccionado,2).toString());
+            ////poner fecha
+            txtciudad.setText(tb_det.getValueAt(seleccionado,4).toString());
+            cmbestadocivil.setSelectedItem(tb_det.getValueAt(seleccionado, 5).toString());
+            txtpais.setText(tb_det.getValueAt(seleccionado,6).toString());
+            txttelefono.setText(tb_det.getValueAt(seleccionado,7).toString());
+            txtocupacion.setText(tb_det.getValueAt(seleccionado,8).toString());
+            txtdireccion.setText(tb_det.getValueAt(seleccionado,9).toString());
+            //////////
+            bloquearcampoingreso(1);//desb campos
+            btnagregar.setEnabled(false);
+            /////
+            btneditar.setEnabled(false);
+            btnactualizar.setEnabled(true);
+            btneliminar.setEnabled(false);
+            btneliminart.setEnabled(false);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Seleccione un registro");
+        }
+    }//GEN-LAST:event_btneditarActionPerformed
 
-    private void txtnombre_miActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombre_miActionPerformed
+    private void btnactualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualizarActionPerformed
+        // Actualizar
+        if(txtnombre_mi.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese Nombre");
+        }else if(txtapellido_mi.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese Apellidos");
+        }else if (txtdni_mi.getText().length()!=8) {
+            JOptionPane.showMessageDialog(null,"Ingrese DNI","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if (txtnacimiento.getDate()==null) {
+            JOptionPane.showMessageDialog(null,"Ingrese Fecha de Nacimiento","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if (txtciudad.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null,"Ingrese Ciudad de Origen","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if(txtpais.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese País de Origen","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else{
+            /*Nombres,Apellidos,DNI,Fecha Nacimiento,Ciudad,Estado Civil,País,Teléfono,Ocupacion,Dirección*/
+            modelo.setValueAt(txtnombre_mi.getText(), seleccionado, 0);
+            modelo.setValueAt(txtapellido_mi.getText(), seleccionado, 1);
+            modelo.setValueAt(txtdni_mi.getText(), seleccionado, 2);
+            modelo.setValueAt(fecha.getFecha(txtnacimiento), seleccionado, 3);
+            modelo.setValueAt(txtciudad.getText(), seleccionado, 4);
+            modelo.setValueAt(((String) cmbestadocivil.getSelectedItem()), seleccionado, 5);
+            modelo.setValueAt(txtpais.getText(), seleccionado, 6);
+            modelo.setValueAt(txttelefono.getText(), seleccionado, 7);
+            modelo.setValueAt(txtocupacion.getText(), seleccionado, 8);
+            modelo.setValueAt(txtdireccion.getText(), seleccionado, 9);
+            //poner resetear
+            limpiaringresohuesped();
+            btneditar.setEnabled(true);
+            btnactualizar.setEnabled(false);
+            btneliminar.setEnabled(true);
+            btneliminart.setEnabled(true);
+            btnagregar.setEnabled(true);
+            if(cantidadpersonas<=1){
+                ///bloqueando campos
+                bloquearcampoingreso(0);
+                btnagregar.setEnabled(false);
+            }
+        }
+    }//GEN-LAST:event_btnactualizarActionPerformed
+
+    private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
+        // btn eliminar
+        int filasel=tb_det.getSelectedRow();
+        if(filasel>=0){
+            modelo.removeRow(filasel);
+            cantidadpersonas=cantidadpersonas+1;
+            bloquearcampoingreso(1);//desbloquenado campos
+            btnagregar.setEnabled(true);
+        }else{
+            JOptionPane.showMessageDialog(null,"Elije registro para eliminar","ERROR",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btneliminarActionPerformed
+
+    private void btneliminartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminartActionPerformed
+        // boton eliminar todos elementos
+        eliminarelementos();
+        btnagregar.setEnabled(true);
+        btneditar.setEnabled(false);
+        btnactualizar.setEnabled(false);
+        btneliminar.setEnabled(false);
+        btneliminart.setEnabled(false);
+        bloquearcampoingreso(1);
+    }//GEN-LAST:event_btneliminartActionPerformed
+
+    private void txtidalquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidalquilerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnombre_miActionPerformed
+    }//GEN-LAST:event_txtidalquilerActionPerformed
+
+    private void txtllegadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtllegadaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtllegadaActionPerformed
+
+    private void txtllegadaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtllegadaKeyTyped
+        // fecha llegada
+        int numerocaracteres=20;
+        if(txtllegada.getText().length()>=numerocaracteres){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtllegadaKeyTyped
+
+    private void txtobservacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtobservacionKeyTyped
+        // observacion
+        int numerocaracteres=35;
+        if(txtobservacion.getText().length()>=numerocaracteres){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtobservacionKeyTyped
+
+    private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
+        // boton nuevo
+        limpiar();
+        btnnuevo();
+    }//GEN-LAST:event_btnnuevoActionPerformed
+
+    private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
+        // boton salir
+        cc.desconectar();
+        bandera_alquiler=null;
+        this.dispose();
+    }//GEN-LAST:event_btnsalirActionPerformed
+
+    private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
+        // boton guardar
+        if(txtdni.getText().length()!=8){
+            JOptionPane.showMessageDialog(null,"Elija Huésped","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if(totalpersonas<1){
+            JOptionPane.showMessageDialog(null,"Ingresa Cantidas de Personas","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if (txtnumeroca.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null,"Ingresa Cantidad de camas","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if (txtmonto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null,"Ingresa Monto Total","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if(txtidalquiler.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"No existe ID_Alquiler","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if (txtllegada.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null,"Error al Obtener Fecha de llegada","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if (txtsalida.getDate()==null) {
+            JOptionPane.showMessageDialog(null,"Ingresa Fecha Salida","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if (txtusuario.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null,"Error al obtener Usuario ","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if(txttipoha.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Elije habitacion","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else if((totalpersonas>1) && ((tb_det.getRowCount()+1)!=totalpersonas)){
+            JOptionPane.showMessageDialog(null,"Completa la Tabla de Huespedes en esta habitación","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else
+        {
+            SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date fech = new Date();
+            String ll= myFormat.format(fech);
+            String sa = fecha.getFecha(txtsalida);
+            double montoneto=0,intmonto=0;
+            int numdias=0;
+            try {
+                Date date1 = myFormat.parse(ll);
+                Date date2 = myFormat.parse(sa);
+                long diff = date2.getTime() - date1.getTime();
+                System.out.println ("Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+                String dias=String.valueOf(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+                numdias=Integer.parseInt(dias);
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            intmonto=Double.parseDouble(txtmonto.getText());
+            montoneto=numdias*intmonto;
+
+            try
+            {
+                PreparedStatement pst=cn.prepareStatement("INSERT INTO alquila(id_alquila,huesped_id_huesped,"
+                    + "usuario_id_usuario,fecha_llegada,fecha_salida,num_dias,num_camas,observacion,monto_total,"
+                    + "habitacion_id_habitacion) VALUES (?,?,?,?,?,?,?,?,?,?)");
+                //pst.setString(1,txtnumeroha.getText());
+                pst.setString(1,txtidalquiler.getText());//id alquiler
+                pst.setString(2,id_huesped_huesped);
+                pst.setString(3,txtusuario.getText());
+                pst.setString(4,txtllegada.getText());
+                pst.setString(5,fecha.getFecha(txtsalida));//fecha salida
+                pst.setString(6,String.valueOf(numdias));//num dias// corregir
+                pst.setString(7,txtnumeroca.getText());//num camas
+                pst.setString(8,txtobservacion.getText());
+                pst.setString(9,String.valueOf(montoneto));//monto total, corregir!!
+                pst.setString(10,id_habitacion_seleccion);
+
+                int a=pst.executeUpdate();
+                if(a>0){
+                    System.out.println("Registro exitoso en Alquila");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Error al agregar en Alquila ","Error",1);
+                }
+                //
+                //String habb=txtnumeroha.getText();
+                PreparedStatement pst1=cn.prepareStatement("UPDATE habitacion"
+                    + " SET estado='Ocupado' WHERE id_habitacion='"+id_habitacion_seleccion+"'");
+                int b=pst1.executeUpdate();
+                if(b>0){
+                    System.out.println("Actualizacion exitosa en Habitacion");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Error al actualizar habitación ","Error",1);
+                }
+                int c=1;
+                ////  actualizar tabla detalle
+                if(totalpersonas>1)
+                {
+                    c=0;//sirve para dar mensaje de confirmacion
+                    try
+                    {
+                        String id="";
+                        ResultSet rsa;
+                        int cont;
+                        for(int i=0;i<tb_det.getRowCount();i++)
+                        {
+                            Statement sent = cn.createStatement();
+                            rsa = sent.executeQuery("SELECT IFNULL(MAX(CAST(id_detalle AS UNSIGNED)), 0) codigoExterno FROM detalle_alquila");
+                            while(rsa.next()){
+                                cont =Integer.parseInt(rsa.getString("codigoExterno"))+1;
+                                id=(String.valueOf(cont));
+                            }/////detalle de alquiler
+                            PreparedStatement pst2=cn.prepareStatement("INSERT INTO detalle_alquila"
+                                + "(id_detalle,Nombres,Apellidos,dni,nacimiento,ciudad,estado_civil,pais,telefono,"
+                                + "ocupacion,direccion,alquila_id_alquila) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+                            /*Nombres,Apellidos,DNI,Fecha Nacimiento,Ciudad,Estado Civil,País,Teléfono,Ocupacion,Dirección*/
+                            pst2.setString(1,id);// id detalle
+                            pst2.setString(2,tb_det.getValueAt(i,0).toString());//nombre
+                            pst2.setString(3,tb_det.getValueAt(i,1).toString());//apellido
+                            pst2.setString(4,tb_det.getValueAt(i,2).toString());//dni
+                            pst2.setString(5,tb_det.getValueAt(i,3).toString());//
+                            pst2.setString(6,tb_det.getValueAt(i,4).toString());//
+                            pst2.setString(7,tb_det.getValueAt(i,5).toString());//estado civil
+                            pst2.setString(8,tb_det.getValueAt(i,6).toString());//
+                            pst2.setString(9,tb_det.getValueAt(i,7).toString());//telefono
+                            pst2.setString(10,tb_det.getValueAt(i,8).toString());//
+                            pst2.setString(11,tb_det.getValueAt(i,9).toString());//direccion
+                            pst2.setString(12,txtidalquiler.getText());//id alquiler
+                            c=pst2.executeUpdate();
+                            if(c>0){
+                                System.out.println("Registro exitoso en detalle_alquiler");
+                            }
+                            else{
+                                JOptionPane.showMessageDialog(null,"Error al agregar ","Error",1);
+                            }
+                        }//fin for
+                    } catch (Exception e) {
+                        System.out.println("no se pudo actualizar detalle alquiler: "+e.getMessage());
+                    }//fin trycatch
+                }// fin if para detalle alquiler
+                if((a>0)&&(b>0)&&(c>0)){
+                    JOptionPane.showMessageDialog(null,"Registro Exitoso","FELICITACIONES",JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Error al agregar ");
+                }
+                btnnuevo();
+                eliminarelementos();
+                bloqueorestantes();///fin de todos los insert
+
+            }catch(HeadlessException | SQLException e){
+                JOptionPane.showMessageDialog(null, "error al agegar datos en alquila y detalle " +e);
+            }//fin trycatch
+        }//fn else
+        ///
+    }//GEN-LAST:event_btnguardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1728,6 +1786,7 @@ public class alquiler extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private jcMousePanel.jcMousePanel jcMousePanel1;
     private javax.swing.JLabel lb_ape_alq;
     private javax.swing.JLabel lb_dni_alq;
     private javax.swing.JLabel lb_fech_lleg;
