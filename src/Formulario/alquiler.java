@@ -532,7 +532,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel_dt_huesp, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(panel_dt_huesp, javax.swing.GroupLayout.PREFERRED_SIZE, 392, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panel_dt_hab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -867,6 +867,11 @@ public class alquiler extends javax.swing.JInternalFrame {
         });
 
         txtusuario.setEditable(false);
+        txtusuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtusuarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel_dt_alqLayout = new javax.swing.GroupLayout(panel_dt_alq);
         panel_dt_alq.setLayout(panel_dt_alqLayout);
@@ -1740,6 +1745,10 @@ public class alquiler extends javax.swing.JInternalFrame {
         }//fn else
         ///
     }//GEN-LAST:event_btnguardarActionPerformed
+
+    private void txtusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtusuarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

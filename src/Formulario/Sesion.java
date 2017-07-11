@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class Sesion extends javax.swing.JFrame {
-
+        public static String ventana=null;
     ResultSet datos;
     public Sesion() {
         initComponents();
@@ -33,7 +33,7 @@ public class Sesion extends javax.swing.JFrame {
         }
         else{
             String cap="";
-            try{            
+            try{        
                 PreparedStatement pst=cn.prepareStatement("SELECT *from usuario where id_usuario='"+usu+"'&& contrasena='"+con+"'");
                 datos = pst.executeQuery();//buscando datos y guardando en datos           
                 while(datos.next()){
@@ -41,17 +41,23 @@ public class Sesion extends javax.swing.JFrame {
                 } 
                 if(cap.equals("Administrador")){
                     this.setVisible(false);
-                    JOptionPane.showMessageDialog(null,"Bienvenido Administrador "+usu);
-                    MenuPrincipal ingresoA = new MenuPrincipal();                    
+                    //JOptionPane.showMessageDialog(null,"Bienvenido Administrador "+usu);
+                    ventana="1";
+                     carga a= new carga();
+                    a.setVisible(true);
+                   /* MenuPrincipal ingresoA = new MenuPrincipal();                    
                     ingresoA.obtenerusuario(usu);
-                    ingresoA.setVisible(true);     
+                    ingresoA.setVisible(true);    */ 
                 }
                 if(cap.equals("Recepcionista")){
                     this.setVisible(false);
-                    JOptionPane.showMessageDialog(null,"Bienvenido Recepcionista "+usu);
-                    MenuPrincipalRe ingresoR = new MenuPrincipalRe();
+                    //JOptionPane.showMessageDialog(null,"Bienvenido Recepcionista "+usu);
+                    ventana="2";
+                    carga a= new carga();
+                    a.setVisible(true);
+                    /*MenuPrincipalRe ingresoR = new MenuPrincipalRe();
                     ingresoR.obtenerusuario(usu);
-                    ingresoR.setVisible(true);       
+                    ingresoR.setVisible(true);    */   
                 }
                 if((!cap.equals("Administrador"))&&(!cap.equals("Recepcionista")))
                 {
