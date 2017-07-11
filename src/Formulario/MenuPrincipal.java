@@ -750,7 +750,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
-         exportacion a= new exportacion();
+         exportacion a= new exportacion();    
+         this.escritorio.add(a);
          a.setVisible(true);
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
