@@ -103,7 +103,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem22 = new javax.swing.JMenuItem();
         jSeparator18 = new javax.swing.JPopupMenu.Separator();
         visualizardetallealquiler = new javax.swing.JMenuItem();
-        jMenuItem20 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jSeparator15 = new javax.swing.JPopupMenu.Separator();
@@ -125,7 +124,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 581, Short.MAX_VALUE)
+            .addGap(0, 545, Short.MAX_VALUE)
         );
 
         jToolBar1.setRollover(true);
@@ -134,8 +133,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/INICIO.png"))); // NOI18N
         jMenu1.setText("Login");
-        jMenu1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenu1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        MPcerrarsesion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         MPcerrarsesion.setText("Cerrar Sesión");
         MPcerrarsesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,6 +145,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu1.add(MPcerrarsesion);
         jMenu1.add(jSeparator1);
 
+        MPsalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
         MPsalir.setText("Salir ");
         MPsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,7 +158,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/GUARDAR.png"))); // NOI18N
         jMenu2.setText("Registro");
-        jMenu2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenu2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jMenuItem3.setText("Huésped");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -198,8 +199,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/RECEPCION.png"))); // NOI18N
         jMenu3.setText("Recepción");
-        jMenu3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenu3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem8.setText("Alquiler");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,6 +211,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu3.add(jMenuItem8);
         jMenu3.add(jSeparator5);
 
+        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem9.setText("Reserva");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,6 +221,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu3.add(jMenuItem9);
         jMenu3.add(jSeparator6);
 
+        jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem10.setText("Cobro Diario");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,6 +231,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu3.add(jMenuItem10);
         jMenu3.add(jSeparator7);
 
+        jMenuItem11.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem11.setText("Cierre Diario");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -248,7 +253,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/CONSULTAS.png"))); // NOI18N
         jMenu4.setText("Consultas");
-        jMenu4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenu4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jMenuItem12.setText("Buscar  Húesped");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
@@ -321,19 +326,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(visualizardetallealquiler);
 
-        jMenuItem20.setText("Respaldo");
-        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem20ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem20);
-
         jMenuBar1.add(jMenu4);
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/REPORTE.png"))); // NOI18N
         jMenu5.setText("Reportes");
-        jMenu5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenu5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jMenuItem2.setText("Detalle de alquileres");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -388,11 +385,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void MPsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPsalirActionPerformed
-        // TODO add your handling code here:
-      System.exit(0);
-    }//GEN-LAST:event_MPsalirActionPerformed
-
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // usuario
         String bandera=usuario.bandera_usuario;
@@ -408,13 +400,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             e.printStackTrace();    
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void MPcerrarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPcerrarsesionActionPerformed
-        // TODO add your handling code here:
-        Sesion a= new Sesion();
-        a.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MPcerrarsesionActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // boton huesped     
@@ -742,12 +727,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
-    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+    private void MPsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPsalirActionPerformed
         // TODO add your handling code here:
-            exportacion a=new exportacion();          
-            this.escritorio.add(a);
-            a.setVisible(true);
-    }//GEN-LAST:event_jMenuItem20ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_MPsalirActionPerformed
+
+    private void MPcerrarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPcerrarsesionActionPerformed
+        // TODO add your handling code here:
+        Sesion a= new Sesion();
+        a.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_MPcerrarsesionActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -803,7 +793,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     public javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem3;

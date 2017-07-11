@@ -22,29 +22,41 @@ Conectar cc=new Conectar();
     
     void cargar(String valor)
     {
-        String [] titulos = {"    DNI  ", "   Nombres y Apellidos  ",  "    Telefono"};
+        String [] titulos = {" Usuario","  DNI  ", " Nombres y Apellidos  ","  Telefono","Fecha Actual","NºPersonas","Nº Habitaciones"};
         model =new DefaultTableModel(null,titulos);
         try{            
-            PreparedStatement pst=cn.prepareStatement(" select dni,nombre,apellido,telefono from taxista where nombre LIKE '%"+valor+"%'");
+            PreparedStatement pst=cn.prepareStatement(" select rm.usuario_id_usuario,t.dni,t.nombre,t.apellido,t.telefono,rm.fecha_actual,rm.num_persona,rm.num_habitacion from taxista t inner join recomienda rm \n" +
+"on t.id_taxista=rm.taxista_id_taxista  where t.nombre LIKE '%"+valor+"%'");
             datos = pst.executeQuery();//buscando datos y guardando en datos           
-            String [] fila = new String[3];
+            String [] fila = new String[7];
             while(datos.next()){
-                fila[0]=datos.getString("dni");
-                fila[1]=datos.getString("nombre")+"  "+datos.getString("apellido");
-                fila[2]=datos.getString("telefono");   
-             
+                fila[0]=datos.getString("rm.usuario_id_usuario"); 
+                fila[1]=datos.getString("t.dni");
+                fila[2]=datos.getString("t.nombre")+" , "+datos.getString("t.apellido");
+                fila[3]=datos.getString("t.telefono");   
+                fila[4]=datos.getString("rm.fecha_actual"); 
+                fila[5]=datos.getString("rm.num_persona"); 
+                fila[6]=datos.getString("rm.num_habitacion"); 
+               
                 model.addRow(fila);            
             } 
             t_datos.setModel(model);
-            t_datos.getColumnModel().getColumn(0).setMaxWidth(500);
-            t_datos.getColumnModel().getColumn(1).setMaxWidth(3000);
-            t_datos.getColumnModel().getColumn(2).setMaxWidth(1700);
+            t_datos.getColumnModel().getColumn(0).setMaxWidth(110);
+            t_datos.getColumnModel().getColumn(1).setMaxWidth(130);
+            t_datos.getColumnModel().getColumn(2).setMaxWidth(820);
+            t_datos.getColumnModel().getColumn(3).setMaxWidth(270);
+            t_datos.getColumnModel().getColumn(4).setMaxWidth(390);
+            t_datos.getColumnModel().getColumn(5).setMaxWidth(120);
+            t_datos.getColumnModel().getColumn(6).setMaxWidth(230);
             
             
             DefaultTableCellRenderer tcr= new DefaultTableCellRenderer();
             tcr.setHorizontalAlignment(SwingConstants.CENTER);
-            t_datos.getColumnModel().getColumn(0).setCellRenderer(tcr);
-            t_datos.getColumnModel().getColumn(2).setCellRenderer(tcr);
+            t_datos.getColumnModel().getColumn(1).setCellRenderer(tcr);
+            t_datos.getColumnModel().getColumn(3).setCellRenderer(tcr);
+            t_datos.getColumnModel().getColumn(4).setCellRenderer(tcr);
+            t_datos.getColumnModel().getColumn(5).setCellRenderer(tcr);
+            t_datos.getColumnModel().getColumn(6).setCellRenderer(tcr);
             t_datos.setModel(model);
         }catch(HeadlessException | SQLException e){
             System.err.println("El cliente no se encuentra registrado");
@@ -67,6 +79,7 @@ Conectar cc=new Conectar();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jcMousePanel1 = new jcMousePanel.jcMousePanel();
         jLabel3 = new javax.swing.JLabel();
         txtnombre = new javax.swing.JTextField();
         btnresetear = new javax.swing.JButton();
@@ -76,7 +89,10 @@ Conectar cc=new Conectar();
 
         setTitle("Buscar Taxista");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jcMousePanel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/fond3.jpg"))); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombres:");
 
         txtnombre.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +109,8 @@ Conectar cc=new Conectar();
             }
         });
 
-        btnresetear.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnresetear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnresetear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/resetear1.png"))); // NOI18N
         btnresetear.setText("Resetear");
         btnresetear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,7 +118,8 @@ Conectar cc=new Conectar();
             }
         });
 
-        btnsalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnsalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cerrar13.png"))); // NOI18N
         btnsalir.setText("Salir");
         btnsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,37 +138,49 @@ Conectar cc=new Conectar();
         t_datos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(t_datos);
 
+        javax.swing.GroupLayout jcMousePanel1Layout = new javax.swing.GroupLayout(jcMousePanel1);
+        jcMousePanel1.setLayout(jcMousePanel1Layout);
+        jcMousePanel1Layout.setHorizontalGroup(
+            jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jcMousePanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jcMousePanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 794, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jcMousePanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtnombre, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnresetear)
+                        .addGap(19, 19, 19)
+                        .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36))))
+        );
+        jcMousePanel1Layout.setVerticalGroup(
+            jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jcMousePanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnresetear, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(btnresetear)
-                .addGap(39, 39, 39)
-                .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnresetear)
-                    .addComponent(btnsalir)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -188,7 +218,6 @@ Conectar cc=new Conectar();
             evt.consume();
             JOptionPane.showMessageDialog(null,"No se permite usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
-
     }//GEN-LAST:event_txtnombreKeyTyped
 
     private void btnresetearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnresetearActionPerformed
@@ -201,7 +230,6 @@ Conectar cc=new Conectar();
         // TODO add your handling code here:
         this.dispose();
         bandera_buscar_taxista=null;
-        
     }//GEN-LAST:event_btnsalirActionPerformed
 
 
@@ -210,6 +238,7 @@ Conectar cc=new Conectar();
     public javax.swing.JButton btnsalir;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
+    private jcMousePanel.jcMousePanel jcMousePanel1;
     public javax.swing.JTable t_datos;
     public javax.swing.JTextField txtnombre;
     // End of variables declaration//GEN-END:variables

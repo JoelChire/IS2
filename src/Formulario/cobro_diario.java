@@ -151,11 +151,7 @@ public class cobro_diario extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        btnguardar = new javax.swing.JButton();
-        btnsalir = new javax.swing.JButton();
-        btncalcular = new javax.swing.JButton();
-        btnnuevo = new javax.swing.JButton();
+        jcMousePanel1 = new jcMousePanel.jcMousePanel();
         jPanel3 = new javax.swing.JPanel();
         lb_id_alq_cb_diario = new javax.swing.JLabel();
         txtalquiler = new javax.swing.JTextField();
@@ -173,75 +169,22 @@ public class cobro_diario extends javax.swing.JInternalFrame {
         txtrecibido = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtid = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        btnguardar = new javax.swing.JButton();
+        btnsalir = new javax.swing.JButton();
+        btncalcular = new javax.swing.JButton();
+        btnnuevo = new javax.swing.JButton();
         txtnombre = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
-        setTitle("COBRO DIARIO");
+        setTitle("Cobro Diario");
         setToolTipText("");
 
-        btnguardar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnguardar.setText("Guardar");
-        btnguardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnguardarActionPerformed(evt);
-            }
-        });
+        jcMousePanel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/fondo7.jpg"))); // NOI18N
 
-        btnsalir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnsalir.setText("Salir");
-        btnsalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnsalirActionPerformed(evt);
-            }
-        });
-
-        btncalcular.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btncalcular.setText("Calcular");
-        btncalcular.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btncalcularActionPerformed(evt);
-            }
-        });
-
-        btnnuevo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnnuevo.setText("Nuevo");
-        btnnuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnnuevoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btncalcular, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnguardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnnuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnnuevo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btncalcular)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnguardar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnsalir)
-                .addGap(17, 17, 17))
-        );
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nuevo Cobro Diario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
         lb_id_alq_cb_diario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lb_id_alq_cb_diario.setText("Alquiler:");
@@ -299,23 +242,24 @@ public class cobro_diario extends javax.swing.JInternalFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
                         .addComponent(lb_vuelt_cb_diario3)
                         .addGap(4, 4, 4)
                         .addComponent(txtfechaactual))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(lb_id_recep_cb_diario))
                             .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lb_id_alq_cb_diario)
                                     .addComponent(jLabel7))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addContainerGap(29, Short.MAX_VALUE)
+                                .addComponent(lb_id_recep_cb_diario)
+                                .addGap(18, 18, 18)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtalquiler)
                             .addComponent(txtrecepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -355,22 +299,97 @@ public class cobro_diario extends javax.swing.JInternalFrame {
                                 .addComponent(txtalquiler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lb_id_alq_cb_diario))
                             .addComponent(txtrecibido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lb_mont_xc_cb_diario2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtfechaactual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lb_vuelt_cb_diario3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtmontoporcobrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lb_vuelt_cb_diario4)
                                 .addComponent(txtrecepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lb_id_recep_cb_diario))
                             .addComponent(txtvuelto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
+        btnguardar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/GUARdar1.png"))); // NOI18N
+        btnguardar.setText("Guardar");
+        btnguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguardarActionPerformed(evt);
+            }
+        });
+
+        btnsalir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cerrar13.png"))); // NOI18N
+        btnsalir.setText("Salir");
+        btnsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsalirActionPerformed(evt);
+            }
+        });
+
+        btncalcular.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btncalcular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/calcular.png"))); // NOI18N
+        btncalcular.setText("Calcular");
+        btncalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncalcularActionPerformed(evt);
+            }
+        });
+
+        btnnuevo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo13.png"))); // NOI18N
+        btnnuevo.setText("Nuevo");
+        btnnuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnuevoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnsalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnnuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btncalcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnguardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btncalcular)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnsalir)
+                .addContainerGap())
+        );
+
+        txtnombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtnombreKeyReleased(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Nombre:");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -390,53 +409,97 @@ public class cobro_diario extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        txtnombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtnombreKeyReleased(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel1.setText("Nombre:");
+        javax.swing.GroupLayout jcMousePanel1Layout = new javax.swing.GroupLayout(jcMousePanel1);
+        jcMousePanel1.setLayout(jcMousePanel1Layout);
+        jcMousePanel1Layout.setHorizontalGroup(
+            jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jcMousePanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jcMousePanel1Layout.createSequentialGroup()
+                        .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jcMousePanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(txtnombre))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+        jcMousePanel1Layout.setVerticalGroup(
+            jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jcMousePanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jcMousePanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(43, 43, 43))
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jcMousePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtmontocobradoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmontocobradoKeyPressed
+        // TODO add your handling code here:
+        String id =(txtalquiler.getText());
+        try{
+            ResultSet rs1;
+            PreparedStatement pst=cn.prepareStatement("SELECT alquila_id_alquila FROM detalle_diario_dinero where alquila_id_alquila='"+id+"'");
+            rs1 = pst.executeQuery();//buscando datos y guardando en interfaz
+            if(rs1.next()){
+                ResultSet moncob;
+                Statement sent = cn.createStatement();
+                moncob = sent.executeQuery("Select min(monto_xcobrado) as monto_xcobrar from detalle_diario_dinero where alquila_id_alquila='"+id+"'");
+                while(moncob.next()){
+                    this.txtmontoporcobrar.setText(moncob.getString("monto_xcobrar"));}
+            }
+            else{
+                ResultSet moncob;
+                Statement sent = cn.createStatement();
+                moncob = sent.executeQuery("Select monto_total from alquila where id_alquila='"+id+"'");
+                while(moncob.next()){
+                    this.txtmontoporcobrar.setText(moncob.getString("monto_total"));}
+            }
+        }
+        catch(HeadlessException | SQLException e){
+            System.err.println("No se pudo buscar");
+        }
+        txtvuelto.setText("");
+        txtmontoporcobrar.setEnabled(false);
+        txtvuelto.setEnabled(false);
+    }//GEN-LAST:event_txtmontocobradoKeyPressed
+
+    private void txtmontoporcobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmontoporcobrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtmontoporcobrarActionPerformed
+
+    private void txtrecibidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrecibidoKeyPressed
+        // TODO add your handling code here:
+        txtvuelto.setText("");
+        txtvuelto.setEnabled(false);
+    }//GEN-LAST:event_txtrecibidoKeyPressed
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // TODO add your handling code here:
@@ -445,29 +508,29 @@ public class cobro_diario extends javax.swing.JInternalFrame {
         btnnuevo.setEnabled(true);
         if(txtmontocobrado.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Ingrese el monto cobrado ","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else   if (txtrecibido.getText().isEmpty()) {            
-            JOptionPane.showMessageDialog(null,"Ingrese el monto recibido","ERROR",JOptionPane.ERROR_MESSAGE); 
+        }else   if (txtrecibido.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null,"Ingrese el monto recibido","ERROR",JOptionPane.ERROR_MESSAGE);
         }else
         {
             try
-            {            
+            {
                 PreparedStatement pst=cn.prepareStatement("INSERT INTO detalle_diario_dinero"
                     + " (id_dinero,fecha_actual_dinero,id_usuario_dinero,monto_cobrado,monto_xcobrado,vuelto,alquila_id_alquila)"
-                     + " VALUES (?,?,?,?,?,?,?);");
-                pst.setString(1,txtid.getText());          
+                    + " VALUES (?,?,?,?,?,?,?);");
+                pst.setString(1,txtid.getText());
                 pst.setString(2,txtfechaactual.getText());
                 pst.setString(3,txtrecepcionista.getText());
-                pst.setString(4,txtmontocobrado.getText());             
+                pst.setString(4,txtmontocobrado.getText());
                 pst.setString(5,txtmontoporcobrar.getText());
-                pst.setString(6,txtvuelto.getText());   
+                pst.setString(6,txtvuelto.getText());
                 pst.setString(7,txtalquiler.getText());
                 int a=pst.executeUpdate();
-               
-                if((a>0)){                    
-                    JOptionPane.showMessageDialog(null,"Registro exitoso ");  
+
+                if((a>0)){
+                    JOptionPane.showMessageDialog(null,"Registro exitoso ");
                     txtid.setEnabled(false);
                     txtfechaactual.setEnabled(false);
-                    txtmontocobrado.setEnabled(false); 
+                    txtmontocobrado.setEnabled(false);
                     txtmontoporcobrar.setEnabled(false);
                     txtvuelto.setEnabled(false);
                     txtalquiler.setEnabled(false);
@@ -477,8 +540,8 @@ public class cobro_diario extends javax.swing.JInternalFrame {
                 }
                 else{
                     JOptionPane.showMessageDialog(null,"error al agregar ");
-                }  
-                
+                }
+
             }catch(HeadlessException | SQLException e){
                 JOptionPane.showMessageDialog(null, "error al agegar datos en detalle_diario_dinero " +e);
             }
@@ -487,98 +550,47 @@ public class cobro_diario extends javax.swing.JInternalFrame {
             //tty
         }
     }//GEN-LAST:event_btnguardarActionPerformed
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {                                   
-        // cerrando ventana
-        bandera_cobro=null;
-    }
-    
+
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
         // TODO add your handling code here:
-        
+
         bandera_cobro=null;
         this.dispose();
     }//GEN-LAST:event_btnsalirActionPerformed
-
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-       int fila= jTable1.getSelectedRow();
-        //txtusuario.setEnabled(true);
-        
-        if(fila>=0){
-        txtalquiler.setText(jTable1.getValueAt(fila, 0).toString());
-        btncalcular.setEnabled(true);
-        btnnuevo.setEnabled(false);
-        txtmontocobrado.setEnabled(true);
-        txtrecibido.setEnabled(true);
-        txtalquiler.setEnabled(true);
-        }
-        String id =(txtalquiler.getText());
-            try{
-                ResultSet rs1;
-                PreparedStatement pst=cn.prepareStatement("SELECT alquila_id_alquila FROM detalle_diario_dinero where alquila_id_alquila='"+id+"'");
-                rs1 = pst.executeQuery();//buscando datos y guardando en interfaz
-                if(rs1.next()){
-                    ResultSet moncob;
-                    Statement sent = cn.createStatement();
-                    moncob = sent.executeQuery("Select min(monto_xcobrado) as monto_xcobrar from detalle_diario_dinero where alquila_id_alquila='"+id+"'"); 
-                    while(moncob.next()){ 
-                    this.txtmontoporcobrar.setText(moncob.getString("monto_xcobrar"));}
-                }    
-                else{
-                    ResultSet moncob;
-                    Statement sent = cn.createStatement();
-                    moncob = sent.executeQuery("Select monto_total from alquila where id_alquila='"+id+"'"); 
-                    while(moncob.next()){ 
-                    this.txtmontoporcobrar.setText(moncob.getString("monto_total"));}
-                }   
-            }
-            catch(HeadlessException | SQLException e){
-                System.err.println("No se pudo buscar");
-            }
-    }//GEN-LAST:event_jTable1MouseClicked
-
-    private void txtnombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyReleased
-        // TODO add your handling code here:
-        mostrardatos(txtnombre.getText());
-    }//GEN-LAST:event_txtnombreKeyReleased
-
-    private void txtmontoporcobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmontoporcobrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtmontoporcobrarActionPerformed
 
     private void btncalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncalcularActionPerformed
         // TODO add your handling code here:
         //btncalcular.setEnabled(false);
         btnnuevo.setEnabled(false);
-        Double cobrado = Double.parseDouble(txtmontocobrado.getText()); 
+        Double cobrado = Double.parseDouble(txtmontocobrado.getText());
         Double recibido = Double.parseDouble(txtrecibido.getText());
         String id =(txtalquiler.getText());
         try{
-                ResultSet rs1;
-                PreparedStatement pst=cn.prepareStatement("SELECT alquila_id_alquila FROM detalle_diario_dinero where alquila_id_alquila='"+id+"'");
-                rs1 = pst.executeQuery();//buscando datos y guardando en interfaz
-                if(rs1.next()){
-                    ResultSet moncob;
-                    Statement sent = cn.createStatement();
-                    moncob = sent.executeQuery("Select min(monto_xcobrado) as monto_xcobrar from detalle_diario_dinero where alquila_id_alquila='"+id+"'"); 
-                    while(moncob.next()){ 
+            ResultSet rs1;
+            PreparedStatement pst=cn.prepareStatement("SELECT alquila_id_alquila FROM detalle_diario_dinero where alquila_id_alquila='"+id+"'");
+            rs1 = pst.executeQuery();//buscando datos y guardando en interfaz
+            if(rs1.next()){
+                ResultSet moncob;
+                Statement sent = cn.createStatement();
+                moncob = sent.executeQuery("Select min(monto_xcobrado) as monto_xcobrar from detalle_diario_dinero where alquila_id_alquila='"+id+"'");
+                while(moncob.next()){
                     Double montoxcobrar = Double.parseDouble(moncob.getString("monto_xcobrar"));
                     Double montoxcobrado = montoxcobrar - cobrado;
                     this.txtmontoporcobrar.setText(String.valueOf(montoxcobrado));}
-                }    
-                else{
-                    ResultSet moncob;
-                    Statement sent = cn.createStatement();
-                    moncob = sent.executeQuery("Select monto_total from alquila where id_alquila='"+id+"'"); 
-                    while(moncob.next()){
+            }
+            else{
+                ResultSet moncob;
+                Statement sent = cn.createStatement();
+                moncob = sent.executeQuery("Select monto_total from alquila where id_alquila='"+id+"'");
+                while(moncob.next()){
                     Double montoxcobrar = Double.parseDouble(moncob.getString("monto_total"));
                     Double montoxcobrado = montoxcobrar - cobrado;
                     this.txtmontoporcobrar.setText(String.valueOf(montoxcobrado));}
-                }   
             }
-            catch(HeadlessException | SQLException e){
-                System.err.println("No se pudo buscar");
-            }
+        }
+        catch(HeadlessException | SQLException e){
+            System.err.println("No se pudo buscar");
+        }
         txtmontoporcobrar.setEnabled(true);
         Double vuelto = recibido - cobrado;
         this.txtvuelto.setText(String.valueOf(vuelto));
@@ -586,45 +598,9 @@ public class cobro_diario extends javax.swing.JInternalFrame {
         btnguardar.setEnabled(true);
     }//GEN-LAST:event_btncalcularActionPerformed
 
-    private void txtmontocobradoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmontocobradoKeyPressed
-        // TODO add your handling code here:
-        String id =(txtalquiler.getText());
-            try{
-                ResultSet rs1;
-                PreparedStatement pst=cn.prepareStatement("SELECT alquila_id_alquila FROM detalle_diario_dinero where alquila_id_alquila='"+id+"'");
-                rs1 = pst.executeQuery();//buscando datos y guardando en interfaz
-                if(rs1.next()){
-                    ResultSet moncob;
-                    Statement sent = cn.createStatement();
-                    moncob = sent.executeQuery("Select min(monto_xcobrado) as monto_xcobrar from detalle_diario_dinero where alquila_id_alquila='"+id+"'"); 
-                    while(moncob.next()){ 
-                    this.txtmontoporcobrar.setText(moncob.getString("monto_xcobrar"));}
-                }    
-                else{
-                    ResultSet moncob;
-                    Statement sent = cn.createStatement();
-                    moncob = sent.executeQuery("Select monto_total from alquila where id_alquila='"+id+"'"); 
-                    while(moncob.next()){ 
-                    this.txtmontoporcobrar.setText(moncob.getString("monto_total"));}
-                }   
-            }
-            catch(HeadlessException | SQLException e){
-                System.err.println("No se pudo buscar");
-            }
-            txtvuelto.setText("");
-            txtmontoporcobrar.setEnabled(false);
-            txtvuelto.setEnabled(false);
-    }//GEN-LAST:event_txtmontocobradoKeyPressed
-
-    private void txtrecibidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrecibidoKeyPressed
-        // TODO add your handling code here:
-        txtvuelto.setText("");
-        txtvuelto.setEnabled(false);
-    }//GEN-LAST:event_txtrecibidoKeyPressed
-
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
         // TODO add your handling code here:
-        limpiar(); 
+        limpiar();
         txtmontoporcobrar.setEnabled(false);
         txtmontocobrado.setEnabled(false);
         txtrecibido.setEnabled(false);
@@ -633,9 +609,56 @@ public class cobro_diario extends javax.swing.JInternalFrame {
         btnguardar.setEnabled(false);
         btncalcular.setEnabled(false);
         btnnuevo.setEnabled(false);
-        txtid.setEnabled(false); 
+        txtid.setEnabled(false);
     }//GEN-LAST:event_btnnuevoActionPerformed
 
+    private void txtnombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyReleased
+        // TODO add your handling code here:
+        mostrardatos(txtnombre.getText());
+    }//GEN-LAST:event_txtnombreKeyReleased
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int fila= jTable1.getSelectedRow();
+        //txtusuario.setEnabled(true);
+
+        if(fila>=0){
+            txtalquiler.setText(jTable1.getValueAt(fila, 0).toString());
+            btncalcular.setEnabled(true);
+            btnnuevo.setEnabled(false);
+            txtmontocobrado.setEnabled(true);
+            txtrecibido.setEnabled(true);
+            txtalquiler.setEnabled(true);
+        }
+        String id =(txtalquiler.getText());
+        try{
+            ResultSet rs1;
+            PreparedStatement pst=cn.prepareStatement("SELECT alquila_id_alquila FROM detalle_diario_dinero where alquila_id_alquila='"+id+"'");
+            rs1 = pst.executeQuery();//buscando datos y guardando en interfaz
+            if(rs1.next()){
+                ResultSet moncob;
+                Statement sent = cn.createStatement();
+                moncob = sent.executeQuery("Select min(monto_xcobrado) as monto_xcobrar from detalle_diario_dinero where alquila_id_alquila='"+id+"'");
+                while(moncob.next()){
+                    this.txtmontoporcobrar.setText(moncob.getString("monto_xcobrar"));}
+            }
+            else{
+                ResultSet moncob;
+                Statement sent = cn.createStatement();
+                moncob = sent.executeQuery("Select monto_total from alquila where id_alquila='"+id+"'");
+                while(moncob.next()){
+                    this.txtmontoporcobrar.setText(moncob.getString("monto_total"));}
+            }
+        }
+        catch(HeadlessException | SQLException e){
+            System.err.println("No se pudo buscar");
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {                                   
+        // cerrando ventana
+        bandera_cobro=null;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btncalcular;
@@ -649,6 +672,7 @@ public class cobro_diario extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private jcMousePanel.jcMousePanel jcMousePanel1;
     private javax.swing.JLabel lb_id_alq_cb_diario;
     private javax.swing.JLabel lb_id_recep_cb_diario;
     private javax.swing.JLabel lb_mont_c_cb_diario;

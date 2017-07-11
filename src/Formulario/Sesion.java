@@ -72,13 +72,14 @@ public class Sesion extends javax.swing.JFrame {
     private void initComponents() {
 
         txtusuario1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         txtusuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtcontrasena = new javax.swing.JPasswordField();
         btnacceder = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
         txtusuario1.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
@@ -96,14 +97,10 @@ public class Sesion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("INICIO DE SESIÓN");
-        setMaximumSize(new java.awt.Dimension(384, 498));
-        setMinimumSize(new java.awt.Dimension(384, 498));
+        setMaximumSize(new java.awt.Dimension(419, 536));
+        setMinimumSize(new java.awt.Dimension(419, 536));
         setResizable(false);
         getContentPane().setLayout(null);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/usuario.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(70, 20, 260, 256);
 
         txtusuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtusuario.setName(""); // NOI18N
@@ -118,19 +115,19 @@ public class Sesion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtusuario);
-        txtusuario.setBounds(160, 290, 193, 35);
+        txtusuario.setBounds(180, 360, 200, 30);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 51, 102));
         jLabel2.setText("Usuario:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 290, 97, 35);
+        jLabel2.setBounds(30, 350, 150, 50);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 51, 102));
         jLabel3.setText("Contraseña:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 340, 120, 40);
+        jLabel3.setBounds(30, 390, 180, 50);
 
         txtcontrasena.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
         txtcontrasena.addActionListener(new java.awt.event.ActionListener() {
@@ -147,32 +144,44 @@ public class Sesion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtcontrasena);
-        txtcontrasena.setBounds(160, 340, 193, 34);
+        txtcontrasena.setBounds(180, 400, 200, 30);
 
-        btnacceder.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnacceder.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
+        btnacceder.setForeground(new java.awt.Color(0, 51, 51));
         btnacceder.setText("Acceder");
+        btnacceder.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnacceder.setMaximumSize(new java.awt.Dimension(458, 496));
+        btnacceder.setMinimumSize(new java.awt.Dimension(458, 496));
         btnacceder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnaccederActionPerformed(evt);
             }
         });
         getContentPane().add(btnacceder);
-        btnacceder.setBounds(50, 410, 130, 40);
+        btnacceder.setBounds(40, 450, 150, 40);
 
-        cancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cancelar.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
         cancelar.setText("Cancelar");
+        cancelar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelarActionPerformed(evt);
             }
         });
         getContentPane().add(cancelar);
-        cancelar.setBounds(210, 410, 130, 40);
+        cancelar.setBounds(220, 450, 150, 40);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/fond3.jpg"))); // NOI18N
-        jLabel4.setText("jLabel4");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/login.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(70, 100, 270, 250);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/19964952_2006753192893021_1614422236_n (1).png"))); // NOI18N
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(0, 0, 283, 96);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/pared-a-rayas_galeria_portrait.jpg"))); // NOI18N
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(0, 0, 390, 500);
+        jLabel4.setBounds(0, 0, 420, 530);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -297,6 +306,7 @@ public class Sesion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPasswordField txtcontrasena;
     private javax.swing.JTextField txtusuario;
     private javax.swing.JTextField txtusuario1;

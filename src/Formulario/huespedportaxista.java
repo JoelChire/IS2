@@ -111,6 +111,7 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jcMousePanel1 = new jcMousePanel.jcMousePanel();
         jPanel1 = new javax.swing.JPanel();
         txtusuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -134,6 +135,12 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
+
+        setTitle("Registro de Taxistas por Húespedes ");
+
+        jcMousePanel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/fondo7.jpg"))); // NOI18N
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nuevo Registro de las actividades del Taxista", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Usuario :");
@@ -174,6 +181,8 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
             }
         });
 
+        btnbuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscaaar13.png"))); // NOI18N
         btnbuscar.setText("Buscar");
         btnbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,8 +205,8 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtcod, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addComponent(txtcod, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnbuscar))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +218,7 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
                             .addComponent(txtfecha, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                             .addComponent(txtpersonas)
                             .addComponent(txthabitaciones))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,9 +244,13 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txthabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
+        btnnuevo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/nuevo13.png"))); // NOI18N
         btnnuevo.setText("Nuevo");
         btnnuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,6 +258,8 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
             }
         });
 
+        btnguardar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/GUARdar1.png"))); // NOI18N
         btnguardar.setText("Guardar");
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -252,6 +267,8 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
             }
         });
 
+        btnActualizar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/editar13.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,6 +276,8 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
             }
         });
 
+        btnsalir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cerrar13.png"))); // NOI18N
         btnsalir.setText("Salir");
         btnsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,24 +292,24 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnsalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnguardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                    .addComponent(btnnuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(13, 13, 13))
+                    .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizar)
+                    .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnnuevo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnguardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnActualizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+                .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -311,30 +330,41 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+        javax.swing.GroupLayout jcMousePanel1Layout = new javax.swing.GroupLayout(jcMousePanel1);
+        jcMousePanel1.setLayout(jcMousePanel1Layout);
+        jcMousePanel1Layout.setHorizontalGroup(
+            jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jcMousePanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jcMousePanel1Layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jcMousePanel1Layout.setVerticalGroup(
+            jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jcMousePanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -345,15 +375,15 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         /*int numerocaracteres=8;
         char d=evt.getKeyChar();
         if (txtdni.getText().length()>=numerocaracteres){
-        evt.consume();
+            evt.consume();
             JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
-        else if (Character.isLetter(d)) 
+        else if (Character.isLetter(d))
         {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null,"Solo números","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        } 
+        }
         else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
@@ -365,11 +395,16 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         }*/
     }//GEN-LAST:event_txtcodKeyTyped
 
+    private void txtfechaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfechaKeyReleased
+        // TODO add your handling code here:
+        mostrardatos(txtfecha.getText());
+    }//GEN-LAST:event_txtfechaKeyReleased
+
     private void txtpersonasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpersonasKeyTyped
         // TODO add your handling code here:
         int numerocaracteres=1;
-        char c = evt.getKeyChar(); 
-        if (Character.isLetter(c)) 
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c))
         {
             getToolkit().beep();
             evt.consume();
@@ -394,8 +429,8 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
     private void txthabitacionesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txthabitacionesKeyTyped
         // TODO add your handling code here:
         /*int numerocaracteres=1;
-        char c = evt.getKeyChar(); 
-        if (Character.isLetter(c)) 
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c))
         {
             getToolkit().beep();
             evt.consume();
@@ -417,11 +452,11 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         }*/
     }//GEN-LAST:event_txthabitacionesKeyTyped
 
-    private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
+    private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
         // TODO add your handling code here:
-        bandera_huespedportaxista=null;
-        dispose();
-    }//GEN-LAST:event_btnsalirActionPerformed
+        eleccion_htaxi = new elegir_htaxista( this,true);
+        eleccion_htaxi.setVisible(true);
+    }//GEN-LAST:event_btnbuscarActionPerformed
 
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
         // TODO add your handling code here:
@@ -436,76 +471,73 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         txtusuario.setEditable(false);
         txtfecha.setEditable(false);
         txtusuario.setEnabled(true);
-        
+
         txtfecha.setEnabled(true);
         txtcod.setEditable(true);
         txtpersonas.setEditable(true);
         txthabitaciones.setEditable(true);
-        
+
         btnActualizar.setEnabled(true);
         btnguardar.setEnabled(true);
         btnnuevo.setEnabled(false);
         mostrardatos("");
-        jTable1.setEnabled(false); 
-        
-       
-       
+        jTable1.setEnabled(false);
     }//GEN-LAST:event_btnnuevoActionPerformed
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // TODO add your handling code here:
         if(txtcod.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Ingrese el Nº del taxista","¡Error!",JOptionPane.ERROR_MESSAGE);
+        }
+        else if(txtpersonas.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese el nro de personas","¡Error!",JOptionPane.ERROR_MESSAGE);
+        }
+
+        else if(txthabitaciones.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese el nro de las habitaciones","¡Error!",JOptionPane.ERROR_MESSAGE);
+        }
+        else if(n==1){
+            try{
+                Conectar cc=new Conectar();
+                Connection cn=cc.conexion();
+                PreparedStatement pst=cn.prepareStatement("INSERT INTO recomienda(usuario_id_usuario,taxista_id_taxista,fecha_actual,num_persona,num_habitacion) VALUES(?,?,?,?,?)");
+                pst.setString(1,txtusuario.getText());
+                pst.setString(2,txtcod.getText());
+                pst.setString(3,txtfecha.getText());
+                pst.setString(4,txtpersonas.getText());
+                pst.setString(5,txthabitaciones.getText());
+                //JOptionPane.showMessageDialog(null,"holu","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);
+                jTable1.setEnabled(false);
+                btnguardar.setEnabled(false);
+                btnActualizar.setEnabled(false);
+                btnnuevo.setEnabled(true);
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(null,"Registro exitoso","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);
+                cc.desconectar();
+            }catch (HeadlessException | SQLException e){
+                System.out.print(e.getMessage());
             }
-            else if(txtpersonas.getText().isEmpty()){
-             JOptionPane.showMessageDialog(null,"Ingrese el nro de personas","¡Error!",JOptionPane.ERROR_MESSAGE);
-            }
-       
-            else if(txthabitaciones.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null,"Ingrese el nro de las habitaciones","¡Error!",JOptionPane.ERROR_MESSAGE);
-            }
-            else if(n==1){
-            try{ 
-            Conectar cc=new Conectar();            
-            Connection cn=cc.conexion();    
-            PreparedStatement pst=cn.prepareStatement("INSERT INTO recomienda(usuario_id_usuario,taxista_id_taxista,fecha_actual,num_persona,num_habitacion) VALUES(?,?,?,?,?)");            
-            pst.setString(1,txtusuario.getText());
-            pst.setString(2,txtcod.getText());
-            pst.setString(3,txtfecha.getText());           
-            pst.setString(4,txtpersonas.getText());            
-            pst.setString(5,txthabitaciones.getText());  
-            //JOptionPane.showMessageDialog(null,"holu","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
-            jTable1.setEnabled(false);
-            btnguardar.setEnabled(false);
-            btnActualizar.setEnabled(false); 
-            btnnuevo.setEnabled(true);
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Registro exitoso","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
-            cc.desconectar();
-        }catch (HeadlessException | SQLException e){
-            System.out.print(e.getMessage());
-        }  
         }
         else
         {
-        try {
-        Conectar cc=new Conectar();            
-        Connection cn=cc.conexion();
-        PreparedStatement pst = cn.prepareStatement("UPDATE recomienda SET usuario_id_usuario='"+txtusuario.getText()+"',taxista_id_taxista='"+txtcod.getText()+"',num_persona='"+txtpersonas.getText()+"',num_habitacion='"+txthabitaciones.getText()+"' WHERE fecha_actual='"+txtfecha.getText()+"'");
-        pst.executeUpdate();
-        JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
-        cc.desconectar();
-        n=1;
-        jTable1.setEnabled(false);
-            btnguardar.setEnabled(false);
-            btnActualizar.setEnabled(true);            
-            btnnuevo.setEnabled(true);
-        } catch (SQLException e) {
-        System.out.print(e.getMessage());
-    }
+            try {
+                Conectar cc=new Conectar();
+                Connection cn=cc.conexion();
+                PreparedStatement pst = cn.prepareStatement("UPDATE recomienda SET usuario_id_usuario='"+txtusuario.getText()+"',taxista_id_taxista='"+txtcod.getText()+"',num_persona='"+txtpersonas.getText()+"',num_habitacion='"+txthabitaciones.getText()+"' WHERE fecha_actual='"+txtfecha.getText()+"'");
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);
+                cc.desconectar();
+                n=1;
+                jTable1.setEnabled(false);
+                btnguardar.setEnabled(false);
+                btnActualizar.setEnabled(true);
+                btnnuevo.setEnabled(true);
+            } catch (SQLException e) {
+                System.out.print(e.getMessage());
+            }
         }
         mostrardatos("");
-        
+
         txtpersonas.setEnabled(false);
         txthabitaciones.setEnabled(false);
         txtcod.setEnabled(false);
@@ -527,19 +559,18 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         txtpersonas.setEnabled(false);
         txthabitaciones.setEnabled(false);
         txtusuario.setEnabled(false);
-        
-        
+
         btnguardar.setEnabled(true);
         btnnuevo.setEnabled(false);
         btnActualizar.setEnabled(false);
-         n=2;
-        
+        n=2;
     }//GEN-LAST:event_btnActualizarActionPerformed
 
-    private void txtfechaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfechaKeyReleased
+    private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
         // TODO add your handling code here:
-        mostrardatos(txtfecha.getText());
-    }//GEN-LAST:event_txtfechaKeyReleased
+        bandera_huespedportaxista=null;
+        dispose();
+    }//GEN-LAST:event_btnsalirActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
@@ -554,19 +585,13 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
         txtpersonas.setEnabled(true);
         txthabitaciones.setEnabled(true);
         if(fila>=0){
-        txtusuario.setText(jTable1.getValueAt(fila, 0).toString());
-        txtcod.setText(jTable1.getValueAt(fila, 1).toString());
-        txtfecha.setText(jTable1.getValueAt(fila, 2).toString());
-        txtpersonas.setText(jTable1.getValueAt(fila, 3).toString());
-        txthabitaciones.setText(jTable1.getValueAt(fila, 4).toString());
+            txtusuario.setText(jTable1.getValueAt(fila, 0).toString());
+            txtcod.setText(jTable1.getValueAt(fila, 1).toString());
+            txtfecha.setText(jTable1.getValueAt(fila, 2).toString());
+            txtpersonas.setText(jTable1.getValueAt(fila, 3).toString());
+            txthabitaciones.setText(jTable1.getValueAt(fila, 4).toString());
         }
     }//GEN-LAST:event_jTable1MouseClicked
-
-    private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
-        // TODO add your handling code here:
-        eleccion_htaxi = new elegir_htaxista( this,true);
-        eleccion_htaxi.setVisible(true);
-    }//GEN-LAST:event_btnbuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -586,6 +611,7 @@ public class huespedportaxista extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     public static javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
+    private jcMousePanel.jcMousePanel jcMousePanel1;
     public static javax.swing.JTextField txtcod;
     private javax.swing.JTextField txtfecha;
     private javax.swing.JTextField txthabitaciones;

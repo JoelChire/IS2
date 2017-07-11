@@ -128,7 +128,7 @@ public class editar_huesped extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jcMousePanel1 = new jcMousePanel.jcMousePanel();
         jLabel1 = new javax.swing.JLabel();
         txtnombre = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -137,8 +137,11 @@ public class editar_huesped extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("NOMBRE:");
+        jcMousePanel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/fond3.jpg"))); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Nombre:");
 
         txtnombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,38 +154,14 @@ public class editar_huesped extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cerrar13.png"))); // NOI18N
         jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtnombre, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
-                .addContainerGap())
-        );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -202,27 +181,45 @@ public class editar_huesped extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        javax.swing.GroupLayout jcMousePanel1Layout = new javax.swing.GroupLayout(jcMousePanel1);
+        jcMousePanel1.setLayout(jcMousePanel1Layout);
+        jcMousePanel1Layout.setHorizontalGroup(
+            jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jcMousePanel1Layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jcMousePanel1Layout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+        );
+        jcMousePanel1Layout.setVerticalGroup(
+            jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jcMousePanel1Layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                .addGap(22, 22, 22))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 821, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -231,6 +228,11 @@ public class editar_huesped extends javax.swing.JDialog {
     private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnombreActionPerformed
+
+    private void txtnombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyReleased
+        // TODO add your handling code here:
+        mostrardatos(txtnombre.getText());
+    }//GEN-LAST:event_txtnombreKeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -241,70 +243,64 @@ public class editar_huesped extends javax.swing.JDialog {
         // TODO add your handling code here:
         int fila= jTable1.getSelectedRow();
         try {
-                
+
             huesped.id=jTable1.getValueAt(fila, 0).toString();
             ////////////////huesped.idhues.jTable1.getValueAt(fila,0),toString();
             huesped.txtdni.setText(jTable1.getValueAt(fila, 1).toString());
             huesped.txtnombre.setText(jTable1.getValueAt(fila, 2).toString());
             huesped.txtapellido.setText(jTable1.getValueAt(fila, 3).toString());
-            
+
             String fechaSeleccionada = (String) jTable1.getModel().getValueAt(fila,4);
             //Date fecha = new Date();
             SimpleDateFormat df= new SimpleDateFormat("yyyy-MM-dd");
             Date fecha;
             fecha = df.parse(fechaSeleccionada);
-            huesped.txtfecha.setDate(fecha);           
-            huesped.txtciudad.setText(jTable1.getValueAt(fila, 5).toString());             
-           // int filaSeleccionada = jTable1.getSelectedRow();        
+            huesped.txtfecha.setDate(fecha);
+            huesped.txtciudad.setText(jTable1.getValueAt(fila, 5).toString());
+            // int filaSeleccionada = jTable1.getSelectedRow();
 
-            /*DateFormat df = new SimpleDateFormat("dd-MMMM-yyyy");            
-            Date fecha = df.parse(fechaSeleccionada);    
-           
-            huesped.txtfecha.setDate(fechaSeleccionada);*/  
-          //  huesped.txtfecha.setDate(jTable1.getValueAt(fila, 5));
-            huesped.txttelefono.setText(jTable1.getValueAt(fila, 6).toString()); 
+            /*DateFormat df = new SimpleDateFormat("dd-MMMM-yyyy");
+            Date fecha = df.parse(fechaSeleccionada);
+
+            huesped.txtfecha.setDate(fechaSeleccionada);*/
+            //  huesped.txtfecha.setDate(jTable1.getValueAt(fila, 5));
+            huesped.txttelefono.setText(jTable1.getValueAt(fila, 6).toString());
             huesped.cmbestadocivil.setSelectedItem(jTable1.getValueAt(fila, 7).toString());
-            huesped.txtpais.setText(jTable1.getValueAt(fila, 8).toString());            
+            huesped.txtpais.setText(jTable1.getValueAt(fila, 8).toString());
             huesped.txtdireccion.setText(jTable1.getValueAt(fila, 9).toString());
             huesped.txtocupacion.setText(jTable1.getValueAt(fila, 10).toString());
             huesped.txtapellido.setEnabled(true);
             huesped.txtdni.setEnabled(true);
             huesped.txtfecha.setEnabled(true);
             huesped.cmbestadocivil.setEnabled(true);
-            huesped.txttelefono.setEnabled(true);        
+            huesped.txttelefono.setEnabled(true);
             huesped.txtdireccion.setEnabled(true);
             huesped.txtnombre.setEnabled(true);
             huesped.txtciudad.setEnabled(true);
             huesped.txtpais.setEnabled(true);
-            huesped.txtocupacion.setEnabled(true);            
+            huesped.txtocupacion.setEnabled(true);
             huesped.btneditar.setEnabled(true);
-            huesped.btnguardar.setEnabled(false);                     
+            huesped.btnguardar.setEnabled(false);
             this.dispose();
-           
-       /* txtapellido.setEnabled(true);
-        txtdni.setEnabled(true);
-        txtfecha.setEnabled(true);
-        txtestadocivil.setEnabled(true);
-        txttelefono.setEnabled(true);        */
-        
-      /* if(fila>=0){
-        txtdni.setText(jTable1.getValueAt(fila, 0).toString());
-        txtnombre.setText(jTable1.getValueAt(fila, 1).toString());
-        txtapellido.setText(jTable1.getValueAt(fila, 2).toString());
-        //txtfecha.setDate(jTable1.getValueAt(fila, 3).toString());
-        txtestadocivil.setText(jTable1.getValueAt(fila, 4).toString());
-        txttelefono.setText(jTable1.getValueAt(fila, 5).toString());
-        } */
-            
+
+            /* txtapellido.setEnabled(true);
+            txtdni.setEnabled(true);
+            txtfecha.setEnabled(true);
+            txtestadocivil.setEnabled(true);
+            txttelefono.setEnabled(true);        */
+
+            /* if(fila>=0){
+                txtdni.setText(jTable1.getValueAt(fila, 0).toString());
+                txtnombre.setText(jTable1.getValueAt(fila, 1).toString());
+                txtapellido.setText(jTable1.getValueAt(fila, 2).toString());
+                //txtfecha.setDate(jTable1.getValueAt(fila, 3).toString());
+                txtestadocivil.setText(jTable1.getValueAt(fila, 4).toString());
+                txttelefono.setText(jTable1.getValueAt(fila, 5).toString());
+            } */
 
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jTable1MouseClicked
-
-    private void txtnombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyReleased
-        // TODO add your handling code here:
-        mostrardatos(txtnombre.getText());
-    }//GEN-LAST:event_txtnombreKeyReleased
 
     /**
      * @param args the command line arguments
@@ -351,9 +347,9 @@ public class editar_huesped extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private jcMousePanel.jcMousePanel jcMousePanel1;
     private javax.swing.JTextField txtnombre;
     // End of variables declaration//GEN-END:variables
 }

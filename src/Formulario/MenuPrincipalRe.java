@@ -102,8 +102,9 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/INICIO.png"))); // NOI18N
         jMenu1.setText("Login");
-        jMenu1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenu1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        MPcerrarsesion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         MPcerrarsesion.setText("Cerrar Sesión");
         MPcerrarsesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,6 +114,7 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
         jMenu1.add(MPcerrarsesion);
         jMenu1.add(jSeparator1);
 
+        MPsalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
         MPsalir.setText("Salir ");
         MPsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,7 +127,7 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/GUARDAR.png"))); // NOI18N
         jMenu2.setText("Registro");
-        jMenu2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenu2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jMenuItem3.setText("Huésped");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -157,8 +159,9 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/RECEPCION.png"))); // NOI18N
         jMenu3.setText("Recepción");
-        jMenu3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenu3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem8.setText("Alquiler");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,6 +171,7 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
         jMenu3.add(jMenuItem8);
         jMenu3.add(jSeparator5);
 
+        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem9.setText("Reserva");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,6 +181,7 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
         jMenu3.add(jMenuItem9);
         jMenu3.add(jSeparator6);
 
+        jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem10.setText("Cobro Diario");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,6 +191,7 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
         jMenu3.add(jMenuItem10);
         jMenu3.add(jSeparator7);
 
+        jMenuItem11.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem11.setText("Cierre Diario");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,7 +213,7 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/CONSULTAS.png"))); // NOI18N
         jMenu4.setText("Consultas");
-        jMenu4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jMenu4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jMenuItem12.setText("Buscar  Húesped");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
