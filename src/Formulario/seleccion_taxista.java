@@ -45,11 +45,12 @@ public class seleccion_taxista extends javax.swing.JDialog {
     modelo.addColumn("DOC. IDENTIDAD");
     modelo.addColumn("     NOMBRES");
     modelo.addColumn("     APELLIDOS");
-    modelo.addColumn("    TELEFONO");      
+    modelo.addColumn("    TELEFONO");     
+    modelo.addColumn("    PLACA");  
     jTable1.setModel(modelo);
     String SQL="";
     if(valor.equals(""))
-    {    String []datos = new String [5];
+    {    String []datos = new String [6];
 
         SQL="SELECT * FROM taxista";
     }
@@ -57,7 +58,7 @@ public class seleccion_taxista extends javax.swing.JDialog {
         SQL="SELECT * FROM taxista WHERE nombre LIKE '%"+valor+"%'";
     }
  
-    String []datos = new String [5];
+    String []datos = new String [6];
         try {
             Conectar cc=new Conectar();            
             Connection cn=cc.conexion();
@@ -68,7 +69,8 @@ public class seleccion_taxista extends javax.swing.JDialog {
                 datos[1]=rs.getString(1);
                 datos[2]=rs.getString(2);
                 datos[3]=rs.getString(3);               
-                datos[4]=rs.getString(4);
+                datos[4]=rs.getString(4);                         
+                datos[5]=rs.getString(6);
                 modelo.addRow(datos);
             }
             jTable1.setModel(modelo);
@@ -240,11 +242,13 @@ public class seleccion_taxista extends javax.swing.JDialog {
         taxista.dnitaxista=jTable1.getValueAt(fsel, 1).toString();
         taxista.txtnombre.setText(jTable1.getValueAt(fsel, 2).toString());
         taxista.txtapellido.setText(jTable1.getValueAt(fsel, 3).toString());
-        taxista.txttelefono.setText(jTable1.getValueAt(fsel, 4).toString());   
+        taxista.txttelefono.setText(jTable1.getValueAt(fsel, 4).toString());          
+        taxista.txtplaca.setText(jTable1.getValueAt(fsel, 5).toString());   
         taxista.txtnombre.setEnabled(true);
         taxista.txtapellido.setEnabled(true);
         taxista.txtdni.setEnabled(true);
         taxista.txttelefono.setEnabled(true);
+        taxista.txtplaca.setEnabled(true);
         taxista.btnactualizar.setEnabled(true);
         taxista.btnguardar.setEnabled(false);
         this.dispose();

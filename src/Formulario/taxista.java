@@ -52,6 +52,7 @@ public class taxista extends javax.swing.JInternalFrame {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jFileChooser1 = new javax.swing.JFileChooser();
         paneldatos = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -61,6 +62,8 @@ public class taxista extends javax.swing.JInternalFrame {
         txtapellido = new javax.swing.JTextField();
         txtnombre = new javax.swing.JTextField();
         txtdni = new javax.swing.JTextField();
+        txtplaca = new javax.swing.JFormattedTextField();
+        jLabel7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnguardar = new javax.swing.JButton();
         btnnuevo = new javax.swing.JButton();
@@ -137,6 +140,15 @@ public class taxista extends javax.swing.JInternalFrame {
             }
         });
 
+        try {
+            txtplaca.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUU-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Placa");
+
         javax.swing.GroupLayout paneldatosLayout = new javax.swing.GroupLayout(paneldatos);
         paneldatos.setLayout(paneldatosLayout);
         paneldatosLayout.setHorizontalGroup(
@@ -144,10 +156,6 @@ public class taxista extends javax.swing.JInternalFrame {
             .addGroup(paneldatosLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(paneldatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(paneldatosLayout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(paneldatosLayout.createSequentialGroup()
                         .addGroup(paneldatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(paneldatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -158,7 +166,15 @@ public class taxista extends javax.swing.JInternalFrame {
                         .addGroup(paneldatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtapellido, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                             .addComponent(txtdni)
-                            .addComponent(txtnombre))))
+                            .addComponent(txtnombre)))
+                    .addGroup(paneldatosLayout.createSequentialGroup()
+                        .addGroup(paneldatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(paneldatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtplaca, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         paneldatosLayout.setVerticalGroup(
@@ -180,7 +196,13 @@ public class taxista extends javax.swing.JInternalFrame {
                 .addGroup(paneldatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(paneldatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(paneldatosLayout.createSequentialGroup()
+                        .addComponent(txtplaca, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnguardar.setText("Guardar");
@@ -261,14 +283,14 @@ public class taxista extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
-                .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 41, Short.MAX_VALUE))
+                    .addComponent(paneldatos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -385,22 +407,27 @@ if (Character.isDigit(c))
             else if(txttelefono.getText().length()>0 && txttelefono.getText().length()<9){
                 JOptionPane.showMessageDialog(null,"Teléfono incompleto","¡Error!",JOptionPane.ERROR_MESSAGE);
             }
+            else if(txttelefono.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null,"Ingrese la placa del vehículo","¡Error!",JOptionPane.ERROR_MESSAGE);
+            }
             else{
             try{ 
 
             Conectar cc=new Conectar();            
             Connection cn=cc.conexion();    
-            PreparedStatement pst=cn.prepareStatement("INSERT INTO taxista(dni,nombre,apellido,telefono,id_taxista) Values(?,?,?,?,?)");
+            PreparedStatement pst=cn.prepareStatement("INSERT INTO taxista(dni,nombre,apellido,telefono,id_taxista,placa) Values(?,?,?,?,?,?)");
             pst.setString(1,txtdni.getText());
             pst.setString(2,txtnombre.getText());
             pst.setString(3,txtapellido.getText());
             pst.setString(4,txttelefono.getText());
             pst.setString(5,null);
+            pst.setString(6,txtplaca.getText());
             pst.executeUpdate();
             txtnombre.setEnabled(false);
         txtapellido.setEnabled(false);
         txtdni.setEnabled(false);
         txttelefono.setEnabled(false);
+        txtplaca.setEnabled(false);
         btnguardar.setEnabled(false);
         btnactualizar.setEnabled(false);
             JOptionPane.showMessageDialog(null,"Registro exitoso","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
@@ -422,11 +449,13 @@ if (Character.isDigit(c))
         txtdni.setText("");
         txtnombre.setText("");
         txtapellido.setText("");
-        txttelefono.setText("");      
+        txttelefono.setText("");   
+        txtplaca.setText("");    
         txtnombre.setEnabled(true);
         txtapellido.setEnabled(true);
         txtdni.setEnabled(true);
         txttelefono.setEnabled(true);
+        txtplaca.setEnabled(true);
         btnguardar.setEnabled(true);
         btnactualizar.setEnabled(false);
         btnnuevo.setEnabled(true);
@@ -496,6 +525,9 @@ if (Character.isDigit(c))
             else if(txttelefono.getText().length()>0 && txttelefono.getText().length()<9){
                 JOptionPane.showMessageDialog(null,"Teléfono incompleto","¡Error!",JOptionPane.ERROR_MESSAGE);
             }
+            else if(txtplaca.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Ingrese la placa del vehículo","¡Error!",JOptionPane.ERROR_MESSAGE);
+            }
                 
         else
         {   
@@ -509,12 +541,13 @@ if (Character.isDigit(c))
                 dni_tax =rs.getString("dni");
             }
            if ((idtaxista.equals(id_tax) && txtdni.getText().equals(dnitaxista))|| (!txtdni.getText().equals(dni_tax))){
-                PreparedStatement pst = cn.prepareStatement("UPDATE taxista SET nombre='"+txtnombre.getText()+"', apellido='"+txtapellido.getText()+"',telefono='"+txttelefono.getText()+"' WHERE id_taxista="+idtaxista);
+                PreparedStatement pst = cn.prepareStatement("UPDATE taxista SET nombre='"+txtnombre.getText()+"', apellido='"+txtapellido.getText()+"', placa='"+txtplaca.getText()+"',telefono='"+txttelefono.getText()+"' WHERE id_taxista="+idtaxista);
                 pst.executeUpdate();        
                 txtnombre.setEnabled(false);
                 txtapellido.setEnabled(false);
                 txtdni.setEnabled(false);
                 txttelefono.setEnabled(false);
+                txtplaca.setEnabled(false);
                 btnguardar.setEnabled(false);
                 btnactualizar.setEnabled(false);
                 JOptionPane.showMessageDialog(null,"Modificacion exitosa","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
@@ -535,10 +568,12 @@ if (Character.isDigit(c))
     public static javax.swing.JButton btnguardar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu jPopupMenu1;
@@ -546,6 +581,7 @@ if (Character.isDigit(c))
     public static javax.swing.JTextField txtapellido;
     public static javax.swing.JTextField txtdni;
     public static javax.swing.JTextField txtnombre;
+    public static javax.swing.JFormattedTextField txtplaca;
     public static javax.swing.JTextField txttelefono;
     // End of variables declaration//GEN-END:variables
 

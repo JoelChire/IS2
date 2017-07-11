@@ -34,7 +34,8 @@ public class elegir_htaxista extends javax.swing.JDialog {
     modelo.addColumn("  Nº");
     modelo.addColumn("  DNI ");
     modelo.addColumn("     NOMBRES");
-    modelo.addColumn("     APELLIDOS");   
+    modelo.addColumn("     APELLIDOS");       
+    modelo.addColumn("     PLACA");   
     t_datos.setModel(modelo);
     String SQL="";
     if(valor.equals(""))
@@ -46,7 +47,7 @@ public class elegir_htaxista extends javax.swing.JDialog {
         SQL="SELECT * FROM taxista WHERE nombre LIKE '%"+valor+"%'";
     }
  
-    String []datos = new String [4];
+    String []datos = new String [5];
         try {
             Conectar cc=new Conectar();            
             Connection cn=cc.conexion();
@@ -56,15 +57,16 @@ public class elegir_htaxista extends javax.swing.JDialog {
                 datos[0]=rs.getString(5);                
                 datos[1]=rs.getString(1);
                 datos[2]=rs.getString(2);
-                datos[3]=rs.getString(3);  
+                datos[3]=rs.getString(3);                
+                datos[4]=rs.getString(6);  
                 modelo.addRow(datos);
             }
             t_datos.setModel(modelo);
             t_datos.getColumnModel().getColumn(0).setMaxWidth(50);         
-            t_datos.getColumnModel().getColumn(1).setMaxWidth(350);
-             
-            t_datos.getColumnModel().getColumn(2).setMaxWidth(350);
-            t_datos.getColumnModel().getColumn(3).setMaxWidth(350);
+            t_datos.getColumnModel().getColumn(1).setMaxWidth(350);          
+            t_datos.getColumnModel().getColumn(2).setMaxWidth(600);
+            t_datos.getColumnModel().getColumn(3).setMaxWidth(600);           
+            t_datos.getColumnModel().getColumn(4).setMaxWidth(300);
             DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
             tcr.setHorizontalAlignment(SwingConstants.CENTER);
             t_datos.getColumnModel().getColumn(0).setCellRenderer(tcr);           
