@@ -43,7 +43,7 @@ public class visualizar_detalle_alquiler extends javax.swing.JInternalFrame {
                 fila[8]=datos.getString("telefono");
                 fila[9]=datos.getString("ocupacion");
                 fila[10]=datos.getString("direccion");
-                fila[10]=datos.getString("alquila_id_alquila");
+                fila[11]=datos.getString("alquila_id_alquila");
                 model.addRow(fila);            
             }
             

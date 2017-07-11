@@ -27,6 +27,7 @@ Conectar cc=new Conectar();
     ResultSet datos;
     DefaultTableModel model;
     SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+    public static String bandera_buscar_reserva;
     /**
      * Creates new form Buscar_reserva
      */
@@ -34,6 +35,7 @@ Conectar cc=new Conectar();
         initComponents();
         this.setTitle("Buscar Reservas");
         this.setLocation(10, 10);  
+        bandera_buscar_reserva="jljk";
     }
 
     /**
@@ -153,7 +155,8 @@ Conectar cc=new Conectar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-dispose();        // TODO add your handling code here:
+        dispose();        // TODO add your handling code here:
+        bandera_buscar_reserva=null;
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

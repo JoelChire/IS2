@@ -28,6 +28,7 @@ Conectar cc=new Conectar();
     ResultSet datos;
     DefaultTableModel model;
     SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+    public static String bandera_huesped_recepcionista;
     /**
      * Creates new form Huespedes_recepcionista
      */
@@ -35,6 +36,7 @@ Conectar cc=new Conectar();
         initComponents();
         this.setTitle("Huesped por recepcionista");
         this.setLocation(10, 10);
+        bandera_huesped_recepcionista="ljlkjlk";
         llenar();
     }
 
@@ -137,7 +139,9 @@ Conectar cc=new Conectar();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-dispose();        // TODO add your handling code here:
+        //salir
+        bandera_huesped_recepcionista=null;
+        dispose();        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

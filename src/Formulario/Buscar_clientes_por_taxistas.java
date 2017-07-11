@@ -26,10 +26,12 @@ Conectar cc=new Conectar();
     ResultSet datos;
     DefaultTableModel model;
     SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+    public static String bandera_clientes_taxista;
     public Buscar_clientes_por_taxistas() {
         initComponents();
         this.setTitle("Buscar Clientes por taxista");
         this.setLocation(10, 10);
+        bandera_clientes_taxista="sdf";
     }
 
     /**
@@ -114,7 +116,10 @@ Conectar cc=new Conectar();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-dispose();
+        //salir
+        bandera_clientes_taxista=null;
+        dispose();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
