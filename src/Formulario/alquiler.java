@@ -174,7 +174,7 @@ public class alquiler extends javax.swing.JInternalFrame {
             SimpleDateFormat df= new SimpleDateFormat("yyyy-MM-dd");
             Date fech;
             fech = df.parse(fec);
-            this.txtsalida.setDate(fech); 
+            txtsalida.setDate(fech); 
         }catch(ParseException e){
             
         }     

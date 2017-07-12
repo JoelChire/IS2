@@ -536,7 +536,6 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="142" max="32767" attributes="0"/>
                           </Group>
                           <Component id="panel_dt_alq" max="32767" attributes="0"/>
                       </Group>

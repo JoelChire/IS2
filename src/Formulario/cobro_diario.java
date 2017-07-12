@@ -552,7 +552,6 @@ public class cobro_diario extends javax.swing.JInternalFrame {
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
         // TODO add your handling code here:
-
         bandera_cobro=null;
         this.dispose();
     }//GEN-LAST:event_btnsalirActionPerformed

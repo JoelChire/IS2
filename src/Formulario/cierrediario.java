@@ -43,9 +43,10 @@ public class cierrediario extends javax.swing.JInternalFrame {
     public static String bandera_cierrediario;
     public cierrediario() {
         initComponents();
-          this.setLocation(15, 10);
+        this.setLocation(15, 10);
         setResizable(false);
         this.setTitle("Cierre diario");
+        bandera_cierrediario="bandera_cierre";
         txtid.setEnabled(false);
         txtfecha.setText(fecha_actual());
         usuario_cierrediario=carga.usuario_carga; 
@@ -433,7 +434,8 @@ public class cierrediario extends javax.swing.JInternalFrame {
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        this.dispose();       
+        bandera_cierrediario=null;
     }//GEN-LAST:event_btnsalirActionPerformed
 
     private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
