@@ -3,6 +3,7 @@ package Formulario;
 import ClaseConectar.Conectar;
 import Clases.fecha;
 import java.awt.HeadlessException;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -334,7 +335,6 @@ public class alquiler extends javax.swing.JInternalFrame {
 
         btnbuscar_h.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnbuscar_h.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscaaar13.png"))); // NOI18N
-        btnbuscar_h.setText("Buscar");
         btnbuscar_h.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnbuscar_hActionPerformed(evt);
@@ -392,23 +392,24 @@ public class alquiler extends javax.swing.JInternalFrame {
                         .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnhuesped)
                             .addGroup(panel_dt_huespLayout.createSequentialGroup()
-                                .addComponent(btnbuscar_h, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnbuscar_h, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnexplorar)))))
-                .addGap(26, 26, 26))
+                .addGap(87, 87, 87))
         );
         panel_dt_huespLayout.setVerticalGroup(
             panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_dt_huespLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lb_dni_alq)
-                    .addComponent(txtdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnbuscar_h, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnexplorar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnbuscar_h, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lb_dni_alq)
+                        .addComponent(txtdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnexplorar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnhuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(btnhuesped, javax.swing.GroupLayout.PREFERRED_SIZE, 42, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(panel_dt_huespLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lb_nom_alq)
                     .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -444,7 +445,6 @@ public class alquiler extends javax.swing.JInternalFrame {
 
         btnbuscar_th.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnbuscar_th.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/buscaaar13.png"))); // NOI18N
-        btnbuscar_th.setText("Buscar");
         btnbuscar_th.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnbuscar_thActionPerformed(evt);
@@ -491,9 +491,9 @@ public class alquiler extends javax.swing.JInternalFrame {
                         .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_dt_habLayout.createSequentialGroup()
                                 .addComponent(txtnumeroha, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnbuscar_th)
-                                .addContainerGap(22, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnbuscar_th, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(56, Short.MAX_VALUE))
                             .addGroup(panel_dt_habLayout.createSequentialGroup()
                                 .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtnumeroca, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -508,12 +508,14 @@ public class alquiler extends javax.swing.JInternalFrame {
         panel_dt_habLayout.setVerticalGroup(
             panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_dt_habLayout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lb_num_hab_alq)
-                    .addComponent(txtnumeroha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_dt_habLayout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lb_num_hab_alq)
+                            .addComponent(txtnumeroha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(btnbuscar_th, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_tip_hab_alq)
                     .addComponent(txttipoha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -525,25 +527,28 @@ public class alquiler extends javax.swing.JInternalFrame {
                 .addGroup(panel_dt_habLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtmonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lb_num_camas_hab_alq))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel_dt_huesp, javax.swing.GroupLayout.PREFERRED_SIZE, 392, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panel_dt_hab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panel_dt_hab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panel_dt_huesp, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(panel_dt_huesp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panel_dt_hab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addContainerGap())
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 2, 11))); // NOI18N
@@ -686,7 +691,7 @@ public class alquiler extends javax.swing.JInternalFrame {
 
         btneliminart.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btneliminart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/todoborrar.png"))); // NOI18N
-        btneliminart.setText("Eliminar Todo");
+        btneliminart.setText("Depurar");
         btneliminart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btneliminartActionPerformed(evt);
@@ -732,31 +737,28 @@ public class alquiler extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cmbestadocivil, 0, 122, Short.MAX_VALUE)
-                                    .addComponent(txtciudad)))
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel4Layout.createSequentialGroup()
-                                    .addComponent(jLabel11)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtdireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel8)
-                                        .addComponent(jLabel9)
-                                        .addComponent(jLabel10))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtpais, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                                        .addComponent(txttelefono)
-                                        .addComponent(txtocupacion)))))
-                        .addGap(60, 60, 60))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cmbestadocivil, 0, 122, Short.MAX_VALUE)
+                            .addComponent(txtciudad)))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addComponent(jLabel11)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtdireccion))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel10))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtpais, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                                .addComponent(txttelefono)
+                                .addComponent(txtocupacion))))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -768,8 +770,8 @@ public class alquiler extends javax.swing.JInternalFrame {
                                 .addComponent(txtapellido_mi, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtnombre_mi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtnacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtdni_mi, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)))
+                            .addComponent(txtdni_mi, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -878,30 +880,34 @@ public class alquiler extends javax.swing.JInternalFrame {
         panel_dt_alqLayout.setHorizontalGroup(
             panel_dt_alqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_dt_alqLayout.createSequentialGroup()
-                .addGroup(panel_dt_alqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtobservacion, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panel_dt_alqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(panel_dt_alqLayout.createSequentialGroup()
-                            .addGap(121, 121, 121)
-                            .addGroup(panel_dt_alqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtllegada, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtidalquiler, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtsalida, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panel_dt_alqLayout.createSequentialGroup()
-                            .addGap(19, 19, 19)
-                            .addGroup(panel_dt_alqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(panel_dt_alqLayout.createSequentialGroup()
-                                    .addGroup(panel_dt_alqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lb_obs_alq)
-                                        .addComponent(lb_id_alq)
-                                        .addComponent(lb_fech_lleg)
-                                        .addComponent(lb_fech_sal))
-                                    .addGap(0, 0, Short.MAX_VALUE))
-                                .addGroup(panel_dt_alqLayout.createSequentialGroup()
-                                    .addComponent(lb_id_recep)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGroup(panel_dt_alqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_dt_alqLayout.createSequentialGroup()
+                        .addGroup(panel_dt_alqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(panel_dt_alqLayout.createSequentialGroup()
+                                .addGap(121, 121, 121)
+                                .addGroup(panel_dt_alqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtllegada, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtidalquiler, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtsalida, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panel_dt_alqLayout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addGroup(panel_dt_alqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panel_dt_alqLayout.createSequentialGroup()
+                                        .addGroup(panel_dt_alqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lb_obs_alq)
+                                            .addComponent(lb_id_alq)
+                                            .addComponent(lb_fech_lleg)
+                                            .addComponent(lb_fech_sal))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(panel_dt_alqLayout.createSequentialGroup()
+                                        .addComponent(lb_id_recep)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panel_dt_alqLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtobservacion)))
+                .addContainerGap())
         );
         panel_dt_alqLayout.setVerticalGroup(
             panel_dt_alqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -924,9 +930,9 @@ public class alquiler extends javax.swing.JInternalFrame {
                     .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lb_obs_alq)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtobservacion)
-                .addContainerGap())
+                .addGap(19, 19, 19))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -966,8 +972,8 @@ public class alquiler extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnsalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnguardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnnuevo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnnuevo, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnguardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -978,8 +984,8 @@ public class alquiler extends javax.swing.JInternalFrame {
                 .addGap(21, 21, 21)
                 .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnsalir)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -987,8 +993,8 @@ public class alquiler extends javax.swing.JInternalFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel_dt_alq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -996,17 +1002,15 @@ public class alquiler extends javax.swing.JInternalFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(panel_dt_alq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(panel_dt_alq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1036,19 +1040,19 @@ public class alquiler extends javax.swing.JInternalFrame {
                 .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jcMousePanel1Layout.setVerticalGroup(
             jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jcMousePanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jcMousePanel1Layout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jcMousePanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1059,7 +1063,7 @@ public class alquiler extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jcMousePanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -1247,7 +1251,7 @@ public class alquiler extends javax.swing.JInternalFrame {
     private void txtdni_miKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdni_miKeyTyped
         // dni de miembro habitacion
         char d=evt.getKeyChar();
-        if (txtdni.getText().length()>=15){
+        if (txtdni_mi.getText().length()>=15){
             evt.consume();
             JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
@@ -1271,18 +1275,26 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            //JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
-        if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+
+        else if (txtapellido_mi.getText().length()>=numerocaracteres){
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=159
+        )
         {
             getToolkit().beep();
             evt.consume();
-            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }else if(txtapellido_mi.getText().length()>=numerocaracteres){
-            getToolkit().beep();
+            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }else if(!Character.isLetter(evt.getKeyChar()) && evt.getKeyChar() !='´' &&c != KeyEvent.VK_SPACE){
+            evt.consume();
+        }
+        else if (evt.getKeyChar()=='´' && txtapellido_mi.getText().contains("´" )&&c != KeyEvent.VK_SPACE){
             evt.consume();
         }
     }//GEN-LAST:event_txtapellido_miKeyTyped
@@ -1293,25 +1305,32 @@ public class alquiler extends javax.swing.JInternalFrame {
 
     private void txtnombre_miKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombre_miKeyTyped
         // nombre miembro habitacion
-        int numerocaracteres=20;
+        int numerocaracteres=25;
         char c = evt.getKeyChar();
         if (Character.isDigit(c))
         {
             getToolkit().beep();
             evt.consume();
-            //JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
 
-        if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+        else if (txtnombre_mi.getText().length()>=numerocaracteres){
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=159
+        )
         {
             getToolkit().beep();
             evt.consume();
-            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }else if(txtnombre_mi.getText().length()>=numerocaracteres){
-            getToolkit().beep();
+            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }else if(!Character.isLetter(evt.getKeyChar()) && evt.getKeyChar() !='´' &&c != KeyEvent.VK_SPACE){
+            evt.consume();
+        }
+        else if (evt.getKeyChar()=='´' && txtnombre_mi.getText().contains("´" )&&c != KeyEvent.VK_SPACE){
             evt.consume();
         }
     }//GEN-LAST:event_txtnombre_miKeyTyped
@@ -1348,18 +1367,26 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            //JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
-        if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+
+        else if (txtpais.getText().length()>=numerocaracteres){
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=159
+        )
         {
             getToolkit().beep();
             evt.consume();
-            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }else if(txtpais.getText().length()>=numerocaracteres){
-            getToolkit().beep();
+            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }else if(!Character.isLetter(evt.getKeyChar()) && evt.getKeyChar() !='´' &&c != KeyEvent.VK_SPACE){
+            evt.consume();
+        }
+        else if (evt.getKeyChar()=='´' && txtpais.getText().contains("´" )&&c != KeyEvent.VK_SPACE){
             evt.consume();
         }
     }//GEN-LAST:event_txtpaisKeyTyped
@@ -1397,18 +1424,26 @@ public class alquiler extends javax.swing.JInternalFrame {
         {
             getToolkit().beep();
             evt.consume();
-            //JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Ingresar solo letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
-        if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+
+        else if (txtocupacion.getText().length()>=numerocaracteres){
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=159
+        )
         {
             getToolkit().beep();
             evt.consume();
-            //JOptionPane.showMessageDialog(null,"No usar caracteres","!Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }else if(txtocupacion.getText().length()>=numerocaracteres){
-            getToolkit().beep();
+            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }else if(!Character.isLetter(evt.getKeyChar()) && evt.getKeyChar() !='´' &&c != KeyEvent.VK_SPACE){
+            evt.consume();
+        }
+        else if (evt.getKeyChar()=='´' && txtocupacion.getText().contains("´" )&&c != KeyEvent.VK_SPACE){
             evt.consume();
         }
     }//GEN-LAST:event_txtocupacionKeyTyped
@@ -1428,7 +1463,7 @@ public class alquiler extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Ingrese Nombre");
         }else if(txtapellido_mi.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Ingrese Apellidos");
-        }else if (txtdni_mi.getText().length()!=8) {
+        }else if (txtdni_mi.getText().length()<8) {
             JOptionPane.showMessageDialog(null,"Ingrese DNI Completo","ERROR",JOptionPane.ERROR_MESSAGE);
         }else if (txtnacimiento.getDate()==null) {
             JOptionPane.showMessageDialog(null,"Ingrese Fecha de Nacimiento","ERROR",JOptionPane.ERROR_MESSAGE);
@@ -1436,7 +1471,7 @@ public class alquiler extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Ingrese ciudad de origen","ERROR",JOptionPane.ERROR_MESSAGE);
         }else if(txtpais.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Ingrese país de origen","ERROR",JOptionPane.ERROR_MESSAGE);
-        }else if(txttelefono.getText().length()>0 && txttelefono.getText().length()<9){
+        }else if(txttelefono.getText().length()<6){
             JOptionPane.showMessageDialog(null,"Ingrese Teléfono correctamente","ERROR",JOptionPane.ERROR_MESSAGE);
         }else{
             /*Nombres,Apellidos,DNI,Fecha Nacimiento,Ciudad,Estado Civil,País,Teléfono,Ocupacion,Dirección*/
@@ -1506,7 +1541,7 @@ public class alquiler extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Ingrese Nombre");
         }else if(txtapellido_mi.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Ingrese Apellidos");
-        }else if (txtdni_mi.getText().length()!=8) {
+        }else if (txtdni_mi.getText().length()<8) {
             JOptionPane.showMessageDialog(null,"Ingrese DNI","ERROR",JOptionPane.ERROR_MESSAGE);
         }else if (txtnacimiento.getDate()==null) {
             JOptionPane.showMessageDialog(null,"Ingrese Fecha de Nacimiento","ERROR",JOptionPane.ERROR_MESSAGE);
@@ -1529,8 +1564,7 @@ public class alquiler extends javax.swing.JInternalFrame {
             //poner resetear
             limpiaringresohuesped();
             btneditar.setEnabled(true);
-            btnactualizar.setEnabled(false);
-            btneliminar.setEnabled(true);
+            btnactualizar.setEnabled(false);    
             btneliminart.setEnabled(true);
             btnagregar.setEnabled(true);
             if(cantidadpersonas<=1){

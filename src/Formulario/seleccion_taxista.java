@@ -175,9 +175,9 @@ public class seleccion_taxista extends javax.swing.JDialog {
                     .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lb_tip_hab_alq)
                     .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -188,7 +188,7 @@ public class seleccion_taxista extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jcMousePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -224,12 +224,13 @@ public class seleccion_taxista extends javax.swing.JDialog {
         taxista.txtnombre.setText(jTable1.getValueAt(fsel, 2).toString());
         taxista.txtapellido.setText(jTable1.getValueAt(fsel, 3).toString());
         taxista.txttelefono.setText(jTable1.getValueAt(fsel, 4).toString());
-        //taxista.txtplaca.setText(jTable1.getValueAt(fsel, 5).toString());
+        taxista.txtplaca.setText(jTable1.getValueAt(fsel, 5).toString());
         taxista.txtnombre.setEnabled(true);
         taxista.txtapellido.setEnabled(true);
         taxista.txtdni.setEnabled(true);
+        taxista.txtplaca.setEnabled(true);
         taxista.txttelefono.setEnabled(true);
-        //taxista.btnactualizar.setEnabled(true);
+        taxista.btnactualizar.setEnabled(true);
         taxista.btnguardar.setEnabled(false);
         this.dispose();
     }//GEN-LAST:event_jTable1MouseClicked

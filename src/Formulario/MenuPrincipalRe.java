@@ -89,20 +89,22 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        escritorio.setPreferredSize(new java.awt.Dimension(1490, 709));
+
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1208, Short.MAX_VALUE)
+            .addGap(0, 1490, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 581, Short.MAX_VALUE)
+            .addGap(0, 639, Short.MAX_VALUE)
         );
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/INICIO.png"))); // NOI18N
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/inicio1.png"))); // NOI18N
         jMenu1.setText("Login");
-        jMenu1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenu1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         MPcerrarsesion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         MPcerrarsesion.setText("Cerrar Sesión");
@@ -125,9 +127,9 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/GUARDAR.png"))); // NOI18N
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/registros1.png"))); // NOI18N
         jMenu2.setText("Registro");
-        jMenu2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenu2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jMenuItem3.setText("Huésped");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -157,9 +159,9 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/RECEPCION.png"))); // NOI18N
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/recepcion2.png"))); // NOI18N
         jMenu3.setText("Recepción");
-        jMenu3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenu3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem8.setText("Alquiler");
@@ -211,9 +213,9 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/CONSULTAS.png"))); // NOI18N
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/consultas2.png"))); // NOI18N
         jMenu4.setText("Consultas");
-        jMenu4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenu4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jMenuItem12.setText("Buscar  Húesped");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
@@ -294,11 +296,13 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
         );
 
         pack();

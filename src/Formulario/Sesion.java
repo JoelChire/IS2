@@ -44,6 +44,8 @@ public class Sesion extends javax.swing.JFrame {
                     //JOptionPane.showMessageDialog(null,"Bienvenido Administrador "+usu);
                     ventana="1";
                      carga a= new carga();
+                     a.usuariocarga(usu);
+                     
                     a.setVisible(true);
                    /* MenuPrincipal ingresoA = new MenuPrincipal();                    
                     ingresoA.obtenerusuario(usu);
@@ -54,6 +56,7 @@ public class Sesion extends javax.swing.JFrame {
                     //JOptionPane.showMessageDialog(null,"Bienvenido Recepcionista "+usu);
                     ventana="2";
                     carga a= new carga();
+                    a.usuariocarga(usu);
                     a.setVisible(true);
                     /*MenuPrincipalRe ingresoR = new MenuPrincipalRe();
                     ingresoR.obtenerusuario(usu);

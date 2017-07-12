@@ -111,7 +111,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem14 = new javax.swing.JMenuItem();
         jSeparator17 = new javax.swing.JPopupMenu.Separator();
         jMenuItem15 = new javax.swing.JMenuItem();
-        jMenuItem20 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem23 = new javax.swing.JMenuItem();
 
         jMenuItem21.setText("jMenuItem21");
 
@@ -121,20 +122,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1208, Short.MAX_VALUE)
+            .addGap(0, 1449, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 545, Short.MAX_VALUE)
+            .addGap(0, 693, Short.MAX_VALUE)
         );
 
         jToolBar1.setRollover(true);
 
         jToolBar2.setRollover(true);
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/INICIO.png"))); // NOI18N
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/inicio1.png"))); // NOI18N
         jMenu1.setText("Login");
-        jMenu1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenu1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         MPcerrarsesion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         MPcerrarsesion.setText("Cerrar Sesión");
@@ -157,9 +158,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/GUARDAR.png"))); // NOI18N
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/registros1.png"))); // NOI18N
         jMenu2.setText("Registro");
-        jMenu2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenu2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jMenuItem3.setText("Huésped");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -198,9 +199,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/RECEPCION.png"))); // NOI18N
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/recepcion2.png"))); // NOI18N
         jMenu3.setText("Recepción");
-        jMenu3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenu3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem8.setText("Alquiler");
@@ -252,9 +253,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/CONSULTAS.png"))); // NOI18N
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/consultas2.png"))); // NOI18N
         jMenu4.setText("Consultas");
-        jMenu4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenu4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jMenuItem12.setText("Buscar  Húesped");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
@@ -331,7 +332,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/REPORTE.png"))); // NOI18N
         jMenu5.setText("Reportes");
-        jMenu5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jMenu5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jMenuItem2.setText("Detalle de alquileres");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -368,15 +369,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem15);
 
-        jMenuItem20.setText("Respaldo");
-        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+        jMenuBar1.add(jMenu5);
+
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/RESPALD01.png"))); // NOI18N
+        jMenu6.setText("Respaldo");
+        jMenu6.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+
+        jMenuItem23.setText("Agregar");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem20ActionPerformed(evt);
+                jMenuItem23ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem20);
+        jMenu6.add(jMenuItem23);
 
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
 
@@ -384,11 +391,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -748,12 +759,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_MPcerrarsesionActionPerformed
 
-    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
         // TODO add your handling code here:
-         exportacion a= new exportacion();    
+        exportacion a= new exportacion();    
          this.escritorio.add(a);
          a.setVisible(true);
-    }//GEN-LAST:event_jMenuItem20ActionPerformed
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -796,6 +807,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -809,9 +821,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     public javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
