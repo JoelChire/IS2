@@ -111,6 +111,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem14 = new javax.swing.JMenuItem();
         jSeparator17 = new javax.swing.JPopupMenu.Separator();
         jMenuItem15 = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        jMenuItem20 = new javax.swing.JMenuItem();
+        jMenuItem24 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem23 = new javax.swing.JMenuItem();
 
@@ -368,6 +371,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu5.add(jMenuItem15);
+
+        jMenu7.setText("Cierre diario");
+
+        jMenuItem20.setText("Turno mañana");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem20);
+
+        jMenuItem24.setText("Turno noche");
+        jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem24ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem24);
+
+        jMenu5.add(jMenu7);
 
         jMenuBar1.add(jMenu5);
 
@@ -766,6 +789,32 @@ public class MenuPrincipal extends javax.swing.JFrame {
          a.setVisible(true);
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        // TODO add your handling code here:
+        try {
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Formulario/cierre_mañana.jasper")); //Cargo el reporte al objeto
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
+            JasperViewer viewer = new JasperViewer(jprint,false); //Creamos la vista del Reporte
+             viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
+            viewer.setVisible(true); //Inicializamos la vista del Reporte
+        } catch (JRException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
+    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
+        // TODO add your handling code here:
+        try {
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Formulario/cierre_noche.jasper")); //Cargo el reporte al objeto
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
+            JasperViewer viewer = new JasperViewer(jprint,false); //Creamos la vista del Reporte
+             viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
+            viewer.setVisible(true); //Inicializamos la vista del Reporte
+        } catch (JRException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }//GEN-LAST:event_jMenuItem24ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -808,6 +857,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -821,9 +871,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     public javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
+    private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

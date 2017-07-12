@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4abcc1b4-9745-4115-ae2b-8485ffd590ba">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     cierre_noche.`id_huesped` AS cierre_noche_id_huesped,
+     cierre_noche.`nombre_h` AS cierre_noche_nombre_h,
+     cierre_noche.`apellidos_h` AS cierre_noche_apellidos_h,
+     cierre_noche.`habitacion_id_habitacion` AS cierre_noche_habitacion_id_habitacion,
+     cierre_noche.`monto_cobrado` AS cierre_noche_monto_cobrado,
+     total_cierre_noche.`TOTAL` AS total_cierre_noche_TOTAL
+FROM
+     `cierre_noche` cierre_noche,
+     `total_cierre_noche` total_cierre_noche]]>
+	</queryString>
+	<field name="cierre_noche_id_huesped" class="java.lang.Integer"/>
+	<field name="cierre_noche_nombre_h" class="java.lang.String"/>
+	<field name="cierre_noche_apellidos_h" class="java.lang.String"/>
+	<field name="cierre_noche_habitacion_id_habitacion" class="java.lang.Integer"/>
+	<field name="cierre_noche_monto_cobrado" class="java.math.BigDecimal"/>
+	<field name="total_cierre_noche_TOTAL" class="java.math.BigDecimal"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="86">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="106" backcolor="#006699" uuid="863546ca-a3c7-45ff-bc50-0f6ac66c2e1f"/>
+				<staticText>
+					<reportElement x="20" y="20" width="281" height="43" forecolor="#FFFFFF" uuid="4152486b-d8c0-4081-ab61-1c16cbf902db"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CIERRE DIARIO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="20" y="63" width="180" height="20" forecolor="#FFFFFF" uuid="ad266e1c-7666-4542-a351-ba779759ed65"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TURNO NOCHE]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="cafc7432-1b3b-432d-a0a7-cc2c9ceed321"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="72" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f4fbbd24-f99c-4c79-82ce-b7d4453f4bec"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID HUÉSPED]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="72" y="0" width="148" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="978578bd-a0e9-4170-ac11-7117b725e202"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="220" y="0" width="148" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="345caed6-a41f-4dfb-afc4-54c3d567809d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[APELLIDOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="368" y="0" width="82" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="048337c4-32b0-404b-a5ce-6e39cc7618ae"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HABITACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="450" y="0" width="105" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="d464bf7f-f462-4e1d-bc80-6bff4cf5144d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MONTO COBRADO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="7a98412f-9304-4890-bba1-97f27a6a8117"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="72" height="20" uuid="4210aa97-1d32-45c8-a6f7-5a83a886355e"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cierre_noche_id_huesped}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="72" y="0" width="145" height="20" uuid="628a32ca-05c4-4d6d-9dce-3954003aa9fd"/>
+				<textElement verticalAlignment="Top">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cierre_noche_nombre_h}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="450" y="0" width="105" height="20" uuid="b67872cc-6a88-438a-8a3d-5a9bf29f2f4b"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cierre_noche_monto_cobrado}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="368" y="0" width="82" height="20" uuid="a505b87f-f73c-4e96-a079-13607e19937b"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cierre_noche_habitacion_id_habitacion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="223" y="0" width="145" height="20" uuid="65461a83-0d21-4414-8808-be74392e7d3b"/>
+				<textElement verticalAlignment="Top">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cierre_noche_apellidos_h}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="42">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="29" width="515" height="13" backcolor="#E6E6E6" uuid="e0927d62-0aa7-4533-8748-a0829a5f84c5"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="29" width="40" height="13" backcolor="#E6E6E6" uuid="8c748fbe-d363-488b-878a-de2c9e305019"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="29" width="100" height="13" uuid="3dd3c69a-6a80-44f7-aca4-7934c6972ccd"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="0" width="105" height="20" uuid="84d47d5e-b6ef-4256-b6fb-6ed09c8cfbd2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_cierre_noche_TOTAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="402" y="0" width="48" height="22" uuid="7a81c181-f3a7-4637-8d08-80e997a685c3"/>
+				<textElement>
+					<font size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
