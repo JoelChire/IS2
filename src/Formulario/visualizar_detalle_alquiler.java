@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -220,25 +221,20 @@ public class visualizar_detalle_alquiler extends javax.swing.JInternalFrame {
 
     private void txtdniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdniKeyTyped
         // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (Character.isLetter(c))
-        {
-            getToolkit().beep();
+        char d=evt.getKeyChar();
+        if (txtdni.getText().length()>=15){
             evt.consume();
-            //JOptionPane.showMessageDialog(null,"Solo se permite el Ingreso de Letras","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
-        }int numerocaracteres=15;
-        if (txtdni.getText().length()>=numerocaracteres){
-            evt.consume();
-            //JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
-        if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=44
+               ||(int)evt.getKeyChar()>45 && (int)evt.getKeyChar()<=47
             ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
             ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
-            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=159)
         {
             getToolkit().beep();
             evt.consume();
-            //JOptionPane.showMessageDialog(null,"No se permite usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_txtdniKeyTyped
 

@@ -366,13 +366,13 @@ public class visualizar_alquiler extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnsalirActionPerformed
 
     private void t_datosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_datosMouseClicked
-        // clic en tabla
-        int cantfil=t_datos1.getRowCount();
+       /* int cantfil=t_datos1.getRowCount();
         for(int i=cantfil-1;i>=0;i--){
             modelo2.removeRow(i);//limpiamos la tabla
-        }
+        }*/
         int fila=t_datos.getSelectedRow();
         //JOptionPane.showMessageDialog(null,"id alquiler seleccionada: "+t_datos.getValueAt(fila,0).toString());
+
         cargardetalle(t_datos.getValueAt(fila,0).toString());
     }//GEN-LAST:event_t_datosMouseClicked
 
