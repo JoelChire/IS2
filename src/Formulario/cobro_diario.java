@@ -104,7 +104,7 @@ public class cobro_diario extends javax.swing.JInternalFrame {
     modelo.addColumn("NOMBRES");
     modelo.addColumn("APELLIDOS");
     modelo.addColumn("NRO HABITACION");
-    modelo.addColumn("FECHA_LLEGADA");      
+    modelo.addColumn("FECHA DE LLEGADA");      
     jTable1.setModel(modelo);
     String SQL="";
     if(valor.equals(""))

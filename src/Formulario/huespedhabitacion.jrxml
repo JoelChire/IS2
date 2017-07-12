@@ -1,49 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dee630ca-b308-45c7-9081-25583ddbf15d">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fddb2464-c05d-476c-b1bd-edd0fff1a5e9">
 	<queryString language="SQL">
 		<![CDATA[SELECT
-     huespedxhabitacion.`id_alquila` AS huespedxhabitacion_id_alquila,
-     huespedxhabitacion.`nro_hab` AS huespedxhabitacion_nro_hab,
-     huespedxhabitacion.`nombre_h` AS huespedxhabitacion_nombre_h,
-     huespedxhabitacion.`apellidos_h` AS huespedxhabitacion_apellidos_h,
-     huespedxhabitacion.`dni_huesped` AS huespedxhabitacion_dni_huesped,
-     huespedxhabitacion.`persomas extras` AS huespedxhabitacion_persomas_extras
+     huespedxhabitacion.`N° alquila` AS 'huespedxhabitacion_N°_alquila',
+     huespedxhabitacion.`N° habitación` AS 'huespedxhabitacion_N°_habitación',
+     huespedxhabitacion.`Nombres` AS 'huespedxhabitacion_Nombres',
+     huespedxhabitacion.`Apellidos` AS 'huespedxhabitacion_Apellidos',
+     huespedxhabitacion.`DNI` AS 'huespedxhabitacion_DNI',
+     huespedxhabitacion.`N° camas` AS 'huespedxhabitacion_N°_camas',
+     huespedxhabitacion.`Personas extras` AS 'huespedxhabitacion_Personas_extras'
 FROM
      `huespedxhabitacion` huespedxhabitacion]]>
 	</queryString>
-	<field name="huespedxhabitacion_id_alquila" class="java.lang.Integer"/>
-	<field name="huespedxhabitacion_nro_hab" class="java.lang.Integer"/>
-	<field name="huespedxhabitacion_nombre_h" class="java.lang.String"/>
-	<field name="huespedxhabitacion_apellidos_h" class="java.lang.String"/>
-	<field name="huespedxhabitacion_dni_huesped" class="java.lang.String"/>
-	<field name="huespedxhabitacion_persomas_extras" class="java.lang.Long"/>
+	<field name="huespedxhabitacion_N°_alquila" class="java.lang.Integer"/>
+	<field name="huespedxhabitacion_N°_habitación" class="java.lang.Integer"/>
+	<field name="huespedxhabitacion_Nombres" class="java.lang.String"/>
+	<field name="huespedxhabitacion_Apellidos" class="java.lang.String"/>
+	<field name="huespedxhabitacion_DNI" class="java.lang.String"/>
+	<field name="huespedxhabitacion_N°_camas" class="java.lang.Integer"/>
+	<field name="huespedxhabitacion_Personas_extras" class="java.lang.Long"/>
 	<background>
 		<band/>
 	</background>
 	<title>
 		<band height="72">
 			<frame>
-				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="f5a600b9-8832-49d3-b40b-0ba8572c6f17"/>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="764658c6-4bd5-46ed-975b-464a0322c770"/>
 				<staticText>
-					<reportElement x="150" y="20" width="400" height="72" forecolor="#FFFFFF" uuid="f2d2c834-0955-4837-9b96-fe173f8753a4"/>
-					<textElement textAlignment="Center">
-						<font size="24" isBold="true"/>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="ed3bd157-fec6-4237-b91e-6ead949a577f"/>
+					<textElement>
+						<font size="34" isBold="true"/>
 					</textElement>
-					<text><![CDATA[CANTIDAD DE HUÉSPEDES POR HABITACIÓN]]></text>
+					<text><![CDATA[TITLE]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="19" y="20" width="96" height="46" forecolor="#FFFFFF" uuid="2f7a01f3-e7d6-429c-aa37-99edd605918d"/>
-					<textElement textAlignment="Center" verticalAlignment="Top">
-						<font fontName="Yu Mincho" size="12" isBold="true" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="eeb6675b-6e80-4e77-bbf1-0a9236851579"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
 					</textElement>
-					<text><![CDATA[HOTEL TERRAZAS]]></text>
+					<text><![CDATA[Add a description here]]></text>
 				</staticText>
-				<rectangle>
-					<reportElement mode="Transparent" x="20" y="20" width="100" height="46" forecolor="#FFFFFF" uuid="40c800ff-96f3-4d42-9791-383899a9c172"/>
-				</rectangle>
 			</frame>
 		</band>
 	</title>
@@ -53,98 +49,112 @@ FROM
 	<columnHeader>
 		<band height="21">
 			<line>
-				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="d6068366-0527-45d6-8c52-6d839d920101"/>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="57fae98d-22ab-4026-9238-d8e481fd1c6c"/>
 			</line>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="53" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="82783422-bf81-4577-b70d-a649420cc008"/>
+				<reportElement mode="Opaque" x="0" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="778b901e-2cd9-45b2-824f-30b8a2b48448"/>
 				<textElement textAlignment="Center">
-					<font size="13" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Código]]></text>
+				<text><![CDATA[huespedxhabitacion_N°_alquila]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="53" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="dfc2d3cb-1614-4b81-baf7-f0b382f7784c"/>
+				<reportElement mode="Opaque" x="79" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="6e526b3e-1387-445e-b72f-63e42f8bbc5f"/>
 				<textElement textAlignment="Center">
-					<font size="13" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[N° Habitación]]></text>
+				<text><![CDATA[huespedxhabitacion_N°_habitación]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="145" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b6f8940d-67e7-4db7-9ba0-e752b6ab8a2d"/>
+				<reportElement mode="Opaque" x="158" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7bcda870-b5b8-4a3f-88c7-2221cc6120aa"/>
 				<textElement textAlignment="Center">
-					<font size="13" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Nombres]]></text>
+				<text><![CDATA[huespedxhabitacion_Nombres]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="237" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b18f70d8-e79d-4ca2-a94b-9354d687f76a"/>
+				<reportElement mode="Opaque" x="237" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="1e23de2e-ec33-43ce-aea2-e582a7b2114f"/>
 				<textElement textAlignment="Center">
-					<font size="13" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Apellidos]]></text>
+				<text><![CDATA[huespedxhabitacion_Apellidos]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="329" y="0" width="82" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="11df064a-ae8a-481b-ba23-6bf61222e02a"/>
+				<reportElement mode="Opaque" x="316" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="bf58c0ae-dde9-4cd2-88f9-56a12ded3e85"/>
 				<textElement textAlignment="Center">
-					<font size="13" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Teléfono]]></text>
+				<text><![CDATA[huespedxhabitacion_DNI]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="411" y="0" width="141" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="2b4ce5e7-badc-43c3-95b2-ae2da4fc0b50"/>
+				<reportElement mode="Opaque" x="395" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="fa11df02-1cac-48f1-9f49-5ae1e51d1514"/>
 				<textElement textAlignment="Center">
-					<font size="13" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Cantidad de personas]]></text>
+				<text><![CDATA[huespedxhabitacion_N°_camas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="474" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4281c93c-8502-4caa-8e88-b80c37c20975"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[huespedxhabitacion_Personas_extras]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="20">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="2dfe3eb9-2271-48f3-961c-ab779ee4dd14"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="fa04593f-3f31-41e5-a69a-4c30a6938b4e"/>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="0" width="53" height="20" uuid="d0b2481b-c6d8-4e28-942a-59099624130e"/>
-				<textElement textAlignment="Center">
+				<reportElement x="0" y="0" width="79" height="20" uuid="fb0bdf0b-b3bf-43e3-ad81-c28759237488"/>
+				<textElement>
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{huespedxhabitacion_id_alquila}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{huespedxhabitacion_N°_alquila}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="53" y="0" width="92" height="20" uuid="c9861ba8-5b75-4ca0-885b-05aecaf4ad7e"/>
-				<textElement textAlignment="Center">
+				<reportElement x="79" y="0" width="79" height="20" uuid="6aaf5c07-b4bd-489d-9d35-c7216fbc26a3"/>
+				<textElement>
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{huespedxhabitacion_nro_hab}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{huespedxhabitacion_N°_habitación}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="329" y="0" width="82" height="20" uuid="50d6defc-70a1-4f50-86f8-1f4e73603ea6"/>
-				<textElement textAlignment="Center">
+				<reportElement x="158" y="0" width="79" height="20" uuid="e20de4ce-b895-4649-9653-a0f31c926b13"/>
+				<textElement>
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{huespedxhabitacion_dni_huesped}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{huespedxhabitacion_Nombres}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="411" y="0" width="141" height="20" uuid="57077bab-725b-4d6d-8dfc-290ee309dab5"/>
-				<textElement textAlignment="Center">
+				<reportElement x="237" y="0" width="79" height="20" uuid="47829195-3cbb-46c4-8936-4eaa5d183c3e"/>
+				<textElement>
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{huespedxhabitacion_persomas_extras}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{huespedxhabitacion_Apellidos}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="145" y="0" width="92" height="20" uuid="4909aba3-d563-4dd8-806a-bfeaaf5a492d"/>
-				<textElement textAlignment="Center">
+				<reportElement x="316" y="0" width="79" height="20" uuid="871dc166-b32d-4e8c-9b74-590cd91931b7"/>
+				<textElement>
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{huespedxhabitacion_nombre_h}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{huespedxhabitacion_DNI}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="237" y="0" width="92" height="20" uuid="c001942f-f42e-40d1-a50a-19562108019f"/>
-				<textElement textAlignment="Center">
+				<reportElement x="395" y="0" width="79" height="20" uuid="62c70da2-e970-45b1-accf-c9fa08193fb9"/>
+				<textElement>
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{huespedxhabitacion_apellidos_h}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{huespedxhabitacion_N°_camas}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="474" y="0" width="79" height="20" uuid="2118db21-8487-487e-b6e4-0140479820de"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{huespedxhabitacion_Personas_extras}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -154,16 +164,16 @@ FROM
 	<pageFooter>
 		<band height="17">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="169f42d2-789d-4dc0-8549-61d56a83d80d"/>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="0c3a0a48-3fcd-4fea-92f2-a78f8ee47466"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="7dbfc42b-be08-4a5f-9f3a-707e0fd539d0"/>
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="33993513-fbe4-4882-9ee6-32326be85178"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="4" width="100" height="13" uuid="ecf9479e-1e25-40f0-abf8-788d4949429d"/>
+				<reportElement x="0" y="4" width="100" height="13" uuid="dddc741c-3bf2-41d0-8cc6-dfa6fcc515d8"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>

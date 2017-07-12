@@ -62,6 +62,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuItem21 = new javax.swing.JMenuItem();
         escritorio = new javax.swing.JDesktopPane();
+        jcMousePanel1 = new jcMousePanel.jcMousePanel();
         jToolBar1 = new javax.swing.JToolBar();
         jToolBar2 = new javax.swing.JToolBar();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -111,8 +112,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem14 = new javax.swing.JMenuItem();
         jSeparator17 = new javax.swing.JPopupMenu.Separator();
         jMenuItem15 = new javax.swing.JMenuItem();
+        jSeparator14 = new javax.swing.JPopupMenu.Separator();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem20 = new javax.swing.JMenuItem();
+        jSeparator19 = new javax.swing.JPopupMenu.Separator();
         jMenuItem24 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem23 = new javax.swing.JMenuItem();
@@ -120,16 +123,32 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem21.setText("jMenuItem21");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        jcMousePanel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/TERRAZASFINAL.JPG"))); // NOI18N
+
+        javax.swing.GroupLayout jcMousePanel1Layout = new javax.swing.GroupLayout(jcMousePanel1);
+        jcMousePanel1.setLayout(jcMousePanel1Layout);
+        jcMousePanel1Layout.setHorizontalGroup(
+            jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1469, Short.MAX_VALUE)
+        );
+        jcMousePanel1Layout.setVerticalGroup(
+            jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 715, Short.MAX_VALUE)
+        );
+
+        escritorio.setLayer(jcMousePanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1449, Short.MAX_VALUE)
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 693, Short.MAX_VALUE)
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jToolBar1.setRollover(true);
@@ -371,6 +390,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu5.add(jMenuItem15);
+        jMenu5.add(jSeparator14);
 
         jMenu7.setText("Cierre diario");
 
@@ -381,6 +401,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu7.add(jMenuItem20);
+        jMenu7.add(jSeparator19);
 
         jMenuItem24.setText("Turno noche");
         jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
@@ -398,7 +419,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu6.setText("Respaldo");
         jMenu6.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
-        jMenuItem23.setText("Agregar");
+        jMenuItem23.setText("Nuevo");
         jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem23ActionPerformed(evt);
@@ -888,10 +909,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator11;
     private javax.swing.JPopupMenu.Separator jSeparator12;
     private javax.swing.JPopupMenu.Separator jSeparator13;
+    private javax.swing.JPopupMenu.Separator jSeparator14;
     private javax.swing.JPopupMenu.Separator jSeparator15;
     private javax.swing.JPopupMenu.Separator jSeparator16;
     private javax.swing.JPopupMenu.Separator jSeparator17;
     private javax.swing.JPopupMenu.Separator jSeparator18;
+    private javax.swing.JPopupMenu.Separator jSeparator19;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator20;
     private javax.swing.JPopupMenu.Separator jSeparator3;
@@ -903,6 +926,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator9;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
+    private jcMousePanel.jcMousePanel jcMousePanel1;
     private javax.swing.JMenuItem visualizardetallealquiler;
     // End of variables declaration//GEN-END:variables
 

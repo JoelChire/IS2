@@ -49,6 +49,7 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
     private void initComponents() {
 
         escritorio = new javax.swing.JDesktopPane();
+        jcMousePanel1 = new jcMousePanel.jcMousePanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         MPcerrarsesion = new javax.swing.JMenuItem();
@@ -88,18 +89,34 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
         visualizardetallealquiler = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         escritorio.setPreferredSize(new java.awt.Dimension(1490, 709));
+
+        jcMousePanel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/TERRAZASFINAL.JPG"))); // NOI18N
+
+        javax.swing.GroupLayout jcMousePanel1Layout = new javax.swing.GroupLayout(jcMousePanel1);
+        jcMousePanel1.setLayout(jcMousePanel1Layout);
+        jcMousePanel1Layout.setHorizontalGroup(
+            jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1490, Short.MAX_VALUE)
+        );
+        jcMousePanel1Layout.setVerticalGroup(
+            jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 639, Short.MAX_VALUE)
+        );
+
+        escritorio.setLayer(jcMousePanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1490, Short.MAX_VALUE)
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 639, Short.MAX_VALUE)
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/inicio1.png"))); // NOI18N
@@ -654,6 +671,7 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JPopupMenu.Separator jSeparator9;
+    private jcMousePanel.jcMousePanel jcMousePanel1;
     private javax.swing.JMenuItem visualizardetallealquiler;
     // End of variables declaration//GEN-END:variables
 }
