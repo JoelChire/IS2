@@ -43,6 +43,8 @@ public class alquiler extends javax.swing.JInternalFrame {
         txtnacimiento.setMaxSelectableDate(fechasq1); 
         txtsalida.setMinSelectableDate(fechaa);
         bandera_alquiler="bandera";
+        txtobservacion.setLineWrap(true);
+        txtobservacion.setWrapStyleWord(true);
         ////Tabla
         modelo= new DefaultTableModel();        
         modelo.addColumn("Nombres");
@@ -265,9 +267,10 @@ public class alquiler extends javax.swing.JInternalFrame {
         lb_id_recep = new javax.swing.JLabel();
         txtidalquiler = new javax.swing.JTextField();
         txtllegada = new javax.swing.JTextField();
-        txtobservacion = new javax.swing.JTextField();
         txtusuario = new javax.swing.JTextField();
         txtsalida = new com.toedter.calendar.JDateChooser();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtobservacion = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         btnnuevo = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
@@ -861,19 +864,22 @@ public class alquiler extends javax.swing.JInternalFrame {
             }
         });
 
-        txtobservacion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtobservacion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtobservacionKeyTyped(evt);
-            }
-        });
-
         txtusuario.setEditable(false);
         txtusuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtusuarioActionPerformed(evt);
             }
         });
+
+        txtobservacion.setColumns(15);
+        txtobservacion.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtobservacion.setRows(5);
+        txtobservacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtobservacionKeyTyped(evt);
+            }
+        });
+        jScrollPane2.setViewportView(txtobservacion);
 
         javax.swing.GroupLayout panel_dt_alqLayout = new javax.swing.GroupLayout(panel_dt_alq);
         panel_dt_alq.setLayout(panel_dt_alqLayout);
@@ -893,21 +899,24 @@ public class alquiler extends javax.swing.JInternalFrame {
                                 .addGap(19, 19, 19)
                                 .addGroup(panel_dt_alqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(panel_dt_alqLayout.createSequentialGroup()
+                                        .addComponent(lb_id_recep)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panel_dt_alqLayout.createSequentialGroup()
                                         .addGroup(panel_dt_alqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lb_obs_alq)
                                             .addComponent(lb_id_alq)
                                             .addComponent(lb_fech_lleg)
                                             .addComponent(lb_fech_sal))
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(panel_dt_alqLayout.createSequentialGroup()
-                                        .addComponent(lb_id_recep)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(panel_dt_alqLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_dt_alqLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(txtobservacion)))
+                        .addComponent(jScrollPane2)))
                 .addContainerGap())
+            .addGroup(panel_dt_alqLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lb_obs_alq)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel_dt_alqLayout.setVerticalGroup(
             panel_dt_alqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -928,11 +937,11 @@ public class alquiler extends javax.swing.JInternalFrame {
                 .addGroup(panel_dt_alqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_id_recep)
                     .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(32, 32, 32)
                 .addComponent(lb_obs_alq)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtobservacion)
-                .addGap(19, 19, 19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -1002,14 +1011,14 @@ public class alquiler extends javax.swing.JInternalFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 13, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(panel_dt_alq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1040,7 +1049,7 @@ public class alquiler extends javax.swing.JInternalFrame {
                 .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jcMousePanel1Layout.setVerticalGroup(
             jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1099,7 +1108,7 @@ public class alquiler extends javax.swing.JInternalFrame {
 
     private void btnbuscar_hActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscar_hActionPerformed
         // boton buscar huesped
-        if (txtdni.getText().length()!=8){
+        if (txtdni.getText().length()<8){
             JOptionPane.showMessageDialog(null,"Ingrese DNI Completo");
             txtnombre.setText(null);
             txtapellido.setText(null);
@@ -1616,15 +1625,6 @@ public class alquiler extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtllegadaKeyTyped
 
-    private void txtobservacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtobservacionKeyTyped
-        // observacion
-        int numerocaracteres=35;
-        if(txtobservacion.getText().length()>=numerocaracteres){
-            getToolkit().beep();
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtobservacionKeyTyped
-
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
         // boton nuevo
         limpiar();
@@ -1640,7 +1640,7 @@ public class alquiler extends javax.swing.JInternalFrame {
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // boton guardar
-        if(txtdni.getText().length()!=8){
+        if(txtdni.getText().length()<6){
             JOptionPane.showMessageDialog(null,"Elija Huésped","ERROR",JOptionPane.ERROR_MESSAGE);
         }else if(totalpersonas<1){
             JOptionPane.showMessageDialog(null,"Ingresa Cantidas de Personas","ERROR",JOptionPane.ERROR_MESSAGE);
@@ -1784,6 +1784,15 @@ public class alquiler extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtusuarioActionPerformed
 
+    private void txtobservacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtobservacionKeyTyped
+        // TODO add your handling code here:
+        int numerocaracteres=120;
+        if(txtobservacion.getText().length()>=numerocaracteres){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtobservacionKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnactualizar;
@@ -1816,6 +1825,7 @@ public class alquiler extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private jcMousePanel.jcMousePanel jcMousePanel1;
     private javax.swing.JLabel lb_ape_alq;
     private javax.swing.JLabel lb_dni_alq;
@@ -1848,7 +1858,7 @@ public class alquiler extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtnombre_mi;
     public static javax.swing.JTextField txtnumeroca;
     public static javax.swing.JTextField txtnumeroha;
-    private javax.swing.JTextField txtobservacion;
+    private javax.swing.JTextArea txtobservacion;
     private javax.swing.JTextField txtocupacion;
     private javax.swing.JTextField txtpais;
     private com.toedter.calendar.JDateChooser txtsalida;

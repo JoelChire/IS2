@@ -48,7 +48,7 @@ public class cierrediario extends javax.swing.JInternalFrame {
         this.setTitle("Cierre diario");
         txtid.setEnabled(false);
         txtfecha.setText(fecha_actual());
-        usuario_cierrediario=MenuPrincipal.usuario_actual; 
+        usuario_cierrediario=carga.usuario_carga; 
         btnguardar.setEnabled(false);
         txtrecepcionista.setText(usuario_cierrediario);
         String id =(txtrecepcionista.getText());
@@ -94,13 +94,13 @@ public class cierrediario extends javax.swing.JInternalFrame {
             rn = sent.executeQuery("Select sum(detalle_diario_dinero.monto_cobrado) as recaudada\n" +
 "from detalle_diario_dinero inner join usuario\n" +
 "on detalle_diario_dinero.id_usuario_dinero=usuario.id_usuario\n" +
-"where detalle_diario_dinero.fecha_actual_dinero=curdate()\n" +
+"where date(detalle_diario_dinero.fecha_actual_dinero)=curdate()\n" +
 "and usuario.turno='Nocturno' or usuario.turno= 'Completo'");
             Statement sentz = cn.createStatement();
             rz = sentz.executeQuery("Select sum(detalle_diario_dinero.monto_cobrado) as recaudado\n" +
 "from detalle_diario_dinero inner join usuario\n" +
 "on detalle_diario_dinero.id_usuario_dinero=usuario.id_usuario\n" +
-"where detalle_diario_dinero.fecha_actual_dinero=curdate()\n" +
+"where date(detalle_diario_dinero.fecha_actual_dinero)=curdate()\n" +
 "and usuario.turno='Diurno' or usuario.turno= 'Completo'");
             String turno;
             turno=txtturno.getText();

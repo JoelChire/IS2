@@ -438,7 +438,7 @@ public class reserva extends javax.swing.JInternalFrame {
         });
 
         lb_num_camas_hab_alq.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lb_num_camas_hab_alq.setText("Monto total propuesto:");
+        lb_num_camas_hab_alq.setText("Monto total propuesto por día:");
 
         txtmontototal.setEditable(false);
         txtmontototal.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -685,7 +685,7 @@ public class reserva extends javax.swing.JInternalFrame {
             .addGroup(jcMousePanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jcMousePanel1Layout.setVerticalGroup(
             jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -955,7 +955,7 @@ public class reserva extends javax.swing.JInternalFrame {
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // boton guardar
-        if(txtdni.getText().length()!=8){
+        if(txtdni.getText().length()<8){
             JOptionPane.showMessageDialog(null,"Elija Huésped","ERROR",JOptionPane.ERROR_MESSAGE);
         }else if(txtidreserva.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"No existe ID_Alquiler","ERROR",JOptionPane.ERROR_MESSAGE);

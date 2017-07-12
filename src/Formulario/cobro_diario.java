@@ -38,7 +38,7 @@ public class cobro_diario extends javax.swing.JInternalFrame {
         setResizable(false);
         this.setTitle("Cobro Diario");
         mostrardatos("");
-        usuario_cobro=MenuPrincipal.usuario_actual;  
+        usuario_cobro=carga.usuario_carga;  
         
         txtrecepcionista.setText(usuario_cobro);        
         bandera_cobro="bc";
