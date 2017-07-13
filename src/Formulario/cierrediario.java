@@ -36,9 +36,14 @@ public class cierrediario extends javax.swing.JInternalFrame {
      */
     Conectar cc=new Conectar();
     Connection cn=cc.conexion();
-    fecha fecha=new fecha();
     
     public String usuario_cierrediario;
+    public static String fecha_actual(){
+        Date fecha = new Date(System.currentTimeMillis());
+        //SimpleDateFormat formatodate= new SimpleDateFormat("YYYY-MM-dd");
+        SimpleDateFormat formatofecha= new SimpleDateFormat("YYYY-MM-dd HH:mm:ss"); 
+       return formatofecha.format(fecha); 
+    } 
    
     public static String bandera_cierrediario;
     public cierrediario() {
@@ -70,12 +75,7 @@ public class cierrediario extends javax.swing.JInternalFrame {
     public int confirmarSalida(){
         int valor=JOptionPane.showConfirmDialog(this,"Los datos una vez ingresados, no seran modificados ¿Desea continuar? ","Advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
         return valor;
-    }
-    public static String fecha_actual(){
-        Date fecha = new Date();
-        SimpleDateFormat formatoFecha= new SimpleDateFormat("YYYY-MM-dd");
-        return formatoFecha.format(fecha);
-    }  
+    } 
     public void montoneto(){
             //obteniendo monto recaudado      
         //String montoc,gastos;
@@ -96,23 +96,23 @@ public class cierrediario extends javax.swing.JInternalFrame {
 "from detalle_diario_dinero inner join usuario\n" +
 "on detalle_diario_dinero.id_usuario_dinero=usuario.id_usuario\n" +
 "where date(detalle_diario_dinero.fecha_actual_dinero)=curdate()\n" +
-"and usuario.turno='Nocturno' or usuario.turno= 'Completo'");
+"and usuario.turno='Tarde' or usuario.turno= 'Completo'");
             Statement sentz = cn.createStatement();
             rz = sentz.executeQuery("Select sum(detalle_diario_dinero.monto_cobrado) as recaudado\n" +
 "from detalle_diario_dinero inner join usuario\n" +
 "on detalle_diario_dinero.id_usuario_dinero=usuario.id_usuario\n" +
 "where date(detalle_diario_dinero.fecha_actual_dinero)=curdate()\n" +
-"and usuario.turno='Diurno' or usuario.turno= 'Completo'");
+"and usuario.turno='Mañana' or usuario.turno= 'Completo'");
             String turno;
             turno=txtturno.getText();
-            if(turno.equals("Diurno")){
+            if(turno.equals("Mañana")){
                 
                 while(rz.next()){ 
                 
                     this.txtrecaudado.setText(rz.getString("recaudado"));
                     JOptionPane.showMessageDialog(null,"holu","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);
                 }  
-            }   else if(turno.equals("Nocturno")){
+            }   else if(turno.equals("Tarde")){
                     while(rn.next()){
             
                     this.txtrecaudado.setText(rn.getString("recaudada"));

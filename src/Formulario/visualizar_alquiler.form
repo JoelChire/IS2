@@ -2,9 +2,6 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <Properties>
-    <Property name="closable" type="boolean" value="true"/>
-    <Property name="iconifiable" type="boolean" value="true"/>
-    <Property name="maximizable" type="boolean" value="true"/>
     <Property name="title" type="java.lang.String" value="Buscar Alquiler"/>
   </Properties>
   <SyntheticProperties>
@@ -68,17 +65,17 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btnresetear" min="-2" pref="155" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="btnsalir" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <Component id="btnsalir" min="-2" pref="147" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="819" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="813" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -99,12 +96,12 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtnombre" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnresetear" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="btnsalir" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="txtape" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtnombre" alignment="1" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="245" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="245" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="174" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               </Group>

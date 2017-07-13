@@ -22,18 +22,19 @@ import net.sf.jasperreports.view.JasperViewer;
 
 public class MenuPrincipal extends javax.swing.JFrame {
 
-    Conectar cc = new Conectar();
-    Connection cn = cc.conexion();
+    Conectar cc = new Conectar(); 
+    Connection cn = cc.conexion();  //Abre una conexión con la BD
     public static String usuario_actual;
     public MenuPrincipal() {
         initComponents();
-        this.setLocationRelativeTo(null);
-        this.setTitle("HOTEL TERRAZAS");
+        this.setLocationRelativeTo(null);//centra el ventana
+        this.setTitle("HOTEL TERRAZAS");//Coloca un título a la ventana
         cerrar();
-        Image icono = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Iconos/usuario.png"));
-        this.setIconImage(icono);
+        Image icono = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Iconos/usuario.png")); //Captura un icono
+        this.setIconImage(icono); //Coloca una icono a la ventana
     }    
     public void obtenerusuario (String u){
+    //obtiene el usuario que se logea
         usuario_actual=u;        
     }
  
@@ -49,10 +50,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }    
     public void confirmarSalida(){
-        int valor=JOptionPane.showConfirmDialog(this,"¿Esta seguro de cerrar la ventana?","Advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if (valor==JOptionPane.YES_OPTION){
+        //Confirmacion de salida al hacer clic en cerrar
+        int valor=JOptionPane.showConfirmDialog(this,"¿Esta seguro de cerrar la ventana?","Advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);//captura el valor de panel de opción
+        if (valor==JOptionPane.YES_OPTION){ //verifica el valor opción
             //JOptionPane.showMessageDialog(null,"gracias", "Gracias",JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
+            System.exit(0);//cierra todo el programa 
         }                  
     }
 
@@ -450,15 +452,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // usuario
-        String bandera=usuario.bandera_usuario;
+        // ventana de usuario
+        String bandera=usuario.bandera_usuario; //las banderas verifican si la ventana ya esta abierta
         try{            
-            if(bandera==null){            
+            if(bandera==null){    //verificación de la bandera        
+                //Si no hay una ventana abierta la abre
                 usuario a= new usuario();
                 this.escritorio.add(a);
                 a.setVisible(true);            
             }else{
-                JOptionPane.showMessageDialog(rootPane,"La ventana ya esta abierta!");
+                JOptionPane.showMessageDialog(rootPane,"La ventana ya esta abierta!"); //muestra un mensaje si ya esta abierta la ventana
             }    
         }catch(Exception e){
             e.printStackTrace();    
@@ -466,8 +469,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // boton huesped     
-        String bandera=huesped.bandera_huesped;
+        // ventana de huesped   
+        String bandera=huesped.bandera_huesped; 
         try{            
             if(bandera==null){            
                 huesped a= new huesped();
@@ -482,7 +485,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // habitacion
+        // ventana de habitacion
         String bandera=habitacion.bandera_habitacion;
         try{            
             if(bandera==null){            
@@ -498,7 +501,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // taxista
+        // ventana de taxista
         String bandera=taxista.bandera_taxista;
         try{            
             if(bandera==null){            
@@ -514,7 +517,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // alquiler
+        // ventana de alquiler
         String bandera=alquiler.bandera_alquiler;
         try{            
             if(bandera==null){            
@@ -532,7 +535,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        //reserva
+        //ventana de reserva
         String bandera_reserva=reserva.bandera_reserva;
         try{            
             if(bandera_reserva==null){            
@@ -550,7 +553,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        // cobro diario
+        // ventana de cobro diario
         String bandera_cobro=cobro_diario.bandera_cobro;
         try{            
             if(bandera_cobro==null){            
@@ -566,7 +569,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        // cierre diario
+        // ventana de cierre diario
         String bandera=cierrediario.bandera_cierrediario;
         try{            
             if(bandera==null){            
@@ -582,7 +585,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        // buscar huesped
+        // ventana de buscar huesped
        String bandera=buscar_huesped.bandera_buscar_huesped;
         try{            
             if(bandera==null){            
@@ -598,7 +601,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem12ActionPerformed
     
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // taxista recomienda
+        // ventana taxista recomienda
         String bandera=huespedportaxista.bandera_huespedportaxista;
         try{            
             if(bandera==null){            

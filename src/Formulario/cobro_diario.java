@@ -59,10 +59,11 @@ public class cobro_diario extends javax.swing.JInternalFrame {
     }
     
   
-    public static String fecha_actual(){
-        Date fecha = new Date();
-        SimpleDateFormat formatoFecha= new SimpleDateFormat("YYYY-MM-dd");
-        return formatoFecha.format(fecha);
+     public static String fecha_actual(){
+        Date fecha = new Date(System.currentTimeMillis());
+        //SimpleDateFormat formatodate= new SimpleDateFormat("YYYY-MM-dd");
+        SimpleDateFormat formatofecha= new SimpleDateFormat("YYYY-MM-dd HH:mm:ss"); 
+       return formatofecha.format(fecha); 
     
     }
     
