@@ -29,7 +29,7 @@ public class visualizar_alquiler extends javax.swing.JInternalFrame {
     {
         //cargando datos a la tabla de alaquiler
         //String ap;
-        String [] titulos = {"Nro Alquiler","Nro Habitación","Nombres","Apellidos","Nro DNI","Nro de Camas","Nro personas"};
+        String [] titulos = {"Nº Alquiler","Nº Habitación","Nombres","Apellidos","Nº DNI","Nº de Camas","Nº personas"};
         model =new DefaultTableModel(null,titulos);
         try{            
             PreparedStatement pst=cn.prepareStatement("select a.id_alquila as 'n_alquiler',ha.nro_hab AS 'n_habitacion',"
@@ -78,7 +78,7 @@ public class visualizar_alquiler extends javax.swing.JInternalFrame {
         //JOptionPane.showMessageDialog(null,"id alquiler en funcion detalle: "+id);        
 
         //cargando a la table detalle de alquiler
-        String [] titulos2 = {"Numero","Nombres","Apellidos","Nro DNI","Fecha de Nacimiento","Ciudad","Estado civil","País","Teléfono","Ocupación","Dirección","Numero de alquiler"};
+        String [] titulos2 = {"Nº","Nombres","Apellidos","Nº DNI","F. Nacimiento","Ciudad","Estado civil","País","Teléfono","Ocupación","Dirección","Nº de alquiler"};
         modelo2 =new DefaultTableModel(null,titulos2);
         try{            
             PreparedStatement pst2=cn.prepareStatement("SELECT * FROM detalle_alquila where alquila_id_alquila like '%"+id+"%'");
@@ -100,24 +100,25 @@ public class visualizar_alquiler extends javax.swing.JInternalFrame {
                 modelo2.addRow(fila);
             }
             t_datos1.setModel(modelo2);
-            /*            
-            t_datos.getColumnModel().getColumn(0).setMaxWidth(500);
-            t_datos.getColumnModel().getColumn(1).setMaxWidth(600);
+                      
+            t_datos.getColumnModel().getColumn(0).setMaxWidth(80);
+            t_datos.getColumnModel().getColumn(1).setMaxWidth(400);
             t_datos.getColumnModel().getColumn(2).setMaxWidth(1700);//nombres
             t_datos.getColumnModel().getColumn(3).setMaxWidth(1700);
-            t_datos.getColumnModel().getColumn(4).setMaxWidth(500);//dni
+            t_datos.getColumnModel().getColumn(4).setMaxWidth(370);//dni
             t_datos.getColumnModel().getColumn(5).setMaxWidth(1000);
-            t_datos.getColumnModel().getColumn(6).setMaxWidth(1000);            
+            t_datos.getColumnModel().getColumn(6).setMaxWidth(1000);
+            t_datos.getColumnModel().getColumn(8).setMaxWidth(230); 
+            t_datos.getColumnModel().getColumn(11).setMaxWidth(80);            
             DefaultTableCellRenderer tcr= new DefaultTableCellRenderer();
             tcr.setHorizontalAlignment(SwingConstants.CENTER);
-            t_datos.getColumnModel().getColumn(0).setCellRenderer(tcr);
             t_datos.getColumnModel().getColumn(1).setCellRenderer(tcr);
             t_datos.getColumnModel().getColumn(2).setCellRenderer(tcr);
             t_datos.getColumnModel().getColumn(3).setCellRenderer(tcr);
             t_datos.getColumnModel().getColumn(4).setCellRenderer(tcr);
             t_datos.getColumnModel().getColumn(5).setCellRenderer(tcr);
             t_datos.getColumnModel().getColumn(6).setCellRenderer(tcr);            
-            t_datos.setModel(model);*/
+            t_datos.setModel(model);
         }catch(HeadlessException | SQLException e){
             System.err.println("El cliente no se encuentra registrado");           
         }
@@ -138,6 +139,7 @@ public class visualizar_alquiler extends javax.swing.JInternalFrame {
         t_datos = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
         t_datos1 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
 
         setTitle("Buscar Alquiler");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -236,6 +238,11 @@ public class visualizar_alquiler extends javax.swing.JInternalFrame {
         t_datos1.setToolTipText("");
         jScrollPane1.setViewportView(t_datos1);
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Acompañantes de Húespedes Principales:");
+        jLabel2.setToolTipText("");
+
         javax.swing.GroupLayout jcMousePanel1Layout = new javax.swing.GroupLayout(jcMousePanel1);
         jcMousePanel1.setLayout(jcMousePanel1Layout);
         jcMousePanel1Layout.setHorizontalGroup(
@@ -250,46 +257,53 @@ public class visualizar_alquiler extends javax.swing.JInternalFrame {
                             .addGroup(jcMousePanel1Layout.createSequentialGroup()
                                 .addGap(36, 36, 36)
                                 .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(35, 35, 35)
                         .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jcMousePanel1Layout.createSequentialGroup()
-                                .addComponent(txtape, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(54, 54, 54)
+                                .addComponent(txtape, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(88, 88, 88)
                                 .addComponent(btnresetear, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1)))
+                            .addGroup(jcMousePanel1Layout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addComponent(jLabel1))))
                     .addGroup(jcMousePanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 813, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jcMousePanel1Layout.createSequentialGroup()
+                .addGap(0, 21, Short.MAX_VALUE)
+                .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1059, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1064, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(28, Short.MAX_VALUE))
-            .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jcMousePanel1Layout.createSequentialGroup()
-                    .addGap(29, 29, 29)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
-                    .addGap(30, 30, 30)))
         );
         jcMousePanel1Layout.setVerticalGroup(
             jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jcMousePanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnresetear, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtnombre))
-                .addGap(245, 245, 245)
+                .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jcMousePanel1Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jcMousePanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)))
+                .addGap(18, 18, 18)
+                .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnresetear, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
-            .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jcMousePanel1Layout.createSequentialGroup()
-                    .addGap(103, 103, 103)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(212, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -300,7 +314,7 @@ public class visualizar_alquiler extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jcMousePanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -378,6 +392,7 @@ public class visualizar_alquiler extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnresetear;
     private javax.swing.JButton btnsalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
