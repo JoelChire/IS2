@@ -783,7 +783,7 @@ public class huesped extends javax.swing.JInternalFrame {
     private void txtpaisKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpaisKeyTyped
         // TODO add your handling code here:
         //btnguardar.setEnabled(true);
-        int numerocaracteres=25;
+        int numerocaracteres=19;
         char c = evt.getKeyChar();
         if (Character.isDigit(c))
         {

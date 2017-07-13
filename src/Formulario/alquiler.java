@@ -1365,7 +1365,7 @@ public class alquiler extends javax.swing.JInternalFrame {
 
     private void txtpaisKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpaisKeyTyped
         // CLIC EN PAIS
-        int numerocaracteres=25;
+        int numerocaracteres=19;
         char c = evt.getKeyChar();
         if (Character.isDigit(c))
         {
