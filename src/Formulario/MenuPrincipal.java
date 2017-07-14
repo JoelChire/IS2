@@ -133,11 +133,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jcMousePanel1.setLayout(jcMousePanel1Layout);
         jcMousePanel1Layout.setHorizontalGroup(
             jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1469, Short.MAX_VALUE)
+            .addGap(0, 1274, Short.MAX_VALUE)
         );
         jcMousePanel1Layout.setVerticalGroup(
             jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 715, Short.MAX_VALUE)
+            .addGap(0, 572, Short.MAX_VALUE)
         );
 
         escritorio.setLayer(jcMousePanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -146,17 +146,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jcMousePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jcMousePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jToolBar1.setRollover(true);
 
         jToolBar2.setRollover(true);
 
+        jMenu1.setBorder(null);
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/inicio1.png"))); // NOI18N
         jMenu1.setText("Login");
         jMenu1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -344,7 +345,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu4.add(jMenuItem22);
         jMenu4.add(jSeparator18);
 
-        visualizardetallealquiler.setText("Buscar detalle de alquiler");
+        visualizardetallealquiler.setText("Buscar Húesped por Habitación");
         visualizardetallealquiler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 visualizardetallealquilerActionPerformed(evt);
@@ -354,7 +355,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/REPORTE.png"))); // NOI18N
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/REPORTE17.png"))); // NOI18N
         jMenu5.setText("Reportes");
         jMenu5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
@@ -394,7 +395,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu5.add(jMenuItem15);
         jMenu5.add(jSeparator14);
 
-        jMenu7.setText("Cierre diario");
+        jMenu7.setText("Cobro diario");
 
         jMenuItem20.setText("Turno mañana");
         jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
@@ -417,7 +418,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
-        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/RESPALD01.png"))); // NOI18N
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/BACKUP17.png"))); // NOI18N
         jMenu6.setText("Respaldo");
         jMenu6.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
@@ -437,15 +438,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -619,7 +616,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        //reporte de detalle de alquileres (muestra los los miembros de una habitacion)    
+        // detalle alquileres     
         try {
             JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Formulario/huespedhabitacion.jasper")); //Cargo el reporte al objeto
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
@@ -632,7 +629,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        // reporte del estado de las  habitaciones
+        // estado habitaciones
+        /*String path = "C:\\Formulario\\huespedxhabitacion.jasper";
+        try {
+            JasperPrint jprint = JasperFillManager.fillReport(path, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
+            JasperViewer viewer = new JasperViewer(jprint,false); //Creamos la vista del Reporte
+            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
+            viewer.setVisible(true); //Inicializamos la vista del Reporte
+        } catch (JRException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } */
          try {
             JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Formulario/estado_habitacion.jasper")); //Cargo el reporte al objeto
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
@@ -645,7 +651,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        // Ventana de consulta respecto a la busqueda de taxistas
+        // TODO add your handling code here:
         String bandera=buscar_taxista_consulta.bandera_buscar_taxista;
         try{            
             if(bandera==null){            
@@ -661,7 +667,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-        // reporte del top taxistas
+        // top taxistas
         try {
             JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Formulario/toptaxista.jasper")); //Cargo el reporte al objeto
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
@@ -674,7 +680,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        // reporte de huesped atendido por recepcionista
+        // huesped atendido por recepcionista
         try {
             JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Formulario/usuariohuesped.jasper")); //Cargo el reporte al objeto
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
@@ -768,7 +774,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_visualizardetallealquilerActionPerformed
 
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
-        // Consulta huesped atendido por recepcionista en una fecha especifica
+        // TODO add your handling code here:
         String bandera=Huespedes_recepcionista.bandera_huesped_recepcionista;
         try{
             if(bandera==null){
@@ -786,26 +792,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
     private void MPsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPsalirActionPerformed
-        // cierre del sistema
+        // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_MPsalirActionPerformed
 
     private void MPcerrarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPcerrarsesionActionPerformed
-        // Cerrar la ventana y visualizar el inicio de sesión 
+        // TODO add your handling code here:
         Sesion a= new Sesion();
         a.setVisible(true);
         dispose();
     }//GEN-LAST:event_MPcerrarsesionActionPerformed
 
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
-        // Abre la ventana que hará el respaldo del sistema
+        // TODO add your handling code here:
         exportacion a= new exportacion();    
          this.escritorio.add(a);
          a.setVisible(true);
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
-        // Reporte del cierre diario del turno mañana
+        // TODO add your handling code here:
         try {
             JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Formulario/cierre_mañana.jasper")); //Cargo el reporte al objeto
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
@@ -818,8 +824,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
-        // Reporte del cierre diario del turno noche
-        
+        // TODO add your handling code here:
         try {
             JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Formulario/cierre_noche.jasper")); //Cargo el reporte al objeto
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos

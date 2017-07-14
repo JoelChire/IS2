@@ -238,7 +238,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="visualizardetallealquiler">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Buscar detalle de alquiler"/>
+                <Property name="text" type="java.lang.String" value="Buscar H&#xfa;esped por Taxista"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="visualizardetallealquilerActionPerformed"/>
@@ -273,15 +273,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="escritorio" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
+          <Component id="escritorio" alignment="0" pref="1274" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="escritorio" alignment="0" pref="639" max="32767" attributes="0"/>
+          <Component id="escritorio" alignment="0" pref="572" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -316,12 +313,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="1490" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="1274" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="639" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="572" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>

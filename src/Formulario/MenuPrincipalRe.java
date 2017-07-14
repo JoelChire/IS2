@@ -8,7 +8,7 @@ import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
+//hola =)
 public class MenuPrincipalRe extends javax.swing.JFrame {
 
     Conectar cc = new Conectar();
@@ -99,11 +99,11 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
         jcMousePanel1.setLayout(jcMousePanel1Layout);
         jcMousePanel1Layout.setHorizontalGroup(
             jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1490, Short.MAX_VALUE)
+            .addGap(0, 1274, Short.MAX_VALUE)
         );
         jcMousePanel1Layout.setVerticalGroup(
             jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 639, Short.MAX_VALUE)
+            .addGap(0, 572, Short.MAX_VALUE)
         );
 
         escritorio.setLayer(jcMousePanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -297,7 +297,7 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
         jMenu4.add(jMenuItem22);
         jMenu4.add(jSeparator14);
 
-        visualizardetallealquiler.setText("Buscar detalle de alquiler");
+        visualizardetallealquiler.setText("Buscar Húesped por Taxista");
         visualizardetallealquiler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 visualizardetallealquilerActionPerformed(evt);
@@ -313,13 +313,11 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 1274, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
+            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
         );
 
         pack();

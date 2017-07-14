@@ -27,6 +27,7 @@
 	<queryString language="SQL">
 		<![CDATA[SELECT id_taxista as 'CÓDIGO',CONCAT(nombre," ",apellido) as 'NOMBRES Y APELLIDOS',SUM(num_persona) as 'CANTIDAD DE PERSONAS', telefono as 'TELÉFONO'
 FROM taxista t INNER JOIN recomienda r on r.taxista_id_taxista=t.id_taxista
+WHERE YEAR(fecha_actual)=YEAR(now())
 GROUP BY nombre,apellido,id_taxista,telefono
 ORDER BY 3 DESC]]>
 	</queryString>

@@ -80,7 +80,7 @@ public class taxista extends javax.swing.JInternalFrame {
         });
         jPopupMenu1.add(jMenuItem1);
 
-        setTitle("REGISTRO DE TAXISTA");
+        setTitle("Registro de Taxista");
 
         jcMousePanel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/fondo7.jpg"))); // NOI18N
 
@@ -270,11 +270,11 @@ public class taxista extends javax.swing.JInternalFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jcMousePanel1Layout.createSequentialGroup()
-                        .addComponent(btnnuevo)
+                        .addComponent(btnnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnactualizar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnguardar)
+                        .addGap(19, 19, 19)
+                        .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnsalir)
                         .addGap(14, 14, 14))
@@ -292,7 +292,7 @@ public class taxista extends javax.swing.JInternalFrame {
                     .addComponent(btnactualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnsalir))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

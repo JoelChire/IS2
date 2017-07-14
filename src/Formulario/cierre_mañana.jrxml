@@ -136,9 +136,9 @@ FROM
 		<band/>
 	</columnFooter>
 	<pageFooter>
-		<band height="42">
+		<band height="133">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="29" width="515" height="13" backcolor="#E6E6E6" uuid="dfe8b9bd-60ac-4185-9725-a45d35c21d43"/>
+				<reportElement mode="Opaque" x="0" y="120" width="515" height="13" backcolor="#E6E6E6" uuid="dfe8b9bd-60ac-4185-9725-a45d35c21d43"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
@@ -147,7 +147,7 @@ FROM
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="29" width="100" height="13" uuid="8601aa64-0042-4232-862b-345c57a49adc"/>
+				<reportElement x="0" y="120" width="100" height="13" uuid="8601aa64-0042-4232-862b-345c57a49adc"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
