@@ -619,7 +619,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // detalle alquileres     
+        //reporte de detalle de alquileres (muestra los los miembros de una habitacion)    
         try {
             JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Formulario/huespedhabitacion.jasper")); //Cargo el reporte al objeto
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
@@ -632,16 +632,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        // estado habitaciones
-        /*String path = "C:\\Formulario\\huespedxhabitacion.jasper";
-        try {
-            JasperPrint jprint = JasperFillManager.fillReport(path, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
-            JasperViewer viewer = new JasperViewer(jprint,false); //Creamos la vista del Reporte
-            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
-            viewer.setVisible(true); //Inicializamos la vista del Reporte
-        } catch (JRException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        } */
+        // reporte del estado de las  habitaciones
          try {
             JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Formulario/estado_habitacion.jasper")); //Cargo el reporte al objeto
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
@@ -654,7 +645,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        // TODO add your handling code here:
+        // Ventana de consulta respecto a la busqueda de taxistas
         String bandera=buscar_taxista_consulta.bandera_buscar_taxista;
         try{            
             if(bandera==null){            
@@ -670,7 +661,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-        // top taxistas
+        // reporte del top taxistas
         try {
             JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Formulario/toptaxista.jasper")); //Cargo el reporte al objeto
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
@@ -683,7 +674,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        // huesped atendido por recepcionista
+        // reporte de huesped atendido por recepcionista
         try {
             JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Formulario/usuariohuesped.jasper")); //Cargo el reporte al objeto
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
@@ -777,7 +768,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_visualizardetallealquilerActionPerformed
 
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
-        // TODO add your handling code here:
+        // Consulta huesped atendido por recepcionista en una fecha especifica
         String bandera=Huespedes_recepcionista.bandera_huesped_recepcionista;
         try{
             if(bandera==null){
@@ -795,26 +786,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
     private void MPsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPsalirActionPerformed
-        // TODO add your handling code here:
+        // cierre del sistema
         System.exit(0);
     }//GEN-LAST:event_MPsalirActionPerformed
 
     private void MPcerrarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPcerrarsesionActionPerformed
-        // TODO add your handling code here:
+        // Cerrar la ventana y visualizar el inicio de sesión 
         Sesion a= new Sesion();
         a.setVisible(true);
         dispose();
     }//GEN-LAST:event_MPcerrarsesionActionPerformed
 
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
-        // TODO add your handling code here:
+        // Abre la ventana que hará el respaldo del sistema
         exportacion a= new exportacion();    
          this.escritorio.add(a);
          a.setVisible(true);
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
-        // TODO add your handling code here:
+        // Reporte del cierre diario del turno mañana
         try {
             JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Formulario/cierre_mañana.jasper")); //Cargo el reporte al objeto
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
@@ -827,7 +818,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
-        // TODO add your handling code here:
+        // Reporte del cierre diario del turno noche
+        
         try {
             JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Formulario/cierre_noche.jasper")); //Cargo el reporte al objeto
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
