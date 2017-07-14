@@ -145,7 +145,7 @@ public class taxista extends javax.swing.JInternalFrame {
         });
 
         try {
-            txtplaca.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUU-###")));
+            txtplaca.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UAU-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
