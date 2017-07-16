@@ -124,7 +124,7 @@ public class Sesion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtusuario);
-        txtusuario.setBounds(180, 360, 200, 30);
+        txtusuario.setBounds(180, 350, 200, 40);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 51, 102));
@@ -153,7 +153,7 @@ public class Sesion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtcontrasena);
-        txtcontrasena.setBounds(180, 400, 200, 30);
+        txtcontrasena.setBounds(180, 400, 200, 40);
 
         btnacceder.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
         btnacceder.setForeground(new java.awt.Color(0, 51, 51));

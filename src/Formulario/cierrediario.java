@@ -95,41 +95,30 @@ public class cierrediario extends javax.swing.JInternalFrame {
             rn = sent.executeQuery("Select sum(detalle_diario_dinero.monto_cobrado) as recaudada\n" +
 "from detalle_diario_dinero inner join usuario\n" +
 "on detalle_diario_dinero.id_usuario_dinero=usuario.id_usuario\n" +
-"where date(detalle_diario_dinero.fecha_actual_dinero)=curdate()\n" +
-"and usuario.turno='Tarde' or usuario.turno= 'Completo'");
+"where (date(detalle_diario_dinero.fecha_actual_dinero)=CURDATE())\n" +
+"and (HOUR(detalle_diario_dinero.fecha_actual_dinero)>=7)\n" +
+"and (HOUR(detalle_diario_dinero.fecha_actual_dinero)<= 18)")
+                    ;
             Statement sentz = cn.createStatement();
             rz = sentz.executeQuery("Select sum(detalle_diario_dinero.monto_cobrado) as recaudado\n" +
 "from detalle_diario_dinero inner join usuario\n" +
 "on detalle_diario_dinero.id_usuario_dinero=usuario.id_usuario\n" +
-"where date(detalle_diario_dinero.fecha_actual_dinero)=curdate()\n" +
-"and usuario.turno='Mañana' or usuario.turno= 'Completo'");
-            String turno;
-            turno=txtturno.getText();
-            if(turno.equals("Mañana")){
-                
-                while(rz.next()){ 
-                
-                    this.txtrecaudado.setText(rz.getString("recaudado"));
-                    //JOptionPane.showMessageDialog(null,"holu","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);
-                }  
-            }   else if(turno.equals("Tarde")){
-                    while(rn.next()){
-            
-                    this.txtrecaudado.setText(rn.getString("recaudada"));
-                    }  
-            }   else if(turno.equals("Completo")){
+"where ((date(`detalle_diario_dinero`.`fecha_actual_dinero`) = CURDATE())\n" +
+"and (((HOUR(`detalle_diario_dinero`.`fecha_actual_dinero`) <= 6)\n" +
+"and (HOUR(`detalle_diario_dinero`.`fecha_actual_dinero`) >= 0))\n" +
+"or ((HOUR(`detalle_diario_dinero`.`fecha_actual_dinero`) <= 23)\n" +
+"and (HOUR(`detalle_diario_dinero`.`fecha_actual_dinero`) >= 19))))");
             	Calendar calendar = Calendar.getInstance();
                 int hourOfDay = calendar.get(Calendar.HOUR_OF_DAY);
-                if(hourOfDay>= 8 && hourOfDay<20){
-                    while(rz.next()){ 
-                        this.txtrecaudado.setText(rz.getString("recaudado"));
-                    }  
-                }else{
-                    while(rn.next()){
+                if(hourOfDay>= 8 && hourOfDay<=19){
+                    while(rn.next()){ 
                         this.txtrecaudado.setText(rn.getString("recaudada"));
                     }  
-            }
-        }   
+                }else{
+                    while(rz.next()){
+                        this.txtrecaudado.setText(rz.getString("recaudado"));
+                    }  
+            }  
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);
         }      
@@ -178,7 +167,6 @@ public class cierrediario extends javax.swing.JInternalFrame {
         btnguardar = new javax.swing.JButton();
         btncalcular = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setTitle("Cierre Diario");
 
@@ -325,13 +313,6 @@ public class cierrediario extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jcMousePanel1Layout = new javax.swing.GroupLayout(jcMousePanel1);
         jcMousePanel1.setLayout(jcMousePanel1Layout);
         jcMousePanel1Layout.setHorizontalGroup(
@@ -347,9 +328,7 @@ public class cierrediario extends javax.swing.JInternalFrame {
                                 .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jcMousePanel1Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(100, 100, 100)
                         .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btncalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -370,9 +349,8 @@ public class cierrediario extends javax.swing.JInternalFrame {
                 .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btncalcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(btnsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -429,7 +407,9 @@ public class cierrediario extends javax.swing.JInternalFrame {
                     pst.setString(7,txtid.getText());
                     pst.executeUpdate();
                     JOptionPane.showMessageDialog(null,"Registro exitoso","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);
+                    //this.dispose();
                     cc.desconectar();
+                    
                 } catch (SQLException ex) {
                     Logger.getLogger(cierrediario.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -453,18 +433,11 @@ public class cierrediario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-     
-// TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btncalcular;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnsalir;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;

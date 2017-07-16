@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2219832e-f930-4264-93bc-fc510443afde">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="563b16eb-46f3-4ebe-8bc2-8549d5ac606b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -8,37 +8,42 @@
      cierre_mañana.`id_huesped` AS cierre_mañana_id_huesped,
      cierre_mañana.`nombre_h` AS cierre_mañana_nombre_h,
      cierre_mañana.`apellidos_h` AS cierre_mañana_apellidos_h,
-     cierre_mañana.`habitacion_id_habitacion` AS cierre_mañana_habitacion_id_habitacion,
+     cierre_mañana.`nro_hab` AS cierre_mañana_nro_hab,
      cierre_mañana.`monto_cobrado` AS cierre_mañana_monto_cobrado,
+     gasto_montoneto_cierre_mañana.`gasto_diario` AS gasto_montoneto_cierre_mañana_gasto_diario,
+     gasto_montoneto_cierre_mañana.`monto_neto` AS gasto_montoneto_cierre_mañana_monto_neto,
      total_cierre_mañana.`TOTAL` AS total_cierre_mañana_TOTAL
 FROM
      `cierre_mañana` cierre_mañana,
+     `gasto_montoneto_cierre_mañana` gasto_montoneto_cierre_mañana,
      `total_cierre_mañana` total_cierre_mañana]]>
 	</queryString>
 	<field name="cierre_mañana_id_huesped" class="java.lang.Integer"/>
 	<field name="cierre_mañana_nombre_h" class="java.lang.String"/>
 	<field name="cierre_mañana_apellidos_h" class="java.lang.String"/>
-	<field name="cierre_mañana_habitacion_id_habitacion" class="java.lang.Integer"/>
+	<field name="cierre_mañana_nro_hab" class="java.lang.Integer"/>
 	<field name="cierre_mañana_monto_cobrado" class="java.math.BigDecimal"/>
+	<field name="gasto_montoneto_cierre_mañana_gasto_diario" class="java.math.BigDecimal"/>
+	<field name="gasto_montoneto_cierre_mañana_monto_neto" class="java.math.BigDecimal"/>
 	<field name="total_cierre_mañana_TOTAL" class="java.math.BigDecimal"/>
 	<background>
 		<band/>
 	</background>
 	<title>
-		<band height="83">
+		<band height="84">
 			<frame>
-				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="103" backcolor="#006699" uuid="fdda3ca3-d4cb-4df9-bf12-02f4b274738f"/>
+				<reportElement mode="Opaque" x="-20" y="-22" width="595" height="106" backcolor="#006699" uuid="43980d6a-3821-4d7c-8a7b-ce910ad18c8e"/>
 				<staticText>
-					<reportElement x="20" y="20" width="264" height="43" forecolor="#FFFFFF" uuid="918db019-ed92-4682-8730-5d767c844b3c"/>
+					<reportElement x="20" y="20" width="288" height="43" forecolor="#FFFFFF" uuid="3dacae4d-2bae-4f85-a989-e51797ed8762"/>
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
 					<text><![CDATA[CIERRE DIARIO]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="20" y="63" width="180" height="20" forecolor="#FFFFFF" uuid="5c88e512-f769-4b08-bf32-a0a495ff5b00"/>
-					<textElement textAlignment="Left">
-						<font size="14" isBold="true"/>
+					<reportElement x="20" y="63" width="180" height="20" forecolor="#FFFFFF" uuid="c160d319-fa26-4500-9641-a80f70fe813a"/>
+					<textElement>
+						<font size="14" isBold="false"/>
 					</textElement>
 					<text><![CDATA[TURNO MAÑANA]]></text>
 				</staticText>
@@ -46,89 +51,89 @@ FROM
 		</band>
 	</title>
 	<pageHeader>
-		<band height="13"/>
+		<band height="21"/>
 	</pageHeader>
 	<columnHeader>
 		<band height="21">
 			<line>
-				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="13712a96-4948-4848-a73d-bb59f56c36d7"/>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="d5390ab0-eba0-41b9-8d4b-633212e1f0f4"/>
 			</line>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="72" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="47819d42-f426-42d4-a7cf-469c32ddc96d"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
-				</textElement>
-				<text><![CDATA[ID HUESPED]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="72" y="0" width="148" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="2fd7c433-c085-4945-a21f-f812886a56aa"/>
+				<reportElement mode="Opaque" x="33" y="0" width="172" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4f7f67d1-fb58-4ee1-87ae-f7c9074c782b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[NOMBRES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="220" y="0" width="148" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="34470b10-5c18-40cd-b868-b7af272f8e47"/>
+				<reportElement mode="Opaque" x="451" y="0" width="105" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="8c10c5b1-23d5-45c5-85b1-a70ce1141d22"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="true"/>
 				</textElement>
-				<text><![CDATA[APELLIDOS]]></text>
+				<text><![CDATA[MONTO COBRADO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="368" y="0" width="82" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="5ab2d330-57ae-4b1e-b913-6401a1f81b54"/>
+				<reportElement mode="Opaque" x="377" y="0" width="74" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="c1cd5c65-c773-49f2-b528-54bf5250ad14"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[HABITACIÓN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="450" y="0" width="105" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a4d04aa5-65ca-4916-96a9-1f3b5ee0e53d"/>
+				<reportElement mode="Opaque" x="205" y="0" width="172" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a05f7eae-dee7-48ce-bceb-d493593388fb"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11" isBold="true"/>
 				</textElement>
-				<text><![CDATA[MONTO COBRADO]]></text>
+				<text><![CDATA[APELLIDOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="0" width="32" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4b528f48-b380-46df-bdc7-387c6b3e541a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="20">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="390153da-d0fd-4ec0-9e88-841697b3b99e"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="5d386f70-2486-4298-88d2-2d0dcc7d932c"/>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="0" width="72" height="20" uuid="c9817f57-e2b2-492d-8b1c-4ba7e8b86881"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement x="0" y="0" width="34" height="20" uuid="fa77c4f5-36c2-4518-87dc-e0fd8036ac1b"/>
+				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cierre_mañana_id_huesped}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="72" y="0" width="145" height="20" uuid="4b70df87-0147-494e-b4d4-71554c259f65"/>
-				<textElement>
-					<font size="14"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{cierre_mañana_nombre_h}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="223" y="0" width="145" height="20" uuid="ad409645-cecc-436c-9feb-daba85179a49"/>
+				<reportElement x="216" y="0" width="162" height="20" uuid="0a3befec-0071-4ecd-9837-27ddb213b203"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cierre_mañana_apellidos_h}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="368" y="0" width="82" height="20" uuid="48850ec9-f472-48d7-a2b5-6b0b2ad758a7"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement x="378" y="0" width="74" height="20" uuid="93334c36-c6cc-407d-828c-8952a1c5eeea"/>
+				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{cierre_mañana_habitacion_id_habitacion}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cierre_mañana_nro_hab}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="450" y="0" width="105" height="20" uuid="7289bd7e-b701-4996-9101-b06fa63d4ed3"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement x="452" y="0" width="103" height="20" uuid="ab76e57d-104c-4d8a-8ab2-93baea006380"/>
+				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cierre_mañana_monto_cobrado}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="34" y="0" width="172" height="20" uuid="813525d7-f886-4a9c-9353-5b32fbb19bc0"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cierre_mañana_nombre_h}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -136,34 +141,62 @@ FROM
 		<band/>
 	</columnFooter>
 	<pageFooter>
-		<band height="133">
+		<band height="105">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="120" width="515" height="13" backcolor="#E6E6E6" uuid="dfe8b9bd-60ac-4185-9725-a45d35c21d43"/>
+				<reportElement mode="Opaque" x="0" y="92" width="515" height="13" backcolor="#E6E6E6" uuid="b3374ef7-4fe0-43d4-93aa-beac884f2034"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement mode="Opaque" x="515" y="29" width="40" height="13" backcolor="#E6E6E6" uuid="740da355-dd96-4dfe-9704-3095a2e35771"/>
+				<reportElement mode="Opaque" x="515" y="92" width="40" height="13" backcolor="#E6E6E6" uuid="85126b52-fbe3-4784-9278-b2426b8f9849"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="120" width="100" height="13" uuid="8601aa64-0042-4232-862b-345c57a49adc"/>
+				<reportElement x="0" y="92" width="100" height="13" uuid="7f6f60cf-cabf-4871-a925-30b29c0ada16"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement mode="Transparent" x="402" y="0" width="48" height="22" uuid="1a89c852-a037-42e4-8bfe-e9df34a7aa65"/>
-				<textElement>
-					<font size="14" isBold="true" isItalic="false"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="450" y="19" width="105" height="20" uuid="c9505b36-ac88-4444-addd-f2ac6f080a2a"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="14"/>
 				</textElement>
-				<text><![CDATA[TOTAL]]></text>
+				<textFieldExpression><![CDATA[$F{gasto_montoneto_cierre_mañana_gasto_diario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="369" y="40" width="82" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="6608b14a-e365-4a7a-9576-13109a88cd92"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MONTO NETO]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="450" y="0" width="105" height="22" uuid="8caf6768-c00e-4d37-a927-b49a1258280b"/>
-				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+			<staticText>
+				<reportElement mode="Opaque" x="369" y="20" width="82" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="546d43ea-7195-41dc-9018-bb54598f6aa4"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GASTOS]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="450" y="38" width="105" height="20" uuid="24bd93f7-1f72-4630-a91e-79ca95abbc41"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gasto_montoneto_cierre_mañana_monto_neto}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="450" y="0" width="105" height="20" uuid="b1aca408-7f64-4e84-8dd6-3a1aa2fd209c"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{total_cierre_mañana_TOTAL}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="369" y="0" width="82" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="9863e698-487c-4c00-853a-c68f29adc5f4"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
 		</band>
 	</pageFooter>
 	<summary>
