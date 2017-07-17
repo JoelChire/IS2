@@ -374,6 +374,8 @@ public class cierrediario extends javax.swing.JInternalFrame {
 
     private void txtgastostxtgastosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtgastostxtgastosKeyPressed
         // TODO add your handling code here:
+         
+
         txtneto.setText("");
     }//GEN-LAST:event_txtgastostxtgastosKeyPressed
 

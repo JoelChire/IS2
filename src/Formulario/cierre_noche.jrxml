@@ -36,7 +36,7 @@ FROM
 				<staticText>
 					<reportElement x="20" y="20" width="288" height="43" forecolor="#FFFFFF" uuid="da70efc0-f034-4f82-8641-97d1a04768d0"/>
 					<textElement>
-						<font size="34" isBold="true"/>
+						<font size="30" isBold="true"/>
 					</textElement>
 					<text><![CDATA[CIERRE DIARIO]]></text>
 				</staticText>
@@ -61,35 +61,35 @@ FROM
 			<staticText>
 				<reportElement mode="Opaque" x="33" y="0" width="172" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="94655313-32ad-429e-a156-a5a5b6f41476"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
+					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[NOMBRES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="1" y="0" width="32" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="97598256-9394-40e1-ac94-8ebe49eca0f5"/>
+				<reportElement mode="Opaque" x="1" y="0" width="73" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="97598256-9394-40e1-ac94-8ebe49eca0f5"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
+					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[ID]]></text>
+				<text><![CDATA[Nº ALQUILER]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="451" y="0" width="105" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="1d34c997-0605-43ce-aa2f-b147dcb62a31"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
+					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[MONTO COBRADO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="377" y="0" width="74" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="543bcf66-faef-42c8-86f4-73b06613e066"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
+					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[HABITACIÓN]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="205" y="0" width="172" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="029521d7-6370-4e86-99b4-559a29d9552e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
+					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[APELLIDOS]]></text>
 			</staticText>
@@ -102,37 +102,27 @@ FROM
 			</line>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="0" y="0" width="32" height="20" uuid="7d77aa5e-994b-465e-8133-b623fb8b4135"/>
-				<textElement textAlignment="Center">
-					<font size="14"/>
-				</textElement>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{cierre_noche_id_huesped}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="32" y="0" width="161" height="20" uuid="f511ca8f-97f1-4fed-8566-6a6777f92d84"/>
-				<textElement>
-					<font size="14"/>
-				</textElement>
+				<textElement textAlignment="Justified"/>
 				<textFieldExpression><![CDATA[$F{cierre_noche_nombre_h}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="451" y="0" width="104" height="20" uuid="ebb9ec41-3979-408d-8fa9-f848a505e787"/>
-				<textElement textAlignment="Center">
-					<font size="14"/>
-				</textElement>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{cierre_noche_monto_cobrado}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="205" y="0" width="172" height="20" uuid="076f996e-536b-45d6-a09d-12bc9da454da"/>
-				<textElement>
-					<font size="14"/>
-				</textElement>
+				<textElement textAlignment="Justified"/>
 				<textFieldExpression><![CDATA[$F{cierre_noche_apellidos_h}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="376" y="0" width="76" height="20" uuid="d8a747da-c8b0-45ab-ad9b-25545e485915"/>
-				<textElement textAlignment="Center">
-					<font size="14"/>
-				</textElement>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{cierre_noche_nro_hab}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -157,44 +147,38 @@ FROM
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="450" y="1" width="105" height="20" uuid="288a32ad-a283-4a47-85d4-0c8f534ceef4"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font size="14"/>
-				</textElement>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{total_cierre_noche_TOTAL}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement mode="Opaque" x="369" y="41" width="82" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7ab466ae-b554-4046-b6dc-b30ce4c4901c"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[MONTO NETO]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="450" y="20" width="105" height="20" uuid="62796647-70c1-4003-914c-fcdacda2376c"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font size="14"/>
-				</textElement>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{gasto_montoneto_cierre_noche_gasto_diario}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement mode="Opaque" x="369" y="1" width="82" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="34c0eb0f-3b68-4f33-b359-3655e9853ef4"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[TOTAL]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="369" y="21" width="82" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f798bc8a-359b-4153-bc67-c2bb052e4e32"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[GASTOS]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="450" y="39" width="105" height="20" uuid="6c0469c8-919b-4226-97b6-7445035ec340"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font size="14"/>
-				</textElement>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{gasto_montoneto_cierre_noche_monto_neto}]]></textFieldExpression>
 			</textField>
 		</band>

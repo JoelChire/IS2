@@ -17,7 +17,7 @@ public class MenuPrincipalRe extends javax.swing.JFrame {
     public MenuPrincipalRe() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("HOTEL TERRAZAS");
+        this.setTitle("HOSTAL TERRAZAS");
         cerrar(); 
         Image icono = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Iconos/usuario.png"));
         this.setIconImage(icono);

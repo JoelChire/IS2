@@ -28,7 +28,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public MenuPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);//centra el ventana
-        this.setTitle("HOTEL TERRAZAS");//Coloca un título a la ventana
+        this.setTitle("HOSTAL TERRAZAS");//Coloca un título a la ventana
         cerrar();
         Image icono = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Iconos/usuario.png")); //Captura un icono
         this.setIconImage(icono); //Coloca una icono a la ventana

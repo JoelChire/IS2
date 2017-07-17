@@ -43,6 +43,7 @@ public class carga extends javax.swing.JFrame {
         progreso = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/logo1.1.jpg"))); // NOI18N
 
