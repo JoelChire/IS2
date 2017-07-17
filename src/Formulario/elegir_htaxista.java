@@ -201,6 +201,7 @@ public class elegir_htaxista extends javax.swing.JDialog {
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
         // TODO add your handling code here:
+        cc.desconectar();
         this.dispose();
     }//GEN-LAST:event_btnsalirActionPerformed
 
@@ -209,7 +210,7 @@ public class elegir_htaxista extends javax.swing.JDialog {
         int fsel= t_datos.getSelectedRow();
         huespedportaxista.id=t_datos.getValueAt(fsel, 0).toString();
         huespedportaxista.txtcod.setText(t_datos.getValueAt(fsel, 0).toString());
-
+        cc.desconectar();
         this.dispose();
     }//GEN-LAST:event_t_datosMouseClicked
 

@@ -796,7 +796,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_MPsalirActionPerformed
 
     private void MPcerrarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPcerrarsesionActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:   
+        cc.desconectar();
         Sesion a= new Sesion();
         a.setVisible(true);
         dispose();

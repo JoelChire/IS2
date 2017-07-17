@@ -550,7 +550,8 @@ public class cobro_diario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:   
+        cc.desconectar();
         bandera_cobro=null;
         this.dispose();
     }//GEN-LAST:event_btnsalirActionPerformed

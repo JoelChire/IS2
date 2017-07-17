@@ -342,12 +342,12 @@ public class taxista extends javax.swing.JInternalFrame {
             pst.setString(6,txtplaca.getText());
             pst.executeUpdate();
             txtnombre.setEnabled(false);
-        txtapellido.setEnabled(false);
-        txtdni.setEnabled(false);
-        txttelefono.setEnabled(false);
-        txtplaca.setEnabled(false);
-        btnguardar.setEnabled(false);
-        btnactualizar.setEnabled(false);
+            txtapellido.setEnabled(false);
+            txtdni.setEnabled(false);
+            txttelefono.setEnabled(false);
+            txtplaca.setEnabled(false);
+            btnguardar.setEnabled(false);
+            btnactualizar.setEnabled(false);
             JOptionPane.showMessageDialog(null,"Registro exitoso","¡Aviso!",JOptionPane.INFORMATION_MESSAGE);   
             cc.desconectar();
         }catch (HeadlessException | SQLException e){
