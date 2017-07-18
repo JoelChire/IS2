@@ -255,6 +255,7 @@
             <Component class="javax.swing.JTextField" name="txtmontocobrado">
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtmontocobradoKeyPressed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtmontocobradoKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lb_mont_xc_cb_diario2">
@@ -297,6 +298,7 @@
             <Component class="javax.swing.JTextField" name="txtrecibido">
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtrecibidoKeyPressed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtrecibidoKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">

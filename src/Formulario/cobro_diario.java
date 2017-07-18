@@ -215,6 +215,9 @@ public class cobro_diario extends javax.swing.JInternalFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtmontocobradoKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtmontocobradoKeyTyped(evt);
+            }
         });
 
         lb_mont_xc_cb_diario2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -238,6 +241,9 @@ public class cobro_diario extends javax.swing.JInternalFrame {
         txtrecibido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtrecibidoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtrecibidoKeyTyped(evt);
             }
         });
 
@@ -652,6 +658,58 @@ public class cobro_diario extends javax.swing.JInternalFrame {
             System.err.println("No se pudo buscar");
         }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void txtmontocobradoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtmontocobradoKeyTyped
+        // TODO add your handling code here:
+        int numerocaracteres=8;
+        char d=evt.getKeyChar();
+        if (txtmontocobrado.getText().length()>=numerocaracteres){
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if (Character.isLetter(d))
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Solo números","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=45
+            ||(int)evt.getKeyChar()>46 && (int)evt.getKeyChar()<=47
+            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
+            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtmontocobradoKeyTyped
+
+    private void txtrecibidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrecibidoKeyTyped
+        // TODO add your handling code here:
+        int numerocaracteres=8;
+        char d=evt.getKeyChar();
+        if (txtrecibido.getText().length()>=numerocaracteres){
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if (Character.isLetter(d))
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Solo números","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=45
+            ||(int)evt.getKeyChar()>46 && (int)evt.getKeyChar()<=47
+            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
+            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtrecibidoKeyTyped
     private void formWindowClosing(java.awt.event.WindowEvent evt) {                                   
         // cerrando ventana
         bandera_cobro=null;

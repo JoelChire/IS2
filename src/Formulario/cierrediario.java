@@ -211,6 +211,9 @@ public class cierrediario extends javax.swing.JInternalFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtgastostxtgastosKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtgastosKeyTyped(evt);
+            }
         });
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -434,6 +437,32 @@ public class cierrediario extends javax.swing.JInternalFrame {
     private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidActionPerformed
+
+    private void txtgastosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtgastosKeyTyped
+        // TODO add your handling code here:
+        int numerocaracteres=8;
+        char d=evt.getKeyChar();
+        if (txtgastos.getText().length()>=numerocaracteres){
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Exceso de dígitos","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if (Character.isLetter(d))
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Solo números","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+        else if ((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=45
+            ||(int)evt.getKeyChar()>46 && (int)evt.getKeyChar()<=47
+            ||(int)evt.getKeyChar()>58 && (int)evt.getKeyChar()<=64
+            ||(int)evt.getKeyChar()>91 && (int)evt.getKeyChar()<=96
+            ||(int)evt.getKeyChar()>123 && (int)evt.getKeyChar()<=255)
+        {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"No usar caracteres","¡Advertencia!",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtgastosKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
