@@ -2,16 +2,15 @@
 package Formulario;
 
 import ClaseConectar.Conectar;
+import java.awt.Desktop;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 import java.security.Principal;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -34,7 +33,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);//centra el ventana
         this.setTitle("HOSTAL TERRAZAS");//Coloca un título a la ventana
         cerrar();
-        cambiarestado();
         Image icono = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Iconos/usuario.png")); //Captura un icono
         this.setIconImage(icono); //Coloca una icono a la ventana
     }    
@@ -125,7 +123,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jSeparator19 = new javax.swing.JPopupMenu.Separator();
         jMenuItem24 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
-        jMenuItem23 = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
 
         jMenuItem21.setText("jMenuItem21");
 
@@ -425,16 +423,28 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/BACKUP17.png"))); // NOI18N
         jMenu6.setText("Respaldo");
         jMenu6.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-
-        jMenuItem23.setText("Nuevo");
-        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem23ActionPerformed(evt);
+        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu6MouseClicked(evt);
             }
         });
-        jMenu6.add(jMenuItem23);
-
+        jMenu6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu6ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu6);
+
+        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/AYUDA14.png"))); // NOI18N
+        jMenu8.setText("Ayuda");
+        jMenu8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jMenu8.setHideActionText(true);
+        jMenu8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu8MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu8);
 
         setJMenuBar(jMenuBar1);
 
@@ -452,53 +462,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void cambiarestado(){
-    ArrayList<String> codigos = new ArrayList<String>();
-    ArrayList<String> tiemporest = new ArrayList<String>();
-    ResultSet rs;
-    int a=0;
-        try{      
-            PreparedStatement sent = cn.prepareStatement("select fecha_salida,now(),TIMESTAMPDIFF(SECOND,now(),fecha_salida)as tiempo,habitacion_id_habitacion from alquila inner join habitacion on habitacion.id_habitacion=alquila.habitacion_id_habitacion");
-            rs = sent.executeQuery(); 
-            while(rs.next())
-            {
-                codigos.add(rs.getString("habitacion_id_habitacion"));
-                tiemporest.add(rs.getString("tiempo"));
-            }
-            
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, e);
-        }   
-
-        
-            while(tiemporest.size()!=a){
-            if(Integer.parseInt(tiemporest.get(a))>0)
-            {System.out.println("Hab num "+codigos.get(a)+" esta ocupado");
-            try {
-                PreparedStatement pst;
-                pst = cn.prepareStatement("UPDATE habitacion set estado='Ocupado' where id_habitacion='"+codigos.get(a)+"' ");
-                pst.executeUpdate();
-                
-                } catch (SQLException e) {
-                 System.out.print(e.getMessage());
-            }
-            }
-            else
-            {    
-                System.out.println("Hab num "+codigos.get(a)+" debe estar disponible");
-                try {
-                PreparedStatement pst;
-                pst = cn.prepareStatement("UPDATE habitacion set estado='Disponible' where id_habitacion='"+codigos.get(a)+"' ");
-                pst.executeUpdate();
-                
-                } catch (SQLException e) {
-                 System.out.print(e.getMessage());
-            }
-            }
-            a=a+1;
-            }
-    }
-    
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // ventana de usuario
         String bandera=usuario.bandera_usuario; //las banderas verifican si la ventana ya esta abierta
@@ -565,7 +528,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        cambiarestado();        // ventana de alquiler
+        // ventana de alquiler
         String bandera=alquiler.bandera_alquiler;
         try{            
             if(bandera==null){            
@@ -583,7 +546,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        cambiarestado();        //ventana de reserva
+        //ventana de reserva
         String bandera_reserva=reserva.bandera_reserva;
         try{            
             if(bandera_reserva==null){            
@@ -760,7 +723,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
-        cambiarestado();        // Buscar habitacion
+        // Buscar habitacion
         String bandera=visualizar_habitacion.bandera_visualizar_habitaciones;
         try{
             if(bandera==null){
@@ -855,13 +818,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_MPcerrarsesionActionPerformed
 
-    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
-        // TODO add your handling code here:
-        exportacion a= new exportacion();    
-         this.escritorio.add(a);
-         a.setVisible(true);
-    }//GEN-LAST:event_jMenuItem23ActionPerformed
-
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
         try {
@@ -887,6 +843,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }//GEN-LAST:event_jMenuItem24ActionPerformed
+
+    private void jMenu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu6ActionPerformed
+
+    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+        // TODO add your handling code here:
+        exportacion a= new exportacion();    
+         this.escritorio.add(a);
+         a.setVisible(true);
+    }//GEN-LAST:event_jMenu6MouseClicked
+
+    private void jMenu8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu8MouseClicked
+        try {
+            Desktop.getDesktop().open(new File("C:\\Users\\Usuario\\Downloads\\Compilador\\Crear exe apartir de jar\\Guía de Usuario\\Guia de Usuario Hostal Terrazas.pdf"));
+        } catch (IOException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   
+    }//GEN-LAST:event_jMenu8MouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -931,6 +907,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -947,7 +924,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
-    private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
