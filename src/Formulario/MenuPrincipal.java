@@ -8,6 +8,10 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.security.Principal;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -30,6 +34,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);//centra el ventana
         this.setTitle("HOSTAL TERRAZAS");//Coloca un título a la ventana
         cerrar();
+        cambiarestado();
         Image icono = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Iconos/usuario.png")); //Captura un icono
         this.setIconImage(icono); //Coloca una icono a la ventana
     }    
@@ -447,6 +452,53 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void cambiarestado(){
+    ArrayList<String> codigos = new ArrayList<String>();
+    ArrayList<String> tiemporest = new ArrayList<String>();
+    ResultSet rs;
+    int a=0;
+        try{      
+            PreparedStatement sent = cn.prepareStatement("select fecha_salida,now(),TIMESTAMPDIFF(SECOND,now(),fecha_salida)as tiempo,habitacion_id_habitacion from alquila inner join habitacion on habitacion.id_habitacion=alquila.habitacion_id_habitacion");
+            rs = sent.executeQuery(); 
+            while(rs.next())
+            {
+                codigos.add(rs.getString("habitacion_id_habitacion"));
+                tiemporest.add(rs.getString("tiempo"));
+            }
+            
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }   
+
+        
+            while(tiemporest.size()!=a){
+            if(Integer.parseInt(tiemporest.get(a))>0)
+            {System.out.println("Hab num "+codigos.get(a)+" esta ocupado");
+            try {
+                PreparedStatement pst;
+                pst = cn.prepareStatement("UPDATE habitacion set estado='Ocupado' where id_habitacion='"+codigos.get(a)+"' ");
+                pst.executeUpdate();
+                
+                } catch (SQLException e) {
+                 System.out.print(e.getMessage());
+            }
+            }
+            else
+            {    
+                System.out.println("Hab num "+codigos.get(a)+" debe estar disponible");
+                try {
+                PreparedStatement pst;
+                pst = cn.prepareStatement("UPDATE habitacion set estado='Disponible' where id_habitacion='"+codigos.get(a)+"' ");
+                pst.executeUpdate();
+                
+                } catch (SQLException e) {
+                 System.out.print(e.getMessage());
+            }
+            }
+            a=a+1;
+            }
+    }
+    
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // ventana de usuario
         String bandera=usuario.bandera_usuario; //las banderas verifican si la ventana ya esta abierta
@@ -513,7 +565,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // ventana de alquiler
+        cambiarestado();        // ventana de alquiler
         String bandera=alquiler.bandera_alquiler;
         try{            
             if(bandera==null){            
@@ -531,7 +583,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        //ventana de reserva
+        cambiarestado();        //ventana de reserva
         String bandera_reserva=reserva.bandera_reserva;
         try{            
             if(bandera_reserva==null){            
@@ -708,7 +760,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
-        // Buscar habitacion
+        cambiarestado();        // Buscar habitacion
         String bandera=visualizar_habitacion.bandera_visualizar_habitaciones;
         try{
             if(bandera==null){

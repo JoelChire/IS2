@@ -45,7 +45,7 @@ FROM
 					<textElement>
 						<font size="14" isBold="false"/>
 					</textElement>
-					<text><![CDATA[TURNO MAÑANA]]></text>
+					<text><![CDATA[TURNO TARDE]]></text>
 				</staticText>
 			</frame>
 		</band>

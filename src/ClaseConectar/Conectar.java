@@ -1,4 +1,4 @@
- package ClaseConectar;
+package ClaseConectar;
 
 import java.awt.HeadlessException;
 import java.sql.Connection;

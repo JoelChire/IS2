@@ -31,12 +31,13 @@ public class visualizar_habitacion extends javax.swing.JInternalFrame {
         String [] titulos = {"Nro Habitación","Tipo Habitación","Estado","Nro de Camas","Fecha Salida"};
         model =new DefaultTableModel(null,titulos);
         try{            
-            PreparedStatement pst=cn.prepareStatement("select ha.nro_hab as 'n_habitacion',"
+            /*PreparedStatement pst=cn.prepareStatement("select ha.nro_hab as 'n_habitacion',"
                     + "th.nombre_tipo as 'tipo_habitacion',ha.estado as 'estado',a.num_camas as 'n_camas',"
                     + "a.fecha_salida as 'fechasalida'\n" +
                     "from habitacion ha inner join tip_habitacion th on th.id_tipo=ha.tip_habitacion_id_tipo\n" +
                     "left outer join alquila a on a.habitacion_id_habitacion=ha.id_habitacion\n" +
-                    "where ha.nro_hab like'%"+valor+"%';");
+                    "where ha.nro_hab like'%"+valor+"%';");*/
+            PreparedStatement pst=cn.prepareStatement(" select ha.nro_hab as 'n_habitacion',th.nombre_tipo as 'tipo_habitacion',ha.estado as 'estado',C.num_camas as 'n_camas',C.fecha_salida as 'fechasalida' from habitacion ha left outer join (select cd.fecha_salida,cd.id,alquila.num_camas from (select MAX(alquila.fecha_salida)as fecha_salida, id_habitacion as id from habitacion left outer join alquila on alquila.habitacion_id_habitacion=habitacion.id_habitacion group by id_habitacion) cd inner join alquila on alquila.habitacion_id_habitacion=cd.id and alquila.fecha_salida=cd.fecha_salida) C on C.id=ha.id_habitacion inner join tip_habitacion th on th.id_tipo=ha.tip_habitacion_id_tipo where ha.nro_hab like'%"+valor+"%';");
             datos = pst.executeQuery();//buscando datos y guardando en datos           
             String [] fila = new String[5];
             while(datos.next()){                
