@@ -11,6 +11,11 @@ import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -820,27 +825,77 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
+        Float cont1=0f;
+        Float gasto1=0f;
+        Float neto1=0f;
         try {
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Formulario/cierre_mañana.jasper")); //Cargo el reporte al objeto
-            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
+            ResultSet rsa,rsg;
+            Statement sent = cn.createStatement();
+            rsa = sent.executeQuery("select sum(`detalle_diario_dinero`.`monto_cobrado`) AS `TOTAL` from `detalle_diario_dinero` where ((cast(`detalle_diario_dinero`.`fecha_actual_dinero` as date) = curdate()) and (hour(`detalle_diario_dinero`.`fecha_actual_dinero`) >= 7) and (hour(`detalle_diario_dinero`.`fecha_actual_dinero`) <= 18))");
+            Statement sentz = cn.createStatement();
+            rsg = sentz.executeQuery("select `cierre_diario`.`gasto_diario` AS `gasto_diario`,`cierre_diario`.`monto_neto` AS `monto_neto` from `cierre_diario` where ((cast(`cierre_diario`.`fecha_actual` as date) = curdate()) and (hour(`cierre_diario`.`fecha_actual`) >= 8) and (hour(`cierre_diario`.`fecha_actual`) <= 19))");
+            while(rsa.next()){
+                cont1 =Float.parseFloat(rsa.getString("TOTAL"));
+                } 
+            while(rsg.next()){
+                gasto1 =Float.parseFloat(rsg.getString("gasto_diario"));
+                neto1 =Float.parseFloat(rsg.getString("monto_neto"));
+                }
+            }
+            catch (SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JasperReport reporte;
+        try {
+            Map parametro = new HashMap();
+            parametro.put("Suma", cont1);
+            parametro.put("Gasto", gasto1);
+            parametro.put("Neto", neto1);
+            reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Formulario/cierre_manana.jasper"));
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
             JasperViewer viewer = new JasperViewer(jprint,false); //Creamos la vista del Reporte
-             viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
-            viewer.setVisible(true); //Inicializamos la vista del Reporte
+            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
+            viewer.setVisible(true); //Inicializamos la vista del Reporte//Cargo el reporte al objeto
         } catch (JRException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
         // TODO add your handling code here:
+        Float cont=0f;
+        Float gasto=0f;
+        Float neto=0f;
         try {
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Formulario/cierre_noche.jasper")); //Cargo el reporte al objeto
-            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
+            ResultSet rsa,rsg;
+            Statement sent = cn.createStatement();
+            rsa = sent.executeQuery("select sum(`detalle_diario_dinero`.`monto_cobrado`) AS `TOTAL` from `detalle_diario_dinero` where ((cast(`detalle_diario_dinero`.`fecha_actual_dinero` as date) = curdate()) and (((hour(`detalle_diario_dinero`.`fecha_actual_dinero`) <= 6) and (hour(`detalle_diario_dinero`.`fecha_actual_dinero`) >= 0)) or ((hour(`detalle_diario_dinero`.`fecha_actual_dinero`) <= 23) and (hour(`detalle_diario_dinero`.`fecha_actual_dinero`) >= 19))))");
+            Statement sentz = cn.createStatement();
+            rsg = sentz.executeQuery("select `cierre_diario`.`gasto_diario` AS `gasto_diario`,`cierre_diario`.`monto_neto` AS `monto_neto` from `cierre_diario` where ((cast(`cierre_diario`.`fecha_actual` as date) = curdate()) and (((hour(`cierre_diario`.`fecha_actual`) <= 7) and (hour(`cierre_diario`.`fecha_actual`) >= 0)) or ((hour(`cierre_diario`.`fecha_actual`) <= 23) and (hour(`cierre_diario`.`fecha_actual`) >= 20))))");
+            while(rsa.next()){
+                cont =Float.parseFloat(rsa.getString("TOTAL"));
+                } 
+            while(rsg.next()){
+                gasto =Float.parseFloat(rsg.getString("gasto_diario"));
+                neto =Float.parseFloat(rsg.getString("monto_neto"));
+                }
+            }
+            catch (SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JasperReport reporte;
+        try {
+            Map parametro = new HashMap();
+            parametro.put("Suman", cont);
+            parametro.put("Gastosn", gasto);
+            parametro.put("Netog", neto);
+            reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("/Formulario/cierre_noche.jasper"));
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, cn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
             JasperViewer viewer = new JasperViewer(jprint,false); //Creamos la vista del Reporte
-             viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
-            viewer.setVisible(true); //Inicializamos la vista del Reporte
+            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
+            viewer.setVisible(true); //Inicializamos la vista del Reporte//Cargo el reporte al objeto
         } catch (JRException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 

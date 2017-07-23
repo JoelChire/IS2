@@ -1,129 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c7a3e283-001d-4dbb-9f0b-76e4bda59bbb">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="efa3f6b6-a060-4297-8772-1375d77275da">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="Suman" class="java.lang.Float"/>
+	<parameter name="Gastosn" class="java.lang.Float"/>
+	<parameter name="Netog" class="java.lang.Float"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT
-     cierre_noche.`id_huesped` AS cierre_noche_id_huesped,
-     cierre_noche.`nombre_h` AS cierre_noche_nombre_h,
-     cierre_noche.`apellidos_h` AS cierre_noche_apellidos_h,
-     cierre_noche.`nro_hab` AS cierre_noche_nro_hab,
-     cierre_noche.`monto_cobrado` AS cierre_noche_monto_cobrado,
-     gasto_montoneto_cierre_noche.`gasto_diario` AS gasto_montoneto_cierre_noche_gasto_diario,
-     gasto_montoneto_cierre_noche.`monto_neto` AS gasto_montoneto_cierre_noche_monto_neto,
-     total_cierre_noche.`TOTAL` AS total_cierre_noche_TOTAL
-FROM
-     `cierre_noche` cierre_noche,
-     `gasto_montoneto_cierre_noche` gasto_montoneto_cierre_noche,
-     `total_cierre_noche` total_cierre_noche]]>
+		<![CDATA[select `h`.`id_huesped` AS `id_huesped`,`h`.`nombre_h` AS `nombre_h`,`h`.`apellidos_h` AS `apellidos_h`,`ha`.`nro_hab` AS `nro_hab`,`ddd`.`monto_cobrado` AS `monto_cobrado` from ((((`huesped` `h` join `alquila` `a` on((`h`.`id_huesped` = `a`.`huesped_id_huesped`))) join `detalle_diario_dinero` `ddd` on((`ddd`.`alquila_id_alquila` = `a`.`id_alquila`))) join `habitacion` `ha` on((`ha`.`id_habitacion` = `a`.`habitacion_id_habitacion`))) join `usuario` `u` on((`u`.`id_usuario` = `ddd`.`id_usuario_dinero`))) where ((cast(`ddd`.`fecha_actual_dinero` as date) = curdate()) and (((hour(`ddd`.`fecha_actual_dinero`) <= 6) and (hour(`ddd`.`fecha_actual_dinero`) >= 0)) or ((hour(`ddd`.`fecha_actual_dinero`) <= 23) and (hour(`ddd`.`fecha_actual_dinero`) >= 19))))]]>
 	</queryString>
-	<field name="cierre_noche_id_huesped" class="java.lang.Integer"/>
-	<field name="cierre_noche_nombre_h" class="java.lang.String"/>
-	<field name="cierre_noche_apellidos_h" class="java.lang.String"/>
-	<field name="cierre_noche_nro_hab" class="java.lang.Integer"/>
-	<field name="cierre_noche_monto_cobrado" class="java.math.BigDecimal"/>
-	<field name="gasto_montoneto_cierre_noche_gasto_diario" class="java.math.BigDecimal"/>
-	<field name="gasto_montoneto_cierre_noche_monto_neto" class="java.math.BigDecimal"/>
-	<field name="total_cierre_noche_TOTAL" class="java.math.BigDecimal"/>
+	<field name="id_huesped" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre_h" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellidos_h" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nro_hab" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="monto_cobrado" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<background>
 		<band/>
 	</background>
 	<title>
-		<band height="86">
+		<band height="89">
 			<frame>
-				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="106" backcolor="#006699" uuid="c234a325-9b3a-436f-839c-dc5cfd2ea908"/>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="109" backcolor="#006699" uuid="9a458f78-97da-41df-a229-e4e03a4dff5e"/>
 				<staticText>
-					<reportElement x="20" y="20" width="288" height="43" forecolor="#FFFFFF" uuid="da70efc0-f034-4f82-8641-97d1a04768d0"/>
+					<reportElement x="20" y="20" width="271" height="43" forecolor="#FFFFFF" uuid="24f5b53f-e914-4248-86c2-6ddd4162f990"/>
 					<textElement>
-						<font size="30" isBold="true"/>
+						<font size="34" isBold="true"/>
 					</textElement>
 					<text><![CDATA[CIERRE DIARIO]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="20" y="63" width="180" height="20" forecolor="#FFFFFF" uuid="2b53d641-de9d-4d9e-8b03-937a5e18cf11"/>
-					<textElement>
+					<reportElement x="20" y="63" width="180" height="20" forecolor="#FFFFFF" uuid="a454acd8-ed3c-4849-9116-e7a32881a0f8"/>
+					<textElement textAlignment="Left">
 						<font size="14" isBold="false"/>
 					</textElement>
-					<text><![CDATA[TURNO TARDE]]></text>
+					<text><![CDATA[TURNO NOCHE]]></text>
 				</staticText>
 			</frame>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="21"/>
+		<band height="12"/>
 	</pageHeader>
 	<columnHeader>
 		<band height="21">
 			<line>
-				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="4a84d536-4a67-4992-9881-4f1ef5ffdcb4"/>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="543526ac-b5bd-4071-a5ae-135e0c2e887d"/>
 			</line>
 			<staticText>
-				<reportElement mode="Opaque" x="33" y="0" width="172" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="94655313-32ad-429e-a156-a5a5b6f41476"/>
+				<reportElement mode="Opaque" x="203" y="0" width="165" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="6ec90373-3acd-425a-8a5d-bd247948a83a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[APELLIDOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="35" y="0" width="168" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="79b05bdf-a95c-4126-816a-b4fbf651b9ce"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[NOMBRES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="1" y="0" width="73" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="97598256-9394-40e1-ac94-8ebe49eca0f5"/>
+				<reportElement mode="Opaque" x="368" y="0" width="76" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="d45b7987-ead5-42a4-b2c1-8148591561ea"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Nº ALQUILER]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="451" y="0" width="105" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="1d34c997-0605-43ce-aa2f-b147dcb62a31"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[MONTO COBRADO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="377" y="0" width="74" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="543bcf66-faef-42c8-86f4-73b06613e066"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[HABITACIÓN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="205" y="0" width="172" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="029521d7-6370-4e86-99b4-559a29d9552e"/>
+				<reportElement mode="Opaque" x="444" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="149ee063-a5df-4c98-84b8-c96283dffc2f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="11" isBold="true"/>
 				</textElement>
-				<text><![CDATA[APELLIDOS]]></text>
+				<text><![CDATA[MONTO COBRADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="0" width="35" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="fbcdba4a-9226-4a31-82db-c21b454c3a2f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="20">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="706a8a6f-1538-4ac3-aa76-acfcbe26e1b7"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="943930a3-f00f-4554-bd11-b35b8f9aef72"/>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="0" width="32" height="20" uuid="7d77aa5e-994b-465e-8133-b623fb8b4135"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{cierre_noche_id_huesped}]]></textFieldExpression>
+				<reportElement x="0" y="0" width="35" height="20" uuid="cbc7f8a8-5bb8-44ee-937e-017b73086821"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_huesped}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="32" y="0" width="161" height="20" uuid="f511ca8f-97f1-4fed-8566-6a6777f92d84"/>
-				<textElement textAlignment="Justified"/>
-				<textFieldExpression><![CDATA[$F{cierre_noche_nombre_h}]]></textFieldExpression>
+				<reportElement x="35" y="0" width="162" height="20" uuid="e60f8e1e-d845-492b-919f-d525ee61f275"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_h}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="451" y="0" width="104" height="20" uuid="ebb9ec41-3979-408d-8fa9-f848a505e787"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{cierre_noche_monto_cobrado}]]></textFieldExpression>
+				<reportElement x="203" y="0" width="165" height="20" uuid="d76e4cc5-5e15-4574-972d-bb42074207a9"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellidos_h}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="205" y="0" width="172" height="20" uuid="076f996e-536b-45d6-a09d-12bc9da454da"/>
-				<textElement textAlignment="Justified"/>
-				<textFieldExpression><![CDATA[$F{cierre_noche_apellidos_h}]]></textFieldExpression>
+				<reportElement x="368" y="0" width="76" height="20" uuid="a083f8d7-a93a-4756-8677-d81e9959eb82"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nro_hab}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="376" y="0" width="76" height="20" uuid="d8a747da-c8b0-45ab-ad9b-25545e485915"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{cierre_noche_nro_hab}]]></textFieldExpression>
+				<reportElement x="444" y="0" width="111" height="20" uuid="16a54afb-9354-48c6-934a-29f38e9604e8"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{monto_cobrado}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -131,55 +139,61 @@ FROM
 		<band/>
 	</columnFooter>
 	<pageFooter>
-		<band height="98">
+		<band height="96">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="85" width="515" height="13" backcolor="#E6E6E6" uuid="afd6e056-1ffc-4761-a0cf-31bd174f270e"/>
+				<reportElement mode="Opaque" x="0" y="83" width="515" height="13" backcolor="#E6E6E6" uuid="c3e8c59b-c5fd-4895-ad8d-8b85fa0c1eb0"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement mode="Opaque" x="515" y="85" width="40" height="13" backcolor="#E6E6E6" uuid="704afa48-4623-4e31-b108-354fe0bf72db"/>
+				<reportElement mode="Opaque" x="515" y="83" width="40" height="13" backcolor="#E6E6E6" uuid="3146396f-d3aa-4d5b-b2f7-5f99126f7d56"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="85" width="100" height="13" uuid="16a9e198-501d-4efe-bebd-6b2c2551b5d4"/>
+				<reportElement x="0" y="83" width="100" height="13" uuid="72a61f5d-7795-42e6-997e-5604dfa355cd"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="450" y="1" width="105" height="20" uuid="288a32ad-a283-4a47-85d4-0c8f534ceef4"/>
-				<textElement textAlignment="Center" verticalAlignment="Top"/>
-				<textFieldExpression><![CDATA[$F{total_cierre_noche_TOTAL}]]></textFieldExpression>
+			<textField>
+				<reportElement x="444" y="0" width="111" height="20" uuid="d4a314cb-479b-46ef-8bc7-dafec6977fd3"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Suman}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="20" width="111" height="20" uuid="ca821928-d24f-47a2-8bd1-f89527719743"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Gastosn}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement mode="Opaque" x="369" y="41" width="82" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7ab466ae-b554-4046-b6dc-b30ce4c4901c"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+				<reportElement x="344" y="0" width="100" height="20" uuid="8d5637b9-35ed-4550-8660-927861335b5c"/>
+				<textElement textAlignment="Right">
+					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[MONTO NETO]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="450" y="20" width="105" height="20" uuid="62796647-70c1-4003-914c-fcdacda2376c"/>
-				<textElement textAlignment="Center" verticalAlignment="Top"/>
-				<textFieldExpression><![CDATA[$F{gasto_montoneto_cierre_noche_gasto_diario}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement mode="Opaque" x="369" y="1" width="82" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="34c0eb0f-3b68-4f33-b359-3655e9853ef4"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[TOTAL]]></text>
+				<text><![CDATA[TOTAL:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="369" y="21" width="82" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f798bc8a-359b-4153-bc67-c2bb052e4e32"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font isBold="true"/>
+				<reportElement x="344" y="20" width="100" height="20" uuid="24dd6df4-c425-41e7-b980-64d36281e097"/>
+				<textElement textAlignment="Right">
+					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[GASTOS]]></text>
+				<text><![CDATA[GASTOS:]]></text>
 			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="450" y="39" width="105" height="20" uuid="6c0469c8-919b-4226-97b6-7445035ec340"/>
-				<textElement textAlignment="Center" verticalAlignment="Top"/>
-				<textFieldExpression><![CDATA[$F{gasto_montoneto_cierre_noche_monto_neto}]]></textFieldExpression>
+			<staticText>
+				<reportElement x="344" y="40" width="100" height="20" uuid="5a644998-7e11-4179-85e4-8f825ed8817b"/>
+				<textElement textAlignment="Right">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL NETO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="444" y="40" width="111" height="20" uuid="13c74ac8-ea03-4af3-a0d9-25fb2f375663"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Netog}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
