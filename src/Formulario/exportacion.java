@@ -167,7 +167,7 @@ public class exportacion extends javax.swing.JInternalFrame {
         {
        try
        {
-       backus = "C:\\wamp64\\bin\\mysql\\mysql5.7.14\\bin\\mysqldump --opt -u"+Exporta.getUs()+" -p"+Exporta.getPas()+" -B "+Exporta.getBd()+" -r \""+ruta+nombre+"\"";
+       backus = "C:\\wamp\\bin\\mysql\\mysq5.5.24\\bin\\mysqldump --opt -u"+Exporta.getUs()+" -p"+Exporta.getPas()+" -B "+Exporta.getBd()+" -r \""+ruta+nombre+"\"";
        //backus = "C:\\wamp64\\bin\\mysql\\mysql5.7.14\\bin\\mysqldump --user="+Exporta.getUs()+" --password="+Exporta.getPas()+" -v "+Exporta.getBd()+" > "+ruta+nombre;
            System.out.println(backus);
        Runtime rt=Runtime.getRuntime();

@@ -912,7 +912,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jMenu8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu8MouseClicked
         try {
-            Desktop.getDesktop().open(new File("C:\\Users\\Usuario\\Downloads\\Compilador\\Crear exe apartir de jar\\Guía de Usuario\\Guia de Usuario Hostal Terrazas.pdf"));
+            Desktop.getDesktop().open(new File("C:\\Program Files (x86)\\Hotel Terrazas\\Guía de Usuario\\Guia de Usuario Hostal Terrazas.pdf"));
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
